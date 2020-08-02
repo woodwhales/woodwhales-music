@@ -1,0 +1,10 @@
+server:
+  port: 8084
+  address: 0.0.0.0
+  servlet:
+    context-path: /music/
+  
+spring:
+  freemarker:
+    cache: false
+

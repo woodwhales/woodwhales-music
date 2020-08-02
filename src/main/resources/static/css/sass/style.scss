@@ -1,0 +1,243 @@
+@import "compass";
+
+@mixin square($property){
+	width: $property;
+	height: $property;
+}
+@mixin user-select($select){
+	-moz-user-select: $select;
+	-khtml-user-select: $select;
+	-webkit-user-select: $select;
+	-o-user-select: $select;
+	user-select: $select;
+}
+@mixin center($width, $height){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: $width/(-2);
+	margin-top: $height/(-2);
+	width: $width;
+	height: $height;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font: 14px "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	background: #333;
+	color: #fff;
+
+}
+a{
+	outline: none;
+	text-decoration: none;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.clear{
+	clear: both;
+}
+#background{
+	background: url(https://lh3.googleusercontent.com/-13gvgzys0L8/Tyy5tnb1ElI/AAAAAAAAEto/cfPXTTGYtvs/s0/bokeh-3.jpg);
+	background-size: cover;
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include square(100%);
+	@include user-select(none);
+}
+#player{
+	width: 500px;
+	height: 130px;
+	padding: 25px;
+	margin: 50px auto 30px;
+	position: relative;
+	.cover{
+		background: rgba(0,0,0,0.5);
+		border: 1px solid #333;
+		position: absolute;
+		top: 25px;
+		left: 25px;
+		overflow: hidden;
+		@include border-radius(10px);
+		@include square(130px);
+		@include box-shadow(0 2px 10px #000);
+		img{
+			@include border-radius(10px);
+			@include square(130px);
+		}
+	}
+	.ctrl{
+		margin-left: 130+25px;
+		text-shadow: 0 1px 2px #000;
+		line-height: 16px;
+		.tag{
+			strong, span{
+				display: block;
+				text-overflow: ellipsis;
+			}
+			span{
+				font-size: 12px;
+				margin-top: 5px;
+				color: #ccc;
+			}
+		}
+		.icon{
+			background-repeat: no-repeat;
+			background-position: center;
+			display: inline-block;
+			opacity: 0.6;
+			cursor: pointer;
+			@include square(24px);
+			@include transition(0.3s);
+			@include user-select(none);
+			&:hover, &.enable{
+				opacity: 1;
+			}
+			&:active{
+				opacity: 0.3;
+			}
+		}
+		.control{
+			margin-top: 10px;
+			height: 25px;
+			.rewind{
+				background-image: url(../images/rewind.png);
+			}
+			.playback{
+				background-image: url(../images/play.png);
+				&.playing{
+					background-image: url(../images/pause.png);
+				}
+			}
+			.fastforward{
+				background-image: url(../images/fastforward.png);
+			}
+			.volume{
+				.mute{
+					background-image: url(../images/volume.png);
+					&.enable{
+						background-image: url(../images/mute.png);
+					}
+				}
+				.slider{
+					margin-top: 11px;
+					margin-left: 10px;
+					width: 100px;
+				}
+			}
+		}
+		.progress{
+			margin-top: 10px;
+			.timer{
+				font-size: 12px;
+				color: #ccc;
+				margin-top: 8px;
+			}
+			.repeat, .shuffle{
+				background-position: center bottom;
+			}
+			.repeat{
+				background-image: url(../images/repeat.png);
+				&.once, &.all{
+					opacity: 1;
+				}
+				&.once{
+					position: relative;
+					&:before{
+						content: "1";
+						position: absolute;
+						top: 3px;
+						right: -2px;
+						font-size: 8px;
+					}
+				}
+			}
+			.shuffle{
+				background-image: url(../images/shuffle.png);
+			}
+		}
+	}
+}
+.slider{
+	background: rgba(0,0,0,0.3);
+	height: 5px;
+	position: relative;
+	cursor: pointer;
+	@include border-radius(5px);
+	@include box-shadow(0 1px 2px rgba(0,0,0,0.5) inset);
+	&:hover, &.enable{
+		a{
+			opacity: 1;
+		}
+	}
+	a{
+		background: #fff;
+		margin-left: -2.5px;
+		position: absolute;
+		opacity: 0;
+		@include square(5px);
+		@include border-radius(50%);
+		@include transition(opacity 0.3s);
+	}
+	.loaded, .pace{
+		position: absolute;
+		height: 100%;
+		opacity: 0.7;
+		@include border-radius(5px);
+	}
+	.loaded{
+		background: rgba(255,255,255,0.1);
+	}
+	.pace{
+		background: #258fb8;
+	}
+}
+#playlist{
+	background: rgba(0,0,0,0.5);
+	width: 470px;
+	margin: 0 auto 50px;
+	padding: 10px 15px;
+	list-style: none;
+	position: relative;
+	@include border-radius(5px);
+	@include box-shadow(0 2px 6px rgba(0,0,0,0.5));
+	li{
+		color: #aaa;
+		font-size: 12px;
+		line-height: 2;
+		padding-left: 25px;
+		cursor: pointer;
+		text-overflow: ellipsis;
+		@include transition(0.3s);
+		&:hover{
+			color: #fff;
+		}
+		&.playing{
+			background: url(../images/playing.png) no-repeat 0 center;
+			color: #fff;
+			font-weight: bold;
+		}
+	}
+}
+footer{
+	position: relative;
+	font-size: 12px;
+	color: #ccc;
+	text-shadow: 0 1px 2px #000;
+	text-align: center;
+	a{
+		color: #fff;
+		font-weight: bold;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
