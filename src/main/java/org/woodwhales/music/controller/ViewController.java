@@ -18,7 +18,7 @@ public class ViewController {
 
 	@GetMapping({"", "index"})
 	public String index(Model model) {
-		model.addAttribute("musicInfoList", musicService.listMusicInfos());
+		model.addAttribute("musicInfoList", musicService.listMusic());
 		return "index";
 	}
 	

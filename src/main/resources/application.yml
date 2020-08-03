@@ -5,6 +5,8 @@ server:
     context-path: /music/
 
 spring:
+  application: 
+    name: woodwhales-music
   profiles:
     active: '@profiles.active@'
 

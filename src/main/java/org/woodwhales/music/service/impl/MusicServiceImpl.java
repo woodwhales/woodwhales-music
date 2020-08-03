@@ -1,12 +1,20 @@
 package org.woodwhales.music.service.impl;
 
-import com.google.common.collect.Lists;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.entity.Music;
+import org.woodwhales.music.enums.StatusEnum;
+import org.woodwhales.music.mapper.MusicMapper;
 import org.woodwhales.music.model.MusicInfo;
 import org.woodwhales.music.service.MusicService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 音乐接口实现类
@@ -14,22 +22,47 @@ import java.util.List;
  */
 @Service
 public class MusicServiceImpl implements MusicService {
-
-    private final String commonsMusicCDN = "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/";
-
-    private final String commonsCoverCDN = "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/";
+	
+	@Autowired
+	private MusicMapper musicMapper;
 
     @Override
-    public List<MusicInfo> listMusicInfos() {
+    public List<MusicInfo> listMusic() {
+    	List<Music> musicList = musicMapper.selectList(null);
+    	if(CollectionUtils.isEmpty(musicList)) {
+    		return Collections.emptyList();
+    	}
+    	
+    	return musicList.stream().map(this::convert).collect(Collectors.toList());
+    }
+    
+    @Override
+    public boolean createMusic(MusicCreateRequestBody requestBody) {
+    	int insert = musicMapper.insert(this.convert(requestBody));
+    	return insert == 1;
+    }
+    
+    private Music convert(MusicCreateRequestBody requestBody) {
+    	Music music = new Music();
+    	music.setAlbum(requestBody.getAlbum());
+    	music.setArtist(requestBody.getArtist());
+    	music.setAudioUrl(requestBody.getAudioUrl());
+    	music.setCoverUrl(requestBody.getCoverUrl());
+    	music.setTitle(requestBody.getMusicName());
+    	music.setStauts(StatusEnum.DEFAULT.code);
+    	Instant now = Instant.now();
+    	music.setGmtCreated(Date.from(now));
+    	music.setGmtModified(Date.from(now));
+		return music;
+	}
 
-
-        ArrayList<MusicInfo> list = Lists.newArrayListWithCapacity(16);
-
-        list.add(new MusicInfo("Someone Like You", "Adele", "Someone Like You", commonsMusicCDN + "some_one_like_you.m4a", commonsCoverCDN + "some_one_like_you.jpg"));
-        list.add(new MusicInfo("红日", "李克勤", "红日", commonsMusicCDN + "hong_ri.m4a", commonsCoverCDN + "hong_ri.jpg"));
-        list.add(new MusicInfo("后来", "刘若英", "后来", commonsMusicCDN + "hou_lai.mp3", commonsCoverCDN + "hou_lai.jpg"));
-        list.add(new MusicInfo("惊蛰", "音阙诗听/王梓钰", "惊蛰", commonsMusicCDN + "jing_zhe.m4a", commonsCoverCDN + "jing_zhe.jpg"));
-        list.add(new MusicInfo("野狼disco", "宝石gem", "野狼disco", commonsMusicCDN + "ye_lang_disco.m4a", commonsCoverCDN + "ye_lang_disco.jpg"));
-        return list;
+	private MusicInfo convert(Music music) {
+    	MusicInfo musicInfo = new MusicInfo();
+    	musicInfo.setAlbum(music.getAlbum());
+    	musicInfo.setArtist(music.getArtist());
+    	musicInfo.setCover(music.getCoverUrl());
+    	musicInfo.setMp3(music.getAudioUrl());
+    	musicInfo.setTitle(music.getTitle());
+    	return musicInfo;
     }
 }

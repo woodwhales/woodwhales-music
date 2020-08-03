@@ -1,8 +1,9 @@
 package org.woodwhales.music.service;
 
-import org.woodwhales.music.model.MusicInfo;
-
 import java.util.List;
+
+import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.model.MusicInfo;
 
 /**
  * 音乐接口
@@ -10,13 +11,18 @@ import java.util.List;
  */
 public interface MusicService {
 
-	// save music
-
     /**
      * list music
      * @return
      */
-    List<MusicInfo> listMusicInfos();
+    List<MusicInfo> listMusic();
+
+    /**
+     * save music
+     * @param requestBody
+     * @return
+     */
+	boolean createMusic(MusicCreateRequestBody requestBody);
 	
 	// update music
 	
