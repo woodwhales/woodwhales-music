@@ -3,8 +3,8 @@ server:
   address: 0.0.0.0
   servlet:
     context-path: /music/
-  
+
 spring:
-  freemarker:
-    cache: false
+  profiles:
+    active: '@profiles.active@'
 

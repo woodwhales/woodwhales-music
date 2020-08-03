@@ -3,6 +3,10 @@ package org.woodwhales.music.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 音乐对象
+ * @author woodwhales
+ */
 @Data
 @NoArgsConstructor
 public class MusicInfo {
@@ -18,4 +22,12 @@ public class MusicInfo {
     private String mp3;
     
     private String ogg;
+
+    public MusicInfo(String title, String artist, String album, String mp3, String cover) {
+        this.title = title;
+        this.artist = artist;
+        this.album = album;
+        this.cover = cover;
+        this.mp3 = mp3;
+    }
 }

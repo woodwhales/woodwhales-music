@@ -1,43 +1,24 @@
 package org.woodwhales.music.controller;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.service.MusicService;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-
+/**
+ * 视图控制器
+ * @author woodwhales
+ */
 @Controller
 public class ViewController {
 	
-	private Gson gson = new Gson();
+	@Autowired
+	private MusicService musicService;
 
 	@GetMapping({"", "index"})
 	public String index(Model model) {
-		
-		String jsonArray = "[\n" + 
-				"    {\n" + 
-				"        \"title\":\"Someone Like You\",\n" + 
-				"        \"artist\":\"Adele\",\n" + 
-				"        \"album\":\"Someone Like You\",\n" + 
-				"        \"cover\":\"pic/some_one_like_you.jpg\",\n" + 
-				"        \"mp3\":\"music/some_one_like_you.m4a\"\n"
-				+ "},"
-				+ "{" + 
-				"        \"title\":\"红日\",\n" + 
-				"        \"artist\":\"李克勤\",\n" + 
-				"        \"album\":\"红日\",\n" + 
-				"        \"cover\":\"pic/hong_ri.jpg\",\n" + 
-				"        \"mp3\":\"music/hong_ri.m4a\"\n" + 
-				"        " + 
-				"    }\n" + 
-				"]";
-		
-		List<MusicInfo> musicInfoList = gson.fromJson(jsonArray, new TypeToken<List<MusicInfo>>() {}.getType());
-		model.addAttribute("musicInfoList", musicInfoList);
+		model.addAttribute("musicInfoList", musicService.listMusicInfos());
 		return "index";
 	}
 	
