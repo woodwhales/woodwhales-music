@@ -15,12 +15,14 @@ public class ControllerExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
 	public BaseVO<Void> exception(Exception exception) {
+		log.error("{}", exception);
 		return BaseVO.fail(-1, "请求非法", null);
 	}
 	
 	@ResponseBody
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public BaseVO<Void> exception(MethodArgumentNotValidException exception) {
+		log.error("{}", exception);
 		String errorMessage = exception.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
 		return BaseVO.fail(-1, errorMessage, null);
 	}

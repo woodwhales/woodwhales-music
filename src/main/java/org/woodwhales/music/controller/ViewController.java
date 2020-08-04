@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class ViewController {
 
-	@Qualifier("musicServiceImpl")
+	@Qualifier("tempMusicServiceImpl")
 	@Autowired
 	private MusicService musicService;
 
