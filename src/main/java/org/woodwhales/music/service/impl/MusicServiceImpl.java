@@ -1,13 +1,8 @@
 package org.woodwhales.music.service.impl;
 
-import java.time.Instant;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.entity.Music;
@@ -16,11 +11,18 @@ import org.woodwhales.music.mapper.MusicMapper;
 import org.woodwhales.music.model.MusicInfo;
 import org.woodwhales.music.service.MusicService;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 音乐接口实现类
  * @author woodwhales
  */
-@Service
+@Primary
+@Service("musicServiceImpl")
 public class MusicServiceImpl implements MusicService {
 	
 	@Autowired
