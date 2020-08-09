@@ -1,11 +1,15 @@
 package org.woodwhales.music.controller.resp;
 
-import java.util.Objects;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
+/**
+ * 请求响应对象
+ * @author woodwhales
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

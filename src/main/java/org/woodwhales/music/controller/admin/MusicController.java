@@ -1,17 +1,18 @@
 package org.woodwhales.music.controller.admin;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.controller.resp.BaseVO;
+import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.controller.util.JsonUtil;
+import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.MusicService;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("admin")
@@ -25,6 +26,11 @@ public class MusicController {
 	public BaseVO<Void> createMusic(@Validated @RequestBody MusicCreateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return BaseVO.returnResp(musicService.createMusic(requestBody));
+	}
+
+	@GetMapping("/pageMusic")
+	public PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param) {
+		return musicService.pageMusic(param);
 	}
 	
 }

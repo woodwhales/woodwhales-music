@@ -1,10 +1,12 @@
 package org.woodwhales.music.controller.param;
 
-import javax.validation.constraints.NotBlank;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
@@ -25,4 +27,8 @@ public class MusicCreateRequestBody {
 	
 	@NotBlank(message = "音乐封面不允许为空")
 	private String coverUrl;
+
+	@Max(value = Integer.MAX_VALUE, message = "排序值不能过大")
+	@Min(value = 0, message = "排序值不能小于0")
+	private Integer sort = Integer.MAX_VALUE;
 }

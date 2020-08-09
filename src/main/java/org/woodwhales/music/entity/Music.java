@@ -1,17 +1,16 @@
 package org.woodwhales.music.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 音乐表
@@ -64,10 +63,16 @@ public class Music implements Serializable {
     private String album;
 
     /**
+     * 排序
+     */
+    @TableField(value = "sort")
+    private Integer sort;
+
+    /**
      * 是否删除，0-已启用，1-已停用，2-已删除
      */
-    @TableField(value = "stauts")
-    private Byte stauts;
+    @TableField(value = "status")
+    private Byte status;
 
     /**
      * 创建时间

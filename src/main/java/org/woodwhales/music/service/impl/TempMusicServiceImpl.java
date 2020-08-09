@@ -4,7 +4,11 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
+import org.woodwhales.music.controller.resp.PageBaseVO;
+import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.MusicService;
 
 import java.util.List;
@@ -41,5 +45,15 @@ public class TempMusicServiceImpl implements MusicService {
     @Override
     public boolean createMusic(MusicCreateRequestBody requestBody) {
         return false;
+    }
+
+    @Override
+    public PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param) {
+        return null;
+    }
+
+    @Override
+    public MusicDetailInfo getMusicById(Long id) {
+        return null;
     }
 }

@@ -1,20 +1,28 @@
 package org.woodwhales.music.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
+import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.entity.Music;
 import org.woodwhales.music.enums.StatusEnum;
 import org.woodwhales.music.mapper.MusicMapper;
+import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.MusicService;
 
 import java.time.Instant;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,11 +39,14 @@ public class MusicServiceImpl implements MusicService {
     @Override
     public List<MusicInfo> listMusic() {
     	List<Music> musicList = musicMapper.selectList(null);
-    	if(CollectionUtils.isEmpty(musicList)) {
-    		return Collections.emptyList();
-    	}
-    	
-    	return musicList.stream().map(this::convert).collect(Collectors.toList());
+		if(CollectionUtils.isEmpty(musicList)) {
+			return Collections.emptyList();
+		}
+
+		return musicList.stream()
+				.sorted(Comparator.comparing(Music::getSort))
+				.map(this::convert)
+				.collect(Collectors.toList());
     }
     
     @Override
@@ -43,19 +54,66 @@ public class MusicServiceImpl implements MusicService {
     	int insert = musicMapper.insert(this.convert(requestBody));
     	return insert == 1;
     }
-    
-    private Music convert(MusicCreateRequestBody requestBody) {
+
+	@Override
+	public PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param) {
+		Page<Music> page = new Page<>(param.getPage(), param.getLimit());
+		LambdaQueryWrapper<Music> wrapper = Wrappers.<Music>lambdaQuery();
+		wrapper.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getTitle, param.getSearchInfo())
+				.eq(Music::getStatus, StatusEnum.DEFAULT.code)
+				.or()
+				.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getArtist, param.getSearchInfo())
+				.or()
+				.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getAlbum, param.getSearchInfo())
+				.orderByAsc(Music::getSort);
+		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
+		long total = pageResult.getTotal();
+		List<Music> musicList = pageResult.getRecords();
+
+		List<MusicSimpleInfo> data;
+		if(CollectionUtils.isEmpty(musicList)) {
+			return PageBaseVO.success(total, Collections.emptyList());
+		}
+		return PageBaseVO.success(total, musicList.stream()
+												.map(this::convertSimpleInfo)
+												.collect(Collectors.toList()));
+	}
+
+	@Override
+	public MusicDetailInfo getMusicById(Long id) {
+		Objects.requireNonNull(id, "不允许请求id为空");
+		Music music = musicMapper.selectById(id);
+		if(Objects.isNull(music)) {
+			throw new RuntimeException("要访问的数据不存在");
+		}
+		return convertDetailInfo(music);
+	}
+
+	private MusicDetailInfo convertDetailInfo(Music music) {
+		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
+		BeanUtils.copyProperties(music, musicDetailInfo);
+		return musicDetailInfo;
+	}
+
+	private Music convert(MusicCreateRequestBody requestBody) {
     	Music music = new Music();
     	music.setAlbum(requestBody.getAlbum());
     	music.setArtist(requestBody.getArtist());
     	music.setAudioUrl(requestBody.getAudioUrl());
     	music.setCoverUrl(requestBody.getCoverUrl());
     	music.setTitle(requestBody.getMusicName());
-    	music.setStauts(StatusEnum.DEFAULT.code);
+    	music.setStatus(StatusEnum.DEFAULT.code);
+		music.setSort(requestBody.getSort());
     	Instant now = Instant.now();
     	music.setGmtCreated(Date.from(now));
     	music.setGmtModified(Date.from(now));
 		return music;
+	}
+
+	private MusicSimpleInfo convertSimpleInfo(Music music) {
+		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
+		BeanUtils.copyProperties(music, musicSimpleInfo);
+		return musicSimpleInfo;
 	}
 
 	private MusicInfo convert(Music music) {

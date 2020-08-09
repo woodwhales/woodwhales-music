@@ -43,45 +43,48 @@
 
     <blockquote class="layui-elem-quote">移风易俗，莫善于乐。</blockquote>
 
+    <button type="button" class="layui-btn layui-btn-xs" th:onclick="returnHome()">返回</button>
+
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-        <legend>添加音乐</legend>
+        <legend>编辑音乐</legend>
     </fieldset>
 
     <form class="layui-form" action="">
+        <input hidden="hidden" th:value="${music.id}">
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
-                <input type="text" id="musicName" name="musicName" lay-verify="required" autocomplete="off" placeholder="请输入音乐名称" class="layui-input">
+                <input type="text" id="musicName" name="musicName" lay-verify="required" autocomplete="off" placeholder="请输入音乐名称" class="layui-input" th:value="${music.title}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">作者</label>
             <div class="layui-input-block">
-                <input type="text" id="artist" name="artist" lay-verify="required" autocomplete="off" placeholder="请输入作者" class="layui-input">
+                <input type="text" id="artist" name="artist" lay-verify="required" autocomplete="off" placeholder="请输入作者" class="layui-input" th:value="${music.artist}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">专辑</label>
             <div class="layui-input-block">
-                <input type="text" id="album" name="album" lay-verify="required" autocomplete="off" placeholder="请输入专辑" class="layui-input">
+                <input type="text" id="album" name="album" lay-verify="required" autocomplete="off" placeholder="请输入专辑" class="layui-input" th:value="${music.album}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">链接</label>
             <div class="layui-input-block">
-                <input type="text" id="audioUrl" name="audioUrl" lay-verify="required" autocomplete="off" placeholder="请输入链接" class="layui-input">
+                <input type="text" id="audioUrl" name="audioUrl" lay-verify="required" autocomplete="off" placeholder="请输入链接" class="layui-input" th:value="${music.audioUrl}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">封面</label>
             <div class="layui-input-block">
-                <input type="text" id="coverUrl" name="coverUrl" lay-verify="required" autocomplete="off" placeholder="请输入封面" class="layui-input">
+                <input type="text" id="coverUrl" name="coverUrl" lay-verify="required" autocomplete="off" placeholder="请输入封面" class="layui-input" th:value="${music.coverUrl}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">排序</label>
             <div class="layui-input-block">
-                <input type="text" id="sort" name="sort" autocomplete="off" placeholder="请输入排序值" class="layui-input">
+                <input type="text" id="sort" name="sort" autocomplete="off" placeholder="请输入排序值" class="layui-input" th:value="${music.sort}">
             </div>
         </div>
 		<div class="layui-form-item">
@@ -92,19 +95,6 @@
 		</div>
     </form>
 
-    <table class="layui-hide" id="musicTable" lay-filter="musicTable"></table>
-
-    <script type="text/html" id="toolbarBtn">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-xs" lay-event="add">添加</button>
-        </div>
-    </script>
-
-    <script type="text/html" id="barBtn">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
-
     <blockquote class="layui-elem-quote">
         <p>© 2020 <a href="https://woodwhales.cn/" target="_blank">woodwhales's blog</a>&nbsp;木鲸鱼</p>
     </blockquote>
@@ -112,6 +102,10 @@
 </div>
 
 <script th:inline="none">
+    function returnHome() {
+        location.href = './';
+    }
+
     layui.use(['form', 'layer', 'table'], function(){
         var form = layui.form,
             table = layui.table,
@@ -120,7 +114,7 @@
         form.on('submit(submitFilter)', function(data){
             var index =layer.load(2, { shade: [0.1,'#fff'] });
             $.ajax({
-                url:'./createMusic',
+                url:'./admin/createMusic',
                 type:'post',
                 dataType:'json',
                 contentType:"application/json",
@@ -129,7 +123,7 @@
                 data:JSON.stringify(data.field),
                 success:function(res) {
                     table.reload('musicTable', {
-                        url: './pageMusic'
+                        url: './admin/pageMusic'
                         ,where: {}
                     });
                     layer.close(index);
@@ -142,50 +136,6 @@
             });
 
             return false;
-        });
-
-        //头工具栏事件
-        table.on('toolbar(musicTable)', function(obj){
-            switch(obj.event){
-                case 'add':
-                    location.href = './add'
-                    break;
-            };
-        });
-
-        //监听行工具事件
-        table.on('tool(musicTable)', function(obj){
-            var data = obj.data;
-
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    layer.close(index);
-                    console.log('del', data.id)
-                });
-
-            } else if(obj.event === 'edit'){
-                location.href = './edit?id=' + data.id
-            }
-        });
-
-        table.render({
-            elem: '#musicTable'
-            ,url:'./pageMusic'
-            ,toolbar: '#toolbarBtn'
-            ,cols: [[
-                {field:'id', width: 60, title: 'ID'},
-                {field:'title', title: '音乐名称'},
-                {field:'artist', title: '作者'},
-                {field:'album', title: '专辑'},
-                {field:'sort', width: 60 ,title: '排序'},
-                {field:'gmtCreated', title: '创建时间'},
-                {field:'gmtModified', title: '更新时间'},
-                {title:'操作', toolbar: '#barBtn'}
-            ]]
-            ,page: {
-                curr : 1,
-                limit : 20
-            }
         });
     });
 </script>
