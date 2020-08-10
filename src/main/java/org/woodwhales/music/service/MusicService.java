@@ -1,6 +1,8 @@
 package org.woodwhales.music.service;
 
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
+import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
+import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.model.MusicDetailInfo;
@@ -39,10 +41,19 @@ public interface MusicService {
      * @param id
      * @return
      */
-    MusicDetailInfo getMusicById(Long id);
+    MusicDetailInfo getMusicDetailInfoById(Long id);
 
-    // update music
-	
-	// delete music
-	
+    /**
+     * 删除音乐
+     * @param requestBody
+     * @return
+     */
+    boolean deleteMusic(MusicDeleteRequestBody requestBody);
+
+    /**
+     * 更新音乐
+     * @param requestBody
+     * @return
+     */
+    boolean updateMusic(MusicUpdateRequestBody requestBody);
 }

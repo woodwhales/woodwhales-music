@@ -44,7 +44,7 @@ public class AdminController {
         if(Objects.isNull(id)) {
             return "redirect:admin/";
         }
-        MusicDetailInfo musicDetailInfo = musicService.getMusicById(id);
+        MusicDetailInfo musicDetailInfo = musicService.getMusicDetailInfoById(id);
         model.addAttribute("music", musicDetailInfo);
         return "admin/edit";
     }

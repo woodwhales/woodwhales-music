@@ -7,33 +7,7 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/layui/layui.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}" />
-    <style type="text/css">
-        .x-admin-backlog .x-admin-backlog-body {
-            display: block;
-            padding: 10px 15px;
-            background-color: #f8f8f8;
-            color: #999;
-            border-radius: 2px;
-            transition: all .3s;
-            -webkit-transition: all .3s
-        }
-
-        html {
-            overflow: -moz-hidden-unscrollable;
-            height: 100%;
-        }
-
-        body::-webkit-scrollbar {
-            display: none;
-        }
-
-        body {
-            -ms-overflow-style: none;
-            height: 100%;
-            width: calc(100vw + 18px);
-            overflow: auto;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/my-css.css}" />
 </head>
 <body>
 <div class="layui-main site-inline">
@@ -50,7 +24,7 @@
     </fieldset>
 
     <form class="layui-form" action="">
-        <input hidden="hidden" th:value="${music.id}">
+        <input hidden="hidden" id="id" name="id" th:value="${music.id}">
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
@@ -89,15 +63,13 @@
         </div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-			  <button type="submit" class="layui-btn" lay-submit="" lay-filter="submitFilter">立即提交</button>
-			  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			  <button type="submit" class="layui-btn layui-btn-xs" lay-submit="" lay-filter="submitFilter">立即提交</button>
+			  <button type="reset" class="layui-btn layui-btn-primary layui-btn-xs">重置</button>
 			</div>
 		</div>
     </form>
 
-    <blockquote class="layui-elem-quote">
-        <p>© 2020 <a href="https://woodwhales.cn/" target="_blank">woodwhales's blog</a>&nbsp;木鲸鱼</p>
-    </blockquote>
+    <div th:replace="~{admin/footer::footer}"></div>
 
 </div>
 
@@ -114,7 +86,7 @@
         form.on('submit(submitFilter)', function(data){
             var index =layer.load(2, { shade: [0.1,'#fff'] });
             $.ajax({
-                url:'./admin/createMusic',
+                url:'./updateMusic',
                 type:'post',
                 dataType:'json',
                 contentType:"application/json",
@@ -122,12 +94,12 @@
                 cache:false,
                 data:JSON.stringify(data.field),
                 success:function(res) {
-                    table.reload('musicTable', {
-                        url: './admin/pageMusic'
-                        ,where: {}
-                    });
                     layer.close(index);
-                    layer.msg(res.msg, {icon: 1});
+                    if(res.code == 0) {
+                        layer.msg(res.msg, {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 5});
+                    }
                 },
                 error:function(res) {
                     layer.close(index);

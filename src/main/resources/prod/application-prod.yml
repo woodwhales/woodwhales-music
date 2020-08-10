@@ -4,11 +4,13 @@ server:
 spring:
   thymeleaf:
     cache: true
-    datasource:
-        driver-class-name: org.h2.Driver
-        schema: classpath:db/schema-h2.sql
-        data: classpath:db/data-h2.sql
-        url: jdbc:h2:mem:test
-        username: root
-        password: test
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/open_music?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
 
