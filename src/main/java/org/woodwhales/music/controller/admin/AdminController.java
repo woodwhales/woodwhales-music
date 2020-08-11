@@ -48,4 +48,9 @@ public class AdminController {
         model.addAttribute("music", musicDetailInfo);
         return "admin/edit";
     }
+
+    @GetMapping("login")
+    public String login() {
+        return "admin/login";
+    }
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+    <!-- Meta tag Keywords -->
+
+    <!-- css files -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/> <!-- Style-CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}" />
+    <!-- //css files -->
+</head>
+<body>
+<!--header-->
+<div class="header-w3l">
+    <h1>后台管理系统</h1>
+</div>
+<!--//header-->
+
+<!--main-->
+<div class="main-content-agile">
+    <div class="sub-main-w3">
+        <div class="wthree-pro">
+            <img th:src="@{/images/pro.png}" alt="image">
+            <h2>登录</h2>
+        </div>
+        <form action="#" method="post">
+            <input placeholder="Username or E-mail" name="Name" class="user" type="text" required="">
+            <span class="icon1"><i class="layui-icon layui-icon-username" aria-hidden="true"></i></span>
+            <br><br>
+            <input placeholder="Password" name="Password" class="pass" type="password" required="">
+            <span class="icon2"><i class="layui-icon layui-icon-password" aria-hidden="true"></i></span><br>
+            <div class="sub-w3l">
+                <div class="right-w3l">
+                    <input type="submit" value="Login">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--//main-->
+
+</body>
+</html>
