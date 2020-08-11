@@ -1,5 +1,6 @@
 package org.woodwhales.music.security;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,7 +8,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.config.SystemConfig;
 
@@ -28,7 +28,12 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        return new User(systemConfig.getUsername(), new BCryptPasswordEncoder().encode(systemConfig.getPassword()), authorities);
+
+        if(StringUtils.equals(username, systemConfig.getUsername())) {
+            String password = systemConfig.getPassword();
+            return new User(username, password, authorities);
+        }
+        return null;
     }
 	
 }

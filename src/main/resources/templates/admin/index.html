@@ -6,8 +6,8 @@
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/layui/layui.js}"></script>
-    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}" />
-    <link rel="stylesheet" th:href="@{/css/my-css.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}"/>
+    <link rel="stylesheet" th:href="@{/css/my-css.css}"/>
 </head>
 <body>
 <div class="layui-main site-inline">
@@ -21,7 +21,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">搜索</label>
             <div class="layui-input-inline">
-                <input type="text" name="searchInfo" lay-verify="title" autocomplete="off" placeholder="音乐名称、作者、专辑" class="layui-input">
+                <input type="text" name="searchInfo" id="searchInfo" lay-verify="title" autocomplete="off" placeholder="音乐名称、作者、专辑"
+                       class="layui-input">
             </div>
             <div class="layui-input-inline">
                 <button type="submit" class="layui-btn layui-btn-sm" lay-submit="" lay-filter="searchBtn">搜索</button>
@@ -48,43 +49,42 @@
 </div>
 
 <script th:inline="none">
-    layui.use(['form', 'layer', 'table'], function(){
+    layui.use(['form', 'layer', 'table'], function () {
         var form = layui.form,
             table = layui.table,
             layer = layui.layer;
 
         //监听提交
-        form.on('submit(searchBtn)', function(data){
-            data.field;
-
+        form.on('submit(searchBtn)', function (data) {
             table.reload('musicTable', {
-                url: './pageMusic'
-                ,where: {
-                    searchInfo : data.field.searchInfo,
-                    page : 1,
-                    limit : 30
+                url: './pageMusic',
+                where: {
+                    'searchInfo' : $('#searchInfo').val()
+                }
+                ,page: {
+                    curr: 1
                 }
             });
             return false;
         });
 
         //头工具栏事件
-        table.on('toolbar(musicTable)', function(obj){
-            switch(obj.event){
+        table.on('toolbar(musicTable)', function (obj) {
+            switch (obj.event) {
                 case 'add':
                     location.href = './add'
                     break;
-            };
+            }
         });
 
         //监听行工具事件
-        table.on('tool(musicTable)', function(obj){
+        table.on('tool(musicTable)', function (obj) {
             var data = obj.data;
 
-            if(obj.event === 'del'){
-                var postObj = {'id' : data.id};
+            if (obj.event === 'del') {
+                var postObj = {'id': data.id};
                 console.log('postObj', postObj)
-                layer.confirm('真的删除行么', function(index){
+                layer.confirm('真的删除行么', function (index) {
                     $.ajax({
                         url: './deleteMusic',
                         type: 'post',
@@ -93,44 +93,41 @@
                         async: true,
                         cache: false,
                         data: JSON.stringify(postObj),
-                        success: function(res) {
+                        success: function (res) {
                             table.reload('musicTable', {
                                 url: './pageMusic'
-                                ,where: {}
+                                , where: {}
                             });
                             layer.close(index);
                             layer.msg(res.msg, {icon: 1});
                         },
-                        error:function(res) {
+                        error: function (res) {
                             layer.close(index);
                             layer.msg('网络异常', {icon: 5});
                         }
                     });
                 });
 
-            } else if(obj.event === 'edit'){
+            } else if (obj.event === 'edit') {
                 location.href = './edit?id=' + data.id
             }
         });
 
         table.render({
             elem: '#musicTable'
-            ,url:'./pageMusic'
-            ,toolbar: '#toolbarBtn'
-            ,cols: [[
-                {field:'id', width: 60, title: 'ID'},
-                {field:'title', title: '音乐名称'},
-                {field:'artist', title: '作者'},
-                {field:'album', title: '专辑'},
-                {field:'sort', width: 60 ,title: '排序'},
-                {field:'gmtCreated', title: '创建时间'},
-                {field:'gmtModified', title: '更新时间'},
-                {title:'操作', toolbar: '#barBtn'}
+            , url: './pageMusic'
+            , toolbar: '#toolbarBtn'
+            , cols: [[
+                {field: 'id', width: 60, title: 'ID'},
+                {field: 'title', title: '音乐名称'},
+                {field: 'artist', title: '作者'},
+                {field: 'album', title: '专辑'},
+                {field: 'sort', width: 60, title: '排序'},
+                {field: 'gmtCreated', title: '创建时间'},
+                {field: 'gmtModified', title: '更新时间'},
+                {title: '操作', toolbar: '#barBtn'}
             ]]
-            ,page: {
-                curr : 1,
-                limit : 30
-            }
+            ,page: true
         });
     });
 </script>
