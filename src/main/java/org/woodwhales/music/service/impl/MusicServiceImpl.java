@@ -46,7 +46,8 @@ public class MusicServiceImpl implements MusicService {
     public List<MusicInfo> listMusic() {
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
 		wrapper.eq(Music::getStatus, StatusEnum.DEFAULT.code)
-				.orderByAsc(Music::getSort);
+				.orderByAsc(Music::getSort)
+				.orderByDesc(Music::getGmtModified);
 		List<Music> musicList = musicMapper.selectList(wrapper);
 		if(CollectionUtils.isEmpty(musicList)) {
 			return Collections.emptyList();
@@ -78,12 +79,12 @@ public class MusicServiceImpl implements MusicService {
 		long total = pageResult.getTotal();
 		List<Music> musicList = pageResult.getRecords();
 
-		List<MusicSimpleInfo> data;
 		if(CollectionUtils.isEmpty(musicList)) {
 			return PageBaseVO.success(total, Collections.emptyList());
 		}
 		return PageBaseVO.success(total, musicList.stream()
 												.map(this::convertSimpleInfo)
+												.sorted(MusicSimpleInfo::compare)
 												.collect(Collectors.toList()));
 	}
 

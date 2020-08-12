@@ -1,5 +1,7 @@
 package org.woodwhales.music.model;
 
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
 import lombok.Data;
 
 /**
@@ -50,4 +52,11 @@ public class MusicSimpleInfo {
      * 更新时间
      */
     private java.util.Date gmtModified;
+
+    public int compare(MusicSimpleInfo musicSimpleInfo) {
+        return ComparisonChain.start()
+                .compare(this.sort, musicSimpleInfo.getSort())
+                .compare(this.gmtModified, musicSimpleInfo.getGmtModified(), Ordering.natural().reverse())
+                .result();
+    }
 }
