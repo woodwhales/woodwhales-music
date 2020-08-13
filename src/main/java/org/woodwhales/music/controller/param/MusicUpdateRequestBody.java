@@ -27,10 +27,8 @@ public class MusicUpdateRequestBody {
     @NotBlank(message = "专辑名称不允许为空")
     private String album;
 
-    @NotBlank(message = "音乐链接不允许为空")
     private String audioUrl;
 
-    @NotBlank(message = "音乐封面不允许为空")
     private String coverUrl;
 
     @Max(value = Integer.MAX_VALUE, message = "排序值不能过大")
