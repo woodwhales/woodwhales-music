@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~106 rows (大约)
+-- 正在导出表  open_music.music 的数据：~110 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -140,7 +140,10 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(105, '西厢', '后弦', '古·玩', NULL, NULL, 100, 0, '2020-08-10 14:42:30', '2020-08-10 14:43:05'),
 	(106, '苏州城外的微笑', '后弦', '很有爱', NULL, NULL, 100, 0, '2020-08-10 14:43:07', '2020-08-10 14:43:06'),
 	(107, '单车恋人', '后弦', '9公主', NULL, NULL, 100, 0, '2020-08-10 14:43:08', '2020-08-10 14:43:07'),
-	(122, '当我想你的时候', '汪峰', '当我想你的时候', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m005/music/%E5%BD%93%E6%88%91%E6%83%B3%E8%B5%B7%E4%BD%A0%E7%9A%84%E6%97%B6%E5%80%99.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m005/music/%E5%BD%93%E6%88%91%E6%83%B3%E8%B5%B7%E4%BD%A0%E7%9A%84%E6%97%B6%E5%80%99.jpg', 16, 0, '2020-08-12 09:31:20', '2020-08-12 10:20:19');
+	(122, '当我想你的时候', '汪峰', '当我想你的时候', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m005/music/%E5%BD%93%E6%88%91%E6%83%B3%E8%B5%B7%E4%BD%A0%E7%9A%84%E6%97%B6%E5%80%99.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m005/music/%E5%BD%93%E6%88%91%E6%83%B3%E8%B5%B7%E4%BD%A0%E7%9A%84%E6%97%B6%E5%80%99.jpg', 16, 0, '2020-08-12 09:31:20', '2020-08-12 10:20:19'),
+	(123, 'BINGBIAN病变 (女声版)', '鞠文娴', 'BINGBIAN病变 (女声版)', '1', '1', 34, 0, '2020-08-13 09:04:27', '2020-08-13 09:04:27'),
+	(124, '吉姆餐厅', '赵雷', '吉姆餐厅', '1', '1', 35, 0, '2020-08-13 09:05:12', '2020-08-13 09:05:12'),
+	(125, '我们的时光', '赵雷', '吉姆餐厅', '1', '1', 36, 0, '2020-08-13 09:05:31', '2020-08-13 09:18:37');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
