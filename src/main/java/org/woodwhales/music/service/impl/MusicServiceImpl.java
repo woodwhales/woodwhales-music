@@ -164,6 +164,9 @@ public class MusicServiceImpl implements MusicService {
 	private MusicSimpleInfo convertSimpleInfo(Music music) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
 		BeanUtils.copyProperties(music, musicSimpleInfo);
+		if(!StringUtils.isAnyBlank(music.getAudioUrl(), music.getCoverUrl())) {
+			musicSimpleInfo.setLinked(true);
+		}
 		return musicSimpleInfo;
 	}
 

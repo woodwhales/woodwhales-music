@@ -117,9 +117,15 @@
             elem: '#musicTable'
             , url: './pageMusic'
             , toolbar: '#toolbarBtn'
+            , limit: 50
             , cols: [[
-                {field: 'id', width: 60, title: 'ID'},
-                {field: 'title', title: '音乐名称'},
+                {field: 'title', title: '音乐名称', templet: function (res) {
+                    if(res.linked) {
+                        return '<span style="color: #5FB878">'+ res.title +'</span>';
+                    } else {
+                        return '<span style="color: #FF5722">'+ res.title +'</span>';
+                    }
+                }},
                 {field: 'artist', title: '作者'},
                 {field: 'album', title: '专辑'},
                 {field: 'sort', width: 60, title: '排序'},

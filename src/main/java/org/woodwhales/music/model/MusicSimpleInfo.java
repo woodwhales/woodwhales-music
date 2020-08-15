@@ -19,6 +19,11 @@ public class MusicSimpleInfo {
     private Integer id;
 
     /**
+     * 是否已关联音乐链接
+     */
+    private Boolean linked;
+
+    /**
      * 音乐名称标题（音乐名称）
      */
     private String title;
