@@ -68,6 +68,31 @@
 		</div>
     </form>
 
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>解析音乐</legend>
+    </fieldset>
+
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">音乐平台</label>
+            <div class="layui-input-block" >
+                <input th:each="musicPlatformType : ${musicPlatformTypes}" lay-verify="otherReq" type="radio" name="platformType" th:value="${musicPlatformType.platform}" th:title="${musicPlatformType.desc}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">源码内容</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入要解析的html" lay-verify="required" lay-reqtext="要解析的html不允许为空" name="content" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn layui-btn-xs" lay-submit="" lay-filter="parseSubmitFilter">解析</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-btn-xs">重置</button>
+            </div>
+        </div>
+    </form>
+
     <div th:replace="~{admin/footer::footer}"></div>
 </div>
 
@@ -79,6 +104,56 @@
     layui.use(['form', 'layer'], function(){
         var form = layui.form,
             layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            otherReq: function(value, item){
+                var $ = layui.$;
+                var verifyName=$(item).attr('name')
+                    , verifyType=$(item).attr('type')
+                    ,formElem=$(item).parents('.layui-form')//获取当前所在的form元素，如果存在的话
+                    ,verifyElem=formElem.find('input[name='+verifyName+']')//获取需要校验的元素
+                    ,isTrue= verifyElem.is(':checked')//是否命中校验
+                    ,focusElem = verifyElem.next().find('i.layui-icon');//焦点元素
+                if(!isTrue || !value){
+                    //定位焦点
+                    focusElem.css(verifyType=='radio'?{"color":"#FF5722"}:{"border-color":"#FF5722"});
+                    //对非输入框设置焦点
+                    focusElem.first().attr("tabIndex","1").css("outline","0").blur(function() {
+                        focusElem.css(verifyType=='radio'? {"color":""} : {"border-color":""});
+                    }).focus();
+                    return '必填项不能为空';
+                }
+            }
+        });
+
+        form.on('submit(parseSubmitFilter)', function (data) {
+            var index =layer.load(2, { shade: [0.1,'#fff'] });
+            $.ajax({
+                url:'./parse',
+                type:'post',
+                dataType:'json',
+                contentType:"application/json",
+                async:true,
+                cache:false,
+                data:JSON.stringify(data.field),
+                success:function(res) {
+                    layer.close(index);
+                    if(res.code == 0) {
+                        $('#musicName').val(res.data.musicTitle);
+                        $('#artist').val(res.data.artist);
+                        $('#album').val(res.data.album);
+                    } else {
+                        layer.msg(res.msg, {icon: 5});
+                    }
+                },
+                error:function(res) {
+                    layer.close(index);
+                    layer.msg('网络异常', {icon: 5});
+                }
+            });
+            return false;
+        });
 
         form.on('submit(submitFilter)', function(data){
             var index =layer.load(2, { shade: [0.1,'#fff'] });
@@ -105,7 +180,6 @@
                     layer.msg('网络异常', {icon: 5});
                 }
             });
-
             return false;
         });
     });
