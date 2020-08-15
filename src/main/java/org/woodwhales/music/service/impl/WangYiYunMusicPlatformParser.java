@@ -1,13 +1,10 @@
 package org.woodwhales.music.service.impl;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import org.woodwhales.music.model.HtmlContent;
-import org.woodwhales.music.service.MusicPlatformParser;
+import org.woodwhales.music.service.base.BaseMusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music
@@ -17,26 +14,23 @@ import org.woodwhales.music.service.MusicPlatformParser;
  */
 @Primary
 @Service("WangYiYunMusicPlatformParser")
-public class WangYiYunMusicPlatformParser implements MusicPlatformParser {
+public class WangYiYunMusicPlatformParser extends BaseMusicPlatformParser {
 
     @Override
-    public HtmlContent parse(String platformType, String content) {
-        HtmlContent htmlContent = new HtmlContent();
-        htmlContent.setPlatformType(platformType);
-        htmlContent.setContent(content);
+    protected String parseAlbum(Document document) {
+        Elements elements = document.getElementsByClass("des s-fc4");
+        return elements.get(1).getElementsByClass("s-fc7").text();
+    }
 
-        Document doc = Jsoup.parseBodyFragment(content);
-        Element body = doc.body();
+    @Override
+    protected String parseArtist(Document document) {
+        Elements elements = document.getElementsByClass("des s-fc4");
+        return elements.get(0).getElementsByClass("s-fc7").text();
+    }
 
-        // 获取标题
-        Elements titleElements = body.getElementsByClass("tit");
-        htmlContent.setMusicTitle(titleElements.get(0).getElementsByClass("f-ff2").get(0).text());
-
-        // 获取专辑和作者
-        Elements elements = doc.getElementsByClass("des s-fc4");
-        htmlContent.setArtist(elements.get(0).getElementsByClass("s-fc7").text());
-        htmlContent.setAlbum(elements.get(1).getElementsByClass("s-fc7").text());
-        
-        return htmlContent;
+    @Override
+    protected String parseMusicTitle(Document document) {
+        Elements titleElements = document.getElementsByClass("tit");
+        return titleElements.get(0).getElementsByClass("f-ff2").get(0).text();
     }
 }

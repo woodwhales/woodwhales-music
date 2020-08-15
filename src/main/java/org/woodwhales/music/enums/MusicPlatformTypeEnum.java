@@ -3,6 +3,7 @@ package org.woodwhales.music.enums;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.woodwhales.music.service.MusicPlatformParser;
+import org.woodwhales.music.service.impl.QQMusicPlatformHtmlParser;
 import org.woodwhales.music.service.impl.WangYiYunMusicPlatformParser;
 
 /**
@@ -22,7 +23,7 @@ public enum MusicPlatformTypeEnum {
     /**
      * QQ音乐
      */
-    QQ_MUSIC("QQ_MUSIC", null,"QQ音乐"),
+    QQ_MUSIC("QQ_MUSIC", QQMusicPlatformHtmlParser.class,"QQ音乐"),
 
     /**
      * 虾米音乐
