@@ -70,12 +70,13 @@ public class MusicServiceImpl implements MusicService {
 	public PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param) {
 		Page<Music> page = new Page<>(param.getPage(), param.getLimit());
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
-		wrapper.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getTitle, param.getSearchInfo())
-				.eq(Music::getStatus, StatusEnum.DEFAULT.code)
-				.or()
-				.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getArtist, param.getSearchInfo())
-				.or()
-				.like(StringUtils.isNotBlank(param.getSearchInfo()), Music::getAlbum, param.getSearchInfo())
+		wrapper.and(StringUtils.isNotBlank(param.getSearchInfo()),
+						i -> i.like(Music::getTitle, param.getSearchInfo())
+								.or()
+								.like(Music::getArtist, param.getSearchInfo())
+								.or()
+								.like(Music::getAlbum, param.getSearchInfo()))
+				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
 		long total = pageResult.getTotal();
