@@ -1,10 +1,10 @@
-package org.woodwhales.music.service.impl;
+package org.woodwhales.music.service.parser;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import org.woodwhales.music.service.base.BaseMusicPlatformParser;
+import org.woodwhales.music.service.parser.base.BaseMusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music

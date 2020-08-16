@@ -1,4 +1,4 @@
-package org.woodwhales.music.service.impl;
+package org.woodwhales.music.service.music;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -22,10 +22,12 @@ import org.woodwhales.music.mapper.MusicMapper;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
-import org.woodwhales.music.service.MusicService;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;

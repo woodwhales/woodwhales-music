@@ -1,9 +1,9 @@
-package org.woodwhales.music.service.base;
+package org.woodwhales.music.service.parser.base;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.woodwhales.music.model.HtmlContent;
-import org.woodwhales.music.service.MusicPlatformParser;
+import org.woodwhales.music.service.parser.MusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music

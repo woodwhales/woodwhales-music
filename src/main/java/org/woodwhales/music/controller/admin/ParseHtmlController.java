@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.woodwhales.music.controller.param.ParseMusicRequestBody;
 import org.woodwhales.music.controller.resp.BaseVO;
 import org.woodwhales.music.model.HtmlContent;
-import org.woodwhales.music.service.ParseMusicPlatformHtmlService;
+import org.woodwhales.music.service.parse.ParseMusicPlatformHtmlService;
 
 /**
  * @projectName: woodwhales-music

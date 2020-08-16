@@ -38,12 +38,28 @@ dev 环境账号密码：admin / admin
 
 ![](doc/images/admin-add.png)
 
-网易云解析教程：
+### 解析
 
-步骤1、复制要解析的 html 源码：class 为：`g-bd4 f-cb`的 html：
+1. 复制要解析的 html 源码。
 
-![](doc/images/admin-add-01.png)
+2. 选择要解析的平台，粘贴 html 源码，点击解析：
 
-步骤2、选择要解析的平台，粘贴 html 源码，点击解析：
+    ![](doc/images/admin-add-parse.png)
 
-![](doc/images/admin-add-02.png)
+#### 网易云
+
+class 为：`g-bd4 f-cb`的 html 源码
+
+![](doc/images/admin-add-wangyiyun.png)
+
+#### QQ 音乐
+
+class 为：`main`的 html 源码
+
+![](doc/images/admin-add-qqmusic.png)
+
+#### 虾米
+
+class 为：`page-container`的 html 源码
+
+![](doc/images/admin-add-xiami.png)

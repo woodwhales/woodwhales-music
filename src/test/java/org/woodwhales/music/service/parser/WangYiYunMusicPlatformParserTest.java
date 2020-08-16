@@ -1,4 +1,4 @@
-package org.woodwhales.music.service.impl;
+package org.woodwhales.music.service.parser;
 
 import cn.hutool.core.io.FileUtil;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @projectName: woodwhales-music
  * @author: woodwhales
- * @date: 20.8.15 20:06
+ * @date: 20.8.16 12:53
  * @description:
  */
 class WangYiYunMusicPlatformParserTest {
@@ -21,10 +21,11 @@ class WangYiYunMusicPlatformParserTest {
 
         String html = FileUtil.readUtf8String(ResourceUtils.getFile("classpath:wang_yi_yun.html"));
 
-        WangYiYunMusicPlatformParser wangYiYunMusicPlatformParser = new WangYiYunMusicPlatformParser();
+        MusicPlatformParser musicPlatformParser = new WangYiYunMusicPlatformParser();
 
-        HtmlContent htmlContent = wangYiYunMusicPlatformParser.parse(MusicPlatformTypeEnum.WANG_YI_YUN.getPlatform(), html);
+        HtmlContent htmlContent = musicPlatformParser.parse(MusicPlatformTypeEnum.WANG_YI_YUN.getPlatform(), html);
 
         System.out.println(htmlContent);
     }
+
 }

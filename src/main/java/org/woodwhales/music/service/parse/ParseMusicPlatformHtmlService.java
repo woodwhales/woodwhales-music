@@ -1,4 +1,4 @@
-package org.woodwhales.music.service;
+package org.woodwhales.music.service.parse;
 
 import org.woodwhales.music.model.HtmlContent;
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.model.MusicDetailInfo;
-import org.woodwhales.music.service.MusicService;
+import org.woodwhales.music.service.music.MusicService;
 
 import java.util.Arrays;
 import java.util.List;

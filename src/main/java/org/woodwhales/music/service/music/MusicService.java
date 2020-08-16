@@ -1,4 +1,4 @@
-package org.woodwhales.music.service;
+package org.woodwhales.music.service.music;
 
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;

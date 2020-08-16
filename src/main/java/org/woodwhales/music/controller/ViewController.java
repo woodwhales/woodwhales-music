@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.woodwhales.music.model.MusicInfo;
-import org.woodwhales.music.service.MusicService;
+import org.woodwhales.music.service.music.MusicService;
 
 import java.util.List;
 

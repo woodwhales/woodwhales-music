@@ -12,7 +12,7 @@ import org.woodwhales.music.controller.resp.BaseVO;
 import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.MusicSimpleInfo;
-import org.woodwhales.music.service.MusicService;
+import org.woodwhales.music.service.music.MusicService;
 
 import java.util.List;
 

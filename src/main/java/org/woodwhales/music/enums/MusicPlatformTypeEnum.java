@@ -2,9 +2,9 @@ package org.woodwhales.music.enums;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
-import org.woodwhales.music.service.MusicPlatformParser;
-import org.woodwhales.music.service.impl.QQMusicPlatformHtmlParser;
-import org.woodwhales.music.service.impl.WangYiYunMusicPlatformParser;
+import org.woodwhales.music.service.parser.MusicPlatformParser;
+import org.woodwhales.music.service.parser.QQMusicPlatformHtmlParser;
+import org.woodwhales.music.service.parser.WangYiYunMusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music

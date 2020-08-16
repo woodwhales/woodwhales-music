@@ -1,9 +1,8 @@
-package org.woodwhales.music.service.impl;
+package org.woodwhales.music.service.parser;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
-import org.woodwhales.music.service.base.BaseMusicPlatformParser;
+import org.woodwhales.music.service.parser.base.BaseMusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music
