@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.woodwhales.music.service.parser.MusicPlatformParser;
 import org.woodwhales.music.service.parser.QQMusicPlatformHtmlParser;
 import org.woodwhales.music.service.parser.WangYiYunMusicPlatformParser;
+import org.woodwhales.music.service.parser.XiaMiMusicPlatformParser;
 
 /**
  * @projectName: woodwhales-music
@@ -28,7 +29,7 @@ public enum MusicPlatformTypeEnum {
     /**
      * 虾米音乐
      */
-    XIA_MI_MUSIC("XIA_MI_MUSIC", null,"网易云"),
+    XIA_MI_MUSIC("XIA_MI_MUSIC", XiaMiMusicPlatformParser.class,"虾米音乐"),
     ;
 
     MusicPlatformTypeEnum(String platform, Class serviceClass, String desc) {

@@ -1,6 +1,7 @@
 package org.woodwhales.music.service.parser;
 
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Service;
 import org.woodwhales.music.service.parser.base.BaseMusicPlatformParser;
 
 /**
@@ -9,6 +10,7 @@ import org.woodwhales.music.service.parser.base.BaseMusicPlatformParser;
  * @date: 20.8.16 11:11
  * @description:
  */
+@Service
 public class XiaMiMusicPlatformParser extends BaseMusicPlatformParser {
 
     @Override
