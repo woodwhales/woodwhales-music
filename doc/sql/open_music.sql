@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        5.7.27 - MySQL Community Server (GPL)
--- 服务器OS:                        Win64
--- HeidiSQL 版本:                  10.2.0.5599
+-- 服务器操作系统:                      Win64
+-- HeidiSQL 版本:                  11.0.0.5919
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,15 +12,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for open_music
+-- 导出 open_music 的数据库结构
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
--- Dumping structure for table open_music.music
+-- 导出  表 open_music.music 结构
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
-  `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
-  `artist` varchar(200) DEFAULT NULL COMMENT '作者',
+  `title` varchar(180) NOT NULL COMMENT '音乐名称标题（音乐名称）',
+  `artist` varchar(30) DEFAULT NULL COMMENT '作者',
   `album` varchar(180) DEFAULT NULL COMMENT '专辑',
   `audio_url` varchar(500) DEFAULT NULL COMMENT '音乐链接地址',
   `cover_url` varchar(500) DEFAULT NULL COMMENT '音乐封面',
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- Dumping data for table open_music.music: ~20 rows (大约)
+-- 正在导出表  open_music.music 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -65,7 +65,6 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(30, '我这家伙的答案是你', 'Leessang / 河琳', 'AsuRa BalBalTa', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m023/music/%E6%88%91%E8%BF%99%E5%AE%B6%E4%BC%99%E7%9A%84%E7%AD%94%E6%A1%88%E6%98%AF%E4%BD%A0.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m023/music/%E6%88%91%E8%BF%99%E5%AE%B6%E4%BC%99%E7%9A%84%E7%AD%94%E6%A1%88%E6%98%AF%E4%BD%A0.jpg', 79, 0, '2020-08-10 14:41:05', '2020-08-16 17:44:27'),
 	(31, '为爱痴狂', '刘若英', '收获 新歌+精选', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m006/music/%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m006/music/%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82.jpg', 23, 0, '2020-08-10 14:41:07', '2020-08-12 17:55:30'),
 	(32, '为爱痴狂_陈梦嘉', '陈梦嘉', 'THUG LIFE', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m008/music/%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82_%E9%99%88%E6%A2%A6%E5%98%89.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m008/music/%E4%B8%BA%E7%88%B1%E7%97%B4%E7%8B%82_%E9%99%88%E6%A2%A6%E5%98%89.jpg', 28, 0, '2020-08-10 14:41:07', '2020-08-12 17:55:53'),
-	(33, '北京北京', 'G.E.M.邓紫棋', '北京北京', NULL, NULL, 100, 2, '2020-08-10 14:41:09', '2020-08-16 18:28:52'),
 	(34, '光年之外', 'G.E.M.邓紫棋', '光年之外', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m026/music/%E5%85%89%E5%B9%B4%E4%B9%8B%E5%A4%96.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m026/music/%E5%85%89%E5%B9%B4%E4%B9%8B%E5%A4%96.jpg', 91, 0, '2020-08-10 14:41:10', '2020-08-16 17:50:53'),
 	(35, '泡沫', 'G.E.M.邓紫棋', 'Xposed', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m029/music/%E6%B3%A1%E6%B2%AB.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m029/music/%E6%B3%A1%E6%B2%AB.jpg', 106, 0, '2020-08-10 14:41:12', '2020-08-16 18:03:35'),
 	(36, '后会无期', 'G.E.M.邓紫棋', '后会无期', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m007/music/%E5%90%8E%E4%BC%9A%E6%97%A0%E6%9C%9F.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m007/music/%E5%90%8E%E4%BC%9A%E6%97%A0%E6%9C%9F.jpg', 26, 0, '2020-08-10 14:41:13', '2020-08-12 17:56:36'),
@@ -144,7 +143,6 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(123, 'BINGBIAN病变 (女声版)', '鞠文娴', 'BINGBIAN病变 (女声版)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/BINGBIAN%E7%97%85%E5%8F%98%20(%E5%A5%B3%E5%A3%B0%E7%89%88).m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/BINGBIAN%E7%97%85%E5%8F%98%20(%E5%A5%B3%E5%A3%B0%E7%89%88).jpg', 34, 0, '2020-08-13 09:04:27', '2020-08-16 13:58:25'),
 	(124, '吉姆餐厅', '赵雷', '吉姆餐厅', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E5%90%89%E5%A7%86%E9%A4%90%E5%8E%85.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E5%90%89%E5%A7%86%E9%A4%90%E5%8E%85.jpg', 35, 0, '2020-08-13 09:05:12', '2020-08-16 13:59:53'),
 	(125, '我们的时光', '赵雷', '吉姆餐厅', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%B6%E5%85%89.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E6%88%91%E4%BB%AC%E7%9A%84%E6%97%B6%E5%85%89.jpg', 36, 0, '2020-08-13 09:05:31', '2020-08-16 14:00:11'),
-	(126, 'Innocence', 'Avril Lavigne', 'The Best Damn Thing: Deluxe Edition', '', '', 100, 2, '2020-08-16 00:51:24', '2020-08-16 14:58:17'),
 	(127, '天下', '张杰', '明天过后', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m004/music/%E5%A4%A9%E4%B8%8B.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m004/music/%E5%A4%A9%E4%B8%8B.jpg', 101, 0, '2020-08-16 01:25:43', '2020-08-16 20:46:49'),
 	(128, '世界这么大还是遇见你 (清新的小女孩（中文版）)', '程响', '清新的小女孩（中文版）', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E4%B8%96%E7%95%8C%E8%BF%99%E4%B9%88%E5%A4%A7%E8%BF%98%E6%98%AF%E9%81%87%E8%A7%81%E4%BD%A0.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m011/music/%E4%B8%96%E7%95%8C%E8%BF%99%E4%B9%88%E5%A4%A7%E8%BF%98%E6%98%AF%E9%81%87%E8%A7%81%E4%BD%A0.jpg', 42, 0, '2020-08-16 13:59:14', '2020-08-16 13:59:22'),
 	(129, 'Chasing Pavements', 'Adele', 'Chasing Pavements', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m012/music/Chasing%20Pavements.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m012/music/Chasing%20Pavements.jpg', 43, 0, '2020-08-16 14:01:31', '2020-08-16 14:01:31'),
@@ -172,7 +170,7 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(151, '我变了 我没变', '杨宗纬', '我变了 我没变', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m036/music/%E6%88%91%E5%8F%98%E4%BA%86%20%E6%88%91%E6%B2%A1%E5%8F%98.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m036/music/%E6%88%91%E5%8F%98%E4%BA%86%20%E6%88%91%E6%B2%A1%E5%8F%98.jpg', 140, 0, '2020-08-16 18:20:27', '2020-08-16 18:20:27'),
 	(152, '春天里', '汪峰', '信仰在空中飘扬', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m037/music/%E6%98%A5%E5%A4%A9%E9%87%8C.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m037/music/%E6%98%A5%E5%A4%A9%E9%87%8C.jpg', 142, 0, '2020-08-16 18:21:50', '2020-08-16 18:21:50'),
 	(153, '光明', '汪峰', '信仰在空中飘扬', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/%E5%85%89%E6%98%8E.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/%E5%85%89%E6%98%8E.jpg', 143, 0, '2020-08-16 18:23:05', '2020-08-16 18:23:05'),
-	(154, 'Five Hundred Miles (《醉乡民谣》电影主题曲|《一路繁花相送》电视剧插曲)', 'Justin Timberlake / Carey Mulligan / Stark Sands', 'Inside Llewyn Davis: Original Soundtrack Recording', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/Five%20Hundred%20Miles.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/five%20hundred%20miles.jpg', 144, 0, '2020-08-16 18:25:22', '2020-08-16 18:25:22'),
+	(154, 'Five Hundred Miles (《醉乡民谣》电影主题曲|《一路繁花相送》电视剧插曲)', 'Justin Timberlake / Carey Mull', 'Inside Llewyn Davis: Original Soundtrack Recording', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/Five%20Hundred%20Miles.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/five%20hundred%20miles.jpg', 144, 0, '2020-08-16 18:25:22', '2020-08-16 18:25:22'),
 	(155, 'We Don\'t Talk Anymore', 'Alex Blue TJ Brown', 'We Don\'t Talk Anymore', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/We%20Don\'t%20Talk%20Anymore.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m038/music/We%20Don\'t%20Talk%20Anymore.jpg', 145, 0, '2020-08-16 18:26:23', '2020-08-16 18:26:23'),
 	(156, 'Love Story', 'Taylor Swift', 'Women\'s Day 2019', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m039/music/Love%20Story.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m039/music/Love%20Story.jpg', 148, 0, '2020-08-16 18:28:36', '2020-08-16 18:28:36'),
 	(157, '北京北京', '汪峰', '勇敢的心', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m039/music/%E5%8C%97%E4%BA%AC%E5%8C%97%E4%BA%AC.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m039/music/%E5%8C%97%E4%BA%AC%E5%8C%97%E4%BA%AC.jpg', 145, 0, '2020-08-16 18:52:24', '2020-08-16 18:52:48'),
@@ -228,7 +226,7 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(207, 'The Moon Represents My Heart', 'Kenny G', 'Love Ballads', '', '', 1, 0, '2020-08-16 22:08:38', '2020-08-16 22:08:38'),
 	(208, 'Spring In My Step', 'Silent Partner', 'Spring In My Step', '', '', 1, 0, '2020-08-16 22:09:48', '2020-08-16 22:09:48'),
 	(209, 'Best of 2012: Payphone / Call Me Maybe / Wide Awake / Starships / We Are Young', 'Anthem Lights', 'Best of the Year Medleys: 2007 - 2012', '', '', 1, 0, '2020-08-16 22:11:32', '2020-08-16 22:11:32'),
-	(210, 'Love Yourself (Natio Remix)', 'Natio Justin Bieber Conor Maynard', 'Love Yourself (Natio Remix)', '', '', 1, 0, '2020-08-16 22:13:17', '2020-08-16 22:13:17'),
+	(210, 'Love Yourself (Natio Remix)', 'Natio Justin Bieber Conor Mayn', 'Love Yourself (Natio Remix)', '', '', 1, 0, '2020-08-16 22:13:17', '2020-08-16 22:13:17'),
 	(211, 'Don\'t Wanna Know/We Don\'t Talk Anymore', 'Sam Tsui Alex Blue', 'Don\'t Wanna Know/We Don\'t Talk Anymore', '', '', 1, 0, '2020-08-16 22:15:07', '2020-08-16 22:15:07'),
 	(212, 'Love The Way You Lie [Part III (Original Demo)]', 'Skylar Grey', 'Her Songs', '', '', 1, 0, '2020-08-16 22:16:22', '2020-08-16 22:16:22'),
 	(213, 'The Long Way Home', 'Lenka', 'The Bright Side', '', '', 1, 0, '2020-08-16 22:19:33', '2020-08-16 22:19:33'),
