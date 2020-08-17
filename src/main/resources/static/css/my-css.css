@@ -23,3 +23,29 @@ body {
     width: calc(100vw + 18px);
     overflow: auto;
 }
+
+#back_top {
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+    border-radius: 10px 10px 10px 10px;
+    text-decoration: none;
+    display: none;
+    background-color: #999999;
+}
+
+#back_top span {
+    display: block;
+    width: 60px;
+    color: #dddddd;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+#back_top span:hover {
+    color: #cccccc;
+}

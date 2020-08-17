@@ -2,60 +2,79 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>woodwhales-music</title>
-	<link rel="icon" th:href="@{favicon.ico}" type="image/x-icon"/>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="icon" th:href="@{favicon.ico}" type="image/x-icon"/>
     <link rel="bookmark" th:href="@{favicon.ico}" type="image/x-icon"/>
     <link rel="stylesheet" th:href="@{css/stylesheets/style.css}">
+    <link rel="stylesheet" th:href="@{css/my-css.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 
 <body>
-    <div id="background"></div>
-    <div id="player">
-        <div class="cover"></div>
-        <div class="ctrl">
-            <div class="tag">
-                <strong>Title</strong>
-                <span class="artist">Artist</span>
-                <span class="album">Album</span>
+<div id="background"></div>
+<div id="player">
+    <div class="cover"></div>
+    <div class="ctrl">
+        <div class="tag">
+            <strong>Title</strong>
+            <span class="artist">Artist</span>
+            <span class="album">Album</span>
+        </div>
+        <div class="control">
+            <div class="left">
+                <div class="rewind icon"></div>
+                <div class="playback icon"></div>
+                <div class="fastforward icon"></div>
             </div>
-            <div class="control">
-                <div class="left">
-                    <div class="rewind icon"></div>
-                    <div class="playback icon"></div>
-                    <div class="fastforward icon"></div>
-                </div>
-                <div class="volume right">
-                    <div class="mute icon left"></div>
-                    <div class="slider left">
-                        <div class="pace"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="progress">
-                <div class="slider">
-                    <div class="loaded"></div>
+            <div class="volume right">
+                <div class="mute icon left"></div>
+                <div class="slider left">
                     <div class="pace"></div>
-                </div>
-                <div class="timer left">0:00</div>
-                <div class="right">
-                    <div class="repeat icon"></div>
-                    <div class="shuffle icon"></div>
                 </div>
             </div>
         </div>
+        <div class="progress">
+            <div class="slider">
+                <div class="loaded"></div>
+                <div class="pace"></div>
+            </div>
+            <div class="timer left">0:00</div>
+            <div class="right">
+                <div class="repeat icon"></div>
+                <div class="shuffle icon"></div>
+            </div>
+        </div>
     </div>
-    <ul id="playlist"></ul>
-    <footer>
-        Copyright &copy; 2020 <a href="http://www.woodwhales.cn/" target="_blank">木鲸鱼</a>
-    </footer>
-    <script th:src="@{js/jquery-ui-1.8.17.custom.min.js}"></script>
-    <script th:src="@{js/script.js}"></script>    
-    <script th:inline="javascript">
-	    $(function() {
-	    	playMusic([[${musicInfoList}]]);
-	    });
-    </script>
+</div>
+<ul id="playlist"></ul>
+<footer>
+    Copyright &copy; 2020 <a href="http://www.woodwhales.cn/" target="_blank">木鲸鱼</a>
+</footer>
+<a id="back_top" href="script:;">
+    <span>⌆</span>
+</a>
+<script th:src="@{js/jquery-ui-1.8.17.custom.min.js}"></script>
+<script th:src="@{js/script.js}"></script>
+<script th:inline="javascript">
+    $(function () {
+        playMusic([[${musicInfoList}]]);
+    });
+</script>
+<script>
+    $(function () {
+        $(window).scroll(function () {  // 只要窗口滚动,就触发下面代码
+            var scrollt = document.documentElement.scrollTop + document.body.scrollTop; // 获取滚动后的高度
+            if (scrollt > 200) {  // 判断滚动后高度超过200px,就显示
+                $("#back_top").fadeIn(400); // 淡出
+            } else {
+                $("#back_top").stop().fadeOut(400); // 如果返回或者没有超过,就淡入.必须加上stop()停止之前动画,否则会出现闪动
+            }
+        });
+        $("#back_top").click(function () { // 当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+            $("html,body").animate({scrollTop: "0px"}, 200);
+        });
+    });
+</script>
 </body>
 </html>
