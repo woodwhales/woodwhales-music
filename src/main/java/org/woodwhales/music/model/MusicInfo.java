@@ -30,4 +30,5 @@ public class MusicInfo {
         this.cover = cover;
         this.mp3 = mp3;
     }
+
 }

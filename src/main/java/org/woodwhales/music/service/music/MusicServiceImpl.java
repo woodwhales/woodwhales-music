@@ -47,7 +47,8 @@ public class MusicServiceImpl implements MusicService {
     @Override
     public List<MusicInfo> listMusic() {
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
-		wrapper.eq(Music::getStatus, StatusEnum.DEFAULT.code)
+		wrapper.ne(Music::getStatus, StatusEnum.DELETE.code)
+				.orderByAsc(Music::getStatus)
 				.orderByAsc(Music::getSort)
 				.orderByDesc(Music::getGmtModified);
 		List<Music> musicList = musicMapper.selectList(wrapper);
@@ -57,6 +58,7 @@ public class MusicServiceImpl implements MusicService {
 
 		return musicList.stream()
 						.map(this::convert)
+						.filter(musicInfo -> !StringUtils.isAnyBlank(musicInfo.getMp3(), musicInfo.getAlbum()))
 						.collect(Collectors.toList());
     }
     
@@ -133,8 +135,8 @@ public class MusicServiceImpl implements MusicService {
 
 		music.setAlbum(defaultIfBlank(trimMusicUpdateRequestBody.getAlbum(), music.getAlbum()));
 		music.setArtist(defaultIfBlank(trimMusicUpdateRequestBody.getArtist(), music.getArtist()));
-		music.setAudioUrl(defaultIfBlank(trimMusicUpdateRequestBody.getAudioUrl(), music.getAudioUrl()));
-		music.setCoverUrl(defaultIfBlank(trimMusicUpdateRequestBody.getCoverUrl(), music.getCoverUrl()));
+		music.setAudioUrl(trimMusicUpdateRequestBody.getAudioUrl());
+		music.setCoverUrl(trimMusicUpdateRequestBody.getCoverUrl());
 		music.setTitle(defaultIfBlank(trimMusicUpdateRequestBody.getMusicName(), music.getTitle()));
 		music.setSort(trimMusicUpdateRequestBody.getSort());
 		music.setGmtModified(Date.from(Instant.now()));
