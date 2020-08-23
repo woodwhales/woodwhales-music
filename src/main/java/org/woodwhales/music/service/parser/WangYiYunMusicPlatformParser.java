@@ -25,7 +25,7 @@ public class WangYiYunMusicPlatformParser extends BaseMusicPlatformParser {
     @Override
     protected String parseArtist(Document document) {
         Elements elements = document.getElementsByClass("des s-fc4");
-        return elements.get(0).getElementsByClass("s-fc7").text();
+        return elements.get(0).getElementsByAttribute("title").text();
     }
 
     @Override
