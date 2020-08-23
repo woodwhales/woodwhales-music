@@ -71,7 +71,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/css/**",
 				"/fonts/**",
 				"/js/**",
-				"/**.png");
+				"/**.png",
+				"/**.ico");
     }
 
 }

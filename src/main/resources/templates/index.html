@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
-    <link rel="icon" th:href="@{favicon.ico}" type="image/x-icon"/>
-    <link rel="bookmark" th:href="@{favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <link rel="bookmark" th:href="@{/favicon.ico}" type="image/x-icon"/>
     <link rel="stylesheet" th:href="@{css/stylesheets/style.css}">
     <link rel="stylesheet" th:href="@{css/my-css.css}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 </head>
 
 <body>
@@ -48,33 +48,32 @@
     </div>
 </div>
 <ul id="playlist"></ul>
-<footer>
+<footer style="margin-top: 20px; margin-bottom: 30px;">
     Copyright &copy; 2020 <a href="http://www.woodwhales.cn/" target="_blank">木鲸鱼</a>
 </footer>
-<a id="back_top" href="script:;">
-    <span>⌆</span>
-</a>
+<div id="box" class="box">
+    <div class="box-in"></div>
+</div>
 <script th:src="@{js/jquery-ui-1.8.17.custom.min.js}"></script>
 <script th:src="@{js/script.js}"></script>
 <script th:inline="javascript">
     $(function () {
         playMusic([[${musicInfoList}]]);
     });
-</script>
-<script>
-    $(function () {
-        $(window).scroll(function () {  // 只要窗口滚动,就触发下面代码
-            var scrollt = document.documentElement.scrollTop + document.body.scrollTop; // 获取滚动后的高度
-            if (scrollt > 200) {  // 判断滚动后高度超过200px,就显示
-                $("#back_top").fadeIn(400); // 淡出
-            } else {
-                $("#back_top").stop().fadeOut(400); // 如果返回或者没有超过,就淡入.必须加上stop()停止之前动画,否则会出现闪动
+
+    var timer = null;
+    box.onclick = function(){
+        cancelAnimationFrame(timer);
+        timer = requestAnimationFrame(function fn(){
+            var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+            if(oTop > 0){
+                document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+                timer = requestAnimationFrame(fn);
+            }else{
+                cancelAnimationFrame(timer);
             }
         });
-        $("#back_top").click(function () { // 当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
-            $("html,body").animate({scrollTop: "0px"}, 200);
-        });
-    });
+    }
 </script>
 </body>
 </html>
