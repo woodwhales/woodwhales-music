@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           39.106.66.63
 -- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
--- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  11.0.0.5919
+-- 服务器OS:                        Linux
+-- HeidiSQL 版本:                  10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- 导出 open_music 的数据库结构
+-- Dumping database structure for open_music
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
--- 导出  表 open_music.music 结构
+-- Dumping structure for table open_music.music
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
   `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~286 rows (大约)
+-- Dumping data for table open_music.music: ~295 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -319,7 +319,16 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(301, '年少有为', '李荣浩', '耳朵', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%B9%B4%E5%B0%91%E6%9C%89%E4%B8%BA.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%B9%B4%E5%B0%91%E6%9C%89%E4%B8%BA.jpg', 69, 0, '2020-09-13 18:22:48', '2020-09-15 09:03:22'),
 	(302, '哀歌 (M-5)', '和田薫', '犬夜叉 音楽篇', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m001/m001/%E5%93%80%E6%AD%8C%20(M-5).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m001/m001/%E5%93%80%E6%AD%8C%20(M-5).jpg', 6, 0, '2020-09-15 08:58:15', '2020-09-15 08:58:15'),
 	(303, '慕情 (M-4)', '和田薫', '犬夜叉 音楽篇', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m002/m002/%E6%85%95%E6%83%85%20(M-4).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m002/m002/%E6%85%95%E6%83%85%20(M-4).jpg', 251, 0, '2020-09-15 08:59:29', '2020-09-15 08:59:29'),
-	(304, '北京欢迎你', '群星', '北京2008年奥运会歌曲专辑', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8C%97%E4%BA%AC%E6%AC%A2%E8%BF%8E%E4%BD%A0.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8C%97%E4%BA%AC%E6%AC%A2%E8%BF%8E%E4%BD%A0.jpg', 261, 0, '2020-09-15 09:04:14', '2020-09-15 09:04:14');
+	(304, '北京欢迎你', '群星', '北京2008年奥运会歌曲专辑', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8C%97%E4%BA%AC%E6%AC%A2%E8%BF%8E%E4%BD%A0.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8C%97%E4%BA%AC%E6%AC%A2%E8%BF%8E%E4%BD%A0.jpg', 261, 0, '2020-09-15 09:04:14', '2020-09-15 09:04:14'),
+	(305, '偏爱', '张芸京', '爱情部落格 情歌精选辑', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%81%8F%E7%88%B1.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%81%8F%E7%88%B1.jpg', 36, 0, '2020-09-19 13:39:56', '2020-09-19 14:37:42'),
+	(306, 'Summer', '久石譲', 'ENCORE', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/Summer.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/Summer.jpg', 160, 0, '2020-09-19 13:40:23', '2020-09-19 14:38:28'),
+	(307, '叱咤红人', '陈小春', '相依为命: 20年精彩印记', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8F%B1%E5%90%92%E7%BA%A2%E4%BA%BA.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%8F%B1%E5%90%92%E7%BA%A2%E4%BA%BA.jpg', 78, 0, '2020-09-19 13:40:55', '2020-09-19 14:37:00'),
+	(308, '小刀会序曲', '商易 / 夏飞云 / 上海民族乐团', '武侠音乐系列之豪气中天', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E5%B0%8F%E5%88%80%E4%BC%9A%E5%BA%8F%E6%9B%B2.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E5%B0%8F%E5%88%80%E4%BC%9A%E5%BA%8F%E6%9B%B2.jpg', 113, 0, '2020-09-19 13:41:29', '2020-09-19 14:51:19'),
+	(309, '筝锋', '黄英华', '功夫 电影原声大碟', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%AD%9D%E9%94%8B.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%AD%9D%E9%94%8B.jpg', 154, 0, '2020-09-19 13:42:26', '2020-09-19 14:51:34'),
+	(310, '太阳照常升起', '久石譲', '太阳照常升起 电影原声大碟', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%A4%AA%E9%98%B3%E7%85%A7%E5%B8%B8%E5%8D%87%E8%B5%B7.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m004/m004/%E5%A4%AA%E9%98%B3%E7%85%A7%E5%B8%B8%E5%8D%87%E8%B5%B7.jpg', 12, 0, '2020-09-19 13:43:58', '2020-09-19 14:37:21'),
+	(311, 'Snowdreams 雪之梦', 'Bandari', 'Rhine River', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/Snowdreams%20%E9%9B%AA%E4%B9%8B%E6%A2%A6.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/Snowdreams%20%E9%9B%AA%E4%B9%8B%E6%A2%A6.jpg', 145, 0, '2020-09-19 14:21:24', '2020-09-19 14:38:11'),
+	(312, '安静 钢琴版', 'Paul Liu', '纯音乐流行歌曲钢琴版', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/%E5%AE%89%E9%9D%99%20%E9%92%A2%E7%90%B4%E7%89%88.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/%E5%AE%89%E9%9D%99%20%E9%92%A2%E7%90%B4%E7%89%88.jpg', 234, 0, '2020-09-19 14:40:35', '2020-09-19 14:40:35'),
+	(313, 'What A Wonderful World', 'Louis Armstrong', 'All Time Greatest Hits', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/What%20A%20Wonderful%20World.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/What%20A%20Wonderful%20World.jpg', 143, 0, '2020-09-19 14:43:59', '2020-09-19 14:51:01');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
