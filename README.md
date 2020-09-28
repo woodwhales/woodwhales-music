@@ -1,4 +1,7 @@
 # woodwhales-music
+
+[![](https://img.shields.io/badge/Author-woodwhales-green.svg)](https://woodwhales.cn/) ![](https://img.shields.io/badge/License-GPL%203.0-orange.svg)
+
 > 基于 SpringBoot 的开源超简洁音乐播放器
 
 环境要求：JDK1.8
