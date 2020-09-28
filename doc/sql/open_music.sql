@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~297 rows (大约)
+-- 正在导出表  open_music.music 的数据：~300 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -330,7 +330,10 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(312, '安静 钢琴版', 'Paul Liu', '纯音乐流行歌曲钢琴版', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/%E5%AE%89%E9%9D%99%20%E9%92%A2%E7%90%B4%E7%89%88.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m005/m005/%E5%AE%89%E9%9D%99%20%E9%92%A2%E7%90%B4%E7%89%88.jpg', 234, 0, '2020-09-19 14:40:35', '2020-09-19 14:40:35'),
 	(313, 'What A Wonderful World', 'Louis Armstrong', 'All Time Greatest Hits', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/What%20A%20Wonderful%20World.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/What%20A%20Wonderful%20World.jpg', 143, 0, '2020-09-19 14:43:59', '2020-09-19 14:51:01'),
 	(314, 'Comptine D\'un Autre Été, L\'après-Midi', 'Yann Tiersen', 'Le Fabuleux Destin d\'Amélie Poulain', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/Comptine%20D\'un%20Autre%20%C3%89t%C3%A9,%20L\'apr%C3%A8s-Midi.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/Comptine%20D\'un%20Autre%20%C3%89t%C3%A9,%20L\'apr%C3%A8s-Midi.jpg', 4, 0, '2020-09-24 23:23:42', '2020-09-25 10:02:52'),
-	(315, 'La Valse D\'Amelie', 'Yann Tiersen', 'Le Fabuleux destin d\'Amélie Poulain', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.jpg', 14, 0, '2020-09-25 10:04:22', '2020-09-25 10:04:22');
+	(315, 'La Valse D\'Amelie', 'Yann Tiersen', 'Le Fabuleux destin d\'Amélie Poulain', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.jpg', 14, 0, '2020-09-25 10:04:22', '2020-09-25 10:04:22'),
+	(316, '阳光总在风雨后', '许美静', '都是夜归人', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.jpg', 56, 0, '2020-09-28 08:50:26', '2020-09-28 09:05:44'),
+	(317, '爱如潮水', '张信哲', '张信哲精选', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.jpg', 34, 0, '2020-09-28 08:51:04', '2020-09-28 09:05:25'),
+	(318, '情非得已', '庾澄庆', '遇见100%幸福1 烈爱红盘', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.jpg', 10, 0, '2020-09-28 08:51:31', '2020-09-28 09:05:08');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
