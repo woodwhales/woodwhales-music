@@ -13,6 +13,12 @@
 - SQL 文件：woodwhales-music/doc/sql/open_music.sql
 - 配置文件：woodwhales-music/src/main/resources/dev/application-dev.yml
 
+## 功能说明
+
+-   前端页面加载完毕，可离线播放。
+-   后台系统可添加、编辑、删除音乐，并对音乐列表排序。
+-   添加音乐：可从音乐平台 html 动态解析，目前支持：网易云、QQ云音乐、虾米音乐。
+
 ## 前台
 
 访问端口：http://127.0.0.1:8084/music/
@@ -66,3 +72,6 @@ class 为：`main`的 html 源码
 class 为：`page-container`的 html 源码
 
 ![](doc/images/admin-add-xiami.png)
+
+歌单
+
