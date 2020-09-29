@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~300 rows (大约)
+-- 正在导出表  open_music.music 的数据：~301 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -333,7 +333,8 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(315, 'La Valse D\'Amelie', 'Yann Tiersen', 'Le Fabuleux destin d\'Amélie Poulain', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02@m025.01/music/La%20Valse%20D\'amelie.jpg', 14, 0, '2020-09-25 10:04:22', '2020-09-25 10:04:22'),
 	(316, '阳光总在风雨后', '许美静', '都是夜归人', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.jpg', 56, 0, '2020-09-28 08:50:26', '2020-09-28 09:05:44'),
 	(317, '爱如潮水', '张信哲', '张信哲精选', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.jpg', 34, 0, '2020-09-28 08:51:04', '2020-09-28 09:05:25'),
-	(318, '情非得已', '庾澄庆', '遇见100%幸福1 烈爱红盘', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.jpg', 10, 0, '2020-09-28 08:51:31', '2020-09-28 09:05:08');
+	(318, '情非得已', '庾澄庆', '遇见100%幸福1 烈爱红盘', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.jpg', 10, 0, '2020-09-28 08:51:31', '2020-09-28 09:05:08'),
+	(319, '合肥的石头', '飘乐队', '赤脚青春', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.jpg', 66, 0, '2020-09-29 17:19:08', '2020-09-29 17:22:53');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
