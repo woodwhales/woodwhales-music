@@ -68,6 +68,17 @@
 		</div>
     </form>
 
+    <div class="layui-collapse">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">音乐仓库链接</h2>
+            <div class="layui-colla-content">
+                <p th:each="music : ${musicStore}">
+                    <a th:href="${music.link}" target="_blank" th:text="${music.name} + '-' + ${music.link}"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>解析音乐</legend>
     </fieldset>
@@ -101,9 +112,10 @@
         location.href = './';
     }
 
-    layui.use(['form', 'layer'], function(){
+    layui.use(['form', 'layer', 'element'], function(){
         var form = layui.form,
-            layer = layui.layer;
+            layer = layui.layer,
+            element = layui.element();
 
         //自定义验证规则
         form.verify({

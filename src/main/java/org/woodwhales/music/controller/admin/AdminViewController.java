@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.service.music.MusicService;
+import org.woodwhales.music.service.music.MusicStoreService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +23,13 @@ import java.util.Objects;
  */
 @RequestMapping("/admin")
 @Controller
-public class AdminController {
+public class AdminViewController {
 
     @Autowired
     private MusicService musicService;
+
+    @Autowired
+    private MusicStoreService musicStoreService;
 
     @GetMapping("")
     public String index() {
@@ -41,6 +45,7 @@ public class AdminController {
     public String add(Model model) {
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
+        model.addAttribute("musicStore", musicStoreService.getMusicStore());
         return "admin/add";
     }
 
@@ -51,6 +56,7 @@ public class AdminController {
         }
         MusicDetailInfo musicDetailInfo = musicService.getMusicDetailInfoById(id);
         model.addAttribute("music", musicDetailInfo);
+        model.addAttribute("musicStore", musicStoreService.getMusicStore());
 
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
