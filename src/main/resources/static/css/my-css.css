@@ -20,7 +20,6 @@ body::-webkit-scrollbar {
 body {
     -ms-overflow-style: none;
     height: 100%;
-    width: calc(100vw + 18px);
     overflow: auto;
 }
 
