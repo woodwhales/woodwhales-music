@@ -250,9 +250,8 @@ a {
 
 @media screen and (max-width: 700px) {
   #playlist,#player {
-    width: 90%;
+    width: 85%;
   }
-
 }
 
 @media screen and (min-width: 700px) {

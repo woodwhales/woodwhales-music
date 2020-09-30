@@ -28,7 +28,7 @@
                 <div class="playback icon"></div>
                 <div class="fastforward icon"></div>
             </div>
-            <div class="volume right">
+            <div class="volume right" id="volumeDiv">
                 <div class="mute icon left"></div>
                 <div class="slider left">
                     <div class="pace"></div>
@@ -59,7 +59,35 @@
 <script th:src="@{js/script.js}"></script>
 <script th:inline="javascript">
     $(function () {
+        //获取窗口宽度
+        let winWidth;
+        if (window.innerWidth) {
+            winWidth = window.innerWidth;
+        } else if ((document.body) && (document.body.clientWidth)) {
+            winWidth = document.body.clientWidth;
+        }
+
+        if(winWidth <= 700) {
+            $('#volumeDiv').hide();
+        }
+
         playMusic([[${musicInfoList}]]);
+    });
+
+    $(window).resize(function() {
+        //获取窗口宽度
+        let winWidth;
+        if (window.innerWidth) {
+            winWidth = window.innerWidth;
+        } else if ((document.body) && (document.body.clientWidth)) {
+            winWidth = document.body.clientWidth;
+        }
+
+        if(winWidth <= 700) {
+            $('#volumeDiv').hide();
+        } else if(winWidth > 700) {
+            $('#volumeDiv').show();
+        }
     });
 
     var timer = null;
