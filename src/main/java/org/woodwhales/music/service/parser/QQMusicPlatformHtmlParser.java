@@ -15,9 +15,9 @@ public class QQMusicPlatformHtmlParser extends BaseMusicPlatformParser {
 
     @Override
     protected String parseAlbum(Document document) {
-        return document.getElementsByClass("data_info__item data_info__item--even")
+        return document.getElementsByClass("data__cont")
                         .get(0)
-                        .getElementsByClass("js_album")
+                        .getElementsByClass("data__name")
                         .get(0)
                         .text();
     }
