@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- 主机:                           39.106.66.63
+-- 主机:                           127.0.0.1
 -- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Linux
 -- HeidiSQL 版本:                  11.0.0.5919
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~301 rows (大约)
+-- 正在导出表  open_music.music 的数据：~306 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -334,7 +334,12 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(316, '阳光总在风雨后', '许美静', '都是夜归人', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E9%98%B3%E5%85%89%E6%80%BB%E5%9C%A8%E9%A3%8E%E9%9B%A8%E5%90%8E.jpg', 56, 0, '2020-09-28 08:50:26', '2020-09-28 09:05:44'),
 	(317, '爱如潮水', '张信哲', '张信哲精选', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E7%88%B1%E5%A6%82%E6%BD%AE%E6%B0%B4.jpg', 34, 0, '2020-09-28 08:51:04', '2020-09-28 09:05:25'),
 	(318, '情非得已', '庾澄庆', '遇见100%幸福1 烈爱红盘', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m006/m006/%E6%83%85%E9%9D%9E%E5%BE%97%E5%B7%B2.jpg', 10, 0, '2020-09-28 08:51:31', '2020-09-28 09:05:08'),
-	(319, '合肥的石头', '飘乐队', '赤脚青春', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.jpg', 66, 0, '2020-09-29 17:19:08', '2020-09-29 17:22:53');
+	(319, '合肥的石头', '飘乐队', '赤脚青春', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%90%88%E8%82%A5%E7%9A%84%E7%9F%B3%E5%A4%B4.jpg', 66, 0, '2020-09-29 17:19:08', '2020-09-29 17:22:53'),
+	(320, '莫失莫忘', '麦振鸿', '武侠音乐系列之后悔莫及', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E8%8E%AB%E5%A4%B1%E8%8E%AB%E5%BF%98.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E8%8E%AB%E5%A4%B1%E8%8E%AB%E5%BF%98.jpg', 188, 0, '2020-09-30 09:01:08', '2020-10-09 13:14:34'),
+	(321, '分手以后才知道最珍贵', '胡力', '回到家乡', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%88%86%E6%89%8B%E4%BB%A5%E5%90%8E%E6%89%8D%E7%9F%A5%E9%81%93%E6%9C%80%E7%8F%8D%E8%B4%B5.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%88%86%E6%89%8B%E4%BB%A5%E5%90%8E%E6%89%8D%E7%9F%A5%E9%81%93%E6%9C%80%E7%8F%8D%E8%B4%B5.jpg', 78, 0, '2020-09-30 09:01:29', '2020-10-09 13:13:17'),
+	(322, '大海', '张雨生', '70老男孩', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%A4%A7%E6%B5%B7.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%A4%A7%E6%B5%B7.jpg', 134, 0, '2020-09-30 09:03:10', '2020-10-09 13:13:38'),
+	(323, '倩女幽魂', '张国荣', 'Ultimate', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%80%A9%E5%A5%B3%E5%B9%BD%E9%AD%82.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/%E5%80%A9%E5%A5%B3%E5%B9%BD%E9%AD%82.jpg', 55, 0, '2020-09-30 09:04:41', '2020-10-09 13:13:02'),
+	(324, 'Here We Are Again (纯音乐) (《喜剧之王》电影插曲)', 'Cagnet (キャグネット)', 'Here We Are Again (纯音乐) (《喜剧之王》电影插曲)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/Here%20We%20Are%20Again.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m007/m007/Here%20We%20Are%20Again.jpg', 33, 0, '2020-10-04 14:45:00', '2020-10-09 13:13:57');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
