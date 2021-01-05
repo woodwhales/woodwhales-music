@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
--- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  11.0.0.5919
+-- 服务器OS:                        Linux
+-- HeidiSQL 版本:                  10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- 导出 open_music 的数据库结构
+-- Dumping database structure for open_music
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
--- 导出  表 open_music.music 结构
+-- Dumping structure for table open_music.music
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
   `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~347 rows (大约)
+-- Dumping data for table open_music.music: ~364 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -380,7 +380,24 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(362, 'Coming Home', 'Skylar Grey / Diddy-Dirty Money', 'Coming Home', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Coming%20Home.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Coming%20Home.jpg', 321, 0, '2020-12-06 22:36:09', '2020-12-06 22:36:09'),
 	(363, 'Jambalaya', 'Carpenters', '不朽的声音(人生最难忘的歌)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Jambalaya.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Jambalaya.jpg', 301, 0, '2020-12-06 22:36:52', '2020-12-06 22:36:52'),
 	(364, 'Mariage d\'amour', 'Richard Clayderman', 'Lettre à ma Mère', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Mariage%20d\'amour.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Mariage%20d\'amour.jpg', 278, 0, '2020-12-06 22:37:30', '2020-12-06 22:37:30'),
-	(365, 'Monody', 'TheFatRat / Laura Brehm', 'Monody', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Monody.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Monody.jpg', 245, 0, '2020-12-06 22:39:20', '2020-12-06 22:39:20');
+	(365, 'Monody', 'TheFatRat / Laura Brehm', 'Monody', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Monody.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Monody.jpg', 245, 0, '2020-12-06 22:39:20', '2020-12-06 22:39:20'),
+	(366, 'Only Time', 'Enya', 'Only Time: The Collection (Box Set)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Only%20Time.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m016/music/Only%20Time.jpg', 125, 0, '2021-01-06 00:51:41', '2021-01-06 00:51:41'),
+	(367, 'Coachella - Woodstock In My Mind', 'Lana Del Rey', 'Lust For Life', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Coachella%20-%20Woodstock%20In%20My%20Mind.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Coachella%20-%20Woodstock%20In%20My%20Mind.jpg', 54, 0, '2021-01-06 00:53:22', '2021-01-06 00:53:22'),
+	(368, 'Faidherbe square (instrumental)', 'ProleteR', 'Curses from past times', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Faidherbe%20square%20(instrumental).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Faidherbe%20square%20(instrumental).jpg', 45, 0, '2021-01-06 00:54:23', '2021-01-06 00:54:23'),
+	(369, 'I Could Be The One', 'Donna Lewis', 'Acoustic', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/I%20Could%20Be%20The%20One.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/I%20Could%20Be%20The%20One.jpg', 46, 0, '2021-01-06 00:55:19', '2021-01-06 00:55:19'),
+	(370, 'Miracle In The Middle Of My Heart (Original Mix)', 'Clément Bcx', 'Miracle In The Middle Of My Heart (Original Mix)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Miracle%20In%20The%20Middle%20Of%20My%20Heart%20(Original%20Mix).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/Miracle%20In%20The%20Middle%20Of%20My%20Heart%20(Original%20Mix).jpg', 57, 0, '2021-01-06 00:55:58', '2021-01-06 00:55:58'),
+	(371, '日晷之梦', 'Kevin Kern', '幸福时光 精选辑', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/%E6%97%A5%E6%99%B7%E4%B9%8B%E6%A2%A6.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m017/music/%E6%97%A5%E6%99%B7%E4%B9%8B%E6%A2%A6.jpg', 78, 0, '2021-01-06 00:56:42', '2021-01-06 00:56:42'),
+	(372, 'Breaking My Heart', 'Lana Del Rey', 'Breaking My Heart', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Breaking%20My%20Heart.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Breaking%20My%20Heart.jpg', 70, 0, '2021-01-06 00:59:50', '2021-01-06 00:59:50'),
+	(373, 'Hymn To The Sea', 'James Horner', 'Titanic: Music from the Motion Picture Soundtrack', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Hymn%20To%20The%20Sea.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Hymn%20To%20The%20Sea.jpg', 90, 0, '2021-01-06 01:01:12', '2021-01-06 01:01:12'),
+	(374, 'Nocturne No. 2 in E Flat Major, Op. 9, No. 2', 'Arthur Rubinstein', 'The Chopin Collection: The Nocturnes', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Nocturne%20No.%202%20in%20E%20Flat%20Major,%20Op.%209,%20No.%202.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/Nocturne%20No.%202%20in%20E%20Flat%20Major,%20Op.%209,%20No.%202.jpg', 93, 0, '2021-01-06 01:02:06', '2021-01-06 01:02:06'),
+	(375, 'With An Orchid', 'Yanni', 'If I Could Tell You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/With%20An%20Orchid.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m018/music/With%20An%20Orchid.jpg', 34, 0, '2021-01-06 01:02:50', '2021-01-06 01:02:50'),
+	(376, 'Dirty Paws', 'Of Monsters And Men', 'Summer Acoustic', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Dirty%20Paws.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Dirty%20Paws.jpg', 57, 0, '2021-01-06 01:04:00', '2021-01-06 01:04:00'),
+	(377, 'Jasmine Flower', 'Kenny G', 'Love Ballads', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Jasmine%20Flower.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Jasmine%20Flower.jpg', 12, 0, '2021-01-06 01:04:52', '2021-01-06 01:04:52'),
+	(378, 'My Heart Will Go On', 'Kenny G', 'Love Ballads', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Jasmine%20Flower.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m019/music/Jasmine%20Flower.jpg', 88, 0, '2021-01-06 01:05:49', '2021-01-06 01:05:49'),
+	(379, 'Dark Paradise (Alternative Demo)', 'Lana Del Rey', 'Born To Die (Demos)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m020/music/Dark%20Paradise%20(Album%20Version).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m020/music/Dark%20Paradise%20(Album%20Version).jpg', 57, 0, '2021-01-06 01:06:37', '2021-01-06 01:06:37'),
+	(380, '成都', '赵雷', '成都', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E6%88%90%E9%83%BD.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E6%88%90%E9%83%BD.jpg', 45, 0, '2021-01-06 01:21:29', '2021-01-06 01:25:31'),
+	(381, '南山南', '马頔', '南山南', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E5%8D%97%E5%B1%B1%E5%8D%97.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E5%8D%97%E5%B1%B1%E5%8D%97.jpg', 26, 0, '2021-01-06 01:21:54', '2021-01-06 01:25:51'),
+	(382, '关于郑州的记忆', '李志', '《你好，郑州》', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.jpg', 6, 0, '2021-01-06 01:34:54', '2021-01-06 01:34:54');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
