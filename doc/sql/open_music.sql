@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
--- 服务器OS:                        Linux
--- HeidiSQL 版本:                  10.2.0.5599
+-- 服务器操作系统:                      Linux
+-- HeidiSQL 版本:                  11.0.0.5919
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,11 +12,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for open_music
+-- 导出 open_music 的数据库结构
+DROP DATABASE IF EXISTS `open_music`;
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
--- Dumping structure for table open_music.music
+-- 导出  表 open_music.music 结构
+DROP TABLE IF EXISTS `music`;
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
   `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
@@ -31,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- Dumping data for table open_music.music: ~364 rows (大约)
+-- 正在导出表  open_music.music 的数据：~381 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -397,7 +399,24 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(379, 'Dark Paradise (Alternative Demo)', 'Lana Del Rey', 'Born To Die (Demos)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m020/music/Dark%20Paradise%20(Album%20Version).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m020/music/Dark%20Paradise%20(Album%20Version).jpg', 57, 0, '2021-01-06 01:06:37', '2021-01-06 01:06:37'),
 	(380, '成都', '赵雷', '成都', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E6%88%90%E9%83%BD.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E6%88%90%E9%83%BD.jpg', 45, 0, '2021-01-06 01:21:29', '2021-01-06 01:25:31'),
 	(381, '南山南', '马頔', '南山南', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E5%8D%97%E5%B1%B1%E5%8D%97.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03@m021/music/%E5%8D%97%E5%B1%B1%E5%8D%97.jpg', 26, 0, '2021-01-06 01:21:54', '2021-01-06 01:25:51'),
-	(382, '关于郑州的记忆', '李志', '《你好，郑州》', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.jpg', 6, 0, '2021-01-06 01:34:54', '2021-01-06 01:34:54');
+	(382, '关于郑州的记忆', '李志', '《你好，郑州》', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.jpg', 6, 0, '2021-01-06 01:34:54', '2021-01-06 01:34:54'),
+	(383, '桔梗谣', '阿里郎', '桔梗谣', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%A1%94%E6%A2%97%E8%B0%A3.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%A1%94%E6%A2%97%E8%B0%A3.jpg', 63, 0, '2021-02-15 20:10:11', '2021-05-19 09:43:17'),
+	(384, '小情歌', '苏打绿', '小宇宙', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%B0%8F%E6%83%85%E6%AD%8C.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%B0%8F%E6%83%85%E6%AD%8C.jpg', 56, 0, '2021-02-15 20:10:44', '2021-05-19 09:31:16'),
+	(385, '纯真年代', '爱朵女孩', '大小世界', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E7%BA%AF%E7%9C%9F%E5%B9%B4%E4%BB%A3.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E7%BA%AF%E7%9C%9F%E5%B9%B4%E4%BB%A3.jpg', 310, 0, '2021-02-15 20:11:10', '2021-05-19 09:34:28'),
+	(386, '倔强', '五月天', '神的孩子都在跳舞', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%80%94%E5%BC%BA.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%80%94%E5%BC%BA.jpg', 77, 0, '2021-02-15 20:11:41', '2021-05-19 10:19:45'),
+	(387, '知足', '五月天', '知足 最真杰作选', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E7%9F%A5%E8%B6%B3.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E7%9F%A5%E8%B6%B3.jpg', 85, 0, '2021-02-15 20:12:06', '2021-05-19 10:20:02'),
+	(388, '等一分钟', '徐誉滕', '滕爱Teng Love', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E7%AD%89%E4%B8%80%E5%88%86%E9%92%9F.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E7%AD%89%E4%B8%80%E5%88%86%E9%92%9F.jpg', 82, 0, '2021-02-15 20:12:33', '2021-05-19 10:20:19'),
+	(389, '今天', '刘德华', '真永远', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E4%BB%8A%E5%A4%A9.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E4%BB%8A%E5%A4%A9.jpg', 120, 0, '2021-05-18 22:57:31', '2021-05-19 09:29:49'),
+	(390, '童年', '北京天使合唱团', '童年', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E7%AB%A5%E5%B9%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E7%AB%A5%E5%B9%B4.jpg', 323, 0, '2021-05-18 23:31:27', '2021-05-19 09:34:05'),
+	(391, '桔梗谣', '阿里郎', '桔梗谣', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%A1%94%E6%A2%97%E8%B0%A3.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%A1%94%E6%A2%97%E8%B0%A3.jpg', 240, 0, '2021-05-18 23:32:19', '2021-05-19 09:33:45'),
+	(392, '土耳其进行曲', 'Various Artists', '土耳其进行曲', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E5%9C%9F%E8%80%B3%E5%85%B6%E8%BF%9B%E8%A1%8C%E6%9B%B2.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E5%9C%9F%E8%80%B3%E5%85%B6%E8%BF%9B%E8%A1%8C%E6%9B%B2.jpg', 89, 0, '2021-05-18 23:37:15', '2021-05-19 09:32:39'),
+	(393, '关于郑州的记忆', '李志', '你好，郑州', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m01/music/%E5%85%B3%E4%BA%8E%E9%83%91%E5%B7%9E%E7%9A%84%E8%AE%B0%E5%BF%86.jpg', 99, 0, '2021-05-19 09:30:59', '2021-05-19 09:30:59'),
+	(394, 'Paris', 'Else', 'Paris', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/Paris.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/Paris.jpg', 220, 0, '2021-05-19 09:32:20', '2021-05-19 09:32:20'),
+	(395, '我希望', '杨玏', '匆匆那年 电视原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%88%91%E5%B8%8C%E6%9C%9B.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%88%91%E5%B8%8C%E6%9C%9B.jpg', 330, 0, '2021-05-19 09:33:22', '2021-05-19 09:33:22'),
+	(396, '姑娘我爱你', '索朗扎西', '姑娘我爱你', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%A7%91%E5%A8%98%E6%88%91%E7%88%B1%E4%BD%A0.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%A7%91%E5%A8%98%E6%88%91%E7%88%B1%E4%BD%A0.jpg', 302, 0, '2021-05-19 09:42:36', '2021-05-19 10:20:41'),
+	(397, '那些年', '胡夏', '那些年，我们一起追的女孩 电影原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E9%82%A3%E4%BA%9B%E5%B9%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E9%82%A3%E4%BA%9B%E5%B9%B4.jpg', 322, 0, '2021-05-19 09:46:14', '2021-05-19 10:21:06'),
+	(398, 'The Godfather (Love Theme)', 'Nino Rota', 'The Godfather I', '', '', 1, 0, '2021-05-19 10:09:40', '2021-05-19 10:09:40'),
+	(399, 'Main Title (The Godfather Waltz)', 'Nino Rota', 'The Godfather I', '', '', 1, 0, '2021-05-19 10:11:13', '2021-05-19 10:11:13');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
