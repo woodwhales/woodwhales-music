@@ -13,10 +13,25 @@ import org.woodwhales.music.service.parser.MusicPlatformParser;
  */
 public abstract class BaseMusicPlatformParser implements MusicPlatformParser {
 
+    /**
+     * 解析音乐专辑
+     * @param document
+     * @return
+     */
     protected abstract String parseAlbum(Document document);
 
+    /**
+     * 解析作者
+     * @param document
+     * @return
+     */
     protected abstract String parseArtist(Document document);
 
+    /**
+     * 解析音乐标题
+     * @param document
+     * @return
+     */
     protected abstract String parseMusicTitle(Document document);
 
     @Override

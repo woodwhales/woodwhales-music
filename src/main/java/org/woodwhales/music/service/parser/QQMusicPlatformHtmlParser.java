@@ -1,5 +1,6 @@
 package org.woodwhales.music.service.parser;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.service.parser.base.BaseMusicPlatformParser;
@@ -15,11 +16,12 @@ public class QQMusicPlatformHtmlParser extends BaseMusicPlatformParser {
 
     @Override
     protected String parseAlbum(Document document) {
-        return document.getElementsByClass("data__cont")
-                        .get(0)
-                        .getElementsByClass("data__name")
-                        .get(0)
-                        .text();
+        String text = document.getElementsByClass("data__cont")
+                              .get(0)
+                              .getElementsByClass("data_info__item_song")
+                              .get(0)
+                              .text();
+        return StringUtils.substringAfter(text, "专辑：");
     }
 
     @Override

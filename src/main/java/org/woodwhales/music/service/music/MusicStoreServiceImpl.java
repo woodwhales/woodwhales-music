@@ -18,7 +18,8 @@ public class MusicStoreServiceImpl implements MusicStoreService {
     static {
         musicStore = Lists.newArrayList(new MusicStoreInfo("仓库01", "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store/"),
                 new MusicStoreInfo("仓库02", "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store02/"),
-                new MusicStoreInfo("仓库03", "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03/"));
+                new MusicStoreInfo("仓库03", "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store03/"),
+                new MusicStoreInfo("仓库04", "https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04/"));
     }
 
     @Override
