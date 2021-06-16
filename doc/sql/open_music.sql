@@ -13,12 +13,10 @@
 
 
 -- 导出 open_music 的数据库结构
-DROP DATABASE IF EXISTS `open_music`;
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
 -- 导出  表 open_music.music 结构
-DROP TABLE IF EXISTS `music`;
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
   `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
@@ -33,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~381 rows (大约)
+-- 正在导出表  open_music.music 的数据：~386 rows (大约)
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2020-08-03 23:40:53'),
@@ -415,8 +413,13 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(395, '我希望', '杨玏', '匆匆那年 电视原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%88%91%E5%B8%8C%E6%9C%9B.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m02/music/%E6%88%91%E5%B8%8C%E6%9C%9B.jpg', 330, 0, '2021-05-19 09:33:22', '2021-05-19 09:33:22'),
 	(396, '姑娘我爱你', '索朗扎西', '姑娘我爱你', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%A7%91%E5%A8%98%E6%88%91%E7%88%B1%E4%BD%A0.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E5%A7%91%E5%A8%98%E6%88%91%E7%88%B1%E4%BD%A0.jpg', 302, 0, '2021-05-19 09:42:36', '2021-05-19 10:20:41'),
 	(397, '那些年', '胡夏', '那些年，我们一起追的女孩 电影原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E9%82%A3%E4%BA%9B%E5%B9%B4.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m03/music/%E9%82%A3%E4%BA%9B%E5%B9%B4.jpg', 322, 0, '2021-05-19 09:46:14', '2021-05-19 10:21:06'),
-	(398, 'The Godfather (Love Theme)', 'Nino Rota', 'The Godfather I', '', '', 1, 0, '2021-05-19 10:09:40', '2021-05-19 10:09:40'),
-	(399, 'Main Title (The Godfather Waltz)', 'Nino Rota', 'The Godfather I', '', '', 1, 0, '2021-05-19 10:11:13', '2021-05-19 10:11:13');
+	(398, 'The Godfather (Love Theme)', 'Nino Rota', 'The Godfather I', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/The%20Godfather%20(Love%20Theme).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/The%20Godfather%20(Love%20Theme).jpg', 201, 0, '2021-05-19 10:09:40', '2021-06-16 15:05:44'),
+	(399, 'Main Title (The Godfather Waltz)', 'Nino Rota', 'The Godfather I', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/Main%20Title%20(The%20Godfather%20Waltz).mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/Main%20Title%20(The%20Godfather%20Waltz).jpg', 178, 0, '2021-05-19 10:11:13', '2021-06-16 15:05:26'),
+	(400, 'River Flows In You', 'Martin Ermen', 'Kuschelklassik Piano Dreams, Vol. 2', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/River%20Flows%20In%20You.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/River%20Flows%20In%20You.jpg', 77, 0, '2021-06-06 16:44:47', '2021-06-16 15:04:51'),
+	(401, 'Cornfield Chase', 'Hans Zimmer', 'Interstellar (Original Motion Picture Soundtrack)', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/Cornfield%20Chase.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/Cornfield%20Chase.jpg', 87, 0, '2021-06-06 16:46:31', '2021-06-16 15:05:08'),
+	(402, '芒种', '音阙诗听 / 赵方婧', '二十四节气', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E8%8A%92%E7%A7%8D.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E8%8A%92%E7%A7%8D.jpg', 67, 0, '2021-06-06 16:48:34', '2021-06-16 15:04:33'),
+	(403, '喜欢你', 'Beyond', 'Beyond 25th Anniversary', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E5%96%9C%E6%AC%A2%E4%BD%A0.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E5%96%9C%E6%AC%A2%E4%BD%A0.jpg', 53, 0, '2021-06-16 09:06:09', '2021-06-16 15:04:14'),
+	(404, '追梦赤子心', 'GALA', '追梦痴子心', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E8%BF%BD%E6%A2%A6%E8%B5%A4%E5%AD%90%E5%BF%83.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store04@m04/music/%E8%BF%BD%E6%A2%A6%E8%B5%A4%E5%AD%90%E5%BF%83.jpg', 12, 0, '2021-06-16 09:07:43', '2021-06-16 15:03:54');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
