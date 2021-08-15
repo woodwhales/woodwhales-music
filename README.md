@@ -1,6 +1,6 @@
 # woodwhales-music
 
-[![](https://img.shields.io/badge/Author-woodwhales-green.svg)](https://woodwhales.cn/) ![](https://img.shields.io/badge/License-GPL%203.0-orange.svg)
+[![](https://img.shields.io/badge/author-woodwhales-green.svg)](https://woodwhales.cn/) ![](https://img.shields.io/badge/license-GPL%203.0-orange.svg)
 
 > 基于 SpringBoot 的开源超简洁音乐播放器
 
@@ -15,9 +15,15 @@
 
 ## 功能说明
 
+### 1.0.0
+
 -   前端页面加载完毕，可离线播放。
 -   后台系统可添加、编辑、删除音乐，并对音乐列表排序。
--   添加音乐：可从音乐平台 html 动态解析，目前支持：网易云、QQ云音乐、虾米音乐。
+-   添加音乐：可从音乐平台 html 动态解析，支持：网易云、QQ云音乐、虾米音乐（平台已关闭）。
+
+### 2.0.0
+
+-   添加、编辑音乐信息时，当填写了音乐链接或者封面链接其中之一后，可自动填充另外一个文本内容。
 
 ## 前台
 
@@ -43,7 +49,7 @@ dev 环境账号密码：admin / admin
 
 太懒了，加了个解析音乐平台的解析器，一旦解析成功，自动填充：音乐名称、作者、专辑名称。
 
-> 目前仅支持：网易云平台。
+> 支持：网易云、QQ 音乐、虾米音乐（平台已关闭）
 
 ![](doc/images/admin-add.png)
 
@@ -73,5 +79,4 @@ class 为：`page-container`的 html 源码
 
 ![](doc/images/admin-add-xiami.png)
 
-歌单
-
+## 歌单
