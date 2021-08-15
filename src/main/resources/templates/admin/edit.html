@@ -44,15 +44,48 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">链接</label>
-            <div class="layui-input-block">
-                <input type="text" id="audioUrl" name="audioUrl" autocomplete="off" placeholder="请输入链接" class="layui-input" th:value="${music.audioUrl}">
+            <div class="layui-inline">
+                <label class="layui-form-label">自动填充</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="autoFill" value="true" title="是" checked="">
+                    <input type="radio" name="autoFill" value="false" title="否">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">音频后缀</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="audioSuffix" value=".mp3" title=".mp3" checked="">
+                    <input type="radio" name="audioSuffix" value=".m4a" title=".m4a">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">封面后缀</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="coverSuffix" value=".jpg" title=".jpg" checked="">
+                    <input type="radio" name="coverSuffix" value=".png" title=".png">
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">封面</label>
-            <div class="layui-input-block">
-                <input type="text" id="coverUrl" name="coverUrl" autocomplete="off" placeholder="请输入封面" class="layui-input" th:value="${music.coverUrl}">
+            <div class="layui-inline">
+                <label class="layui-form-label">链接</label>
+                <div class="layui-input-block">
+                    <input type="text" style="width: 940px;" id="audioUrl" name="audioUrl" autocomplete="off" placeholder="请输入链接" class="layui-input" th:value="${music.audioUrl}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button type="button" id="clearAudioUrl" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe640;</i>清空</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">封面</label>
+                <div class="layui-input-block">
+                    <input type="text" style="width: 940px;" id="coverUrl" name="coverUrl" autocomplete="off" placeholder="请输入封面" class="layui-input" th:value="${music.coverUrl}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button type="button" id="clearCoverUrl" class="layui-btn layui-btn-sm layui-btn-warm"><i class="layui-icon">&#xe640;</i>清空</button>
             </div>
         </div>
         <div class="layui-form-item">
@@ -119,6 +152,30 @@
             table = layui.table,
             layer = layui.layer,
             element = layui.element;
+
+        $("#audioUrl").blur(function() {
+            autoFill(this.value, "coverUrl", '.jpg');
+        });
+
+        $("#coverUrl").blur(function() {
+            autoFill(this.value, "audioUrl", '.mp3');
+        });
+
+        function autoFill(value, elementID, suffix) {
+            let autoFill = $('input[name="autoFill"]:checked').val()
+            console.log('autoFillElementVal', $("#" + elementID).val())
+            let autoFillElementVal  = $("#" + elementID).val()
+            if(autoFill === 'true'
+                && (value != "" && value!=null && value != undefined)
+                && (autoFillElementVal != null && autoFillElementVal != undefined && autoFillElementVal.length == 0)) {
+                let start = value.lastIndexOf('.');
+                if(start >= 0) {
+                    value = value.substr(0, start);
+                }
+
+                $("#" + elementID).val(value + suffix);
+            }
+        }
 
         //自定义验证规则
         form.verify({
