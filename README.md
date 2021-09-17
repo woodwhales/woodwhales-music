@@ -78,6 +78,13 @@ class 为：`main`的 html 源码
 ![](doc/images/admin-add-qqmusic.png)
 
 #### 虾米
+
+class 为：`page-container`的 html 源码
+
+![](doc/images/admin-add-xiami.png)
+
+## 歌单
+
 | 序号 | 音乐名称 | 专辑 | 作者 |
 | --- | ------ | ------ | --- |
 | 1 | Someone Like You | Someone Like You | Adele |
