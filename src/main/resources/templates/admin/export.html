@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/layui/layui.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}" />
+    <link rel="stylesheet" th:href="@{/css/my-css.css}" />
+</head>
+<body>
+
+<div class="layui-main site-inline">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>woodwhales-music-admin</legend>
+    </fieldset>
+
+    <blockquote class="layui-elem-quote">移风易俗，莫善于乐。</blockquote>
+
+    <button type="button" class="layui-btn layui-btn-xs" th:onclick="returnHome()">返回</button>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>导出音乐</legend>
+    </fieldset>
+
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">已关联歌曲列表</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" th:text="${musicList}" disabled="" style="height:550px;"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <div th:replace="~{admin/footer::footer}"></div>
+</div>
+
+<script th:inline="none">
+    function returnHome() {
+        location.href = './';
+    }
+
+    layui.use(['form', 'layer', 'layedit'], function(){
+        var form = layui.form,
+            layer = layui.layer,
+            layedit = layui.layedit;
+        var editIndex = layedit.build('LAY_demo_editor');
+    });
+</script>
+</body>
+</html>

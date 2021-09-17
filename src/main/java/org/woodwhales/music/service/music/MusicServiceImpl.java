@@ -145,7 +145,26 @@ public class MusicServiceImpl implements MusicService {
 		return i == 1;
 	}
 
-	private MusicDetailInfo convertDetailInfo(Music music) {
+    @Override
+    public String exportMusic() {
+		List<MusicInfo> musicInfoList = listMusic();
+		if(CollectionUtils.isEmpty(musicInfoList)) {
+			return StringUtils.EMPTY;
+		}
+		StringBuilder stringBuilder = new StringBuilder("| 序号 | 音乐名称 | 专辑 | 作者 |\n");
+		stringBuilder.append("| --- | ------ | ------ | --- |\n");
+		Integer sequenceNo = 1;
+		for (MusicInfo musicInfo : musicInfoList) {
+			stringBuilder.append(String.format("| %d | %s | %s | %s |\n",
+								sequenceNo++,
+								StringUtils.isBlank(musicInfo.getTitle()) ? StringUtils.EMPTY : musicInfo.getTitle(),
+							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum(),
+							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum()));
+		}
+		return stringBuilder.toString();
+    }
+
+    private MusicDetailInfo convertDetailInfo(Music music) {
 		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
 		BeanUtils.copyProperties(music, musicDetailInfo);
 		return musicDetailInfo;

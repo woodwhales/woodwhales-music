@@ -49,4 +49,5 @@ public class MusicController {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return BaseVO.returnResp(musicService.updateMusic(requestBody));
 	}
+
 }

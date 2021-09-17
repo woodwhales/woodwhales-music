@@ -56,4 +56,10 @@ public interface MusicService {
      * @return
      */
     boolean updateMusic(MusicUpdateRequestBody requestBody);
+
+    /**
+     * 导出音乐清单
+     * @return
+     */
+    String exportMusic();
 }

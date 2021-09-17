@@ -64,6 +64,12 @@ public class AdminViewController {
         return "admin/edit";
     }
 
+    @GetMapping({"export"})
+    public String export(Model model) {
+        model.addAttribute("musicList", musicService.exportMusic());
+        return "admin/export";
+    }
+
     @GetMapping("login")
     public String login() {
         return "admin/login";

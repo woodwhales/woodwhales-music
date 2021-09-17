@@ -36,6 +36,7 @@
     <script type="text/html" id="toolbarBtn">
         <div class="layui-btn-container">
             <button class="layui-btn layui-btn-xs" lay-event="add">添加</button>
+            <button class="layui-btn layui-btn-xs layui-bg-cyan" lay-event="export">导出</button>
         </div>
     </script>
 
@@ -73,6 +74,9 @@
             switch (obj.event) {
                 case 'add':
                     location.href = './add'
+                    break;
+                case 'export':
+                    location.href = './export'
                     break;
             }
         });
