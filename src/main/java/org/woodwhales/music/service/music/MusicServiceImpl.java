@@ -159,7 +159,7 @@ public class MusicServiceImpl implements MusicService {
 								sequenceNo++,
 								StringUtils.isBlank(musicInfo.getTitle()) ? StringUtils.EMPTY : musicInfo.getTitle(),
 							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum(),
-							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum()));
+							  	StringUtils.isBlank(musicInfo.getArtist()) ? StringUtils.EMPTY : musicInfo.getArtist()));
 		}
 		return stringBuilder.toString();
     }
