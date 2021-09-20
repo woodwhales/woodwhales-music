@@ -1,5 +1,6 @@
 package org.woodwhales.music.service.music;
 
+import cn.woodwhales.common.model.vo.PageRespVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -15,7 +16,6 @@ import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
 import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
-import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.entity.Music;
 import org.woodwhales.music.enums.StatusEnum;
 import org.woodwhales.music.mapper.MusicMapper;
@@ -69,7 +69,7 @@ public class MusicServiceImpl implements MusicService {
     }
 
 	@Override
-	public PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param) {
+	public PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
 		Page<Music> page = new Page<>(param.getPage(), param.getLimit());
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
 		wrapper.and(StringUtils.isNotBlank(param.getSearchInfo()),
@@ -81,16 +81,7 @@ public class MusicServiceImpl implements MusicService {
 				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
-		long total = pageResult.getTotal();
-		List<Music> musicList = pageResult.getRecords();
-
-		if(CollectionUtils.isEmpty(musicList)) {
-			return PageBaseVO.success(total, Collections.emptyList());
-		}
-		return PageBaseVO.success(total, musicList.stream()
-												.map(this::convertSimpleInfo)
-												.sorted(MusicSimpleInfo::compare)
-												.collect(Collectors.toList()));
+		return PageRespVO.buildPageRespVO(pageResult, this::convertSimpleInfo ,MusicSimpleInfo::compare);
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package org.woodwhales.music.service.music;
 
+import cn.woodwhales.common.model.vo.PageRespVO;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
 import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
-import org.woodwhales.music.controller.resp.PageBaseVO;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
@@ -33,8 +33,9 @@ public interface MusicService {
     /**
      * 分页查询
      * @param param
+     * @return
      */
-    PageBaseVO<List<MusicSimpleInfo>> pageMusic(PageMusicQueryRequestParam param);
+    PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param);
 
     /**
      * 根据id查询音乐详情

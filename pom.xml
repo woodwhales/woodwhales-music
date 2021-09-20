@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>org.woodwhales</groupId>
 	<artifactId>woodwhales-music</artifactId>
-	<version>3.0.0</version>
+	<version>3.5.0</version>
 	<name>woodwhales-music</name>
 	<description>woodwhales-music</description>
 
@@ -23,6 +23,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>cn.woodwhales.common</groupId>
+			<artifactId>woodwhales-common</artifactId>
+			<version>3.5.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
