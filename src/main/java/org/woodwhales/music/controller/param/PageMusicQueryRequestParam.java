@@ -1,5 +1,6 @@
 package org.woodwhales.music.controller.param;
 
+import cn.woodwhales.common.model.param.PageQueryParam;
 import lombok.Data;
 
 /**
@@ -9,11 +10,7 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class PageMusicQueryRequestParam {
-
-    private Integer page;
-
-    private Integer limit;
+public class PageMusicQueryRequestParam extends PageQueryParam {
 
     private String searchInfo;
 

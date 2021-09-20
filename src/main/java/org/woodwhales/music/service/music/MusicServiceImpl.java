@@ -1,5 +1,6 @@
 package org.woodwhales.music.service.music;
 
+import cn.woodwhales.common.model.util.PageUtil;
 import cn.woodwhales.common.model.vo.PageRespVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -70,7 +71,7 @@ public class MusicServiceImpl implements MusicService {
 
 	@Override
 	public PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
-		Page<Music> page = new Page<>(param.getPage(), param.getLimit());
+		IPage<Music> page = PageUtil.buildPage(param);
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
 		wrapper.and(StringUtils.isNotBlank(param.getSearchInfo()),
 						i -> i.like(Music::getTitle, param.getSearchInfo())
