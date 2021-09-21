@@ -29,6 +29,10 @@
 
 - 支持导出已关联音乐清单。
 
+###  3.5.0
+
+- 引入 [woodwhales-common](https://github.com/woodwhales/woodwhales-common) 依赖
+
 ## 前台
 
 访问端口：http://127.0.0.1:8084/music/
