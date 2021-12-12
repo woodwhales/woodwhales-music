@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- Dumping data for table open_music.music: ~546 rows (大约)
+-- Dumping data for table open_music.music: ~548 rows (大约)
 DELETE FROM `music`;
 /*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
@@ -569,7 +569,7 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(548, '借我', '谢春花', '算云烟', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E5%80%9F%E6%88%91.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E5%80%9F%E6%88%91.jpg', 303, 0, '2021-09-15 21:28:38', '2021-09-15 23:05:57'),
 	(549, '我从崖边跌落', '谢春花', '算云烟', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E6%88%91%E4%BB%8E%E5%B4%96%E8%BE%B9%E8%B7%8C%E8%90%BD.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E6%88%91%E4%BB%8E%E5%B4%96%E8%BE%B9%E8%B7%8C%E8%90%BD.jpg', 98, 0, '2021-09-15 21:31:12', '2021-09-15 23:06:59'),
 	(550, '一剪梅', '黄渤 /左小祖咒', '花神', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E4%B8%80%E5%89%AA%E6%A2%85.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E4%B8%80%E5%89%AA%E6%A2%85.jpg', 33, 0, '2021-09-15 21:34:47', '2021-09-15 23:06:47'),
-	(551, '桥边姑娘', '海伦', '桥边姑娘', '', '', 1, 0, '2021-09-15 21:38:45', '2021-09-15 21:38:45'),
+	(551, '桥边姑娘', '海伦', '桥边姑娘', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E6%A1%A5%E8%BE%B9%E5%A7%91%E5%A8%98.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E6%A1%A5%E8%BE%B9%E5%A7%91%E5%A8%98.jpg', 260, 0, '2021-09-15 21:38:45', '2021-12-11 12:20:01'),
 	(552, '笑看风云 (Live)', '汪小敏', '汪小敏 笑看风云', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E7%AC%91%E7%9C%8B%E9%A3%8E%E4%BA%91.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E7%AC%91%E7%9C%8B%E9%A3%8E%E4%BA%91.jpg', 39, 0, '2021-09-15 22:02:32', '2021-09-15 23:07:27'),
 	(553, '海阔天空', '汪小敏', '一声所爱 大地飞歌（第九期）', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA.jpg', 341, 0, '2021-09-15 22:03:58', '2021-09-15 23:06:28'),
 	(554, '野子 (Live)', '苏运莹', '我是歌手第四季 第3期', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E9%87%8E%E5%AD%90.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E9%87%8E%E5%AD%90.jpg', 245, 0, '2021-09-15 22:10:07', '2021-09-15 23:07:59'),
@@ -579,10 +579,12 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(558, 'Scotland the Brave 苏格兰勇士', '群星', '苏格兰音乐之旅 苏格兰风笛', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/Scotland%20the%20Brave%20%E8%8B%8F%E6%A0%BC%E5%85%B0%E5%8B%87%E5%A3%AB.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/Scotland%20the%20Brave%20%E8%8B%8F%E6%A0%BC%E5%85%B0%E5%8B%87%E5%A3%AB.jpg', 455, 0, '2021-09-15 22:37:33', '2021-09-15 23:04:35'),
 	(559, 'Farewell to Camraw', 'Black Kilts Berlin /Robert Mathieson', 'When the Pipers Play', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/Farewell%20to%20Camraw.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/Farewell%20to%20Camraw.jpg', 167, 0, '2021-09-15 22:44:01', '2021-09-15 23:04:17'),
 	(560, '万水千山总是情', '汪明荃', '万水千山总是情 电视剧原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E4%B8%87%E6%B0%B4%E5%8D%83%E5%B1%B1%E6%80%BB%E6%98%AF%E6%83%85.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@018/music/%E4%B8%87%E6%B0%B4%E5%8D%83%E5%B1%B1%E6%80%BB%E6%98%AF%E6%83%85.jpg', 342, 0, '2021-09-15 23:05:41', '2021-09-15 23:05:41'),
-	(561, '500 Miles', 'The Brothers Four', 'Let\'s Folk', '', '', 1, 0, '2021-09-15 23:40:50', '2021-09-15 23:40:50'),
-	(562, '500 Miles', 'Peter, Paul & Mary', 'Buck The Trend', '', '', 1, 0, '2021-09-15 23:41:47', '2021-09-15 23:41:47'),
-	(563, '500 Miles', 'The Innocence Mission', 'Christ Is My Hope', '', '', 1, 0, '2021-09-15 23:50:18', '2021-09-15 23:50:18'),
-	(564, 'Red River Valley', 'Michael Martin Murphey', 'Cowboy Songs', '', '', 1, 0, '2021-09-15 23:55:25', '2021-09-15 23:55:25');
+	(561, '500 Miles', 'The Brothers Four', 'Let\'s Folk', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_The%20Brothers%20Four.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_The%20Brothers%20Four.jpg', 265, 0, '2021-09-15 23:40:50', '2021-12-11 12:21:42'),
+	(562, '500 Miles', 'Peter, Paul & Mary', 'Buck The Trend', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_Peter%20,%20Paul%20&%20Mary.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_Peter%20,%20Paul%20&%20Mary.jpg', 263, 0, '2021-09-15 23:41:47', '2021-12-11 12:21:12'),
+	(563, '500 Miles', 'The Innocence Mission', 'Christ Is My Hope', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_The%20Innocence%20Mission.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/500%20Miles_The%20Innocence%20Mission.jpg', 264, 0, '2021-09-15 23:50:18', '2021-12-11 12:21:28'),
+	(564, 'Red River Valley', 'Michael Martin Murphey', 'Cowboy Songs', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/Red%20River%20Valley.mp3', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/Red%20River%20Valley.jpg', 262, 0, '2021-09-15 23:55:25', '2021-12-11 12:20:55'),
+	(565, '阿凡达与屌丝男', '许鹤缤', '心花路放 电影原声带', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E9%98%BF%E5%87%A1%E8%BE%BE%E4%B8%8E%E5%B1%8C%E4%B8%9D%E7%94%B7.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E9%98%BF%E5%87%A1%E8%BE%BE%E4%B8%8E%E5%B1%8C%E4%B8%9D%E7%94%B7.jpg', 266, 0, '2021-12-11 10:12:01', '2021-12-11 12:22:07'),
+	(566, '那年初夏', '任然', '毕业了我们一无所有', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E9%82%A3%E5%B9%B4%E5%88%9D%E5%A4%8F.m4a', 'https://cdn.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@020/music/%E9%82%A3%E5%B9%B4%E5%88%9D%E5%A4%8F.jpg', 261, 0, '2021-12-11 10:15:33', '2021-12-11 12:20:20');
 /*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
