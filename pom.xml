@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>cn.woodwhales.common</groupId>
 			<artifactId>woodwhales-common</artifactId>
-			<version>3.6.7</version>
+			<version>3.6.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
