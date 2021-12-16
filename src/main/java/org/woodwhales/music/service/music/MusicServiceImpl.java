@@ -5,7 +5,6 @@ import cn.woodwhales.common.model.vo.PageRespVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +21,7 @@ import org.woodwhales.music.enums.StatusEnum;
 import org.woodwhales.music.mapper.MusicMapper;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
 
 import java.time.Instant;
@@ -138,10 +138,10 @@ public class MusicServiceImpl implements MusicService {
 	}
 
     @Override
-    public String exportMusic() {
+    public MusicListInfo exportMusic() {
 		List<MusicInfo> musicInfoList = listMusic();
 		if(CollectionUtils.isEmpty(musicInfoList)) {
-			return StringUtils.EMPTY;
+			return new MusicListInfo(StringUtils.EMPTY, 50);
 		}
 		StringBuilder stringBuilder = new StringBuilder("| 序号 | 音乐名称 | 专辑 | 作者 |\n");
 		stringBuilder.append("| --- | ------ | ------ | --- |\n");
@@ -153,7 +153,7 @@ public class MusicServiceImpl implements MusicService {
 							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum(),
 							  	StringUtils.isBlank(musicInfo.getArtist()) ? StringUtils.EMPTY : musicInfo.getArtist()));
 		}
-		return stringBuilder.toString();
+		return new MusicListInfo(stringBuilder.toString(), musicInfoList.size() + 3);
     }
 
     private MusicDetailInfo convertDetailInfo(Music music) {

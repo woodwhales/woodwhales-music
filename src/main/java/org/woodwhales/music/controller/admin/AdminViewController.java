@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.model.MusicDetailInfo;
+import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.service.music.MusicService;
 import org.woodwhales.music.service.music.MusicStoreService;
 
@@ -66,7 +67,9 @@ public class AdminViewController {
 
     @GetMapping({"export"})
     public String export(Model model) {
-        model.addAttribute("musicList", musicService.exportMusic());
+        final MusicListInfo musicListInfo = musicService.exportMusic();
+        model.addAttribute("musicList", musicListInfo.getMusicList());
+        model.addAttribute("musicListRows", musicListInfo.getMusicListRows());
         return "admin/export";
     }
 

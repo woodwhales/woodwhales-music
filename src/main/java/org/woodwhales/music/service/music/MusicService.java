@@ -7,6 +7,7 @@ import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
 
 import java.util.List;
@@ -62,5 +63,5 @@ public interface MusicService {
      * 导出音乐清单
      * @return
      */
-    String exportMusic();
+    MusicListInfo exportMusic();
 }

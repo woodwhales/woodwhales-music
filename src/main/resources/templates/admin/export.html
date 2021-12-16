@@ -28,7 +28,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">已关联歌曲列表</label>
             <div class="layui-input-block">
-                <textarea class="layui-textarea" th:text="${musicList}" disabled="" style="height:550px;"></textarea>
+                <textarea class="layui-textarea" th:rows="${musicListRows}" th:text="${musicList}" disabled=""></textarea>
             </div>
         </div>
     </form>
