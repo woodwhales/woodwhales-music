@@ -1,4 +1,10 @@
-﻿var playMusic = function(musicArray) {
+﻿var showCopyRight = function(tag, url) {
+	let footerElement = document.getElementById("footer");
+	var now = new Date();
+	footerElement.innerHTML = 'Copyright &copy; ' + now.getFullYear() + ' <a href="' + url + '" target="_blank">' + tag + '</a>';
+}
+
+var playMusic = function(musicArray) {
 	var repeat = localStorage.repeat || 0, shuffle = localStorage.shuffle
 			|| "false", continous = true, autoplay = true, playlist = musicArray;
 

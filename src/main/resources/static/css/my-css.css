@@ -82,3 +82,20 @@ body {
     border-color: white transparent transparent white;
     transform: rotate(45deg);
 }
+
+#footer {
+    width: 470px;
+    margin: 0 auto 50px;
+    padding: 15px 15px;
+    list-style: none;
+    position: relative;
+    color: #aaa;
+}
+
+#footer a {
+    color: #aaa;
+}
+
+#footer a:hover {
+    color: white;
+}

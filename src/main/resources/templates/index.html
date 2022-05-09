@@ -48,8 +48,7 @@
     </div>
 </div>
 <ul id="playlist"></ul>
-<footer style="margin-top: 20px; margin-bottom: 30px;">
-    Copyright &copy; 2022 <a href="http://www.woodwhales.cn/" target="_blank">木鲸鱼</a>
+<footer id="footer">
 </footer>
 <div id="box" class="box">
     <div class="box-in"></div>
@@ -58,6 +57,9 @@
 <script th:src="@{js/script.js}"></script>
 <script th:inline="javascript">
     $(function () {
+
+        showCopyRight('木鲸鱼', 'https://www.woodwhales.cn/');
+
         //获取窗口宽度
         let winWidth;
         if (window.innerWidth) {
@@ -95,7 +97,7 @@
         timer = requestAnimationFrame(function fn(){
             var oTop = document.body.scrollTop || document.documentElement.scrollTop;
             if(oTop > 0){
-                document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+                document.body.scrollTop = document.documentElement.scrollTop = oTop - 200;
                 timer = requestAnimationFrame(fn);
             }else{
                 cancelAnimationFrame(timer);
