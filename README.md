@@ -33,6 +33,11 @@
 
 - 引入 [woodwhales-common](https://github.com/woodwhales/woodwhales-common) 依赖
 
+### 3.5.5
+
+- 修复 cdn.jsdelivr.net 因未翻墙而无法访问题
+- woodwhales-common 版本依赖更新
+
 ## 前台
 
 访问端口：http://127.0.0.1:8084/music/
