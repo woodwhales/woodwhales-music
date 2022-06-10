@@ -1,5 +1,6 @@
 package org.woodwhales.music.controller.admin;
 
+import cn.woodwhales.common.model.vo.LayuiPageVO;
 import cn.woodwhales.common.model.vo.PageRespVO;
 import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.MusicService;
 
+import javax.swing.plaf.LayerUI;
 import java.util.List;
 
 /**
@@ -34,7 +36,7 @@ public class MusicController {
 	}
 
 	@GetMapping("/pageMusic")
-	public PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
+	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
 		return musicService.pageMusic(param);
 	}
 

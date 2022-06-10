@@ -1,6 +1,8 @@
 package org.woodwhales.music.service.music;
 
+import cn.woodwhales.common.model.vo.LayuiPageVO;
 import cn.woodwhales.common.model.vo.PageRespVO;
+import cn.woodwhales.common.model.vo.RespVO;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
 import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
@@ -36,7 +38,7 @@ public interface MusicService {
      * @param param
      * @return
      */
-    PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param);
+    LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param);
 
     /**
      * 根据id查询音乐详情

@@ -1,7 +1,9 @@
 package org.woodwhales.music.service.music;
 
 import cn.woodwhales.common.model.util.PageUtil;
+import cn.woodwhales.common.model.vo.LayuiPageVO;
 import cn.woodwhales.common.model.vo.PageRespVO;
+import cn.woodwhales.common.model.vo.RespVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -71,7 +73,7 @@ public class MusicServiceImpl implements MusicService {
     }
 
 	@Override
-	public PageRespVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
+	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
 		IPage<Music> page = PageUtil.buildPage(param);
 		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
 		wrapper.and(StringUtils.isNotBlank(param.getSearchInfo()),
@@ -83,7 +85,7 @@ public class MusicServiceImpl implements MusicService {
 				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
-		return PageRespVO.buildPageRespVO(pageResult, this::convertSimpleInfo ,MusicSimpleInfo::compare);
+		return LayuiPageVO.build(pageResult, this::convertSimpleInfo ,MusicSimpleInfo::compare);
 	}
 
 	@Override
