@@ -135,8 +135,8 @@ public class MusicServiceImpl implements MusicService {
 		music.setTitle(defaultIfBlank(trimMusicUpdateRequestBody.getMusicName(), music.getTitle()));
 		music.setSort(trimMusicUpdateRequestBody.getSort());
 		music.setGmtModified(Date.from(Instant.now()));
-		music.setCoverUrl(replace(music.getCoverUrl(), "https://cdn.jsdelivr.net/", "https://fastly.jsdelivr.net/"));
-		music.setAudioUrl(replace(music.getAudioUrl(), "https://cdn.jsdelivr.net/", "https://fastly.jsdelivr.net/"));
+		music.setCoverUrl(music.getCoverUrl());
+		music.setAudioUrl(music.getAudioUrl());
 		int i = musicMapper.updateById(music);
 		return i == 1;
 	}
@@ -178,8 +178,8 @@ public class MusicServiceImpl implements MusicService {
     	Instant now = Instant.now();
     	music.setGmtCreated(Date.from(now));
     	music.setGmtModified(Date.from(now));
-		music.setCoverUrl(replace(music.getCoverUrl(), "https://cdn.jsdelivr.net/", "https://fastly.jsdelivr.net/"));
-		music.setAudioUrl(replace(music.getAudioUrl(), "https://cdn.jsdelivr.net/", "https://fastly.jsdelivr.net/"));
+		music.setCoverUrl(music.getCoverUrl());
+		music.setAudioUrl(music.getAudioUrl());
 		return music;
 	}
 
