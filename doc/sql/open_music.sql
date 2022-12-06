@@ -1,23 +1,26 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
--- 服务器OS:                        Linux
--- HeidiSQL 版本:                  10.2.0.5599
+-- 服务器操作系统:                      Linux
+-- HeidiSQL 版本:                  12.2.0.6576
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for open_music
+-- 导出 open_music 的数据库结构
 DROP DATABASE IF EXISTS `open_music`;
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `open_music`;
 
--- Dumping structure for table open_music.music
+-- 导出  表 open_music.music 结构
 DROP TABLE IF EXISTS `music`;
 CREATE TABLE IF NOT EXISTS `music` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
@@ -33,9 +36,8 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- Dumping data for table open_music.music: ~618 rows (大约)
+-- 正在导出表  open_music.music 的数据：~618 rows (大约)
 DELETE FROM `music`;
-/*!40000 ALTER TABLE `music` DISABLE KEYS */;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2022-07-06 23:19:10'),
 	(3, '红日', '李克勤', '红日', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/hong_ri.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/hong_ri.jpg', 2, 0, '2020-08-03 23:41:55', '2020-08-03 23:41:55'),
@@ -655,8 +657,9 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(634, '浅草キッド', '北野武', 'GOLDEN☆BEST', '', '', 1, 0, '2022-09-06 13:49:26', '2022-09-06 13:49:26'),
 	(635, 'Five hundred miles', 'The Journeymen', 'America, Vol. 10: Country - The Folk Revival Revolution', '', '', 1, 0, '2022-11-09 13:50:10', '2022-11-09 13:50:10'),
 	(636, '长路漫漫任我闯', '林子祥', '林子祥精选之天长地久', '', '', 1, 0, '2022-11-29 16:39:49', '2022-11-29 16:40:25');
-/*!40000 ALTER TABLE `music` ENABLE KEYS */;
 
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
