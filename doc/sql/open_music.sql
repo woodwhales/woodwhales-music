@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.31 - MySQL Community Server (GPL)
+-- 服务器版本:                        5.7.31-log - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.2.0.6576
+-- HeidiSQL 版本:                  12.3.0.6589
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~618 rows (大约)
+-- 正在导出表  open_music.music 的数据：~622 rows (大约)
 DELETE FROM `music`;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2022-07-06 23:19:10'),
@@ -640,23 +640,27 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(617, '孤勇者', '陈奕迅', '孤勇者', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E5%AD%A4%E5%8B%87%E8%80%85.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E5%AD%A4%E5%8B%87%E8%80%85.jpg', 6, 0, '2022-06-26 22:48:17', '2022-07-06 23:29:32'),
 	(618, '孤勇者_凤凰传奇', '凤凰传奇', '孤勇者', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E5%AD%A4%E5%8B%87%E8%80%85_%E5%87%A4%E5%87%B0%E4%BC%A0%E5%A5%87.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E5%AD%A4%E5%8B%87%E8%80%85_%E5%87%A4%E5%87%B0%E4%BC%A0%E5%A5%87.jpg', 525, 0, '2022-06-26 22:56:19', '2022-07-06 23:29:57'),
 	(619, '月牙湾', 'F.I.R.', '爱.歌姬', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E6%9C%88%E7%89%99%E6%B9%BE.mp3', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store06@012/music/%E6%9C%88%E7%89%99%E6%B9%BE.jpg', 456, 0, '2022-06-26 23:07:51', '2022-07-06 23:29:17'),
-	(620, '夏日漱石 (Summer Cozy Rock)', '橘子海 (Orange Ocean)', '浪潮上岸 (Tears In Ocean)', '', '', 1, 0, '2022-08-05 09:09:32', '2022-08-05 09:09:32'),
-	(621, 'Élan', 'Nightwish', 'Élan', '', '', 1, 0, '2022-08-15 09:29:21', '2022-08-15 09:29:21'),
-	(622, 'I Want My Tears Back', 'Nightwish', 'Imaginaerum', '', '', 1, 0, '2022-08-15 09:30:00', '2022-08-15 09:30:00'),
-	(623, 'Something Just Like This', 'The Chainsmokers / Coldplay', 'Something Just Like This', '', '', 1, 0, '2022-08-15 09:30:29', '2022-08-15 09:30:29'),
-	(624, 'Strength of a Thousand Men', 'Two Steps From Hell', 'Archangel', '', '', 1, 0, '2022-08-15 09:32:18', '2022-08-15 09:32:18'),
-	(625, 'Spirit of the Wild', 'BrunuhVille', 'Age of Wonders', '', '', 1, 0, '2022-08-15 09:37:12', '2022-08-15 09:37:12'),
-	(626, 'Skin', 'Rag\'N\'Bone Man', 'Skin', '', '', 1, 0, '2022-08-15 09:40:39', '2022-08-15 09:40:39'),
-	(627, 'Liability', 'Lorde', 'Melodrama', '', '', 1, 0, '2022-08-15 09:43:37', '2022-08-15 09:43:37'),
-	(628, 'Someone to Stay', 'Vancouver Sleep Clinic', 'Someone to Stay', '', '', 1, 0, '2022-08-15 09:45:01', '2022-08-15 09:45:01'),
-	(629, '起风了', '吴青峰', '起风了', '', '', 1, 0, '2022-08-15 09:47:13', '2022-08-15 09:47:13'),
-	(630, 'Eventide', 'Nylon', 'Eventide', '', '', 1, 0, '2022-08-15 09:48:36', '2022-08-15 09:48:36'),
-	(631, 'For Free', 'Lana Del Rey / Zella Day / Weyes Blood', 'Folk For Kids', '', '', 1, 0, '2022-08-15 09:52:37', '2022-08-15 09:52:37'),
-	(632, '宝贝 (In a Day)', '张悬', 'my life will…', '', '', 1, 0, '2022-08-19 00:24:27', '2022-08-19 00:24:27'),
-	(633, '带我到山顶', '赵艺涵', '听见凉山', '', '', 1, 0, '2022-08-19 00:29:33', '2022-08-19 00:29:33'),
-	(634, '浅草キッド', '北野武', 'GOLDEN☆BEST', '', '', 1, 0, '2022-09-06 13:49:26', '2022-09-06 13:49:26'),
-	(635, 'Five hundred miles', 'The Journeymen', 'America, Vol. 10: Country - The Folk Revival Revolution', '', '', 1, 0, '2022-11-09 13:50:10', '2022-11-09 13:50:10'),
-	(636, '长路漫漫任我闯', '林子祥', '林子祥精选之天长地久', '', '', 1, 0, '2022-11-29 16:39:49', '2022-11-29 16:40:25');
+	(620, '夏日漱石 (Summer Cozy Rock)', '橘子海 (Orange Ocean)', '浪潮上岸 (Tears In Ocean)', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E5%A4%8F%E6%97%A5%E6%BC%B1%E7%9F%B3.mp3', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E5%A4%8F%E6%97%A5%E6%BC%B1%E7%9F%B3.jpg', 43, 0, '2022-08-05 09:09:32', '2022-12-27 09:23:54'),
+	(621, 'Élan', 'Nightwish', 'Élan', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/%C3%89lan.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/%C3%89lan.jpg', 445, 0, '2022-08-15 09:29:21', '2022-12-27 09:25:50'),
+	(622, 'I Want My Tears Back', 'Nightwish', 'Imaginaerum', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/I%20Want%20My%20Tears%20Back.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/I%20Want%20My%20Tears%20Back.jpg', 404, 0, '2022-08-15 09:30:00', '2022-12-27 09:27:27'),
+	(623, 'Something Just Like This', 'The Chainsmokers / Coldplay', 'Something Just Like This', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Something%20Just%20Like%20This.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Something%20Just%20Like%20This.jpg', 552, 0, '2022-08-15 09:30:29', '2022-12-27 09:26:21'),
+	(624, 'Strength of a Thousand Men', 'Two Steps From Hell', 'Archangel', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Strength%20of%20a%20Thousand%20Men.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Strength%20of%20a%20Thousand%20Men.jpg', 504, 0, '2022-08-15 09:32:18', '2022-12-27 09:56:21'),
+	(625, 'Spirit of the Wild', 'BrunuhVille', 'Age of Wonders', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Spirit%20of%20the%20Wild.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Spirit%20of%20the%20Wild.jpg', 506, 0, '2022-08-15 09:37:12', '2022-12-27 09:56:35'),
+	(626, 'Skin', 'Rag\'N\'Bone Man', 'Skin', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Skin.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Skin.jpg', 402, 0, '2022-08-15 09:40:39', '2022-12-27 09:27:10'),
+	(627, 'Liability', 'Lorde', 'Melodrama', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Liability.mp3', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Liability.jpg', 345, 0, '2022-08-15 09:43:37', '2022-12-27 09:29:39'),
+	(628, 'Someone to Stay', 'Vancouver Sleep Clinic', 'Someone to Stay', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Someone%20to%20Stay.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Someone%20to%20Stay.jpg', 501, 0, '2022-08-15 09:45:01', '2022-12-27 09:26:52'),
+	(629, '起风了', '吴青峰', '起风了', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E8%B5%B7%E9%A3%8E%E4%BA%86.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E8%B5%B7%E9%A3%8E%E4%BA%86.jpg', 321, 0, '2022-08-15 09:47:13', '2022-12-27 09:24:29'),
+	(630, 'Eventide', 'Nylon', 'Eventide', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/Eventide.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/Eventide.jpg', 354, 0, '2022-08-15 09:48:36', '2022-12-27 09:25:08'),
+	(631, 'For Free', 'Lana Del Rey / Zella Day / Weyes Blood', 'Folk For Kids', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/For%20Free.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/For%20Free.jpg', 432, 0, '2022-08-15 09:52:37', '2022-12-27 09:25:35'),
+	(632, '宝贝 (in a day)', '张悬', 'Original', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%AE%9D%E8%B4%9D%20(In%20a%20Day).m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%AE%9D%E8%B4%9D%20(In%20a%20Day).jpg', 34, 0, '2022-08-19 00:24:27', '2022-12-27 09:56:56'),
+	(633, '带我到山顶', '赵艺涵', '听见凉山', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%B8%A6%E6%88%91%E5%88%B0%E5%B1%B1%E9%A1%B6.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%B8%A6%E6%88%91%E5%88%B0%E5%B1%B1%E9%A1%B6.jpg', 289, 0, '2022-08-19 00:29:33', '2022-12-27 09:57:21'),
+	(634, '浅草キッド', '北野武', 'GOLDEN☆BEST', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E6%B5%85%E8%8D%89%E3%82%AD%E3%83%83%E3%83%89.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@001/music/%E6%B5%85%E8%8D%89%E3%82%AD%E3%83%83%E3%83%89.jpg', 21, 0, '2022-09-06 13:49:26', '2022-12-27 09:24:08'),
+	(635, 'Five hundred miles', 'The Journeymen', 'America, Vol. 10: Country - The Folk Revival Revolution', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/Five%20hundred%20miles_The%20Journeymen.mp3', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/Five%20hundred%20miles_The%20Journeymen.jpg', 67, 0, '2022-11-09 13:50:10', '2022-12-27 09:25:21'),
+	(636, '长路漫漫任我闯', '林子祥', '林子祥精选之天长地久', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E9%95%BF%E8%B7%AF%E6%BC%AB%E6%BC%AB%E4%BB%BB%E6%88%91%E9%97%AF.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E9%95%BF%E8%B7%AF%E6%BC%AB%E6%BC%AB%E4%BB%BB%E6%88%91%E9%97%AF.jpg', 367, 0, '2022-11-29 16:39:49', '2022-12-27 09:57:31'),
+	(637, '2 Phút Hơn (KAIZ Remix)', 'Pháo / KAIZ', '2 Phút Hơn (KAIZ Remix)', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/2%20Ph%C3%BAt%20H%C6%A1n%20(KAIZ%20Remix).mp3', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@002/music/2%20Ph%C3%BAt%20H%C6%A1n%20(KAIZ%20Remix).jpg', 334, 0, '2022-12-27 09:00:25', '2022-12-27 09:24:52'),
+	(638, 'Promise', 'sapientdream', 'Promise', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Promise.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@003/music/Promise.jpg', 322, 0, '2022-12-27 09:28:43', '2022-12-27 09:28:43'),
+	(639, '宝贝 (in the night)', '张悬', 'Original', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%AE%9D%E8%B4%9D%20(in%20the%20night).m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/%E5%AE%9D%E8%B4%9D%20(in%20the%20night).jpg', 104, 0, '2022-12-27 09:37:30', '2022-12-27 09:57:08'),
+	(640, 'Way Back then', '郑在日 (정재일)', '오징어게임 OST', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Way%20Back%20then.mp3', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@004/music/Way%20Back%20then.jpg', 337, 0, '2022-12-27 09:51:32', '2022-12-27 09:56:03');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
