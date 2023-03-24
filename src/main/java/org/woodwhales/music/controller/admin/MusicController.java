@@ -35,8 +35,8 @@ public class MusicController {
 		return RespVO.success(musicService.createMusic(requestBody));
 	}
 
-	@GetMapping("/pageMusic")
-	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
+	@PostMapping("/pageMusic")
+	public LayuiPageVO<MusicSimpleInfo> pageMusic(@RequestBody PageMusicQueryRequestParam param) {
 		return musicService.pageMusic(param);
 	}
 

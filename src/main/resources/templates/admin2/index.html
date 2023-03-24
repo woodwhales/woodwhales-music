@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+        <el-row>
+            <el-col :span="2">&nbsp;</el-col>
+            <el-col :span="20">
+                <el-row style="text-align: center;">
+                    <h2>woodwhales-music</h2>
+                </el-row>
+                <el-row style="text-align: center; margin-bottom: 12px;">
+                    <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
+                </el-row>
+                <el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="20">
+                            <el-form ref="queryForm" :model="queryForm" label-width="80px">
+                                <el-form-item label="名称/作者">
+                                    <el-input v-model="queryForm.searchInfo"></el-input>
+                                </el-form-item>
+                            </el-form>
+                        </el-col>
+                        <el-col :span="4">
+                            <el-button type="primary" @click="onQuery" size="mini">搜索</el-button>
+                            <el-button type="info" @click="onReset" size="mini">重置</el-button>
+                        </el-col>
+                    </el-row>
+                </el-row>
+                <el-row style="text-align: center;">
+                    <el-divider><i class="el-icon-headset" style="color: #67C23A;"></i></el-divider>
+                </el-row>
+
+                <el-row style="text-align: left; margin-bottom: 12px;">
+                    <el-button type="success" size="mini" @click="onAdd">添加</el-button>
+                    <el-button type="warning" size="mini">导出</el-button>
+                </el-row>
+                <el-row style="margin-bottom: 12px;">
+                    <el-table :data="sys.tableData" style="width: 100%">
+                        <el-table-column
+                                fixed
+                                prop="title"
+                                label="音乐名称">
+                            <template slot-scope="scope">
+                                <span v-show="scope.row.linked" style="color: #5FB878" >{{scope.row.title}}</span>
+                                <span v-show="!scope.row.linked" style="color: #FF5722">{{scope.row.title}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="artist"
+                                label="作者">
+                        </el-table-column>
+                        <el-table-column
+                                prop="album"
+                                label="专辑">
+                        </el-table-column>
+                        <el-table-column
+                                prop="sort"
+                                label="排序"
+                                width="60">
+                        </el-table-column>
+                        <el-table-column
+                                prop="gmtCreated"
+                                label="创建时间">
+                        </el-table-column>
+                        <el-table-column
+                                prop="gmtModified"
+                                label="更新时间">
+                        </el-table-column>
+                        <el-table-column
+                                fixed="right"
+                                label="操作"
+                                width="180">
+                            <template slot-scope="scope">
+                                <el-button @click="onEdit(scope.row)" type="success" size="mini" icon="el-icon-edit"></el-button>
+                                <el-button @click="onDelete(scope.row)" type="danger" size="mini" icon="el-icon-delete"></el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-row>
+                <el-row style="margin-bottom: 12px;">
+                    <el-pagination
+                            :current-page="sys.currentPage"
+                            :page-size="sys.pageSize"
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            :page-sizes="[10, 20, 50, 100, 300]"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="sys.total">
+                    </el-pagination>
+                </el-row>
+                <el-row style="text-align: center; margin-bottom: 12px;">
+                    <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+                </el-row>
+            </el-col>
+            <el-col :span="2">&nbsp;</el-col>
+        </el-row>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" th:inline="none">
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                queryForm: {
+                    searchInfo: null
+                },
+                sys: {
+                    total: 0,
+                    currentPage: 1,
+                    pageSize: 10,
+                    tableData: []
+                }
+            }
+        },
+        mounted() {
+            this.initSys();
+            this.initQueryForm();
+            this.onQuery();
+        },
+        methods: {
+            onAdd() {
+                location.href = './add'
+            },
+            onReset: function () {
+                this.initSys();
+                this.initQueryForm();
+                this.onQuery();
+            },
+            initQueryForm() {
+                this.queryForm.searchInfo = null
+            },
+            initSys: function () {
+                this.sys.total = 0
+                this.sys.currentPage = 1
+                this.sys.pageSize = 10
+                this.sys.tableData = []
+            },
+            onQuery: function () {
+                axios.post('./pageMusic', {
+                    searchInfo: this.queryForm.searchInfo,
+                    page: this.sys.currentPage,
+                    limit: this.sys.pageSize
+                })
+                .then(response => {
+                    if(response.data.code === 0) {
+                        this.sys.total = response.data.count;
+                        this.sys.tableData = response.data.data;
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                    console.log(error);
+                });
+            },
+            onEdit(row) {
+                console.log(row);
+            },
+            onDelete(row) {
+                console.log(row);
+            },
+            handleSizeChange(val) {
+                this.sys.pageSize = val
+                this.onQuery();
+            },
+            handleCurrentChange(val) {
+                this.sys.currentPage = val
+                this.onQuery();
+            }
+        }
+    })
+</script>
+</html>

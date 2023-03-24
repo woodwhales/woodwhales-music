@@ -12,5 +12,6 @@ spring:
       time-zone: GMT+8
   profiles:
     active: '@profiles.active@'
-
-
+logging:
+  level:
+    org.woodwhales.music: debug

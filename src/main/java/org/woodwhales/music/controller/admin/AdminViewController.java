@@ -3,6 +3,7 @@ package org.woodwhales.music.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.woodwhales.music.service.music.MusicStoreService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @projectName: woodwhales-music
@@ -22,6 +24,7 @@ import java.util.Objects;
  * @date: 20.8.3 22:15
  * @description:
  */
+@CrossOrigin
 @RequestMapping("/admin")
 @Controller
 public class AdminViewController {
@@ -39,15 +42,17 @@ public class AdminViewController {
 
     @GetMapping({"/"})
     public String home() {
-        return "admin/index";
+        return "admin2/index";
     }
 
     @GetMapping({"add"})
     public String add(Model model) {
+
+
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
         model.addAttribute("musicStore", musicStoreService.getMusicStore());
-        return "admin/add";
+        return "admin2/add";
     }
 
     @GetMapping({"edit"})

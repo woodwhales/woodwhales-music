@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+        <el-row>
+            <el-col :span="2">&nbsp;</el-col>
+            <el-col :span="20">
+                <el-row style="text-align: center;">
+                    <h2>woodwhales-music</h2>
+                </el-row>
+                <el-row style="text-align: center; margin-bottom: 12px;">
+                    <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
+                </el-row>
+
+                <el-row style="margin-bottom: 12px;">
+                    <el-divider content-position="left">添加音乐</el-divider>
+                </el-row>
+                <el-row style="margin-bottom: 12px;">
+                    <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
+                </el-row>
+
+                <el-row style="margin-bottom: 12px;">
+                    <el-form ref="dataForm" :model="dataForm" label-width="80px">
+                        <el-form-item label="名称">
+                            <el-input v-model="dataForm.musicName"></el-input>
+                        </el-form-item>
+                        <el-form-item label="作者">
+                            <el-input v-model="dataForm.artist"></el-input>
+                        </el-form-item>
+                        <el-form-item label="专辑">
+                            <el-input v-model="dataForm.album"></el-input>
+                        </el-form-item>
+                        <el-row :gutter="20">
+                            <el-col :span="8">
+                                <el-form-item label="自动填充">
+                                    <template>
+                                        <el-radio v-model="sys.autoFill" label="true">是</el-radio>
+                                        <el-radio v-model="sys.autoFill" label="false">否</el-radio>
+                                    </template>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="8">
+                                <el-form-item label="音频后缀">
+                                    <template>
+                                        <el-radio v-model="sys.audioSuffix" label=".mp3">.mp3</el-radio>
+                                        <el-radio v-model="sys.audioSuffix" label=".m4a">.m4a</el-radio>
+                                    </template>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="8">
+                                <el-form-item label="封面后缀">
+                                    <template>
+                                        <el-radio v-model="sys.coverSuffix" label=".jpg">.jpg</el-radio>
+                                        <el-radio v-model="sys.coverSuffix" label=".png">.m4a</el-radio>
+                                    </template>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row :gutter="20">
+                            <el-col :span="23">
+                                <el-form-item label="链接" prop="dataForm.audioUrl">
+                                    <el-input v-model="dataForm.audioUrl"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="1">
+                                <el-button type="warning" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
+                            </el-col>
+                        </el-row>
+                        <el-row :gutter="20">
+                            <el-col :span="23">
+                                <el-form-item label="封面" prop="dataForm.coverUrl">
+                                    <el-input v-model="dataForm.coverUrl"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="1">
+                                <el-button type="danger" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
+                            </el-col>
+                        </el-row>
+                        <el-form-item label="排序"
+                                      :rules="[
+                                              { type: 'number', message: '年龄必须为数字值'}
+                                        ]"
+                                      prop="dataForm.sort">
+                            <el-input v-model.number="dataForm.sort"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" size=mini"" @click="onSubmit('dataForm')">提交</el-button>
+                            <el-button size=mini"" @click="onReset">重置</el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-row>
+
+                <el-row style="text-align: center; margin-bottom: 12px;">
+                    <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+                </el-row>
+            </el-col>
+            <el-col :span="2">&nbsp;</el-col>
+        </el-row>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" th:inline="none">
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                dataForm: {
+                    musicName: null,
+                    artist: null,
+                    album: null,
+                    audioUrl: null,
+                    coverUrl: null,
+                    sort: null,
+                },
+                sys: {
+                    autoFill: 'true',
+                    audioSuffix: '.mp3',
+                    coverSuffix: '.png'
+                }
+            }
+        },
+        mounted() {
+            this.initSys();
+        },
+        methods: {
+            onSubmit(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            onReset() {
+                this.initSys();
+                this.initDataForm();
+            },
+            onClearAudioUrl() {
+                this.dataForm.audioUrl = null;
+            },
+            onClearCoverUrl() {
+                this.dataForm.coverUrl = null;
+            },
+            onBackHome() {
+                location.href = './';
+            },
+            initDataForm() {
+                this.dataForm.musicName = null
+                this.dataForm.artist = null
+                this.dataForm.album = null
+                this.dataForm.audioUrl = null
+                this.dataForm.coverUrl = null
+                this.dataForm.sort = null
+            },
+            initSys: function () {
+                this.sys.autoFill = 'true'
+                this.sys.audioSuffix = '.mp3'
+                this.sys.coverSuffix = '.png'
+            },
+            onEdit(row) {
+                console.log(row);
+            },
+            onDelete(row) {
+                console.log(row);
+            },
+            handleSizeChange(val) {
+                this.sys.pageSize = val
+                this.onQuery();
+            },
+            handleCurrentChange(val) {
+                this.sys.currentPage = val
+                this.onQuery();
+            }
+        }
+    })
+</script>
+</html>
