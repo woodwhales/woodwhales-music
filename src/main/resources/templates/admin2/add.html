@@ -25,22 +25,22 @@
                 </el-row>
 
                 <el-row style="margin-bottom: 12px;">
-                    <el-form ref="dataForm" :model="dataForm" label-width="80px">
-                        <el-form-item label="名称">
+                    <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
+                        <el-form-item label="名称" prop="musicName">
                             <el-input v-model="dataForm.musicName"></el-input>
                         </el-form-item>
-                        <el-form-item label="作者">
+                        <el-form-item label="作者" prop="artist">
                             <el-input v-model="dataForm.artist"></el-input>
                         </el-form-item>
-                        <el-form-item label="专辑">
+                        <el-form-item label="专辑" prop="album">
                             <el-input v-model="dataForm.album"></el-input>
                         </el-form-item>
                         <el-row :gutter="20">
                             <el-col :span="8">
                                 <el-form-item label="自动填充">
                                     <template>
-                                        <el-radio v-model="sys.autoFill" label="true">是</el-radio>
-                                        <el-radio v-model="sys.autoFill" label="false">否</el-radio>
+                                        <el-radio v-model="sys.autoFill" label="true" @input="changeAudioUrlEvent">是</el-radio>
+                                        <el-radio v-model="sys.autoFill" label="false" @input="changeAudioUrlEvent">否</el-radio>
                                     </template>
                                 </el-form-item>
                             </el-col>
@@ -56,15 +56,15 @@
                                 <el-form-item label="封面后缀">
                                     <template>
                                         <el-radio v-model="sys.coverSuffix" label=".jpg">.jpg</el-radio>
-                                        <el-radio v-model="sys.coverSuffix" label=".png">.m4a</el-radio>
+                                        <el-radio v-model="sys.coverSuffix" label=".png">.png</el-radio>
                                     </template>
                                 </el-form-item>
                             </el-col>
                         </el-row>
                         <el-row :gutter="20">
                             <el-col :span="23">
-                                <el-form-item label="链接" prop="dataForm.audioUrl">
-                                    <el-input v-model="dataForm.audioUrl"></el-input>
+                                <el-form-item label="链接">
+                                    <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="1">
@@ -73,19 +73,15 @@
                         </el-row>
                         <el-row :gutter="20">
                             <el-col :span="23">
-                                <el-form-item label="封面" prop="dataForm.coverUrl">
-                                    <el-input v-model="dataForm.coverUrl"></el-input>
+                                <el-form-item label="封面">
+                                    <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="1">
                                 <el-button type="danger" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
                             </el-col>
                         </el-row>
-                        <el-form-item label="排序"
-                                      :rules="[
-                                              { type: 'number', message: '年龄必须为数字值'}
-                                        ]"
-                                      prop="dataForm.sort">
+                        <el-form-item label="排序" prop="sort">
                             <el-input v-model.number="dataForm.sort"></el-input>
                         </el-form-item>
                         <el-form-item>
@@ -124,7 +120,21 @@
                 sys: {
                     autoFill: 'true',
                     audioSuffix: '.mp3',
-                    coverSuffix: '.png'
+                    coverSuffix: '.jpg'
+                },
+                rules: {
+                    musicName: [
+                        { required: true, message: '请输入名称', trigger: 'blur' },
+                    ],
+                    artist: [
+                        { required: true, message: '请输入作者', trigger: 'blur' },
+                    ],
+                    album: [
+                        { required: true, message: '请输入专辑', trigger: 'blur' },
+                    ],
+                    sort: [
+                        { type: 'number', message: 'sort必须为数字值'}
+                    ]
                 }
             }
         },
@@ -132,19 +142,19 @@
             this.initSys();
         },
         methods: {
-            onSubmit(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        alert('submit!');
-                    } else {
-                        console.log('error submit!!');
+            onSubmit(dataForm) {
+                this.$refs.dataForm.validate((valid) => {
+                    if (!valid) {
                         return false;
                     }
+
+                    console.log(JSON.stringify(this.dataForm))
                 });
             },
             onReset() {
                 this.initSys();
                 this.initDataForm();
+                this.$refs.dataForm.resetFields();
             },
             onClearAudioUrl() {
                 this.dataForm.audioUrl = null;
@@ -154,6 +164,36 @@
             },
             onBackHome() {
                 location.href = './';
+            },
+            changeAudioUrlEvent() {
+                // 开启自动填充
+                if('true' === this.sys.autoFill) {
+                    if(this.dataForm.audioUrl !== null
+                        && this.dataForm.audioUrl !== ''
+                        && this.dataForm.coverUrl === null
+                        && this.dataForm.coverUrl === '') {
+                        let coverUrl = null;
+                        let start = this.dataForm.audioUrl.lastIndexOf('.');
+                        if(start >= 0) {
+                            coverUrl = this.dataForm.audioUrl.substr(0, start);
+                        }
+                        this.dataForm.coverUrl = coverUrl + this.sys.coverSuffix;
+                        return;
+                    }
+
+                    if(this.dataForm.coverUrl !== null
+                        && this.dataForm.coverUrl !== ''
+                        && this.dataForm.audioUrl === null
+                        && this.dataForm.audioUrl === '') {
+                        let audioUrl = null;
+                        let start = this.dataForm.coverUrl.lastIndexOf('.');
+                        if(start >= 0) {
+                            audioUrl = this.dataForm.coverUrl.substr(0, start);
+                        }
+                        this.dataForm.audioUrl = audioUrl + this.sys.audioSuffix;
+                        return;
+                    }
+                }
             },
             initDataForm() {
                 this.dataForm.musicName = null
@@ -166,7 +206,7 @@
             initSys: function () {
                 this.sys.autoFill = 'true'
                 this.sys.audioSuffix = '.mp3'
-                this.sys.coverSuffix = '.png'
+                this.sys.coverSuffix = '.jpg'
             },
             onEdit(row) {
                 console.log(row);
