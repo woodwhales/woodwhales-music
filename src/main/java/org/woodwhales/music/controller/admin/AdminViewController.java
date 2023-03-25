@@ -16,7 +16,6 @@ import org.woodwhales.music.service.music.MusicStoreService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * @projectName: woodwhales-music
@@ -46,12 +45,16 @@ public class AdminViewController {
     }
 
     @GetMapping({"add"})
-    public String add(Model model) {
-
-
+    public String add(@RequestParam(required = false) Long id, Model model) {
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
         model.addAttribute("musicStore", musicStoreService.getMusicStore());
+
+        MusicDetailInfo musicDetailInfo = null;
+        if(Objects.nonNull(id)) {
+            musicDetailInfo = musicService.getMusicDetailInfoById(id);
+        }
+        model.addAttribute("music", musicDetailInfo);
         return "admin2/add";
     }
 
@@ -60,14 +63,10 @@ public class AdminViewController {
         if(Objects.isNull(id)) {
             return "redirect:admin/";
         }
-        MusicDetailInfo musicDetailInfo = musicService.getMusicDetailInfoById(id);
-        model.addAttribute("music", musicDetailInfo);
         model.addAttribute("musicStore", musicStoreService.getMusicStore());
-
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
-
-        return "admin/edit";
+        return "add";
     }
 
     @GetMapping({"export"})

@@ -1,22 +1,21 @@
 package org.woodwhales.music.controller.admin;
 
 import cn.woodwhales.common.model.vo.LayuiPageVO;
-import cn.woodwhales.common.model.vo.PageRespVO;
 import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.woodwhales.music.controller.param.MusicCreateRequestBody;
-import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
-import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
-import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.MusicService;
 
-import javax.swing.plaf.LayerUI;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author woodwhales
@@ -33,6 +32,22 @@ public class MusicController {
 	public RespVO<Boolean> createMusic(@Validated @RequestBody MusicCreateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return RespVO.success(musicService.createMusic(requestBody));
+	}
+
+	@PostMapping("/createOrUpdateMusic")
+	public RespVO<Boolean> createOrUpdateMusic(@Validated @RequestBody MusicCreateOrUpdateRequestBody requestBody) {
+		log.info("requestBody = {}", JsonUtil.toString(requestBody));
+		requestBody.trim();
+		if(Objects.isNull(requestBody.getId())) {
+			MusicCreateRequestBody param = new MusicCreateRequestBody();
+			BeanUtils.copyProperties(requestBody, param);
+			musicService.createMusic(param);
+		} else {
+			MusicUpdateRequestBody param = new MusicUpdateRequestBody();
+			BeanUtils.copyProperties(requestBody, param);
+			musicService.updateMusic(param);
+		}
+		return RespVO.success();
 	}
 
 	@PostMapping("/pageMusic")

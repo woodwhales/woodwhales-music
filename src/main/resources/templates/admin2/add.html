@@ -1,115 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
-    <div id="app">
-        <el-row>
-            <el-col :span="2">&nbsp;</el-col>
-            <el-col :span="20">
-                <el-row style="text-align: center;">
-                    <h2>woodwhales-music</h2>
-                </el-row>
-                <el-row style="text-align: center; margin-bottom: 12px;">
-                    <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
-                </el-row>
+<div id="app">
+    <el-row>
+        <el-col :span="2">&nbsp;</el-col>
+        <el-col :span="20">
+            <el-row style="text-align: center;">
+                <h2>woodwhales-music</h2>
+            </el-row>
+            <el-row style="text-align: center; margin-bottom: 12px;">
+                <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
+            </el-row>
 
-                <el-row style="margin-bottom: 12px;">
-                    <el-divider content-position="left">添加音乐</el-divider>
-                </el-row>
-                <el-row style="margin-bottom: 12px;">
-                    <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
-                </el-row>
+            <el-row style="margin-bottom: 12px;">
+                <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
+            </el-row>
 
-                <el-row style="margin-bottom: 12px;">
-                    <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
-                        <el-form-item label="名称" prop="musicName">
-                            <el-input v-model="dataForm.musicName"></el-input>
-                        </el-form-item>
-                        <el-form-item label="作者" prop="artist">
-                            <el-input v-model="dataForm.artist"></el-input>
-                        </el-form-item>
-                        <el-form-item label="专辑" prop="album">
-                            <el-input v-model="dataForm.album"></el-input>
-                        </el-form-item>
-                        <el-row :gutter="20">
-                            <el-col :span="8">
-                                <el-form-item label="自动填充">
-                                    <template>
-                                        <el-radio v-model="sys.autoFill" label="true" @input="changeAudioUrlEvent">是</el-radio>
-                                        <el-radio v-model="sys.autoFill" label="false" @input="changeAudioUrlEvent">否</el-radio>
-                                    </template>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="8">
-                                <el-form-item label="音频后缀">
-                                    <template>
-                                        <el-radio v-model="sys.audioSuffix" label=".mp3">.mp3</el-radio>
-                                        <el-radio v-model="sys.audioSuffix" label=".m4a">.m4a</el-radio>
-                                    </template>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="8">
-                                <el-form-item label="封面后缀">
-                                    <template>
-                                        <el-radio v-model="sys.coverSuffix" label=".jpg">.jpg</el-radio>
-                                        <el-radio v-model="sys.coverSuffix" label=".png">.png</el-radio>
-                                    </template>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                        <el-row :gutter="20">
-                            <el-col :span="23">
-                                <el-form-item label="链接">
-                                    <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="1">
-                                <el-button type="warning" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
-                            </el-col>
-                        </el-row>
-                        <el-row :gutter="20">
-                            <el-col :span="23">
-                                <el-form-item label="封面">
-                                    <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="1">
-                                <el-button type="danger" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
-                            </el-col>
-                        </el-row>
-                        <el-form-item label="排序" prop="sort">
-                            <el-input v-model.number="dataForm.sort"></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" size=mini"" @click="onSubmit('dataForm')">提交</el-button>
-                            <el-button size=mini"" @click="onReset">重置</el-button>
-                        </el-form-item>
-                    </el-form>
-                </el-row>
+            <el-row style="margin-bottom: 12px;">
+                <el-divider content-position="left">添加音乐</el-divider>
+            </el-row>
+            <el-row style="margin-bottom: 12px;">
+                <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
+                    <el-input v-model="dataForm.id"></el-input>
+                    <el-form-item label="名称" prop="musicName">
+                        <el-input v-model="dataForm.musicName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="作者" prop="artist">
+                        <el-input v-model="dataForm.artist"></el-input>
+                    </el-form-item>
+                    <el-form-item label="专辑" prop="album">
+                        <el-input v-model="dataForm.album"></el-input>
+                    </el-form-item>
+                    <el-row :gutter="20">
+                        <el-col :span="8">
+                            <el-form-item label="自动填充">
+                                <template>
+                                    <el-radio v-model="sys.autoFill" label="true" @input="changeAudioUrlEvent">是</el-radio>
+                                    <el-radio v-model="sys.autoFill" label="false" @input="changeAudioUrlEvent">否</el-radio>
+                                </template>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label="音频后缀">
+                                <template>
+                                    <el-radio v-model="sys.audioSuffix" label=".mp3">.mp3</el-radio>
+                                    <el-radio v-model="sys.audioSuffix" label=".m4a">.m4a</el-radio>
+                                </template>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label="封面后缀">
+                                <template>
+                                    <el-radio v-model="sys.coverSuffix" label=".jpg">.jpg</el-radio>
+                                    <el-radio v-model="sys.coverSuffix" label=".png">.png</el-radio>
+                                </template>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="23">
+                            <el-form-item label="链接">
+                                <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="1">
+                            <el-button type="warning" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="23">
+                            <el-form-item label="封面">
+                                <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="1">
+                            <el-button type="danger" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
+                        </el-col>
+                    </el-row>
+                    <el-form-item label="排序" prop="sort">
+                        <el-input v-model.number="dataForm.sort"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" size="mini" @click="onSubmit('dataForm')">提交</el-button>
+                        <el-button size="mini" @click="onReset">重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-row>
 
-                <el-row style="text-align: center; margin-bottom: 12px;">
-                    <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
-                </el-row>
-            </el-col>
-            <el-col :span="2">&nbsp;</el-col>
-        </el-row>
-    </div>
+            <el-row style="margin-bottom: 12px;">
+                <el-collapse v-model="sys.activeNames">
+                    <el-collapse-item title="音乐仓库链接" name="1">
+                        <div>仓库01-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store/</div>
+                    </el-collapse-item>
+                </el-collapse>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-divider content-position="left">解析音乐</el-divider>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-form ref="parseForm" :model="parseForm" :rules="rules2" label-width="80px">
+                    <el-form-item>
+                        <el-button type="primary" size="mini" @click="onParse('parseForm')">解析</el-button>
+                        <el-button size="mini" @click="onReset2">重置</el-button>
+                    </el-form-item>
+                    <el-form-item label="音乐平台" prop="platformType">
+                        <el-radio v-model="parseForm.platformType" label="WANG_YI_YUN">网易云音乐</el-radio>
+                        <el-radio v-model="parseForm.platformType" label="QQ_MUSIC">QQ音乐</el-radio>
+                        <el-radio v-model="parseForm.platformType" label="XIA_MI_MUSIC" disabled>虾米音乐</el-radio>
+                    </el-form-item>
+                    <el-form-item label="源码内容" prop="content">
+                        <el-input :autosize="{ minRows: 4, maxRows: 8}" type="textarea" placeholder="请输入要解析的html内容" v-model="parseForm.content"></el-input>
+                    </el-form-item>
+                </el-form>
+            </el-row>
+
+            <el-row style="text-align: center; margin-bottom: 12px;">
+                <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+            </el-row>
+        </el-col>
+        <el-col :span="2">&nbsp;</el-col>
+    </el-row>
+</div>
 </body>
 <!-- import Vue before Element -->
 <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script type="text/javascript" th:inline="none">
+<script type="text/javascript" th:inline="javascript">
     new Vue({
         el: '#app',
         data: function() {
             return {
+                parseForm: {
+                    platformType: null,
+                    content: null
+                },
                 dataForm: {
+                    id: null,
                     musicName: null,
                     artist: null,
                     album: null,
@@ -118,19 +153,29 @@
                     sort: null,
                 },
                 sys: {
+                    music: [[${music}]],
+                    activeNames: null,
                     autoFill: 'true',
                     audioSuffix: '.mp3',
                     coverSuffix: '.jpg'
                 },
+                rules2: {
+                    platformType: [
+                        { required: true, message: '请选择音乐平台', trigger: 'blur' }
+                    ],
+                    content: [
+                        { required: true, message: '请输入源码内容', trigger: 'blur' }
+                    ]
+                },
                 rules: {
                     musicName: [
-                        { required: true, message: '请输入名称', trigger: 'blur' },
+                        { required: true, message: '请输入名称', trigger: 'blur' }
                     ],
                     artist: [
-                        { required: true, message: '请输入作者', trigger: 'blur' },
+                        { required: true, message: '请输入作者', trigger: 'blur' }
                     ],
                     album: [
-                        { required: true, message: '请输入专辑', trigger: 'blur' },
+                        { required: true, message: '请输入专辑', trigger: 'blur' }
                     ],
                     sort: [
                         { type: 'number', message: 'sort必须为数字值'}
@@ -140,21 +185,68 @@
         },
         mounted() {
             this.initSys();
+            if(this.sys.music !== null) {
+                this.dataForm.id = this.sys.music.id;
+                this.dataForm.musicName = this.sys.music.title;
+                this.dataForm.artist = this.sys.music.artist;
+                this.dataForm.album = this.sys.music.album;
+                this.dataForm.audioUrl = this.sys.music.audioUrl;
+                this.dataForm.coverUrl = this.sys.music.coverUrl;
+                this.dataForm.sort = this.sys.music.sort;
+            }
         },
         methods: {
+            onParse(dataForm) {
+                this.$refs.parseForm.validate((valid) => {
+                    if (!valid) {
+                        return false;
+                    }
+
+                    axios.post('./parse', this.parseForm)
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.dataForm.musicName = response.data.data.musicTitle;
+                                this.dataForm.artist = response.data.data.artist;
+                                this.dataForm.album = response.data.data.album;
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
+                });
+            },
+            onReset2() {
+                this.$refs.parseForm.resetFields();
+            },
             onSubmit(dataForm) {
                 this.$refs.dataForm.validate((valid) => {
                     if (!valid) {
                         return false;
                     }
-
-                    console.log(JSON.stringify(this.dataForm))
+                    axios.post('./createOrUpdateMusic', this.dataForm)
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.$message({
+                                    message: response.data.msg,
+                                    type: 'success'
+                                });
+                                location.href = './'
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
                 });
             },
             onReset() {
                 this.initSys();
                 this.initDataForm();
-                this.$refs.dataForm.resetFields();
             },
             onClearAudioUrl() {
                 this.dataForm.audioUrl = null;
@@ -166,12 +258,13 @@
                 location.href = './';
             },
             changeAudioUrlEvent() {
+                console.log('changeAudioUrlEvent')
                 // 开启自动填充
                 if('true' === this.sys.autoFill) {
                     if(this.dataForm.audioUrl !== null
                         && this.dataForm.audioUrl !== ''
-                        && this.dataForm.coverUrl === null
-                        && this.dataForm.coverUrl === '') {
+                        && (this.dataForm.coverUrl === null
+                        || this.dataForm.coverUrl === '')) {
                         let coverUrl = null;
                         let start = this.dataForm.audioUrl.lastIndexOf('.');
                         if(start >= 0) {
@@ -183,8 +276,8 @@
 
                     if(this.dataForm.coverUrl !== null
                         && this.dataForm.coverUrl !== ''
-                        && this.dataForm.audioUrl === null
-                        && this.dataForm.audioUrl === '') {
+                        && (this.dataForm.audioUrl === null
+                        || this.dataForm.audioUrl === '')) {
                         let audioUrl = null;
                         let start = this.dataForm.coverUrl.lastIndexOf('.');
                         if(start >= 0) {
@@ -207,20 +300,6 @@
                 this.sys.autoFill = 'true'
                 this.sys.audioSuffix = '.mp3'
                 this.sys.coverSuffix = '.jpg'
-            },
-            onEdit(row) {
-                console.log(row);
-            },
-            onDelete(row) {
-                console.log(row);
-            },
-            handleSizeChange(val) {
-                this.sys.pageSize = val
-                this.onQuery();
-            },
-            handleCurrentChange(val) {
-                this.sys.currentPage = val
-                this.onQuery();
             }
         }
     })
