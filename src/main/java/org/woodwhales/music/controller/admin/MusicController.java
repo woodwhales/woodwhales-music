@@ -29,17 +29,31 @@ public class MusicController {
 	@Autowired
 	private MusicService musicService;
 
+	/**
+	 * 创建音乐
+	 * @param requestBody
+	 * @return
+	 */
 	@PostMapping("/createMusic")
 	public RespVO<Boolean> createMusic(@Validated @RequestBody MusicCreateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return RespVO.success(musicService.createMusic(requestBody));
 	}
 
+	/**
+	 * 导出音乐
+	 * @return
+	 */
 	@PostMapping("exportMusic")
 	public RespVO<MusicListInfo> exportMusic() {
 		return RespVO.success(musicService.exportMusic());
 	}
 
+	/**
+	 * 保存或更新音乐
+	 * @param requestBody
+	 * @return
+	 */
 	@PostMapping("/createOrUpdateMusic")
 	public RespVO<Boolean> createOrUpdateMusic(@Validated @RequestBody MusicCreateOrUpdateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
@@ -56,17 +70,32 @@ public class MusicController {
 		return RespVO.success();
 	}
 
+	/**
+	 * 分页查询音乐
+	 * @param param
+	 * @return
+	 */
 	@PostMapping("/pageMusic")
 	public LayuiPageVO<MusicSimpleInfo> pageMusic(@RequestBody PageMusicQueryRequestParam param) {
 		return musicService.pageMusic(param);
 	}
 
+	/**
+	 * 删除音乐
+	 * @param requestBody
+	 * @return
+	 */
 	@PostMapping("/deleteMusic")
 	public RespVO<Boolean> deleteMusic(@Validated @RequestBody MusicDeleteRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return RespVO.success(musicService.deleteMusic(requestBody));
 	}
 
+	/**
+	 * 更新音乐
+	 * @param requestBody
+	 * @return
+	 */
 	@PostMapping("/updateMusic")
 	public RespVO<Boolean> updateMusic(@Validated @RequestBody MusicUpdateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
