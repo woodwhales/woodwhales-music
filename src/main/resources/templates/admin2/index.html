@@ -1,29 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <style>
-        #progress_total {
-            width: 90% ;
-            height: .25em ;
-            cursor: pointer ;
-            border-radius: 1em ;
-            background-color: #eae5e6;
-            margin-top: 12px;
-            transition: width var(--cubic-header) ;
-        }
-        #progress_filled {
-            width: 0% ;
-            height: 100% ;
-            display: flex ;
-            position: relative ;
-            align-items: center ;
-            border-radius: inherit ;
-            background-color: #67C23A ;
-        }
-    </style>
 </head>
 <body>
     <div id="app">
@@ -54,18 +35,22 @@
                 <el-row style="text-align: center;">
                     <el-divider><i class="el-icon-headset" style="color: #67C23A;"></i></el-divider>
                 </el-row>
-                <el-row style="margin-bottom: 12px;">
+                <el-row style="margin-bottom: 12px;" v-if="musicPlayer.musicName !== null">
                     <el-col :span="4">
                         <el-button type="primay" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
                     </el-col>
-                    <el-col :span="16">
-                        <audio id="audio" src="https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E6%88%91%E4%BB%8E%E5%B4%96%E8%BE%B9%E8%B7%8C%E8%90%BD.m4a" type="audio/mpeg"></audio>
-                        <div id="progress_total">
-                            <div id="progress_filled"></div>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        {{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}
+                    <el-col :span="20">
+                        <el-row style="font-size: 12px; margin-bottom: 5px;">
+                            <span>{{musicPlayer.musicName}}</span>
+                            <span style="margin-left: 20px;">{{musicPlayer.musicAuthor}}</span>
+                            <span style="margin-left: 20px;">{{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}</span>
+                        </el-row>
+                        <el-row>
+                            <div id="progressContainer" @mousedown="onChangeProgress($event)">
+                                <audio id="audio" @timeupdate="aaa" :src="musicPlayer.musicAudioUrl" type="audio/mpeg"></audio>
+                                <el-progress :percentage="musicPlayer.percentage" :color="musicPlayer.processColor" :show-text="false"/>
+                            </div>
+                        </el-row>
                     </el-col>
                 </el-row>
                 <el-row style="text-align: left; margin-bottom: 12px;">
@@ -107,10 +92,13 @@
                         <el-table-column
                                 fixed="right"
                                 label="操作"
-                                width="180">
+                                width="210">
                             <template slot-scope="scope">
                                 <el-button @click="onEdit(scope.row)" type="success" size="mini" icon="el-icon-edit"></el-button>
                                 <el-button @click="onDelete(scope.row)" type="danger" size="mini" icon="el-icon-delete"></el-button>
+                                <template v-if="scope.row.audioUrl !== null">
+                                    <el-button @click="onTry(scope.row)" type="primary" size="mini" icon="el-icon-headset"></el-button>
+                                </template>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -155,11 +143,17 @@
                     tableData: []
                 },
                 musicPlayer: {
+                    musicName: null,
+                    musicAuthor: null,
+                    musicAudioUrl: null,
                     audioStatus: 0,
+                    color: '#67C23A',
                     allTimeStr: null,
                     currentTimeStr: null,
                     icon: 'el-icon-video-play',
-                    btnDesc: '播放'
+                    btnDesc: '播放',
+                    percentage: 0,
+                    processColor: '#67C23A'
                 }
             }
         },
@@ -167,32 +161,33 @@
             this.initSys();
             this.initQueryForm();
             this.onQuery();
-
-            // 播放器进度条增加监听事件
-            const progress_total = document.getElementById("progress_total");
-            const player = document.getElementById("audio");
-            progress_total.addEventListener("mousedown", e => {
-                player.currentTime = ((e.clientX - progress_total.getBoundingClientRect().left) / progress_total.offsetWidth ) * player.duration;
-            });
-            // 添加播放器监听事件
-            player.addEventListener("timeupdate" , e => {
+        },
+        methods: {
+            aaa() {
+                const player = document.getElementById("audio");
+                this.musicPlayer.percentage = (player.currentTime / player.duration) * 100;
                 this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
-                const progress_filled = document.getElementById("progress_filled");
-                const progressFilledWidth = (player.currentTime / player.duration) * 100 + "%";
-                progress_filled.style.width = progressFilledWidth;
-
-                if(progressFilledWidth === '100%') {
-                    this.musicPlayer.audioStatus = 0;
+                if(player.currentTime === player.duration || this.musicPlayer.percentage === 100) {
                     player.pause();
-                    this.musicPlayer.currentTimeStr = "00:00";
                     this.musicPlayer.icon = 'el-icon-video-play';
                     this.musicPlayer.btnDesc = '播放';
                     this.musicPlayer.audioStatus = 0;
-                    progress_filled.style.width = '0%';
+                    this.musicPlayer.percentage = 0;
                 }
-            });
-        },
-        methods: {
+            },
+            onChangeProgress(event) {
+                const progressContainer = document.getElementById("progressContainer");
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.allTimeStr === null) {
+                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                }
+                let left = progressContainer.getBoundingClientRect().left;
+                let offsetWidth = progressContainer.offsetWidth;
+                let rate = (event.clientX - left) / offsetWidth;
+                this.musicPlayer.percentage = rate;
+                player.currentTime = (rate * player.duration);
+                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
+            },
             onPlay() {
                 const player = document.getElementById("audio");
                 if(this.musicPlayer.audioStatus === 0) {
@@ -207,6 +202,7 @@
                     this.musicPlayer.audioStatus = 0;
                 }
                 this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                this.musicPlayer.max = player.duration;
             },
             transTime(time) {
                 var duration = parseInt(time);
@@ -224,6 +220,21 @@
             },
             onAdd() {
                 location.href = './add'
+            },
+            onTry(row) {
+                this.musicPlayer.musicAudioUrl = row.audioUrl;
+                this.musicPlayer.musicName = row.title;
+                this.musicPlayer.musicAuthor = row.artist;
+
+                this.musicPlayer.audioStatus = 0;
+                this.musicPlayer.percentage = 0;
+                this.musicPlayer.icon = 'el-icon-video-play';
+                this.musicPlayer.btnDesc = '播放';
+
+                const player = document.getElementById("audio");
+                this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                this.musicPlayer.currentTimeStr = '00:00';
+                player.currentTime = 0;
             },
             onExport() {
                 location.href = './export'

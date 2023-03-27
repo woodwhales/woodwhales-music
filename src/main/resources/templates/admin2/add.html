@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
@@ -259,7 +260,6 @@
                 location.href = './';
             },
             changeAudioUrlEvent() {
-                console.log('changeAudioUrlEvent')
                 // 开启自动填充
                 if('true' === this.sys.autoFill) {
                     if(this.dataForm.audioUrl !== null

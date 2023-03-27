@@ -47,6 +47,10 @@ public class MusicSimpleInfo {
      * 是否删除，0-已启用，1-已停用，2-已删除
      */
     private Byte status;
+    /**
+     * 音乐链接
+     */
+    private String audioUrl;
 
     /**
      * 创建时间
