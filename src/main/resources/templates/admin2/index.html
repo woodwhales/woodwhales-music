@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        #progress_total {
+            width: 90% ;
+            height: .25em ;
+            cursor: pointer ;
+            border-radius: 1em ;
+            background-color: #eae5e6;
+            margin-top: 12px;
+            transition: width var(--cubic-header) ;
+        }
+        #progress_filled {
+            width: 0% ;
+            height: 100% ;
+            display: flex ;
+            position: relative ;
+            align-items: center ;
+            border-radius: inherit ;
+            background-color: #67C23A ;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -34,7 +54,20 @@
                 <el-row style="text-align: center;">
                     <el-divider><i class="el-icon-headset" style="color: #67C23A;"></i></el-divider>
                 </el-row>
-
+                <el-row style="margin-bottom: 12px;">
+                    <el-col :span="4">
+                        <el-button type="primay" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
+                    </el-col>
+                    <el-col :span="16">
+                        <audio id="audio" src="https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store05@019/music/%E6%88%91%E4%BB%8E%E5%B4%96%E8%BE%B9%E8%B7%8C%E8%90%BD.m4a" type="audio/mpeg"></audio>
+                        <div id="progress_total">
+                            <div id="progress_filled"></div>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        {{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}
+                    </el-col>
+                </el-row>
                 <el-row style="text-align: left; margin-bottom: 12px;">
                     <el-button type="success" size="mini" icon="el-icon-plus" @click="onAdd">添加</el-button>
                     <el-button type="warning" size="mini" icon="el-icon-download" @click="onExport">导出</el-button>
@@ -120,6 +153,13 @@
                     currentPage: 1,
                     pageSize: 10,
                     tableData: []
+                },
+                musicPlayer: {
+                    audioStatus: 0,
+                    allTimeStr: null,
+                    currentTimeStr: null,
+                    icon: 'el-icon-video-play',
+                    btnDesc: '播放'
                 }
             }
         },
@@ -127,8 +167,61 @@
             this.initSys();
             this.initQueryForm();
             this.onQuery();
+
+            // 播放器进度条增加监听事件
+            const progress_total = document.getElementById("progress_total");
+            const player = document.getElementById("audio");
+            progress_total.addEventListener("mousedown", e => {
+                player.currentTime = ((e.clientX - progress_total.getBoundingClientRect().left) / progress_total.offsetWidth ) * player.duration;
+            });
+            // 添加播放器监听事件
+            player.addEventListener("timeupdate" , e => {
+                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
+                const progress_filled = document.getElementById("progress_filled");
+                const progressFilledWidth = (player.currentTime / player.duration) * 100 + "%";
+                progress_filled.style.width = progressFilledWidth;
+
+                if(progressFilledWidth === '100%') {
+                    this.musicPlayer.audioStatus = 0;
+                    player.pause();
+                    this.musicPlayer.currentTimeStr = "00:00";
+                    this.musicPlayer.icon = 'el-icon-video-play';
+                    this.musicPlayer.btnDesc = '播放';
+                    this.musicPlayer.audioStatus = 0;
+                    progress_filled.style.width = '0%';
+                }
+            });
         },
         methods: {
+            onPlay() {
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.audioStatus === 0) {
+                    player.play();
+                    this.musicPlayer.icon = 'el-icon-video-pause';
+                    this.musicPlayer.btnDesc = '暂停';
+                    this.musicPlayer.audioStatus = 1;
+                } else if(this.musicPlayer.audioStatus === 1) {
+                    player.pause();
+                    this.musicPlayer.icon = 'el-icon-video-play';
+                    this.musicPlayer.btnDesc = '播放';
+                    this.musicPlayer.audioStatus = 0;
+                }
+                this.musicPlayer.allTimeStr = this.transTime(player.duration);
+            },
+            transTime(time) {
+                var duration = parseInt(time);
+                var minute = parseInt(duration/60);
+                var sec = duration%60 + '';
+                if(minute === 0){
+                    minute = '00';
+                } else if(minute < 10 ){
+                    minute = '0' + minute;
+                }
+                if(sec.length === 1){
+                    sec = '0' + sec;
+                }
+                return minute + ":" + sec;
+            },
             onAdd() {
                 location.href = './add'
             },
@@ -166,7 +259,6 @@
                 })
                 .catch(error => {
                     this.$message.error(error);
-                    console.log(error);
                 });
             },
             onEdit(row) {
