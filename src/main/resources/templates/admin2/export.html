@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="2">&nbsp;</el-col>
+        <el-col :span="20">
+            <el-row style="text-align: center;">
+                <h2>woodwhales-music</h2>
+            </el-row>
+            <el-row style="text-align: center; margin-bottom: 12px;">
+                <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-divider content-position="left">导出音乐</el-divider>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-button size="mini" type="primary">刷新</el-button>
+            </el-row>
+
+            <el-row style="margin-bottom: 12px;">
+                <el-form label-width="80px" :model="dataForm">
+                    <el-form-item label="歌曲列表">
+                        <el-input v-model="dataForm.musicInfoList"
+                                type="textarea"
+                                readonly="true"
+                                autosize>
+                        </el-input>
+                    </el-form-item>
+
+                </el-form>
+            </el-row>
+            <el-row style="text-align: center; margin-bottom: 12px;">
+                <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+            </el-row>
+        </el-col>
+        <el-col :span="2">&nbsp;</el-col>
+    </el-row>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                dataForm: {
+                    musicInfoList: null
+                }
+            }
+        },
+        mounted() {
+            this.dataForm.musicInfoList = null;
+            this.initData();
+        },
+        methods: {
+            onBackHome() {
+                location.href = './';
+            },
+            initData() {
+                axios.post('./exportMusic', {})
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.dataForm.musicInfoList = response.data.data.musicList;
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                        console.log(error);
+                    });
+            }
+        }
+    })
+</script>
+</html>

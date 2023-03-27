@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
+import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.MusicService;
 
@@ -32,6 +33,11 @@ public class MusicController {
 	public RespVO<Boolean> createMusic(@Validated @RequestBody MusicCreateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return RespVO.success(musicService.createMusic(requestBody));
+	}
+
+	@PostMapping("exportMusic")
+	public RespVO<MusicListInfo> exportMusic() {
+		return RespVO.success(musicService.exportMusic());
 	}
 
 	@PostMapping("/createOrUpdateMusic")

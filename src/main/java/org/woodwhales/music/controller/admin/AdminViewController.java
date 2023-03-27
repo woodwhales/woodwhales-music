@@ -71,10 +71,7 @@ public class AdminViewController {
 
     @GetMapping({"export"})
     public String export(Model model) {
-        final MusicListInfo musicListInfo = musicService.exportMusic();
-        model.addAttribute("musicList", musicListInfo.getMusicList());
-        model.addAttribute("musicListRows", musicListInfo.getMusicListRows());
-        return "admin/export";
+        return "admin2/export";
     }
 
     @GetMapping("login")

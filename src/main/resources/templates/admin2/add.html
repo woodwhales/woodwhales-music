@@ -26,7 +26,7 @@
             </el-row>
             <el-row style="margin-bottom: 12px;">
                 <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
-                    <el-input v-model="dataForm.id"></el-input>
+                    <el-input v-model="dataForm.id" v-show="false"></el-input>
                     <el-form-item label="名称" prop="musicName">
                         <el-input v-model="dataForm.musicName"></el-input>
                     </el-form-item>

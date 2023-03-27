@@ -26,8 +26,8 @@
                             </el-form>
                         </el-col>
                         <el-col :span="4">
-                            <el-button type="primary" @click="onQuery" size="mini">搜索</el-button>
-                            <el-button type="info" @click="onReset" size="mini">重置</el-button>
+                            <el-button type="primary" @click="onQuery">搜索</el-button>
+                            <el-button type="info" @click="onReset">重置</el-button>
                         </el-col>
                     </el-row>
                 </el-row>
@@ -36,8 +36,8 @@
                 </el-row>
 
                 <el-row style="text-align: left; margin-bottom: 12px;">
-                    <el-button type="success" size="mini" @click="onAdd">添加</el-button>
-                    <el-button type="warning" size="mini">导出</el-button>
+                    <el-button type="success" size="mini" icon="el-icon-plus" @click="onAdd">添加</el-button>
+                    <el-button type="warning" size="mini" icon="el-icon-download" @click="onExport">导出</el-button>
                 </el-row>
                 <el-row style="margin-bottom: 12px;">
                     <el-table :data="sys.tableData" style="width: 100%">
@@ -131,6 +131,9 @@
             onAdd() {
                 location.href = './add'
             },
+            onExport() {
+                location.href = './export'
+            },
             onReset: function () {
                 this.initSys();
                 this.initQueryForm();
@@ -168,7 +171,34 @@
                 location.href = './add?id=' + row.id
             },
             onDelete(row) {
-                console.log(row);
+                this.$confirm('是否确认删除?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    axios.post('./deleteMusic', {
+                        id: row.id
+                    })
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.onQuery();
+                            this.$message({
+                                message: response.data.msg,
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
             },
             handleSizeChange(val) {
                 this.sys.pageSize = val
