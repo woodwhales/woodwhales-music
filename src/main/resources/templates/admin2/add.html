@@ -122,7 +122,7 @@
             </el-row>
 
             <el-row style="text-align: center; margin-bottom: 12px;">
-                <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+                <el-link :underline="false">&copy;&nbsp;&nbsp;{{sys.dateYear}}</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
             </el-row>
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
@@ -157,7 +157,8 @@
                     activeNames: null,
                     autoFill: 'true',
                     audioSuffix: '.mp3',
-                    coverSuffix: '.jpg'
+                    coverSuffix: '.jpg',
+                    dateYear: new Date().getFullYear()
                 },
                 rules2: {
                     platformType: [
@@ -300,6 +301,7 @@
                 this.sys.autoFill = 'true'
                 this.sys.audioSuffix = '.mp3'
                 this.sys.coverSuffix = '.jpg'
+                this.sys.dateYear = new Date().getFullYear()
             }
         }
     })

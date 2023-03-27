@@ -26,7 +26,7 @@
             </el-row>
 
             <el-row style="margin-bottom: 12px;">
-                <el-button size="mini" type="primary">刷新</el-button>
+                <el-button size="mini" type="primary" @click="onRefresh">刷新</el-button>
             </el-row>
 
             <el-row style="margin-bottom: 12px;">
@@ -42,7 +42,7 @@
                 </el-form>
             </el-row>
             <el-row style="text-align: center; margin-bottom: 12px;">
-                <el-link :underline="false">&copy;&nbsp;&nbsp;2023</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+                <el-link :underline="false">&copy;&nbsp;&nbsp;{{sys.dateYear}}</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
             </el-row>
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
@@ -61,18 +61,29 @@
             return {
                 dataForm: {
                     musicInfoList: null
+                },
+                sys: {
+                    dateYear: new Date().getFullYear()
                 }
             }
         },
         mounted() {
-            this.dataForm.musicInfoList = null;
             this.initData();
+            this.initSys();
         },
         methods: {
+            onRefresh() {
+                this.initSys();
+                this.initData();
+            },
+            initSys() {
+                this.sys.dateYear = new Date().getFullYear()
+            },
             onBackHome() {
                 location.href = './';
             },
             initData() {
+                this.dataForm.musicInfoList = null;
                 axios.post('./exportMusic', {})
                     .then(response => {
                         if(response.data.code === 0) {
