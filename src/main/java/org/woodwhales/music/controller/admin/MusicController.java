@@ -14,7 +14,7 @@ import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
-import org.woodwhales.music.service.music.MusicService;
+import org.woodwhales.music.service.music.impl.MusicServiceImpl;
 
 import java.util.Objects;
 
@@ -27,7 +27,7 @@ import java.util.Objects;
 public class MusicController {
 	
 	@Autowired
-	private MusicService musicService;
+	private MusicServiceImpl musicService;
 
 	/**
 	 * 创建音乐

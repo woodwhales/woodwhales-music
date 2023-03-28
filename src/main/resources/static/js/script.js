@@ -158,10 +158,10 @@ var playMusic = function(musicArray) {
 	// Load track
 	var loadMusic = function(i) {
 		var item = playlist[i], newaudio = $("<audio>").html(
-				'<source src="' + item.mp3 + '"><source src="' + item.ogg
+				'<source src="' + item.audioUrl + '"><source src="' + item.ogg
 						+ '">').appendTo("#player");
 		$(".cover").html(
-				'<img src="' + item.cover + '" alt="' + item.album + '">');
+				'<img src="' + item.coverUrl + '" alt="' + item.album + '">');
 		$(".tag").html(
 				"<strong>" + item.title + '</strong><span class="artist">'
 						+ item.artist + '</span><span class="album">'

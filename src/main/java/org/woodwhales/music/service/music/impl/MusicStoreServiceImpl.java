@@ -1,8 +1,9 @@
-package org.woodwhales.music.service.music;
+package org.woodwhales.music.service.music.impl;
 
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.model.musicStore.MusicStoreInfo;
+import org.woodwhales.music.service.music.MusicStoreService;
 
 import java.util.List;
 

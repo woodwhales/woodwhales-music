@@ -30,7 +30,7 @@ public class Music implements Serializable {
      * 音乐表主键
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 音乐名称标题（音乐名称）

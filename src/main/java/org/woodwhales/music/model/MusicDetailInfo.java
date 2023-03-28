@@ -2,6 +2,8 @@ package org.woodwhales.music.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @projectName: woodwhales-music
  * @author: woodwhales
@@ -20,6 +22,8 @@ public class MusicDetailInfo {
      * 音乐名称标题（音乐名称）
      */
     private String title;
+
+    private List<MusicInfoLinkDetailVo> linkList;
 
     /**
      * 音乐封面
