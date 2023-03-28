@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.woodwhales.music.controller.param.MusicCreateRequestBody;
-import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
-import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
-import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
+import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.entity.Music;
 import org.woodwhales.music.entity.MusicLink;
 import org.woodwhales.music.enums.LinkStatusEnum;
@@ -59,11 +56,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 								music -> LinkStatusEnum.LINKED.match(music.getLinkStatus()),
 								music -> this.convert(music, musicInfoLinkContext));
     }
-    
-    public boolean createMusic(MusicCreateRequestBody requestBody) {
-		int insert = musicMapper.insert(this.convert(requestBody));
-		return insert == 1;
-    }
 
 	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
 		IPage<Music> page = PageUtil.buildPage(param);
@@ -86,7 +78,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		if(Objects.isNull(music)) {
 			throw new RuntimeException("要访问的数据不存在");
 		}
-		return convertDetailInfo(music);
+		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
+		BeanUtils.copyProperties(music, musicDetailInfo);
+		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(music.getId());
+		musicDetailInfo.setLinkList(linkList);
+		return musicDetailInfo;
 	}
 
 	private Music getMusicById(Long id) {
@@ -110,23 +106,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		return i == 1;
 	}
 
-	public boolean updateMusic(MusicUpdateRequestBody requestBody) {
-		Music music = getMusicById(requestBody.getId());
-		if(Objects.isNull(music)) {
-			throw new RuntimeException("要更新的数据不存在");
-		}
-
-		MusicUpdateRequestBody trimMusicUpdateRequestBody = requestBody.trim();
-
-		music.setAlbum(defaultIfBlank(trimMusicUpdateRequestBody.getAlbum(), music.getAlbum()));
-		music.setArtist(defaultIfBlank(trimMusicUpdateRequestBody.getArtist(), music.getArtist()));
-		music.setTitle(defaultIfBlank(trimMusicUpdateRequestBody.getMusicName(), music.getTitle()));
-		music.setSort(trimMusicUpdateRequestBody.getSort());
-		music.setGmtModified(Date.from(Instant.now()));
-		int i = musicMapper.updateById(music);
-		return i == 1;
-	}
-
     public MusicListInfo exportMusic() {
 		List<MusicInfo> musicInfoList = listMusic();
 		if(CollectionUtils.isEmpty(musicInfoList)) {
@@ -144,27 +123,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		}
 		return new MusicListInfo(stringBuilder.toString(), musicInfoList.size() + 3);
     }
-
-    private MusicDetailInfo convertDetailInfo(Music music) {
-		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
-		BeanUtils.copyProperties(music, musicDetailInfo);
-		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(music.getId());
-		musicDetailInfo.setLinkList(linkList);
-		return musicDetailInfo;
-	}
-
-	private Music convert(MusicCreateRequestBody requestBody) {
-    	Music music = new Music();
-    	music.setAlbum(requestBody.getAlbum());
-    	music.setArtist(requestBody.getArtist());
-    	music.setTitle(requestBody.getMusicName());
-    	music.setStatus(StatusEnum.DEFAULT.code);
-		music.setSort(requestBody.getSort());
-    	Instant now = Instant.now();
-    	music.setGmtCreated(Date.from(now));
-    	music.setGmtModified(Date.from(now));
-		return music;
-	}
 
 	private MusicSimpleInfo convertSimpleInfo(Music music, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
@@ -214,5 +172,34 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 			linkList.add(coverLink);
 		}
 		musicLinkService.saveOrUpdateBatch(linkList);
+	}
+
+	public void createOrUpdate(MusicCreateOrUpdateRequestBody requestBody) {
+		requestBody.trim();
+		LinkStatusEnum linkStatusEnum = requestBody.checkLinkStatus();
+		Music music;
+		Instant now = Instant.now();
+		if(Objects.isNull(requestBody.getId())) {
+			music = new Music();
+			music.setAlbum(requestBody.getAlbum());
+			music.setArtist(requestBody.getArtist());
+			music.setTitle(requestBody.getMusicName());
+			music.setStatus(StatusEnum.DEFAULT.code);
+			music.setGmtCreated(Date.from(now));
+		} else {
+			music = this.getMusicById(requestBody.getId());
+			if(Objects.isNull(music)) {
+				throw new RuntimeException("要更新的数据不存在");
+			}
+			music.setAlbum(defaultIfBlank(requestBody.getAlbum(), music.getAlbum()));
+			music.setArtist(defaultIfBlank(requestBody.getArtist(), music.getArtist()));
+			music.setTitle(defaultIfBlank(requestBody.getMusicName(), music.getTitle()));
+		}
+		music.setSort(requestBody.getSort());
+		music.setGmtModified(Date.from(now));
+		music.setLinkStatus(linkStatusEnum.getCode());
+		this.saveOrUpdate(music);
+
+		musicLinkService.createOrUpdate(music, requestBody.getLinkList());
 	}
 }

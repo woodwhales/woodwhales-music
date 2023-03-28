@@ -1,8 +1,8 @@
 package org.woodwhales.music.model;
 
 import lombok.Data;
-import org.woodwhales.music.enums.MusicLinkTypeEnum;
-import org.woodwhales.music.model.fun.MusicTypeAnnotation;
+
+import java.util.Map;
 
 /**
  * @author woodwhales on 2023-03-28 12:42
@@ -19,14 +19,8 @@ public class MusicInfoLinkDetailVo {
      */
     private String linkSourceName;
     /**
-     * 封面链接
+     * 链接集合
      */
-    @MusicTypeAnnotation(musicLinkType = MusicLinkTypeEnum.COVER_LINK)
-    private String coverUrl;
-    /**
-     * 音频链接
-     */
-    @MusicTypeAnnotation(musicLinkType = MusicLinkTypeEnum.AUDIO_LINK)
-    private String audioUrl;
+    Map<String, String> linkMap;
 
 }

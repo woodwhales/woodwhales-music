@@ -84,26 +84,41 @@
                             </el-form-item>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="20">
-                        <el-col :span="23">
-                            <el-form-item label="链接">
-                                <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="1">
-                            <el-button type="warning" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
-                        </el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col :span="23">
-                            <el-form-item label="封面">
-                                <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="1">
-                            <el-button type="danger" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
-                        </el-col>
-                    </el-row>
+                    <el-form-item label="音乐来源">
+                        <el-tabs v-model="sys.linkSourceName" type="border-card" @tab-click="onChangeLinkSource">
+                            <el-tab-pane
+                                    :label="link.linkSourceName"
+                                    :name="link.linkSourceName"
+                                    v-for="(link, index) in dataForm.linkList">
+                                <el-row :gutter="10" style="margin-bottom: 10px;">
+                                    <el-col :span="23">
+                                        <el-form-item label="链接">
+                                            <el-input v-model="link.linkMap.AUDIO_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="1">
+                                        <el-button type="warning" size="mini" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
+                                    </el-col>
+                                </el-row>
+                                <el-row :gutter="10">
+                                    <el-col :span="23">
+                                        <el-form-item label="封面">
+                                            <el-input v-model="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="1">
+                                        <el-button type="danger" size="mini" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
+                                    </el-col>
+                                </el-row>
+                                <el-collapse v-model="sys.activeNames" v-show="index === 0">
+                                    <el-collapse-item title="音乐仓库链接" name="1">
+                                        <div>仓库01-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store/</div>
+                                    </el-collapse-item>
+                                </el-collapse>
+
+                            </el-tab-pane>
+                        </el-tabs>
+                    </el-form-item>
                     <el-form-item label="排序" prop="sort">
                         <el-input v-model.number="dataForm.sort"></el-input>
                     </el-form-item>
@@ -170,9 +185,8 @@
                     musicName: null,
                     artist: null,
                     album: null,
-                    audioUrl: null,
-                    coverUrl: null,
                     sort: null,
+                    linkList: []
                 },
                 sys: {
                     music: [[${music}]],
@@ -180,7 +194,9 @@
                     autoFill: 'true',
                     audioSuffix: '.mp3',
                     coverSuffix: '.jpg',
-                    dateYear: new Date().getFullYear()
+                    dateYear: new Date().getFullYear(),
+                    linkSourceName: 'github',
+                    linkSourceIndex: '0'
                 },
                 musicPlayer: {
                     musicName: null,
@@ -222,23 +238,35 @@
         mounted() {
             this.initSys();
             this.showDetail();
-            axios.post('./detailMusic', {
-                id: this.sys.music.id
-            })
-            .then(response => {
-                if(response.data.code === 0) {
-                    console.log(response.data.data)
-                } else {
-                    this.$message.error(response.data.msg);
-                }
-            })
-            .catch(error => {
-                this.$message.error(error);
-                console.log(error);
-            });
         },
         methods: {
+            onChangeLinkSource(tab, event) {
+                this.sys.linkSourceName = this.dataForm.linkList[tab.index].linkSourceName;
+                this.sys.linkSourceIndex = tab.index;
+                this.musicPlayer.musicAudioUrl = this.dataForm.linkList[tab.index].linkMap.AUDIO_LINK;
+                const player = document.getElementById("audio");
+                player.pause();
+                player.currentTime = 0;
+                this.musicPlayer.icon = 'el-icon-video-play';
+                this.musicPlayer.btnDesc = '播放';
+                this.musicPlayer.audioStatus = 0;
+                this.musicPlayer.percentage = 0;
+            },
             showDetail() {
+                axios.post('./detailMusic', {
+                    id: this.sys.music.id
+                })
+                .then(response => {
+                    if(response.data.code === 0) {
+                        this.sys.music = response.data.data;
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                    console.log(error);
+                });
                 if(this.sys.music !== null) {
                     this.dataForm.id = this.sys.music.id;
                     this.dataForm.musicName = this.sys.music.title;
@@ -247,9 +275,10 @@
                     this.dataForm.audioUrl = this.sys.music.audioUrl;
                     this.dataForm.coverUrl = this.sys.music.coverUrl;
                     this.dataForm.sort = this.sys.music.sort;
+                    this.dataForm.linkList = this.sys.music.linkList;
 
                     this.musicPlayer.musicName = this.dataForm.musicName;
-                    this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
+                    this.musicPlayer.musicAudioUrl = this.dataForm.linkList[0].linkMap.AUDIO_LINK;
                     this.musicPlayer.musicAuthor = this.dataForm.artist;
                 }
             },
@@ -376,11 +405,13 @@
                 this.showDetail();
             },
             onClearAudioUrl() {
-                this.dataForm.audioUrl = null;
-                this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
+                let linkSourceIndex = this.sys.linkSourceIndex;
+                this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK = null;
+                this.musicPlayer.musicAudioUrl = null;
             },
             onClearCoverUrl() {
-                this.dataForm.coverUrl = null;
+                let linkSourceIndex = this.sys.linkSourceIndex;
+                this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK = null;
             },
             onBackHome() {
                 location.href = './';
@@ -388,29 +419,27 @@
             changeAudioUrlEvent() {
                 // 开启自动填充
                 if('true' === this.sys.autoFill) {
-                    if(this.dataForm.audioUrl !== null
-                        && this.dataForm.audioUrl !== ''
-                        && (this.dataForm.coverUrl === null
-                        || this.dataForm.coverUrl === '')) {
-                        let coverUrl = null;
-                        let start = this.dataForm.audioUrl.lastIndexOf('.');
+                    let linkSourceIndex = this.sys.linkSourceIndex;
+                    let audioUrl = this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK;
+                    let coverUrl = this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK;
+
+                    if(audioUrl !== null  && audioUrl !== '' && (coverUrl === null || coverUrl === '')) {
+                        let start = audioUrl.lastIndexOf('.');
                         if(start >= 0) {
-                            coverUrl = this.dataForm.audioUrl.substr(0, start);
+                            coverUrl = audioUrl.substr(0, start);
                         }
-                        this.dataForm.coverUrl = coverUrl + this.sys.coverSuffix;
+                        coverUrl = coverUrl + this.sys.coverSuffix;
+                        this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK = coverUrl;
                         return;
                     }
 
-                    if(this.dataForm.coverUrl !== null
-                        && this.dataForm.coverUrl !== ''
-                        && (this.dataForm.audioUrl === null
-                        || this.dataForm.audioUrl === '')) {
-                        let audioUrl = null;
-                        let start = this.dataForm.coverUrl.lastIndexOf('.');
+                    if(coverUrl !== null && coverUrl !== '' && (audioUrl === null || audioUrl === '')) {
+                        let start = coverUrl.lastIndexOf('.');
                         if(start >= 0) {
-                            audioUrl = this.dataForm.coverUrl.substr(0, start);
+                            audioUrl = coverUrl.substr(0, start);
                         }
-                        this.dataForm.audioUrl = audioUrl + this.sys.audioSuffix;
+                        audioUrl = audioUrl + this.sys.audioSuffix;
+                        this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK = audioUrl;
                         return;
                     }
                 }

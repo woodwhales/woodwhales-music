@@ -3,7 +3,11 @@ package org.woodwhales.music.enums;
 import cn.woodwhales.common.business.DataTool;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.collections4.CollectionUtils;
+import org.woodwhales.music.entity.MusicLink;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,6 +32,7 @@ public enum MusicLinkTypeEnum {
     private String desc;
 
     private static Map<Integer, MusicLinkTypeEnum> map = DataTool.enumMap(MusicLinkTypeEnum.class, MusicLinkTypeEnum::getCode);
+    private static Map<String, MusicLinkTypeEnum> nameMap = DataTool.enumMap(MusicLinkTypeEnum.class, MusicLinkTypeEnum::name);
 
     public boolean match(Integer code) {
         return Objects.equals(code, this.code);
@@ -35,6 +40,23 @@ public enum MusicLinkTypeEnum {
 
     public static MusicLinkTypeEnum ofCode(Integer code) {
         return map.get(code);
+    }
+
+    public static MusicLinkTypeEnum getMusicLinkTypeEnum(String linkName) {
+        return nameMap.get(linkName);
+    }
+
+    public static Map<String, String> buildLinkMap(List<MusicLink> musicLinkList) {
+        Map<String, String> result = new HashMap<>();
+        for (MusicLinkTypeEnum linkTypeEnum : MusicLinkTypeEnum.values()) {
+            List<MusicLink> linkList = DataTool.filter(musicLinkList, link -> linkTypeEnum.match(link.getLinkType()));
+            if(CollectionUtils.isNotEmpty(linkList)) {
+                result.put(linkTypeEnum.name(), linkList.get(0).getLinkUrl());
+            } else {
+                result.put(linkTypeEnum.name(), null);
+            }
+        }
+        return result;
     }
 
 }
