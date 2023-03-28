@@ -35,27 +35,34 @@
                 <el-row style="text-align: center;">
                     <el-divider><i class="el-icon-headset" style="color: #67C23A;"></i></el-divider>
                 </el-row>
-                <el-row style="margin-bottom: 12px;" v-if="musicPlayer.musicName !== null">
-                    <el-col :span="4">
-                        <el-button type="primay" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
-                    </el-col>
-                    <el-col :span="20">
-                        <el-row style="font-size: 12px; margin-bottom: 5px;">
-                            <span>{{musicPlayer.musicName}}</span>
-                            <span style="margin-left: 20px;">{{musicPlayer.musicAuthor}}</span>
-                            <span style="margin-left: 20px;">{{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}</span>
-                        </el-row>
-                        <el-row>
-                            <div id="progressContainer" @mousedown="onChangeProgress($event)">
-                                <audio id="audio" @timeupdate="aaa" :src="musicPlayer.musicAudioUrl" type="audio/mpeg"></audio>
-                                <el-progress :percentage="musicPlayer.percentage" :color="musicPlayer.processColor" :show-text="false"/>
-                            </div>
-                        </el-row>
-                    </el-col>
-                </el-row>
                 <el-row style="text-align: left; margin-bottom: 12px;">
-                    <el-button type="success" size="mini" icon="el-icon-plus" @click="onAdd">添加</el-button>
-                    <el-button type="warning" size="mini" icon="el-icon-download" @click="onExport">导出</el-button>
+                    <el-col :span="8">
+                        <el-button type="success" size="mini" icon="el-icon-plus" @click="onAdd">添加</el-button>
+                        <el-button type="warning" size="mini" icon="el-icon-download" @click="onExport">导出</el-button>
+                    </el-col>
+                    <el-col :span="16">
+                        <el-row :gutter="10" v-if="musicPlayer.musicName !== null">
+                            <el-col :span="16">
+                                <div>
+                                    <el-row style="font-size: 12px; margin-bottom: 5px;">
+                                        <span>{{musicPlayer.musicName}}</span>
+                                        <span style="margin-left: 20px;">{{musicPlayer.musicAuthor}}</span>
+                                        <span style="margin-left: 20px;">{{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}</span>
+                                    </el-row>
+                                    <el-row>
+                                        <div id="progressContainer" @mousedown="onChangeProgress($event)">
+                                            <audio id="audio" @timeupdate="onTimeupdate" :src="musicPlayer.musicAudioUrl" type="audio/mpeg"></audio>
+                                            <el-progress :percentage="musicPlayer.percentage" :color="musicPlayer.processColor" :show-text="false"/>
+                                        </div>
+                                    </el-row>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <el-button type="primary" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
+                                <el-button type="danger" size="mini" icon="el-icon-circle-close" @click="onClosePlayer">关闭</el-button>
+                            </el-col>
+                        </el-row>
+                    </el-col>
                 </el-row>
                 <el-row style="margin-bottom: 12px;">
                     <el-table :data="sys.tableData" style="width: 100%">
@@ -163,8 +170,28 @@
             this.onQuery();
         },
         methods: {
-            aaa() {
+            initMusicPlayer() {
+                this.musicPlayer.musicName = null
+                this.musicPlayer.musicAuthor = null
+                this.musicPlayer.musicAudioUrl = null
+                this.musicPlayer.audioStatus = 0
+                this.musicPlayer.allTimeStr = null
+                this.musicPlayer.currentTimeStr = null
+                this.musicPlayer.icon = 'el-icon-video-play'
+                this.musicPlayer.btnDesc = '播放'
+                this.musicPlayer.percentage = 0
+            },
+            onClosePlayer() {
+                this.initMusicPlayer();
                 const player = document.getElementById("audio");
+                player.pause();
+                player.currentTime = 0;
+            },
+            onTimeupdate() {
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.allTimeStr === null || this.musicPlayer.allTimeStr === '') {
+                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                }
                 this.musicPlayer.percentage = (player.currentTime / player.duration) * 100;
                 this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
                 if(player.currentTime === player.duration || this.musicPlayer.percentage === 100) {
@@ -225,7 +252,6 @@
                 this.musicPlayer.musicAudioUrl = row.audioUrl;
                 this.musicPlayer.musicName = row.title;
                 this.musicPlayer.musicAuthor = row.artist;
-
                 this.musicPlayer.audioStatus = 0;
                 this.musicPlayer.percentage = 0;
                 this.musicPlayer.icon = 'el-icon-video-play';
