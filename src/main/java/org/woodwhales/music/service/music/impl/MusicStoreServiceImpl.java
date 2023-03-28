@@ -2,6 +2,7 @@ package org.woodwhales.music.service.music.impl;
 
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.model.musicStore.MusicStoreInfo;
 import org.woodwhales.music.service.music.MusicStoreService;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @description
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MusicStoreServiceImpl implements MusicStoreService {
 
     private static List<MusicStoreInfo> musicStore;

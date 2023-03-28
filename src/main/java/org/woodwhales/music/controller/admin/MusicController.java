@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
+import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
@@ -78,6 +79,17 @@ public class MusicController {
 	@PostMapping("/pageMusic")
 	public LayuiPageVO<MusicSimpleInfo> pageMusic(@RequestBody PageMusicQueryRequestParam param) {
 		return musicService.pageMusic(param);
+	}
+
+	/**
+	 * 查询音乐详情
+	 * @param requestBody
+	 * @return
+	 */
+	@PostMapping("/detailMusic")
+	public RespVO<MusicDetailInfo> detailMusic(@Validated @RequestBody MusicDetailRequestBody requestBody) {
+		log.info("requestBody = {}", JsonUtil.toString(requestBody));
+		return RespVO.success(musicService.getMusicDetailInfoById(requestBody.getId()));
 	}
 
 	/**

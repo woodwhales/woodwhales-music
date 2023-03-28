@@ -1,9 +1,6 @@
 package org.woodwhales.music.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +32,7 @@ public class MusicLink implements Serializable {
     /**
      * 是否删除，0-已启用，1-已停用，2-已删除
      */
+    @TableLogic(delval = "2")
     @TableField(value = "status")
     private Byte status;
 

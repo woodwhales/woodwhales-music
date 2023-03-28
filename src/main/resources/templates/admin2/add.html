@@ -222,6 +222,20 @@
         mounted() {
             this.initSys();
             this.showDetail();
+            axios.post('./detailMusic', {
+                id: this.sys.music.id
+            })
+            .then(response => {
+                if(response.data.code === 0) {
+                    console.log(response.data.data)
+                } else {
+                    this.$message.error(response.data.msg);
+                }
+            })
+            .catch(error => {
+                this.$message.error(error);
+                console.log(error);
+            });
         },
         methods: {
             showDetail() {

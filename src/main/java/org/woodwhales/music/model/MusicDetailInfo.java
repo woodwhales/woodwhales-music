@@ -16,24 +16,17 @@ public class MusicDetailInfo {
     /**
      * 音乐表主键
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 音乐名称标题（音乐名称）
      */
     private String title;
 
+    /**
+     * 音乐链接集合
+     */
     private List<MusicInfoLinkDetailVo> linkList;
-
-    /**
-     * 音乐封面
-     */
-    private String coverUrl;
-
-    /**
-     * 音乐链接地址
-     */
-    private String audioUrl;
 
     /**
      * 作者

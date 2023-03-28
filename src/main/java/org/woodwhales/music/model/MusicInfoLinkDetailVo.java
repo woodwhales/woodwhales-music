@@ -13,11 +13,11 @@ public class MusicInfoLinkDetailVo {
      * 链接来源：0-github，1-alist
      * @see org.woodwhales.music.enums.MusicLinkSourceEnum
      */
-    private Integer linkType;
+    private Integer linkSource;
     /**
      * 链接来源文字描述
      */
-    private String linkTypeName;
+    private String linkSourceName;
     /**
      * 封面链接
      */

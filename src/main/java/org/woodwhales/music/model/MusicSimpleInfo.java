@@ -16,7 +16,7 @@ public class MusicSimpleInfo {
     /**
      * 音乐表主键
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 是否已关联音乐链接
@@ -51,6 +51,10 @@ public class MusicSimpleInfo {
      * 音乐链接
      */
     private String audioUrl;
+    /**
+     * 封面链接
+     */
+    private String coverUrl;
 
     /**
      * 创建时间

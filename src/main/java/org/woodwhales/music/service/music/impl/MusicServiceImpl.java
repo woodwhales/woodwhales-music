@@ -14,24 +14,22 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.controller.param.MusicCreateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
 import org.woodwhales.music.controller.param.MusicUpdateRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.entity.Music;
 import org.woodwhales.music.entity.MusicLink;
+import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.enums.StatusEnum;
 import org.woodwhales.music.mapper.MusicMapper;
-import org.woodwhales.music.model.MusicDetailInfo;
-import org.woodwhales.music.model.MusicInfo;
-import org.woodwhales.music.model.MusicListInfo;
-import org.woodwhales.music.model.MusicSimpleInfo;
+import org.woodwhales.music.model.*;
 
 import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
@@ -42,6 +40,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Slf4j
 @Primary
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 	
 	@Autowired
@@ -51,27 +50,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 	private MusicLinkServiceImpl musicLinkService;
 
     public List<MusicInfo> listMusic() {
-		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
-		wrapper.ne(Music::getStatus, StatusEnum.DELETE.code)
-				.orderByAsc(Music::getStatus)
-				.orderByAsc(Music::getSort)
-				.orderByDesc(Music::getGmtModified);
-		List<Music> musicList = musicMapper.selectList(wrapper);
-		if(CollectionUtils.isEmpty(musicList)) {
-			return Collections.emptyList();
-		}
-
-		List<MusicLink> musicLinkList =  musicLinkService.getLinkInfoListByMusicIds(DataTool.toList(musicList, Music::getId));
-		Map<Long, MusicLink> audioUrlMapping = DataTool.toMap(DataTool.filter(musicLinkList,
-						musicLink -> MusicLinkTypeEnum.AUDIO_LINK.match(musicLink.getLinkType())),
-						MusicLink::getMusicId);
-		Map<Long, MusicLink> coverUrlMapping = DataTool.toMap(DataTool.filter(musicLinkList,
-						musicLink -> MusicLinkTypeEnum.COVER_LINK.match(musicLink.getLinkType())),
-				MusicLink::getMusicId);
-		return musicList.stream()
-						.map(music -> this.convert(music, audioUrlMapping, coverUrlMapping))
-						.filter(musicInfo -> !StringUtils.isAnyBlank(musicInfo.getAudioUrl(), musicInfo.getAlbum()))
-						.collect(Collectors.toList());
+		List<Music> musicList = musicMapper.selectList(Wrappers.<Music>lambdaQuery()
+																.orderByAsc(Music::getStatus)
+																.orderByAsc(Music::getSort)
+																.orderByDesc(Music::getGmtModified));
+		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(musicList);
+		return DataTool.toList(musicList,
+								music -> LinkStatusEnum.LINKED.match(music.getLinkStatus()),
+								music -> this.convert(music, musicInfoLinkContext));
     }
     
     public boolean createMusic(MusicCreateRequestBody requestBody) {
@@ -91,7 +77,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
-		return LayuiPageVO.build(pageResult, this::convertSimpleInfo ,MusicSimpleInfo::compare);
+		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
+		return LayuiPageVO.build(pageResult, music -> this.convertSimpleInfo(music, musicInfoLinkContext) ,MusicSimpleInfo::compare);
 	}
 
 	public MusicDetailInfo getMusicDetailInfoById(Long id) {
@@ -133,13 +120,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 
 		music.setAlbum(defaultIfBlank(trimMusicUpdateRequestBody.getAlbum(), music.getAlbum()));
 		music.setArtist(defaultIfBlank(trimMusicUpdateRequestBody.getArtist(), music.getArtist()));
-		music.setAudioUrl(trimMusicUpdateRequestBody.getAudioUrl());
-		music.setCoverUrl(trimMusicUpdateRequestBody.getCoverUrl());
 		music.setTitle(defaultIfBlank(trimMusicUpdateRequestBody.getMusicName(), music.getTitle()));
 		music.setSort(trimMusicUpdateRequestBody.getSort());
 		music.setGmtModified(Date.from(Instant.now()));
-		music.setCoverUrl(music.getCoverUrl());
-		music.setAudioUrl(music.getAudioUrl());
 		int i = musicMapper.updateById(music);
 		return i == 1;
 	}
@@ -165,6 +148,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
     private MusicDetailInfo convertDetailInfo(Music music) {
 		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
 		BeanUtils.copyProperties(music, musicDetailInfo);
+		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(music.getId());
+		musicDetailInfo.setLinkList(linkList);
 		return musicDetailInfo;
 	}
 
@@ -172,34 +157,30 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
     	Music music = new Music();
     	music.setAlbum(requestBody.getAlbum());
     	music.setArtist(requestBody.getArtist());
-    	music.setAudioUrl(requestBody.getAudioUrl());
-    	music.setCoverUrl(requestBody.getCoverUrl());
     	music.setTitle(requestBody.getMusicName());
     	music.setStatus(StatusEnum.DEFAULT.code);
 		music.setSort(requestBody.getSort());
     	Instant now = Instant.now();
     	music.setGmtCreated(Date.from(now));
     	music.setGmtModified(Date.from(now));
-		music.setCoverUrl(music.getCoverUrl());
-		music.setAudioUrl(music.getAudioUrl());
 		return music;
 	}
 
-	private MusicSimpleInfo convertSimpleInfo(Music music) {
+	private MusicSimpleInfo convertSimpleInfo(Music music, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
 		BeanUtils.copyProperties(music, musicSimpleInfo);
-		if(!StringUtils.isAnyBlank(music.getAudioUrl(), music.getCoverUrl())) {
-			musicSimpleInfo.setLinked(true);
-		}
+		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrlMapping().get(music.getId()).getLinkUrl());
+		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrlMapping().get(music.getId()).getLinkUrl());
+		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(music.getLinkStatus()));
 		return musicSimpleInfo;
 	}
 
-	private MusicInfo convert(Music music, Map<Long, MusicLink> audioUrlMapping, Map<Long, MusicLink> coverUrlMapping) {
+	private MusicInfo convert(Music music, MusicInfoLinkContext musicInfoLinkContext) {
     	MusicInfo musicInfo = new MusicInfo();
     	musicInfo.setAlbum(music.getAlbum());
     	musicInfo.setArtist(music.getArtist());
-    	musicInfo.setCoverUrl(coverUrlMapping.get(music.getId()).getLinkUrl());
-    	musicInfo.setAudioUrl(audioUrlMapping.get(music.getId()).getLinkUrl());
+    	musicInfo.setCoverUrl(musicInfoLinkContext.getCoverUrlMapping().get(music.getId()).getLinkUrl());
+    	musicInfo.setAudioUrl(musicInfoLinkContext.getAudioUrlMapping().get(music.getId()).getLinkUrl());
     	musicInfo.setTitle(music.getTitle());
     	return musicInfo;
     }
@@ -208,20 +189,30 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		List<Music> musicList = this.list();
 		List<MusicLink> linkList = new ArrayList<>();
 		for (Music music : musicList) {
-			MusicLink audioLink = new MusicLink();
+			MusicLink audioLink = musicLinkService.getOne(Wrappers.<MusicLink>lambdaQuery()
+					.eq(MusicLink::getMusicId, music.getId())
+					.eq(MusicLink::getLinkType, MusicLinkTypeEnum.AUDIO_LINK.getCode())
+					.eq(MusicLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
+			if(Objects.isNull(audioLink)) {
+				audioLink = new MusicLink();
+			}
 			audioLink.setMusicId(music.getId());
 			audioLink.setLinkType(MusicLinkTypeEnum.AUDIO_LINK.getCode());
 			audioLink.setLinkSource(MusicLinkSourceEnum.GITHUB.getCode());
-			audioLink.setLinkUrl(music.getAudioUrl());
 			linkList.add(audioLink);
 
-			MusicLink coverLink = new MusicLink();
+			MusicLink coverLink = musicLinkService.getOne(Wrappers.<MusicLink>lambdaQuery()
+					.eq(MusicLink::getMusicId, music.getId())
+					.eq(MusicLink::getLinkType, MusicLinkTypeEnum.COVER_LINK.getCode())
+					.eq(MusicLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
+			if(Objects.isNull(coverLink)) {
+				coverLink = new MusicLink();
+			}
 			coverLink.setMusicId(music.getId());
 			coverLink.setLinkType(MusicLinkTypeEnum.COVER_LINK.getCode());
 			coverLink.setLinkSource(MusicLinkSourceEnum.GITHUB.getCode());
-			coverLink.setLinkUrl(music.getCoverUrl());
 			linkList.add(coverLink);
 		}
-		musicLinkService.saveBatch(linkList);
+		musicLinkService.saveOrUpdateBatch(linkList);
 	}
 }

@@ -1,9 +1,6 @@
 package org.woodwhales.music.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,18 +36,6 @@ public class Music implements Serializable {
     private String title;
 
     /**
-     * 音乐封面
-     */
-    @TableField(value = "cover_url")
-    private String coverUrl;
-
-    /**
-     * 音乐链接地址
-     */
-    @TableField(value = "audio_url")
-    private String audioUrl;
-
-    /**
      * 作者
      */
     @TableField(value = "artist")
@@ -71,8 +56,15 @@ public class Music implements Serializable {
     /**
      * 是否删除，0-已启用，1-已停用，2-已删除
      */
+    @TableLogic(delval = "2")
     @TableField(value = "status")
     private Byte status;
+
+    /**
+     * 链接填充状态：0-未填充链接，1-已填充链接
+     */
+    @TableField(value = "link_status")
+    private Integer linkStatus;
 
     /**
      * 创建时间
