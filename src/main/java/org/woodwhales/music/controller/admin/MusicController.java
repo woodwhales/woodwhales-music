@@ -5,16 +5,16 @@ import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.MusicDetailInfo;
+import org.woodwhales.music.model.MusicInfoLinkDetailVo;
 import org.woodwhales.music.model.MusicListInfo;
 import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
+
+import java.util.List;
 
 /**
  * @author woodwhales
@@ -67,6 +67,11 @@ public class MusicController {
 	public RespVO<MusicDetailInfo> detailMusic(@Validated @RequestBody MusicDetailRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		return RespVO.success(musicService.getMusicDetailInfoById(requestBody.getId()));
+	}
+
+	@GetMapping("/getLinkList")
+	public RespVO<List<MusicInfoLinkDetailVo>> getLinkList() {
+		return RespVO.success(musicService.getLinkList());
 	}
 
 	/**

@@ -49,17 +49,14 @@ public class MusicLinkServiceImpl extends ServiceImpl<MusicLinkMapper, MusicLink
         List<MusicLink> list = this.list(Wrappers.<MusicLink>lambdaQuery()
                 .eq(MusicLink::getMusicId, musicId));
         List<MusicInfoLinkDetailVo> result = new ArrayList<>();
-
-        if(CollectionUtils.isNotEmpty(list)) {
-            Map<Integer, List<MusicLink>> mapping = DataTool.groupingBy(list, MusicLink::getLinkSource);
-            for (MusicLinkSourceEnum musicLinkSourceEnum : MusicLinkSourceEnum.values()) {
-                List<MusicLink> musicLinkList = mapping.get(musicLinkSourceEnum.getCode());
-                MusicInfoLinkDetailVo detailVo = new MusicInfoLinkDetailVo();
-                detailVo.setLinkSource(musicLinkSourceEnum.getCode());
-                detailVo.setLinkSourceName(musicLinkSourceEnum.getDesc());
-                detailVo.setLinkMap(MusicLinkTypeEnum.buildLinkMap(musicLinkList));
-                result.add(detailVo);
-            }
+        Map<Integer, List<MusicLink>> mapping = DataTool.groupingBy(list, MusicLink::getLinkSource);
+        for (MusicLinkSourceEnum musicLinkSourceEnum : MusicLinkSourceEnum.values()) {
+            List<MusicLink> musicLinkList = mapping.get(musicLinkSourceEnum.getCode());
+            MusicInfoLinkDetailVo detailVo = new MusicInfoLinkDetailVo();
+            detailVo.setLinkSource(musicLinkSourceEnum.getCode());
+            detailVo.setLinkSourceName(musicLinkSourceEnum.getDesc());
+            detailVo.setLinkMap(MusicLinkTypeEnum.buildLinkMap(musicLinkList));
+            result.add(detailVo);
         }
         return result;
     }

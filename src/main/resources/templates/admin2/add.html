@@ -100,22 +100,20 @@
                                         <el-button type="warning" size="mini" icon="el-icon-delete" circle @click="onClearAudioUrl"></el-button>
                                     </el-col>
                                 </el-row>
-                                <el-row :gutter="10">
+                                <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="封面">
                                             <el-input v-model="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="仓库链接">
+                                            <div>仓库01-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store01/</div>
+                                            <div>仓库02-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store02/</div>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="1">
                                         <el-button type="danger" size="mini" icon="el-icon-delete" circle @click="onClearCoverUrl"></el-button>
                                     </el-col>
                                 </el-row>
-                                <el-collapse v-model="sys.activeNames" v-show="index === 0">
-                                    <el-collapse-item title="音乐仓库链接" name="1">
-                                        <div>仓库01-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store/</div>
-                                    </el-collapse-item>
-                                </el-collapse>
-
                             </el-tab-pane>
                         </el-tabs>
                     </el-form-item>
@@ -244,30 +242,34 @@
                 this.sys.linkSourceName = this.dataForm.linkList[tab.index].linkSourceName;
                 this.sys.linkSourceIndex = tab.index;
                 this.musicPlayer.musicAudioUrl = this.dataForm.linkList[tab.index].linkMap.AUDIO_LINK;
-                const player = document.getElementById("audio");
-                player.pause();
-                player.currentTime = 0;
-                this.musicPlayer.icon = 'el-icon-video-play';
-                this.musicPlayer.btnDesc = '播放';
-                this.musicPlayer.audioStatus = 0;
-                this.musicPlayer.percentage = 0;
+
+                if(this.musicPlayer.musicAudioUrl !== null) {
+                    const player = document.getElementById("audio");
+                    player.pause();
+                    player.currentTime = 0;
+                    this.musicPlayer.icon = 'el-icon-video-play';
+                    this.musicPlayer.btnDesc = '播放';
+                    this.musicPlayer.audioStatus = 0;
+                    this.musicPlayer.percentage = 0;
+                }
             },
             showDetail() {
-                axios.post('./detailMusic', {
-                    id: this.sys.music.id
-                })
-                .then(response => {
-                    if(response.data.code === 0) {
-                        this.sys.music = response.data.data;
-                    } else {
-                        this.$message.error(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    this.$message.error(error);
-                    console.log(error);
-                });
                 if(this.sys.music !== null) {
+                    axios.post('./detailMusic', {
+                            id: this.sys.music.id
+                        })
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.sys.music = response.data.data;
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
+
                     this.dataForm.id = this.sys.music.id;
                     this.dataForm.musicName = this.sys.music.title;
                     this.dataForm.artist = this.sys.music.artist;
@@ -280,6 +282,29 @@
                     this.musicPlayer.musicName = this.dataForm.musicName;
                     this.musicPlayer.musicAudioUrl = this.dataForm.linkList[0].linkMap.AUDIO_LINK;
                     this.musicPlayer.musicAuthor = this.dataForm.artist;
+                } else {
+                    this.sys.music = {
+                        id: null,
+                        musicName: null,
+                        artist: null,
+                        album: null,
+                        sort: null,
+                        linkList: []
+                    };
+                    axios.get('./getLinkList')
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.sys.music.linkList = response.data.data;
+                                this.dataForm.linkList = response.data.data;
+                                this.musicPlayer.musicAudioUrl = this.dataForm.linkList[0].linkMap.AUDIO_LINK;
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
                 }
             },
             initMusicPlayer() {
@@ -417,9 +442,9 @@
                 location.href = './';
             },
             changeAudioUrlEvent() {
+                let linkSourceIndex = this.sys.linkSourceIndex;
                 // 开启自动填充
-                if('true' === this.sys.autoFill) {
-                    let linkSourceIndex = this.sys.linkSourceIndex;
+                if('true' === this.sys.autoFill && linkSourceIndex && this.sys.linkSourceName === 'github') {
                     let audioUrl = this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK;
                     let coverUrl = this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK;
 

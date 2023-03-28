@@ -85,6 +85,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		return musicDetailInfo;
 	}
 
+	public List<MusicInfoLinkDetailVo> getLinkList() {
+		return musicLinkService.getLinkDetailVoListByMusicId(null);
+	}
+
 	private Music getMusicById(Long id) {
 		Objects.requireNonNull(id, "不允许请求id为空");
 		Music music = musicMapper.selectById(id);
@@ -202,4 +206,5 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 
 		musicLinkService.createOrUpdate(music, requestBody.getLinkList());
 	}
+
 }
