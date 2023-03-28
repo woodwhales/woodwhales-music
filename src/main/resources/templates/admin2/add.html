@@ -25,14 +25,35 @@
             <el-row style="margin-bottom: 12px;">
                 <el-divider content-position="left">添加音乐</el-divider>
             </el-row>
+            <el-row :gutter="10" v-if="musicPlayer.musicAudioUrl !== null" style="margin-bottom: 12px;">
+                <el-col :span="4">&nbsp;</el-col>
+                <el-col :span="16">
+                    <div>
+                        <el-row style="font-size: 12px; margin-bottom: 5px;">
+                            <span>{{musicPlayer.musicName}}</span>
+                            <span style="margin-left: 20px;">{{musicPlayer.musicAuthor}}</span>
+                            <span style="margin-left: 20px;">{{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}</span>
+                        </el-row>
+                        <el-row>
+                            <div id="progressContainer" @mousedown="onChangeProgress($event)">
+                                <audio id="audio" @timeupdate="onTimeupdate" :src="musicPlayer.musicAudioUrl" type="audio/mpeg"></audio>
+                                <el-progress :percentage="musicPlayer.percentage" :color="musicPlayer.processColor" :show-text="false"/>
+                            </div>
+                        </el-row>
+                    </div>
+                </el-col>
+                <el-col :span="4">
+                    <el-button type="primary" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
+                </el-col>
+            </el-row>
             <el-row style="margin-bottom: 12px;">
                 <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
                     <el-input v-model="dataForm.id" v-show="false"></el-input>
                     <el-form-item label="名称" prop="musicName">
-                        <el-input v-model="dataForm.musicName"></el-input>
+                        <el-input v-model="dataForm.musicName" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                     </el-form-item>
                     <el-form-item label="作者" prop="artist">
-                        <el-input v-model="dataForm.artist"></el-input>
+                        <el-input v-model="dataForm.artist" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                     </el-form-item>
                     <el-form-item label="专辑" prop="album">
                         <el-input v-model="dataForm.album"></el-input>
@@ -66,7 +87,7 @@
                     <el-row :gutter="20">
                         <el-col :span="23">
                             <el-form-item label="链接">
-                                <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent"></el-input>
+                                <el-input v-model="dataForm.audioUrl" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="1">
@@ -76,7 +97,7 @@
                     <el-row :gutter="20">
                         <el-col :span="23">
                             <el-form-item label="封面">
-                                <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent"></el-input>
+                                <el-input v-model="dataForm.coverUrl" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="1">
@@ -161,6 +182,19 @@
                     coverSuffix: '.jpg',
                     dateYear: new Date().getFullYear()
                 },
+                musicPlayer: {
+                    musicName: null,
+                    musicAuthor: null,
+                    musicAudioUrl: null,
+                    audioStatus: 0,
+                    color: '#67C23A',
+                    allTimeStr: null,
+                    currentTimeStr: null,
+                    icon: 'el-icon-video-play',
+                    btnDesc: '播放',
+                    percentage: 0,
+                    processColor: '#67C23A'
+                },
                 rules2: {
                     platformType: [
                         { required: true, message: '请选择音乐平台', trigger: 'blur' }
@@ -187,17 +221,93 @@
         },
         mounted() {
             this.initSys();
-            if(this.sys.music !== null) {
-                this.dataForm.id = this.sys.music.id;
-                this.dataForm.musicName = this.sys.music.title;
-                this.dataForm.artist = this.sys.music.artist;
-                this.dataForm.album = this.sys.music.album;
-                this.dataForm.audioUrl = this.sys.music.audioUrl;
-                this.dataForm.coverUrl = this.sys.music.coverUrl;
-                this.dataForm.sort = this.sys.music.sort;
-            }
+            this.showDetail();
         },
         methods: {
+            showDetail() {
+                if(this.sys.music !== null) {
+                    this.dataForm.id = this.sys.music.id;
+                    this.dataForm.musicName = this.sys.music.title;
+                    this.dataForm.artist = this.sys.music.artist;
+                    this.dataForm.album = this.sys.music.album;
+                    this.dataForm.audioUrl = this.sys.music.audioUrl;
+                    this.dataForm.coverUrl = this.sys.music.coverUrl;
+                    this.dataForm.sort = this.sys.music.sort;
+
+                    this.musicPlayer.musicName = this.dataForm.musicName;
+                    this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
+                    this.musicPlayer.musicAuthor = this.dataForm.artist;
+                }
+            },
+            initMusicPlayer() {
+                this.musicPlayer.musicName = null
+                this.musicPlayer.musicAuthor = null
+                this.musicPlayer.musicAudioUrl = null
+                this.musicPlayer.audioStatus = 0
+                this.musicPlayer.allTimeStr = null
+                this.musicPlayer.currentTimeStr = null
+                this.musicPlayer.icon = 'el-icon-video-play'
+                this.musicPlayer.btnDesc = '播放'
+                this.musicPlayer.percentage = 0
+            },
+            onTimeupdate() {
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.allTimeStr === null || this.musicPlayer.allTimeStr === '') {
+                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                }
+                this.musicPlayer.percentage = (player.currentTime / player.duration) * 100;
+                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
+                if(player.currentTime === player.duration || this.musicPlayer.percentage === 100) {
+                    player.pause();
+                    this.musicPlayer.icon = 'el-icon-video-play';
+                    this.musicPlayer.btnDesc = '播放';
+                    this.musicPlayer.audioStatus = 0;
+                    this.musicPlayer.percentage = 0;
+                }
+            },
+            onChangeProgress(event) {
+                const progressContainer = document.getElementById("progressContainer");
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.allTimeStr === null) {
+                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                }
+                let left = progressContainer.getBoundingClientRect().left;
+                let offsetWidth = progressContainer.offsetWidth;
+                let rate = (event.clientX - left) / offsetWidth;
+                this.musicPlayer.percentage = rate;
+                player.currentTime = (rate * player.duration);
+                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
+            },
+            onPlay() {
+                const player = document.getElementById("audio");
+                if(this.musicPlayer.audioStatus === 0) {
+                    player.play();
+                    this.musicPlayer.icon = 'el-icon-video-pause';
+                    this.musicPlayer.btnDesc = '暂停';
+                    this.musicPlayer.audioStatus = 1;
+                } else if(this.musicPlayer.audioStatus === 1) {
+                    player.pause();
+                    this.musicPlayer.icon = 'el-icon-video-play';
+                    this.musicPlayer.btnDesc = '播放';
+                    this.musicPlayer.audioStatus = 0;
+                }
+                this.musicPlayer.allTimeStr = this.transTime(player.duration);
+                this.musicPlayer.max = player.duration;
+            },
+            transTime(time) {
+                var duration = parseInt(time);
+                var minute = parseInt(duration/60);
+                var sec = duration%60 + '';
+                if(minute === 0){
+                    minute = '00';
+                } else if(minute < 10 ){
+                    minute = '0' + minute;
+                }
+                if(sec.length === 1){
+                    sec = '0' + sec;
+                }
+                return minute + ":" + sec;
+            },
             onParse(dataForm) {
                 this.$refs.parseForm.validate((valid) => {
                     if (!valid) {
@@ -249,9 +359,11 @@
             onReset() {
                 this.initSys();
                 this.initDataForm();
+                this.showDetail();
             },
             onClearAudioUrl() {
                 this.dataForm.audioUrl = null;
+                this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
             },
             onClearCoverUrl() {
                 this.dataForm.coverUrl = null;
@@ -288,6 +400,10 @@
                         return;
                     }
                 }
+                this.musicPlayer.musicName = this.dataForm.musicName;
+                this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
+                this.musicPlayer.musicAuthor = this.dataForm.artist;
+                this.musicPlayer.percentage = 0;
             },
             initDataForm() {
                 this.dataForm.musicName = null
