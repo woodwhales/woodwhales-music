@@ -131,8 +131,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 	private MusicSimpleInfo convertSimpleInfo(Music music, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
 		BeanUtils.copyProperties(music, musicSimpleInfo);
-		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrlMapping().get(music.getId()).getLinkUrl());
-		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrlMapping().get(music.getId()).getLinkUrl());
+		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
+		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
 		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(music.getLinkStatus()));
 		return musicSimpleInfo;
 	}
