@@ -193,8 +193,8 @@
                     audioSuffix: '.mp3',
                     coverSuffix: '.jpg',
                     dateYear: new Date().getFullYear(),
-                    linkSourceName: 'github',
-                    linkSourceIndex: '0'
+                    linkSourceName: 'alist',
+                    linkSourceIndex: '1'
                 },
                 musicPlayer: {
                     musicName: null,
@@ -280,7 +280,7 @@
                     this.dataForm.linkList = this.sys.music.linkList;
 
                     this.musicPlayer.musicName = this.dataForm.musicName;
-                    this.musicPlayer.musicAudioUrl = this.dataForm.linkList[0].linkMap.AUDIO_LINK;
+                    this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
                     this.musicPlayer.musicAuthor = this.dataForm.artist;
                 } else {
                     this.sys.music = {

@@ -20,9 +20,9 @@
                 <el-row>
                     <el-row :gutter="20">
                         <el-col :span="20">
-                            <el-form ref="queryForm" :model="queryForm" label-width="80px">
+                            <el-form ref="queryForm" :model="queryForm" label-width="80px" @submit.native.prevent>
                                 <el-form-item label="名称/作者">
-                                    <el-input v-model="queryForm.searchInfo"></el-input>
+                                    <el-input v-model="queryForm.searchInfo" @keyup.enter.native="onQuery"></el-input>
                                 </el-form-item>
                             </el-form>
                         </el-col>
