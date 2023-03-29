@@ -23,6 +23,22 @@ public class MusicInfoLinkContext {
     private Map<Long, MusicLink> audioUrlMapping;
     private Map<Long, MusicLink> coverUrlMapping;
 
+    public String getCoverUrl(Long musicId) {
+        if(this.coverUrlMapping.containsKey(musicId)) {
+            return this.coverUrlMapping.get(musicId).getLinkUrl();
+        } else {
+            return null;
+        }
+    }
+
+    public String getAudioUrl(Long musicId) {
+        if(this.audioUrlMapping.containsKey(musicId)) {
+            return this.audioUrlMapping.get(musicId).getLinkUrl();
+        } else {
+            return null;
+        }
+    }
+
     public MusicInfoLinkContext(List<Music> musicList) {
         this.musicList = musicList;
         if(CollectionUtils.isNotEmpty(this.musicList)) {

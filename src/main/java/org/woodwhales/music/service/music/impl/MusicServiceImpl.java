@@ -141,8 +141,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
     	MusicInfo musicInfo = new MusicInfo();
     	musicInfo.setAlbum(music.getAlbum());
     	musicInfo.setArtist(music.getArtist());
-    	musicInfo.setCoverUrl(musicInfoLinkContext.getCoverUrlMapping().get(music.getId()).getLinkUrl());
-    	musicInfo.setAudioUrl(musicInfoLinkContext.getAudioUrlMapping().get(music.getId()).getLinkUrl());
+    	musicInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
+    	musicInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
     	musicInfo.setTitle(music.getTitle());
     	return musicInfo;
     }

@@ -18,4 +18,4 @@ logging:
 music:
   link:
     # 链接来源：0-github，1-alist
-    source: 0
+    source: 1
