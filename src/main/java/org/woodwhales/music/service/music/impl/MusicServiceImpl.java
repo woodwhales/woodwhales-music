@@ -97,17 +97,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 
 	public boolean deleteMusic(MusicDeleteRequestBody requestBody) {
 		Long id = requestBody.getId();
-
 		Music music = getMusicById(id);
 		if(Objects.isNull(music)) {
 			throw new RuntimeException("要删除的数据不存在");
 		}
-
-		music.setStatus(StatusEnum.DELETE.code);
-		music.setGmtModified(Date.from(Instant.now()));
-
-		int i = musicMapper.updateById(music);
-		return i == 1;
+		this.removeById(music.getId());
+		musicLinkService.remove(Wrappers.<MusicLink>lambdaQuery()
+				.eq(MusicLink::getMusicId, music.getId()));
+		return true;
 	}
 
     public MusicListInfo exportMusic() {
