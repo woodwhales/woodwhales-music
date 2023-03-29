@@ -52,9 +52,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 																.orderByAsc(Music::getSort)
 																.orderByDesc(Music::getGmtModified));
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(musicList);
-		return DataTool.toList(musicList,
+		return DataTool.filter(DataTool.toList(musicList,
 								music -> LinkStatusEnum.LINKED.match(music.getLinkStatus()),
-								music -> this.convert(music, musicInfoLinkContext));
+								music -> this.convert(music, musicInfoLinkContext)), music -> StringUtils.isNotBlank(music.getAudioUrl()));
     }
 
 	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
