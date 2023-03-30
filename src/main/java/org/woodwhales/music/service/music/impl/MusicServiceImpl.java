@@ -70,7 +70,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
-		return LayuiPageVO.build(pageResult, music -> this.convertSimpleInfo(music, musicInfoLinkContext) ,MusicSimpleInfo::compare);
+		return LayuiPageVO.build(pageResult, music -> this.convertSimpleInfo(music, musicInfoLinkContext), MusicSimpleInfo::compare);
 	}
 
 	public MusicDetailInfo getMusicDetailInfoById(Long id) {
@@ -131,6 +131,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
 		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
 		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(music.getLinkStatus()));
+		if(StringUtils.isBlank(musicSimpleInfo.getAudioUrl())) {
+			musicSimpleInfo.setLinked(false);
+		}
 		return musicSimpleInfo;
 	}
 
