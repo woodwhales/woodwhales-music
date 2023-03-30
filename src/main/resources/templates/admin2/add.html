@@ -8,7 +8,7 @@
     <script th:src="@{/webjars/vue/dist/vue.js}"></script>
     <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
-
+    <!-- https://aplayer.js.org -->
     <script th:src="@{/aplyer/APlayer.min.js}"></script>
     <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
 </head>
@@ -275,8 +275,9 @@
                 this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
                 this.musicPlayer.musicCoverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK;
                 this.musicPlayer.musicAuthor = this.dataForm.artist;
-                const ap = new APlayer({
+                new APlayer({
                     container: document.getElementById('aplayer'),
+                    theme: '#5FB878',
                     audio: [{
                         name: this.musicPlayer.musicName,
                         artist: this.musicPlayer.musicAuthor,
