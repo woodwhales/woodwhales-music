@@ -11,15 +11,16 @@ import java.io.Serializable;
 
 /**
  * 音乐表
- * 
+ *
+ * @author woodwhales
  */
-@TableName(value= "music")
+@TableName(value= "music_info")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Music implements Serializable {
+public class MusicInfo implements Serializable {
     
     private static final long serialVersionUID = 1L;
 

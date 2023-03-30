@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author woodwhales on 2023-03-28 11:49:38
  *
  */
-@TableName(value= "music_link")
+@TableName(value= "music_info_link")
 @Data
 @Builder
 @NoArgsConstructor

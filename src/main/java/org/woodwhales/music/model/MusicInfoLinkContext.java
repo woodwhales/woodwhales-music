@@ -5,7 +5,7 @@ import cn.woodwhales.common.business.DataTool;
 import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.woodwhales.music.config.AppConfig;
-import org.woodwhales.music.entity.Music;
+import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.service.music.impl.MusicLinkServiceImpl;
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Data
 public class MusicInfoLinkContext {
-    private List<Music> musicInfoList;
+    private List<MusicInfo> musicInfoList;
     private Map<Long, MusicInfoLink> audioUrlMapping;
     private Map<Long, MusicInfoLink> coverUrlMapping;
 
@@ -39,12 +39,12 @@ public class MusicInfoLinkContext {
         }
     }
 
-    public MusicInfoLinkContext(List<Music> musicInfoList) {
+    public MusicInfoLinkContext(List<MusicInfo> musicInfoList) {
         this.musicInfoList = musicInfoList;
         if(CollectionUtils.isNotEmpty(this.musicInfoList)) {
             AppConfig appConfig = SpringUtil.getBean(AppConfig.class);
             MusicLinkServiceImpl musicLinkService = SpringUtil.getBean(MusicLinkServiceImpl.class);
-            List<MusicInfoLink> musicInfoLinkList = musicLinkService.getLinkInfoListByMusicIds(DataTool.toList(this.musicInfoList, Music::getId));
+            List<MusicInfoLink> musicInfoLinkList = musicLinkService.getLinkInfoListByMusicIds(DataTool.toList(this.musicInfoList, MusicInfo::getId));
             this.audioUrlMapping = DataTool.toMap(DataTool.filter(musicInfoLinkList,
                             musicLink -> MusicLinkTypeEnum.AUDIO_LINK.match(musicLink.getLinkType())
                                     && appConfig.getMusicLinkSourceEnum().match(musicLink.getLinkSource())),

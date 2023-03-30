@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.config.AppConfig;
-import org.woodwhales.music.entity.Music;
+import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
@@ -61,7 +61,7 @@ public class MusicLinkServiceImpl extends ServiceImpl<MusicInfoLinkMapper, Music
         return result;
     }
 
-    public void createOrUpdate(Music music, List<MusicInfoLinkDetailVo> linkList) {
+    public void createOrUpdate(MusicInfo music, List<MusicInfoLinkDetailVo> linkList) {
         List<MusicInfoLink> musicInfoLinkList = this.list(Wrappers.<MusicInfoLink>lambdaQuery()
                 .eq(MusicInfoLink::getMusicId, music.getId()));
         if(CollectionUtils.isEmpty(linkList) && CollectionUtils.isNotEmpty(musicInfoLinkList)) {

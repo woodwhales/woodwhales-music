@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.controller.param.*;
-import org.woodwhales.music.entity.Music;
+import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
@@ -38,7 +38,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Primary
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
+public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 	
 	@Autowired
 	private MusicInfoMapper musicInfoMapper;
@@ -47,10 +47,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 	private MusicLinkServiceImpl musicLinkService;
 
     public List<MusicInfoVo> listMusic() {
-		List<Music> musicList = musicInfoMapper.selectList(Wrappers.<Music>lambdaQuery()
-																.orderByAsc(Music::getStatus)
-																.orderByAsc(Music::getSort)
-																.orderByDesc(Music::getGmtModified));
+		List<MusicInfo> musicList = musicInfoMapper.selectList(Wrappers.<MusicInfo>lambdaQuery()
+																.orderByAsc(MusicInfo::getStatus)
+																.orderByAsc(MusicInfo::getSort)
+																.orderByDesc(MusicInfo::getGmtModified));
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(musicList);
 		return DataTool.filter(DataTool.toList(musicList,
 								music -> LinkStatusEnum.LINKED.match(music.getLinkStatus()),
@@ -58,23 +58,23 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
     }
 
 	public LayuiPageVO<MusicSimpleInfo> pageMusic(PageMusicQueryRequestParam param) {
-		IPage<Music> page = PageUtil.buildPage(param);
-		LambdaQueryWrapper<Music> wrapper = Wrappers.lambdaQuery();
+		IPage<MusicInfo> page = PageUtil.buildPage(param);
+		LambdaQueryWrapper<MusicInfo> wrapper = Wrappers.lambdaQuery();
 		wrapper.and(StringUtils.isNotBlank(param.getSearchInfo()),
-						i -> i.like(Music::getTitle, param.getSearchInfo())
+						i -> i.like(MusicInfo::getTitle, param.getSearchInfo())
 								.or()
-								.like(Music::getArtist, param.getSearchInfo())
+								.like(MusicInfo::getArtist, param.getSearchInfo())
 								.or()
-								.like(Music::getAlbum, param.getSearchInfo()))
-				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
-				.orderByAsc(Music::getSort);
-		IPage<Music> pageResult = musicInfoMapper.selectPage(page, wrapper);
+								.like(MusicInfo::getAlbum, param.getSearchInfo()))
+				.and(i -> i.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code))
+				.orderByAsc(MusicInfo::getSort);
+		IPage<MusicInfo> pageResult = musicInfoMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
 		return LayuiPageVO.build(pageResult, musicInfo -> this.convertSimpleInfo(musicInfo, musicInfoLinkContext), MusicSimpleInfo::compare);
 	}
 
 	public MusicDetailInfo getMusicDetailInfoById(Long id) {
-		Music musicInfo = getMusicById(id);
+		MusicInfo musicInfo = getMusicById(id);
 		if(Objects.isNull(musicInfo)) {
 			throw new RuntimeException("要访问的数据不存在");
 		}
@@ -89,14 +89,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 		return musicLinkService.getLinkDetailVoListByMusicId(null);
 	}
 
-	private Music getMusicById(Long id) {
+	private MusicInfo getMusicById(Long id) {
 		Objects.requireNonNull(id, "不允许请求id为空");
 		return musicInfoMapper.selectById(id);
 	}
 
 	public boolean deleteMusic(MusicDeleteRequestBody requestBody) {
 		Long id = requestBody.getId();
-		Music musicInfo = this.getMusicById(id);
+		MusicInfo musicInfo = this.getMusicById(id);
 		if(Objects.isNull(musicInfo)) {
 			throw new RuntimeException("要删除的数据不存在");
 		}
@@ -124,7 +124,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 		return new MusicListInfo(stringBuilder.toString(), musicInfoVoList.size() + 3);
     }
 
-	private MusicSimpleInfo convertSimpleInfo(Music musicInfo, MusicInfoLinkContext musicInfoLinkContext) {
+	private MusicSimpleInfo convertSimpleInfo(MusicInfo musicInfo, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
 		BeanUtils.copyProperties(musicInfo, musicSimpleInfo);
 		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(musicInfo.getId()));
@@ -136,7 +136,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 		return musicSimpleInfo;
 	}
 
-	private MusicInfoVo convert(Music music, MusicInfoLinkContext musicInfoLinkContext) {
+	private MusicInfoVo convert(MusicInfo music, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicInfoVo musicInfoVo = new MusicInfoVo();
     	musicInfoVo.setAlbum(music.getAlbum());
     	musicInfoVo.setArtist(music.getArtist());
@@ -147,12 +147,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
     }
 
 	/**
-	 * 洗旧music数据至 music_info 和 music_link
+	 * 洗旧music数据至 music_info 和 music_info_link
 	 */
 	public void washMusicToMusicInfo() {
-		List<Music> musicList = this.list();
+		List<MusicInfo> musicList = this.list();
 		List<MusicInfoLink> linkList = new ArrayList<>();
-		for (Music music : musicList) {
+		for (MusicInfo music : musicList) {
 			MusicInfoLink audioLink = musicLinkService.getOne(Wrappers.<MusicInfoLink>lambdaQuery()
 					.eq(MusicInfoLink::getMusicId, music.getId())
 					.eq(MusicInfoLink::getLinkType, MusicLinkTypeEnum.AUDIO_LINK.getCode())
@@ -183,10 +183,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 	public void createOrUpdate(MusicCreateOrUpdateRequestBody requestBody) {
 		requestBody.trim();
 		LinkStatusEnum linkStatusEnum = requestBody.checkLinkStatus();
-		Music music;
+		MusicInfo music;
 		Instant now = Instant.now();
 		if(Objects.isNull(requestBody.getId())) {
-			music = new Music();
+			music = new MusicInfo();
 			music.setAlbum(requestBody.getAlbum());
 			music.setArtist(requestBody.getArtist());
 			music.setTitle(requestBody.getMusicName());

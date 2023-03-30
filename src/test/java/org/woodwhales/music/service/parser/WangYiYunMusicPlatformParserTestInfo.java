@@ -14,7 +14,7 @@ import java.io.IOException;
  * @date: 20.8.16 12:53
  * @description:
  */
-class WangYiYunMusicPlatformParserTest {
+class WangYiYunMusicPlatformParserTestInfo {
 
     @Test
     public void test() throws IOException {
