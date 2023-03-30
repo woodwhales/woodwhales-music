@@ -168,23 +168,6 @@
             this.onQuery();
         },
         methods: {
-            initMusicPlayer() {
-                this.musicPlayer.musicName = null
-                this.musicPlayer.musicAuthor = null
-                this.musicPlayer.musicAudioUrl = null
-                this.musicPlayer.audioStatus = 0
-                this.musicPlayer.allTimeStr = null
-                this.musicPlayer.currentTimeStr = null
-                this.musicPlayer.icon = 'el-icon-video-play'
-                this.musicPlayer.btnDesc = '播放'
-                this.musicPlayer.percentage = 0
-            },
-            onClosePlayer() {
-                this.initMusicPlayer();
-                const player = document.getElementById("audio");
-                player.pause();
-                player.currentTime = 0;
-            },
             onTimeupdate() {
                 const player = document.getElementById("audio");
                 if(this.musicPlayer.allTimeStr === null || this.musicPlayer.allTimeStr === '') {

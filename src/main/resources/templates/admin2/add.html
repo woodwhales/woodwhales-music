@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/webjars/element-ui/lib/theme-chalk/index.css}">
+    <script th:src="@{/webjars/vue/dist/vue.js}"></script>
+    <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
+
+    <script th:src="@{/aplyer/APlayer.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
 </head>
 <body>
 <div id="app">
@@ -25,30 +31,12 @@
             <el-row style="margin-bottom: 12px;">
                 <el-divider content-position="left">添加音乐</el-divider>
             </el-row>
-            <el-row :gutter="10" v-if="musicPlayer.musicAudioUrl !== null" style="margin-bottom: 12px;">
-                <el-col :span="4">&nbsp;</el-col>
-                <el-col :span="16">
-                    <div>
-                        <el-row style="font-size: 12px; margin-bottom: 5px;">
-                            <span>{{musicPlayer.musicName}}</span>
-                            <span style="margin-left: 20px;">{{musicPlayer.musicAuthor}}</span>
-                            <span style="margin-left: 20px;">{{musicPlayer.currentTimeStr}} / {{musicPlayer.allTimeStr}}</span>
-                        </el-row>
-                        <el-row>
-                            <div id="progressContainer" @mousedown="onChangeProgress($event)">
-                                <audio id="audio" @timeupdate="onTimeupdate" :src="musicPlayer.musicAudioUrl" type="audio/mpeg"></audio>
-                                <el-progress :percentage="musicPlayer.percentage" :color="musicPlayer.processColor" :show-text="false"/>
-                            </div>
-                        </el-row>
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <el-button type="primary" size="mini" :icon="musicPlayer.icon" @click="onPlay">{{musicPlayer.btnDesc}}</el-button>
-                </el-col>
-            </el-row>
             <el-row style="margin-bottom: 12px;">
                 <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
                     <el-input v-model="dataForm.id" v-show="false"></el-input>
+                    <el-form-item label="播放器">
+                        <div id="aplayer"></div>
+                    </el-form-item>
                     <el-form-item label="名称" prop="musicName">
                         <el-input v-model="dataForm.musicName" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                     </el-form-item>
@@ -164,11 +152,6 @@
     </el-row>
 </div>
 </body>
-<!-- import Vue before Element -->
-<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
     new Vue({
         el: '#app',
@@ -200,14 +183,7 @@
                     musicName: null,
                     musicAuthor: null,
                     musicAudioUrl: null,
-                    audioStatus: 0,
-                    color: '#67C23A',
-                    allTimeStr: null,
-                    currentTimeStr: null,
-                    icon: 'el-icon-video-play',
-                    btnDesc: '播放',
-                    percentage: 0,
-                    processColor: '#67C23A'
+                    musicCoverUrl: null
                 },
                 rules2: {
                     platformType: [
@@ -236,22 +212,13 @@
         mounted() {
             this.initSys();
             this.showDetail();
+            this.initAplyer();
         },
         methods: {
             onChangeLinkSource(tab, event) {
                 this.sys.linkSourceName = this.dataForm.linkList[tab.index].linkSourceName;
                 this.sys.linkSourceIndex = tab.index;
-                this.musicPlayer.musicAudioUrl = this.dataForm.linkList[tab.index].linkMap.AUDIO_LINK;
-
-                if(this.musicPlayer.musicAudioUrl !== null) {
-                    const player = document.getElementById("audio");
-                    player.pause();
-                    player.currentTime = 0;
-                    this.musicPlayer.icon = 'el-icon-video-play';
-                    this.musicPlayer.btnDesc = '播放';
-                    this.musicPlayer.audioStatus = 0;
-                    this.musicPlayer.percentage = 0;
-                }
+                this.initAplyer();
             },
             showDetail() {
                 if(this.sys.music !== null) {
@@ -274,14 +241,10 @@
                     this.dataForm.musicName = this.sys.music.title;
                     this.dataForm.artist = this.sys.music.artist;
                     this.dataForm.album = this.sys.music.album;
-                    this.dataForm.audioUrl = this.sys.music.audioUrl;
-                    this.dataForm.coverUrl = this.sys.music.coverUrl;
-                    this.dataForm.sort = this.sys.music.sort;
                     this.dataForm.linkList = this.sys.music.linkList;
+                    this.dataForm.sort = this.sys.music.sort;
 
-                    this.musicPlayer.musicName = this.dataForm.musicName;
-                    this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
-                    this.musicPlayer.musicAuthor = this.dataForm.artist;
+                    this.initAplyer();
                 } else {
                     this.sys.music = {
                         id: null,
@@ -307,74 +270,20 @@
                         });
                 }
             },
-            initMusicPlayer() {
-                this.musicPlayer.musicName = null
-                this.musicPlayer.musicAuthor = null
-                this.musicPlayer.musicAudioUrl = null
-                this.musicPlayer.audioStatus = 0
-                this.musicPlayer.allTimeStr = null
-                this.musicPlayer.currentTimeStr = null
-                this.musicPlayer.icon = 'el-icon-video-play'
-                this.musicPlayer.btnDesc = '播放'
-                this.musicPlayer.percentage = 0
-            },
-            onTimeupdate() {
-                const player = document.getElementById("audio");
-                if(this.musicPlayer.allTimeStr === null || this.musicPlayer.allTimeStr === '') {
-                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
-                }
-                this.musicPlayer.percentage = (player.currentTime / player.duration) * 100;
-                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
-                if(player.currentTime === player.duration || this.musicPlayer.percentage === 100) {
-                    player.pause();
-                    this.musicPlayer.icon = 'el-icon-video-play';
-                    this.musicPlayer.btnDesc = '播放';
-                    this.musicPlayer.audioStatus = 0;
-                    this.musicPlayer.percentage = 0;
-                }
-            },
-            onChangeProgress(event) {
-                const progressContainer = document.getElementById("progressContainer");
-                const player = document.getElementById("audio");
-                if(this.musicPlayer.allTimeStr === null) {
-                    this.musicPlayer.allTimeStr = this.transTime(player.duration);
-                }
-                let left = progressContainer.getBoundingClientRect().left;
-                let offsetWidth = progressContainer.offsetWidth;
-                let rate = (event.clientX - left) / offsetWidth;
-                this.musicPlayer.percentage = rate;
-                player.currentTime = (rate * player.duration);
-                this.musicPlayer.currentTimeStr = this.transTime(player.currentTime);
-            },
-            onPlay() {
-                const player = document.getElementById("audio");
-                if(this.musicPlayer.audioStatus === 0) {
-                    player.play();
-                    this.musicPlayer.icon = 'el-icon-video-pause';
-                    this.musicPlayer.btnDesc = '暂停';
-                    this.musicPlayer.audioStatus = 1;
-                } else if(this.musicPlayer.audioStatus === 1) {
-                    player.pause();
-                    this.musicPlayer.icon = 'el-icon-video-play';
-                    this.musicPlayer.btnDesc = '播放';
-                    this.musicPlayer.audioStatus = 0;
-                }
-                this.musicPlayer.allTimeStr = this.transTime(player.duration);
-                this.musicPlayer.max = player.duration;
-            },
-            transTime(time) {
-                var duration = parseInt(time);
-                var minute = parseInt(duration/60);
-                var sec = duration%60 + '';
-                if(minute === 0){
-                    minute = '00';
-                } else if(minute < 10 ){
-                    minute = '0' + minute;
-                }
-                if(sec.length === 1){
-                    sec = '0' + sec;
-                }
-                return minute + ":" + sec;
+            initAplyer() {
+                this.musicPlayer.musicName = this.dataForm.musicName;
+                this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
+                this.musicPlayer.musicCoverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK;
+                this.musicPlayer.musicAuthor = this.dataForm.artist;
+                const ap = new APlayer({
+                    container: document.getElementById('aplayer'),
+                    audio: [{
+                        name: this.musicPlayer.musicName,
+                        artist: this.musicPlayer.musicAuthor,
+                        url: this.musicPlayer.musicAudioUrl,
+                        cover: this.musicPlayer.musicCoverUrl
+                    }]
+                });
             },
             onParse(dataForm) {
                 this.$refs.parseForm.validate((valid) => {
@@ -428,57 +337,47 @@
                 this.initSys();
                 this.initDataForm();
                 this.showDetail();
+                this.initAplyer();
             },
             onClearAudioUrl() {
-                let linkSourceIndex = this.sys.linkSourceIndex;
-                this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK = null;
-                this.musicPlayer.musicAudioUrl = null;
+                this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK = null;
+                this.initAplyer();
             },
             onClearCoverUrl() {
-                let linkSourceIndex = this.sys.linkSourceIndex;
-                this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK = null;
+                this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK = null;
+                this.initAplyer();
             },
             onBackHome() {
                 location.href = './';
             },
             changeAudioUrlEvent() {
-                let linkSourceIndex = this.sys.linkSourceIndex;
+                let audioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
+                let coverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK;
                 // 开启自动填充
-                if('true' === this.sys.autoFill && linkSourceIndex && this.sys.linkSourceName === 'github') {
-                    let audioUrl = this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK;
-                    let coverUrl = this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK;
-
+                if('true' === this.sys.autoFill && this.sys.linkSourceName === 'github') {
                     if(audioUrl !== null  && audioUrl !== '' && (coverUrl === null || coverUrl === '')) {
                         let start = audioUrl.lastIndexOf('.');
                         if(start >= 0) {
                             coverUrl = audioUrl.substr(0, start);
                         }
                         coverUrl = coverUrl + this.sys.coverSuffix;
-                        this.dataForm.linkList[linkSourceIndex].linkMap.COVER_LINK = coverUrl;
-                        return;
+                        this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK = coverUrl;
                     }
-
                     if(coverUrl !== null && coverUrl !== '' && (audioUrl === null || audioUrl === '')) {
                         let start = coverUrl.lastIndexOf('.');
                         if(start >= 0) {
                             audioUrl = coverUrl.substr(0, start);
                         }
                         audioUrl = audioUrl + this.sys.audioSuffix;
-                        this.dataForm.linkList[linkSourceIndex].linkMap.AUDIO_LINK = audioUrl;
-                        return;
+                        this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK = audioUrl;
                     }
                 }
-                this.musicPlayer.musicName = this.dataForm.musicName;
-                this.musicPlayer.musicAudioUrl = this.dataForm.audioUrl;
-                this.musicPlayer.musicAuthor = this.dataForm.artist;
-                this.musicPlayer.percentage = 0;
+                this.initAplyer();
             },
             initDataForm() {
                 this.dataForm.musicName = null
                 this.dataForm.artist = null
                 this.dataForm.album = null
-                this.dataForm.audioUrl = null
-                this.dataForm.coverUrl = null
                 this.dataForm.sort = null
             },
             initSys: function () {
