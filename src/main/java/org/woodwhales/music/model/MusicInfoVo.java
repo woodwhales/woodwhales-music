@@ -11,7 +11,7 @@ import org.woodwhales.music.model.fun.MusicTypeAnnotation;
  */
 @Data
 @NoArgsConstructor
-public class MusicInfo {
+public class MusicInfoVo {
 
     private String title;
 
@@ -26,7 +26,7 @@ public class MusicInfo {
     
     private String ogg;
 
-    public MusicInfo(String title, String artist, String album, String audioUrl, String coverUrl) {
+    public MusicInfoVo(String title, String artist, String album, String audioUrl, String coverUrl) {
         this.title = title;
         this.artist = artist;
         this.album = album;

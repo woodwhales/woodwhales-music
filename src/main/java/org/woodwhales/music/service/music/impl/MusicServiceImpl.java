@@ -46,7 +46,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 	@Autowired
 	private MusicLinkServiceImpl musicLinkService;
 
-    public List<MusicInfo> listMusic() {
+    public List<MusicInfoVo> listMusic() {
 		List<Music> musicList = musicMapper.selectList(Wrappers.<Music>lambdaQuery()
 																.orderByAsc(Music::getStatus)
 																.orderByAsc(Music::getSort)
@@ -108,21 +108,21 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 	}
 
     public MusicListInfo exportMusic() {
-		List<MusicInfo> musicInfoList = listMusic();
-		if(CollectionUtils.isEmpty(musicInfoList)) {
+		List<MusicInfoVo> musicInfoVoList = listMusic();
+		if(CollectionUtils.isEmpty(musicInfoVoList)) {
 			return new MusicListInfo(StringUtils.EMPTY, 50);
 		}
 		StringBuilder stringBuilder = new StringBuilder("| 序号 | 音乐名称 | 专辑 | 作者 |\n");
 		stringBuilder.append("| --- | ------ | ------ | --- |\n");
 		Integer sequenceNo = 1;
-		for (MusicInfo musicInfo : musicInfoList) {
+		for (MusicInfoVo musicInfoVo : musicInfoVoList) {
 			stringBuilder.append(String.format("| %d | %s | %s | %s |\n",
 								sequenceNo++,
-								StringUtils.isBlank(musicInfo.getTitle()) ? StringUtils.EMPTY : musicInfo.getTitle(),
-							  	StringUtils.isBlank(musicInfo.getAlbum()) ? StringUtils.EMPTY : musicInfo.getAlbum(),
-							  	StringUtils.isBlank(musicInfo.getArtist()) ? StringUtils.EMPTY : musicInfo.getArtist()));
+								StringUtils.isBlank(musicInfoVo.getTitle()) ? StringUtils.EMPTY : musicInfoVo.getTitle(),
+							  	StringUtils.isBlank(musicInfoVo.getAlbum()) ? StringUtils.EMPTY : musicInfoVo.getAlbum(),
+							  	StringUtils.isBlank(musicInfoVo.getArtist()) ? StringUtils.EMPTY : musicInfoVo.getArtist()));
 		}
-		return new MusicListInfo(stringBuilder.toString(), musicInfoList.size() + 3);
+		return new MusicListInfo(stringBuilder.toString(), musicInfoVoList.size() + 3);
     }
 
 	private MusicSimpleInfo convertSimpleInfo(Music music, MusicInfoLinkContext musicInfoLinkContext) {
@@ -137,14 +137,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 		return musicSimpleInfo;
 	}
 
-	private MusicInfo convert(Music music, MusicInfoLinkContext musicInfoLinkContext) {
-    	MusicInfo musicInfo = new MusicInfo();
-    	musicInfo.setAlbum(music.getAlbum());
-    	musicInfo.setArtist(music.getArtist());
-    	musicInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
-    	musicInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
-    	musicInfo.setTitle(music.getTitle());
-    	return musicInfo;
+	private MusicInfoVo convert(Music music, MusicInfoLinkContext musicInfoLinkContext) {
+		MusicInfoVo musicInfoVo = new MusicInfoVo();
+    	musicInfoVo.setAlbum(music.getAlbum());
+    	musicInfoVo.setArtist(music.getArtist());
+    	musicInfoVo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
+    	musicInfoVo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
+    	musicInfoVo.setTitle(music.getTitle());
+    	return musicInfoVo;
     }
 
 	public void washLink() {

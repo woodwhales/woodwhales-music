@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.woodwhales.music.model.MusicInfo;
+import org.woodwhales.music.model.MusicInfoVo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class ViewController {
 
 	@GetMapping({"", "index"})
 	public String index(Model model) {
-		List<MusicInfo> musicInfos = musicService.listMusic();
-		model.addAttribute("musicInfoList", musicInfos);
+		List<MusicInfoVo> musicInfoVoList = musicService.listMusic();
+		model.addAttribute("musicInfoList", musicInfoVoList);
 		return "index";
 	}
 	
