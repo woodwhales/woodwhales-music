@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("admin")
 @RestController
-public class MusicController {
+public class MusicInfoController {
 	
 	@Autowired
 	private MusicServiceImpl musicService;

@@ -70,17 +70,17 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 				.orderByAsc(Music::getSort);
 		IPage<Music> pageResult = musicInfoMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
-		return LayuiPageVO.build(pageResult, music -> this.convertSimpleInfo(music, musicInfoLinkContext), MusicSimpleInfo::compare);
+		return LayuiPageVO.build(pageResult, musicInfo -> this.convertSimpleInfo(musicInfo, musicInfoLinkContext), MusicSimpleInfo::compare);
 	}
 
 	public MusicDetailInfo getMusicDetailInfoById(Long id) {
-		Music music = getMusicById(id);
-		if(Objects.isNull(music)) {
+		Music musicInfo = getMusicById(id);
+		if(Objects.isNull(musicInfo)) {
 			throw new RuntimeException("要访问的数据不存在");
 		}
 		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
-		BeanUtils.copyProperties(music, musicDetailInfo);
-		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(music.getId());
+		BeanUtils.copyProperties(musicInfo, musicDetailInfo);
+		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(musicInfo.getId());
 		musicDetailInfo.setLinkList(linkList);
 		return musicDetailInfo;
 	}
@@ -91,19 +91,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 
 	private Music getMusicById(Long id) {
 		Objects.requireNonNull(id, "不允许请求id为空");
-		Music music = musicInfoMapper.selectById(id);
-		return music;
+		return musicInfoMapper.selectById(id);
 	}
 
 	public boolean deleteMusic(MusicDeleteRequestBody requestBody) {
 		Long id = requestBody.getId();
-		Music music = getMusicById(id);
-		if(Objects.isNull(music)) {
+		Music musicInfo = this.getMusicById(id);
+		if(Objects.isNull(musicInfo)) {
 			throw new RuntimeException("要删除的数据不存在");
 		}
-		this.removeById(music.getId());
+		this.removeById(musicInfo.getId());
 		musicLinkService.remove(Wrappers.<MusicInfoLink>lambdaQuery()
-				.eq(MusicInfoLink::getMusicId, music.getId()));
+				.eq(MusicInfoLink::getMusicId, musicInfo.getId()));
 		return true;
 	}
 
@@ -125,12 +124,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 		return new MusicListInfo(stringBuilder.toString(), musicInfoVoList.size() + 3);
     }
 
-	private MusicSimpleInfo convertSimpleInfo(Music music, MusicInfoLinkContext musicInfoLinkContext) {
+	private MusicSimpleInfo convertSimpleInfo(Music musicInfo, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicSimpleInfo musicSimpleInfo = new MusicSimpleInfo();
-		BeanUtils.copyProperties(music, musicSimpleInfo);
-		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(music.getId()));
-		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));
-		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(music.getLinkStatus()));
+		BeanUtils.copyProperties(musicInfo, musicSimpleInfo);
+		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(musicInfo.getId()));
+		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(musicInfo.getId()));
+		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(musicInfo.getLinkStatus()));
 		if(StringUtils.isBlank(musicSimpleInfo.getAudioUrl())) {
 			musicSimpleInfo.setLinked(false);
 		}
@@ -147,7 +146,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
     	return musicInfoVo;
     }
 
-	public void washLink() {
+	/**
+	 * 洗旧music数据至 music_info 和 music_link
+	 */
+	public void washMusicToMusicInfo() {
 		List<Music> musicList = this.list();
 		List<MusicInfoLink> linkList = new ArrayList<>();
 		for (Music music : musicList) {
