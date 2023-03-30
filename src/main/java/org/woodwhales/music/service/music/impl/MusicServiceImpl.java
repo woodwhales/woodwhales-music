@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.entity.Music;
-import org.woodwhales.music.entity.MusicLink;
+import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.enums.StatusEnum;
-import org.woodwhales.music.mapper.MusicMapper;
+import org.woodwhales.music.mapper.MusicInfoMapper;
 import org.woodwhales.music.model.*;
 
 import java.time.Instant;
@@ -38,16 +38,16 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Primary
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
+public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, Music> {
 	
 	@Autowired
-	private MusicMapper musicMapper;
+	private MusicInfoMapper musicInfoMapper;
 
 	@Autowired
 	private MusicLinkServiceImpl musicLinkService;
 
     public List<MusicInfoVo> listMusic() {
-		List<Music> musicList = musicMapper.selectList(Wrappers.<Music>lambdaQuery()
+		List<Music> musicList = musicInfoMapper.selectList(Wrappers.<Music>lambdaQuery()
 																.orderByAsc(Music::getStatus)
 																.orderByAsc(Music::getSort)
 																.orderByDesc(Music::getGmtModified));
@@ -68,7 +68,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 								.like(Music::getAlbum, param.getSearchInfo()))
 				.and(i -> i.eq(Music::getStatus, StatusEnum.DEFAULT.code))
 				.orderByAsc(Music::getSort);
-		IPage<Music> pageResult = musicMapper.selectPage(page, wrapper);
+		IPage<Music> pageResult = musicInfoMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
 		return LayuiPageVO.build(pageResult, music -> this.convertSimpleInfo(music, musicInfoLinkContext), MusicSimpleInfo::compare);
 	}
@@ -91,7 +91,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 
 	private Music getMusicById(Long id) {
 		Objects.requireNonNull(id, "不允许请求id为空");
-		Music music = musicMapper.selectById(id);
+		Music music = musicInfoMapper.selectById(id);
 		return music;
 	}
 
@@ -102,8 +102,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 			throw new RuntimeException("要删除的数据不存在");
 		}
 		this.removeById(music.getId());
-		musicLinkService.remove(Wrappers.<MusicLink>lambdaQuery()
-				.eq(MusicLink::getMusicId, music.getId()));
+		musicLinkService.remove(Wrappers.<MusicInfoLink>lambdaQuery()
+				.eq(MusicInfoLink::getMusicId, music.getId()));
 		return true;
 	}
 
@@ -149,26 +149,26 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> {
 
 	public void washLink() {
 		List<Music> musicList = this.list();
-		List<MusicLink> linkList = new ArrayList<>();
+		List<MusicInfoLink> linkList = new ArrayList<>();
 		for (Music music : musicList) {
-			MusicLink audioLink = musicLinkService.getOne(Wrappers.<MusicLink>lambdaQuery()
-					.eq(MusicLink::getMusicId, music.getId())
-					.eq(MusicLink::getLinkType, MusicLinkTypeEnum.AUDIO_LINK.getCode())
-					.eq(MusicLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
+			MusicInfoLink audioLink = musicLinkService.getOne(Wrappers.<MusicInfoLink>lambdaQuery()
+					.eq(MusicInfoLink::getMusicId, music.getId())
+					.eq(MusicInfoLink::getLinkType, MusicLinkTypeEnum.AUDIO_LINK.getCode())
+					.eq(MusicInfoLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
 			if(Objects.isNull(audioLink)) {
-				audioLink = new MusicLink();
+				audioLink = new MusicInfoLink();
 			}
 			audioLink.setMusicId(music.getId());
 			audioLink.setLinkType(MusicLinkTypeEnum.AUDIO_LINK.getCode());
 			audioLink.setLinkSource(MusicLinkSourceEnum.GITHUB.getCode());
 			linkList.add(audioLink);
 
-			MusicLink coverLink = musicLinkService.getOne(Wrappers.<MusicLink>lambdaQuery()
-					.eq(MusicLink::getMusicId, music.getId())
-					.eq(MusicLink::getLinkType, MusicLinkTypeEnum.COVER_LINK.getCode())
-					.eq(MusicLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
+			MusicInfoLink coverLink = musicLinkService.getOne(Wrappers.<MusicInfoLink>lambdaQuery()
+					.eq(MusicInfoLink::getMusicId, music.getId())
+					.eq(MusicInfoLink::getLinkType, MusicLinkTypeEnum.COVER_LINK.getCode())
+					.eq(MusicInfoLink::getLinkSource, MusicLinkSourceEnum.GITHUB.getCode()));
 			if(Objects.isNull(coverLink)) {
-				coverLink = new MusicLink();
+				coverLink = new MusicInfoLink();
 			}
 			coverLink.setMusicId(music.getId());
 			coverLink.setLinkType(MusicLinkTypeEnum.COVER_LINK.getCode());

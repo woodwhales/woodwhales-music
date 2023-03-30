@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MusicLink implements Serializable {
+public class MusicInfoLink implements Serializable {
     
     private static final long serialVersionUID = 1L;
 

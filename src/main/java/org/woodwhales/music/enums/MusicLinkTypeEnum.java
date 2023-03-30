@@ -4,7 +4,7 @@ import cn.woodwhales.common.business.DataTool;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
-import org.woodwhales.music.entity.MusicLink;
+import org.woodwhales.music.entity.MusicInfoLink;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,10 +46,10 @@ public enum MusicLinkTypeEnum {
         return nameMap.get(linkName);
     }
 
-    public static Map<String, String> buildLinkMap(List<MusicLink> musicLinkList) {
+    public static Map<String, String> buildLinkMap(List<MusicInfoLink> musicInfoLinkList) {
         Map<String, String> result = new HashMap<>();
         for (MusicLinkTypeEnum linkTypeEnum : MusicLinkTypeEnum.values()) {
-            List<MusicLink> linkList = DataTool.filter(musicLinkList, link -> linkTypeEnum.match(link.getLinkType()));
+            List<MusicInfoLink> linkList = DataTool.filter(musicInfoLinkList, link -> linkTypeEnum.match(link.getLinkType()));
             if(CollectionUtils.isNotEmpty(linkList)) {
                 result.put(linkTypeEnum.name(), linkList.get(0).getLinkUrl());
             } else {

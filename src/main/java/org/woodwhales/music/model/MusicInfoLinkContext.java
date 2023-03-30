@@ -6,7 +6,7 @@ import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.woodwhales.music.config.AppConfig;
 import org.woodwhales.music.entity.Music;
-import org.woodwhales.music.entity.MusicLink;
+import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.service.music.impl.MusicLinkServiceImpl;
 
@@ -19,9 +19,9 @@ import java.util.Map;
  */
 @Data
 public class MusicInfoLinkContext {
-    private List<Music> musicList;
-    private Map<Long, MusicLink> audioUrlMapping;
-    private Map<Long, MusicLink> coverUrlMapping;
+    private List<Music> musicInfoList;
+    private Map<Long, MusicInfoLink> audioUrlMapping;
+    private Map<Long, MusicInfoLink> coverUrlMapping;
 
     public String getCoverUrl(Long musicId) {
         if(this.coverUrlMapping.containsKey(musicId)) {
@@ -39,20 +39,20 @@ public class MusicInfoLinkContext {
         }
     }
 
-    public MusicInfoLinkContext(List<Music> musicList) {
-        this.musicList = musicList;
-        if(CollectionUtils.isNotEmpty(this.musicList)) {
+    public MusicInfoLinkContext(List<Music> musicInfoList) {
+        this.musicInfoList = musicInfoList;
+        if(CollectionUtils.isNotEmpty(this.musicInfoList)) {
             AppConfig appConfig = SpringUtil.getBean(AppConfig.class);
             MusicLinkServiceImpl musicLinkService = SpringUtil.getBean(MusicLinkServiceImpl.class);
-            List<MusicLink> musicLinkList = musicLinkService.getLinkInfoListByMusicIds(DataTool.toList(this.musicList, Music::getId));
-            this.audioUrlMapping = DataTool.toMap(DataTool.filter(musicLinkList,
+            List<MusicInfoLink> musicInfoLinkList = musicLinkService.getLinkInfoListByMusicIds(DataTool.toList(this.musicInfoList, Music::getId));
+            this.audioUrlMapping = DataTool.toMap(DataTool.filter(musicInfoLinkList,
                             musicLink -> MusicLinkTypeEnum.AUDIO_LINK.match(musicLink.getLinkType())
                                     && appConfig.getMusicLinkSourceEnum().match(musicLink.getLinkSource())),
-                    MusicLink::getMusicId);
-            this.coverUrlMapping = DataTool.toMap(DataTool.filter(musicLinkList,
+                    MusicInfoLink::getMusicId);
+            this.coverUrlMapping = DataTool.toMap(DataTool.filter(musicInfoLinkList,
                             musicLink -> MusicLinkTypeEnum.COVER_LINK.match(musicLink.getLinkType())
                                     && appConfig.getMusicLinkSourceEnum().match(musicLink.getLinkSource())),
-                    MusicLink::getMusicId);
+                    MusicInfoLink::getMusicId);
         } else {
             this.audioUrlMapping = Collections.emptyMap();
             this.coverUrlMapping = Collections.emptyMap();

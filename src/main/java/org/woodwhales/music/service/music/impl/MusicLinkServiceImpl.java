@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.config.AppConfig;
 import org.woodwhales.music.entity.Music;
-import org.woodwhales.music.entity.MusicLink;
+import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
-import org.woodwhales.music.mapper.MusicLinkMapper;
+import org.woodwhales.music.mapper.MusicInfoLinkMapper;
 import org.woodwhales.music.model.MusicInfoLinkDetailVo;
 
 import java.util.*;
@@ -26,53 +26,53 @@ import java.util.*;
 @Primary
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MusicLinkServiceImpl extends ServiceImpl<MusicLinkMapper, MusicLink> {
+public class MusicLinkServiceImpl extends ServiceImpl<MusicInfoLinkMapper, MusicInfoLink> {
 
     @Autowired
     private AppConfig appConfig;
 
-    public List<MusicLink> getLinkInfoListByMusicId(Long musicId) {
-        return this.list(Wrappers.<MusicLink>lambdaQuery()
-                .eq(MusicLink::getMusicId, musicId));
+    public List<MusicInfoLink> getLinkInfoListByMusicId(Long musicId) {
+        return this.list(Wrappers.<MusicInfoLink>lambdaQuery()
+                .eq(MusicInfoLink::getMusicId, musicId));
     }
 
-    public List<MusicLink> getLinkInfoListByMusicIds(List<Long> musicIdList) {
+    public List<MusicInfoLink> getLinkInfoListByMusicIds(List<Long> musicIdList) {
         if(CollectionUtils.isEmpty(musicIdList)) {
             return Collections.emptyList();
         }
-        return this.list(Wrappers.<MusicLink>lambdaQuery()
-                .eq(MusicLink::getLinkSource, appConfig.getMusicLinkSourceEnum().getCode())
-                .in(MusicLink::getMusicId, musicIdList));
+        return this.list(Wrappers.<MusicInfoLink>lambdaQuery()
+                .eq(MusicInfoLink::getLinkSource, appConfig.getMusicLinkSourceEnum().getCode())
+                .in(MusicInfoLink::getMusicId, musicIdList));
     }
 
     public List<MusicInfoLinkDetailVo> getLinkDetailVoListByMusicId(Long musicId) {
-        List<MusicLink> list = this.list(Wrappers.<MusicLink>lambdaQuery()
-                .eq(MusicLink::getMusicId, musicId));
+        List<MusicInfoLink> list = this.list(Wrappers.<MusicInfoLink>lambdaQuery()
+                .eq(MusicInfoLink::getMusicId, musicId));
         List<MusicInfoLinkDetailVo> result = new ArrayList<>();
-        Map<Integer, List<MusicLink>> mapping = DataTool.groupingBy(list, MusicLink::getLinkSource);
+        Map<Integer, List<MusicInfoLink>> mapping = DataTool.groupingBy(list, MusicInfoLink::getLinkSource);
         for (MusicLinkSourceEnum musicLinkSourceEnum : MusicLinkSourceEnum.values()) {
-            List<MusicLink> musicLinkList = mapping.get(musicLinkSourceEnum.getCode());
+            List<MusicInfoLink> musicInfoLinkList = mapping.get(musicLinkSourceEnum.getCode());
             MusicInfoLinkDetailVo detailVo = new MusicInfoLinkDetailVo();
             detailVo.setLinkSource(musicLinkSourceEnum.getCode());
             detailVo.setLinkSourceName(musicLinkSourceEnum.getDesc());
-            detailVo.setLinkMap(MusicLinkTypeEnum.buildLinkMap(musicLinkList));
+            detailVo.setLinkMap(MusicLinkTypeEnum.buildLinkMap(musicInfoLinkList));
             result.add(detailVo);
         }
         return result;
     }
 
     public void createOrUpdate(Music music, List<MusicInfoLinkDetailVo> linkList) {
-        List<MusicLink> musicLinkList = this.list(Wrappers.<MusicLink>lambdaQuery()
-                .eq(MusicLink::getMusicId, music.getId()));
-        if(CollectionUtils.isEmpty(linkList) && CollectionUtils.isNotEmpty(musicLinkList)) {
-            this.removeByIds(DataTool.toList(musicLinkList, MusicLink::getId));
+        List<MusicInfoLink> musicInfoLinkList = this.list(Wrappers.<MusicInfoLink>lambdaQuery()
+                .eq(MusicInfoLink::getMusicId, music.getId()));
+        if(CollectionUtils.isEmpty(linkList) && CollectionUtils.isNotEmpty(musicInfoLinkList)) {
+            this.removeByIds(DataTool.toList(musicInfoLinkList, MusicInfoLink::getId));
             return;
         }
 
         Date now = new Date();
-        Map<String, MusicLink> mapping = DataTool.toMap(musicLinkList, musicLink ->
+        Map<String, MusicInfoLink> mapping = DataTool.toMap(musicInfoLinkList, musicLink ->
                 musicLink.getLinkSource() + "_" + MusicLinkTypeEnum.ofCode(musicLink.getLinkType()).name());
-        List<MusicLink> willSaveOrUpdateList = new ArrayList<>();
+        List<MusicInfoLink> willSaveOrUpdateList = new ArrayList<>();
 
         for (MusicInfoLinkDetailVo detailVo : linkList) {
             Integer linkSource = detailVo.getLinkSource();
@@ -81,17 +81,17 @@ public class MusicLinkServiceImpl extends ServiceImpl<MusicLinkMapper, MusicLink
                 String linkTypeEnumName = entry.getKey();
                 String linkUrl = entry.getValue();
                 String key = linkSource + "_" + linkTypeEnumName;
-                MusicLink musicLink = mapping.get(key);
-                if(Objects.isNull(musicLink)) {
-                    musicLink = new MusicLink();
-                    musicLink.setMusicId(music.getId());
-                    musicLink.setLinkType(MusicLinkTypeEnum.getMusicLinkTypeEnum(linkTypeEnumName).getCode());
-                    musicLink.setLinkSource(linkSource);
-                    musicLink.setGmtCreated(now);
+                MusicInfoLink musicInfoLink = mapping.get(key);
+                if(Objects.isNull(musicInfoLink)) {
+                    musicInfoLink = new MusicInfoLink();
+                    musicInfoLink.setMusicId(music.getId());
+                    musicInfoLink.setLinkType(MusicLinkTypeEnum.getMusicLinkTypeEnum(linkTypeEnumName).getCode());
+                    musicInfoLink.setLinkSource(linkSource);
+                    musicInfoLink.setGmtCreated(now);
                 }
-                musicLink.setGmtModified(now);
-                musicLink.setLinkUrl(linkUrl);
-                willSaveOrUpdateList.add(musicLink);
+                musicInfoLink.setGmtModified(now);
+                musicInfoLink.setLinkUrl(linkUrl);
+                willSaveOrUpdateList.add(musicInfoLink);
             });
         }
 
