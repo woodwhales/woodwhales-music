@@ -19,9 +19,14 @@
 
 ### 3.6.0
 
-- **与旧版本库表不兼容，请使用 doc 中的sql进行初始化操作**
+- **与低于 v3.6.0 版本的库表不兼容，请使用 doc 中的 [open_music（适用高于 v3.6.0 版本）.sql](doc/sql/open_music（适用高于 v3.6.0 版本）.sql) 进行库表数据初始化操作**
+
+    > 低于  v3.6.0 版本的库表数据初始化 SQL： [open_music（适用低于 v3.6.0 版本）.sql](doc/sql/open_music（open_music（适用低于 v3.6.0 版本）.sql) 
+
 - 后台 UI 页面全面升级（使用 vue + element-ui 进行重构）
+
 - 列表查询、新增、编辑音乐页面增加播放 APlayer 播放器，可支持实时听音乐
+
 - 音乐链接支持 github、alist 来源
 
 ### 3.5.5
@@ -61,7 +66,7 @@ dev 环境账号密码：admin / admin
 
 ### 首页
 
-![](doc/images/admin-index.png)
+![](doc/images/v3.6.0/admin-index.png)
 
 音乐名称为<font color='gree'>绿色字体</font>，表示该音乐**已关联**音频链接和专辑封面链接。
 
@@ -73,7 +78,7 @@ dev 环境账号密码：admin / admin
 
 > 支持：网易云、QQ 音乐、虾米音乐（平台已关闭）
 
-![](doc/images/admin-add.png)
+![](doc/images/v3.6.0/admin-add.png)
 
 ### 解析
 
