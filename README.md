@@ -195,8 +195,8 @@ class 为：`page-container`的 html 源码
 | 83 | 我们的时光 | 吉姆餐厅 | 赵雷 |
 | 84 | Women of Ireland | Song of the Irish Whistle | Joanie Madden |
 | 85 | Traveling Light | Traveling Light | Joel Hanson |
-| 86 | 笑看风云 (Live) | 汪小敏 笑看风云 | 汪小敏 |
-| 87 | 醉赤壁 | JJ陆 | 林俊杰 |
+| 86 | 醉赤壁 | JJ陆 | 林俊杰 |
+| 87 | 笑看风云 (Live) | 汪小敏 笑看风云 | 汪小敏 |
 | 88 | 再度重相逢 | 泪桥 | 伍佰 & China Blue |
 | 89 | The Way Of Life | 오! 필승 봉순영 OST | 吴硕浚 |
 | 90 | 世界这么大还是遇见你 (清新的小女孩（中文版）) | 清新的小女孩（中文版） | 程响 |
@@ -294,8 +294,8 @@ class 为：`page-container`的 html 源码
 | 182 | River Flows In You | Kuschelklassik Piano Dreams, Vol. 2 | Martin Ermen |
 | 183 | 倔强 | 神的孩子都在跳舞 | 五月天 |
 | 184 | 牛仔很忙 | 我很忙 | 周杰伦 |
-| 185 | Last Reunion | Lament of Valkyrie (Epicmusicvn Series) | Peter Roe |
-| 186 | 日晷之梦 | 幸福时光 精选辑 | Kevin Kern |
+| 185 | 日晷之梦 | 幸福时光 精选辑 | Kevin Kern |
+| 186 | Last Reunion | Lament of Valkyrie (Epicmusicvn Series) | Peter Roe |
 | 187 | 起风了 | 起风了 | 吴青峰 |
 | 188 | Concerning Hobbits | The Lord of the Rings: The Fellowship of the Ring (Original Motion Picture Soundtrack) | Howard Shore |
 | 189 | 叱咤红人 | 相依为命: 20年精彩印记 | 陈小春 |
