@@ -38,13 +38,13 @@
                         <div id="aplayer"></div>
                     </el-form-item>
                     <el-form-item label="名称" prop="musicName">
-                        <el-input v-model="dataForm.musicName" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                        <el-input v-model.trim="dataForm.musicName" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                     </el-form-item>
                     <el-form-item label="作者" prop="artist">
-                        <el-input v-model="dataForm.artist" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                        <el-input v-model.trim="dataForm.artist" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                     </el-form-item>
                     <el-form-item label="专辑" prop="album">
-                        <el-input v-model="dataForm.album"></el-input>
+                        <el-input v-model.trim="dataForm.album"></el-input>
                     </el-form-item>
                     <el-row :gutter="20">
                         <el-col :span="8">
@@ -81,7 +81,7 @@
                                 <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="链接">
-                                            <el-input v-model="link.linkMap.AUDIO_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                            <el-input v-model.trim="link.linkMap.AUDIO_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="1">
@@ -91,7 +91,7 @@
                                 <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="封面">
-                                            <el-input v-model="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                            <el-input v-model.trim="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                                         </el-form-item>
                                         <el-form-item label="仓库链接">
                                             <div>仓库01-https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store01/</div>
