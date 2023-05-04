@@ -13,6 +13,8 @@ spring:
   profiles:
     active: '@profiles.active@'
 logging:
+  file:
+    path: /data/logs/woodwhales-music/application.log
   level:
     org.woodwhales.music: debug
 music:
