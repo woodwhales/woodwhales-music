@@ -19,7 +19,7 @@
 
 ### 3.6.0
 
-- **与低于 v3.6.0 版本的库表不兼容，请使用 doc 中的 [open_music（适用高于 v3.6.0 版本）.sql](./doc/sql/open_music（适用高于 v3.6.0 版本）.sql) 进行库表数据初始化操作**
+- **与低于 v3.6.0 版本的库表不兼容，请使用 doc 中的 [open_music_适用高于 v3.6.0 版本.sql](./doc/sql/open_music（适用高于 v3.6.0 版本）.sql) 进行库表数据初始化操作**
 
     > 低于  v3.6.0 版本的库表数据初始化 SQL： [open_music（适用低于 v3.6.0 版本）.sql](./doc/sql/open_music（open_music（适用低于 v3.6.0 版本）.sql) 
 
