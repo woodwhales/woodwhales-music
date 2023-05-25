@@ -7,14 +7,14 @@ server:
 spring:
   application:
     name: woodwhales-music
-    jackson:
-      date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   profiles:
     active: '@profiles.active@'
 logging:
-  file:
-    path: /data/logs/woodwhales-music/application.log
   level:
     org.woodwhales.music: debug
 music:

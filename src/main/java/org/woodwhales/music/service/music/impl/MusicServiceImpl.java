@@ -28,6 +28,7 @@ import org.woodwhales.music.model.*;
 import java.time.Instant;
 import java.util.*;
 
+import static org.apache.commons.collections4.CollectionUtils.size;
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
 /**
@@ -109,7 +110,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
     public MusicListInfo exportMusic() {
 		List<MusicInfoVo> musicInfoVoList = listMusic();
 		if(CollectionUtils.isEmpty(musicInfoVoList)) {
-			return new MusicListInfo(StringUtils.EMPTY, 50);
+			return new MusicListInfo(size(musicInfoVoList), StringUtils.EMPTY, 50);
 		}
 		StringBuilder stringBuilder = new StringBuilder("| 序号 | 音乐名称 | 专辑 | 作者 |\n");
 		stringBuilder.append("| --- | ------ | ------ | --- |\n");
@@ -121,7 +122,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 							  	StringUtils.isBlank(musicInfoVo.getAlbum()) ? StringUtils.EMPTY : musicInfoVo.getAlbum(),
 							  	StringUtils.isBlank(musicInfoVo.getArtist()) ? StringUtils.EMPTY : musicInfoVo.getArtist()));
 		}
-		return new MusicListInfo(stringBuilder.toString(), musicInfoVoList.size() + 3);
+		return new MusicListInfo(size(musicInfoVoList), stringBuilder.toString(), musicInfoVoList.size() + 3);
     }
 
 	private MusicSimpleInfo convertSimpleInfo(MusicInfo musicInfo, MusicInfoLinkContext musicInfoLinkContext) {

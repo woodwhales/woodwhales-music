@@ -1,18 +1,10 @@
 spring:
-  thymeleaf:
-    cache: false
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/open_music?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     # driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root1234
-logging:
-  level:
-    org.woodwhales.music: DEBUG
 system:
   username: admin
   password: $2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm

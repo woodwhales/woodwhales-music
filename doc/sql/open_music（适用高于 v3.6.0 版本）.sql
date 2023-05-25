@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `music` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
 
--- 正在导出表  open_music.music 的数据：~638 rows (大约)
+-- 正在导出表  open_music.music 的数据：~637 rows (大约)
 DELETE FROM `music`;
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2022-07-06 23:19:10'),
@@ -692,7 +692,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~693 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~681 rows (大约)
 DELETE FROM `music_info`;
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-03-29 14:45:02', 1),
@@ -1374,7 +1374,8 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(726, '花-喜納昌吉', '喜納昌吉 / チャンプルーズ', 'The Celebrations', 332, 0, '2023-05-25 09:46:24', '2023-05-25 09:46:46', 1),
 	(727, 'それが大事（最重要的事）', '大事MANブラザーズバンド / 渡辺禎史', 'それが大事', 99, 0, '2023-05-25 09:48:33', '2023-05-25 09:48:33', 1),
 	(728, '萍聚', '李翊君 / 李富兴', '萍聚/珍重再见', 226, 0, '2023-05-25 10:04:13', '2023-05-25 10:25:38', 1),
-	(729, '莉莉安-宋冬野', '宋冬野', '安和桥北', 302, 0, '2023-05-25 10:07:15', '2023-05-25 10:25:13', 1);
+	(729, '莉莉安-宋冬野', '宋冬野', '安和桥北', 302, 0, '2023-05-25 10:07:15', '2023-05-25 10:25:13', 1),
+	(731, '爱你在心口难开-高胜美', '高胜美', '怀念老歌七', 448, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 DROP TABLE IF EXISTS `music_info_link`;
@@ -1391,7 +1392,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~2,767 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~2,771 rows (大约)
 DELETE FROM `music_info_link`;
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-03-29 14:45:02', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
@@ -4153,7 +4154,11 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(2757, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 0, 0, 730),
 	(2758, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 0, 730),
 	(2759, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 0, 1, 730),
-	(2760, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 1, 730);
+	(2760, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 1, 730),
+	(2761, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', NULL, 0, 0, 731),
+	(2762, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', NULL, 1, 0, 731),
+	(2763, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%88%B1%E4%BD%A0%E5%9C%A8%E5%BF%83%E5%8F%A3%E9%9A%BE%E5%BC%80-%E9%AB%98%E8%83%9C%E7%BE%8E.m4a?sign=xnKJvN0tGJp0jAnH9ggCZOQookqpZQbbsIUwPMmc2h0=:0', 0, 1, 731),
+	(2764, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%88%B1%E4%BD%A0%E5%9C%A8%E5%BF%83%E5%8F%A3%E9%9A%BE%E5%BC%80-%E9%AB%98%E8%83%9C%E7%BE%8E.jpg?sign=UWUAds_rKLBsOF_3r8d8DinYZngsdWHT5hh6VKX6-7w=:0', 1, 1, 731);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

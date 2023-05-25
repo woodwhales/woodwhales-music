@@ -32,14 +32,17 @@
 
             <el-row style="margin-bottom: 12px;">
                 <el-form label-width="80px" :model="dataForm">
+                    <el-form-item label="收录总量">
+                        <span style="color: #606266">{{dataForm.totalCount}}</span>
+                    </el-form-item>
+
                     <el-form-item label="歌曲列表">
                         <el-input v-model="dataForm.musicInfoList"
                                 type="textarea"
-                                readonly="true"
+                                :readonly=true
                                 autosize>
                         </el-input>
                     </el-form-item>
-
                 </el-form>
             </el-row>
             <el-row style="text-align: center; margin-bottom: 12px;">
@@ -61,7 +64,8 @@
         data: function() {
             return {
                 dataForm: {
-                    musicInfoList: null
+                    musicInfoList: null,
+                    totalCount: null
                 },
                 sys: {
                     dateYear: new Date().getFullYear()
@@ -89,6 +93,7 @@
                     .then(response => {
                         if(response.data.code === 0) {
                             this.dataForm.musicInfoList = response.data.data.musicList;
+                            this.dataForm.totalCount = response.data.data.totalCount;
                         } else {
                             this.$message.error(response.data.msg);
                         }
