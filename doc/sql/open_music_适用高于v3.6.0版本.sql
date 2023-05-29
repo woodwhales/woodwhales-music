@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.31-log - MySQL Community Server (GPL)
--- 服务器操作系统:                      Linux
+-- 服务器版本:                        5.7.27-log - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  12.4.0.6659
 -- --------------------------------------------------------
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~686 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~680 rows (大约)
 DELETE FROM `music_info`;
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-03-29 14:45:02', 1),
@@ -717,13 +717,7 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(726, '花-喜納昌吉', '喜納昌吉 / チャンプルーズ', 'The Celebrations', 332, 0, '2023-05-25 09:46:24', '2023-05-25 09:46:46', 1),
 	(727, 'それが大事（最重要的事）', '大事MANブラザーズバンド / 渡辺禎史', 'それが大事', 99, 0, '2023-05-25 09:48:33', '2023-05-25 09:48:33', 1),
 	(728, '萍聚', '李翊君 / 李富兴', '萍聚/珍重再见', 226, 0, '2023-05-25 10:04:13', '2023-05-25 10:25:38', 1),
-	(729, '莉莉安-宋冬野', '宋冬野', '安和桥北', 302, 0, '2023-05-25 10:07:15', '2023-05-25 10:25:13', 1),
-	(731, '爱你在心口难开-高胜美', '高胜美', '怀念老歌七', 448, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 1),
-	(732, 'Seven Lonely Days', 'Georgia Gibbs', 'Remember When? - 25 Golden Memories', 334, 0, '2023-05-26 16:11:03', '2023-05-26 16:37:26', 1),
-	(733, '给我一个吻-杨子姗', '杨子姗', '重返20岁 电影原声带', 271, 0, '2023-05-26 16:13:36', '2023-05-26 16:38:32', 1),
-	(734, 'Hard to Sleep', 'Gracie Abrams', 'This Is What It Feels Like', 156, 0, '2023-05-26 16:16:48', '2023-05-26 16:37:12', 1),
-	(735, '给我一个吻-张露', '张露', '群星会 38 张露 (珍藏系列)', 478, 0, '2023-05-26 16:30:45', '2023-05-26 16:37:45', 1),
-	(736, '被遗忘的时光-蔡琴', '蔡琴', '出塞曲', 349, 0, '2023-05-26 16:35:16', '2023-05-26 16:38:10', 1);
+	(729, '莉莉安-宋冬野', '宋冬野', '安和桥北', 302, 0, '2023-05-25 10:07:15', '2023-05-25 10:25:13', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 DROP TABLE IF EXISTS `music_info_link`;
@@ -740,7 +734,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~2,791 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~2,760 rows (大约)
 DELETE FROM `music_info_link`;
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-03-29 14:45:02', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
@@ -3502,31 +3496,7 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(2757, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 0, 0, 730),
 	(2758, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 0, 730),
 	(2759, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 0, 1, 730),
-	(2760, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 1, 730),
-	(2761, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', NULL, 0, 0, 731),
-	(2762, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', NULL, 1, 0, 731),
-	(2763, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%88%B1%E4%BD%A0%E5%9C%A8%E5%BF%83%E5%8F%A3%E9%9A%BE%E5%BC%80-%E9%AB%98%E8%83%9C%E7%BE%8E.m4a?sign=xnKJvN0tGJp0jAnH9ggCZOQookqpZQbbsIUwPMmc2h0=:0', 0, 1, 731),
-	(2764, 0, '2023-05-25 11:05:15', '2023-05-25 11:05:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%88%B1%E4%BD%A0%E5%9C%A8%E5%BF%83%E5%8F%A3%E9%9A%BE%E5%BC%80-%E9%AB%98%E8%83%9C%E7%BE%8E.jpg?sign=UWUAds_rKLBsOF_3r8d8DinYZngsdWHT5hh6VKX6-7w=:0', 1, 1, 731),
-	(2765, 0, '2023-05-26 16:11:03', '2023-05-26 16:37:26', NULL, 0, 0, 732),
-	(2766, 0, '2023-05-26 16:11:03', '2023-05-26 16:37:26', NULL, 1, 0, 732),
-	(2767, 0, '2023-05-26 16:11:03', '2023-05-26 16:37:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/Seven%20Lonely%20Days.mp3?sign=4vwnbkDz_7ztzp24HoMYUs2xTgfkCPpQO53mbI4OGvM=:0', 0, 1, 732),
-	(2768, 0, '2023-05-26 16:11:03', '2023-05-26 16:37:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/Seven%20Lonely%20Days.jpg?sign=NpfMEJ2d2w1M-bU5XrGaxDJP98VRgLMGrNX_lKo8i-o=:0', 1, 1, 732),
-	(2769, 0, '2023-05-26 16:13:36', '2023-05-26 16:38:32', NULL, 0, 0, 733),
-	(2770, 0, '2023-05-26 16:13:36', '2023-05-26 16:38:32', NULL, 1, 0, 733),
-	(2771, 0, '2023-05-26 16:13:36', '2023-05-26 16:38:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%BB%99%E6%88%91%E4%B8%80%E4%B8%AA%E5%90%BB-%E6%9D%A8%E5%AD%90%E5%A7%97.m4a?sign=5s5hSPlS3Q4N28ehANQ4vQT_351dTQeIey0mBkPUN7E=:0', 0, 1, 733),
-	(2772, 0, '2023-05-26 16:13:36', '2023-05-26 16:38:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%BB%99%E6%88%91%E4%B8%80%E4%B8%AA%E5%90%BB-%E6%9D%A8%E5%AD%90%E5%A7%97.jpg?sign=8OS8qnSfme05zFgVvlvK9ypItEMC9aUM-lYYn7YJ2Xc=:0', 1, 1, 733),
-	(2773, 0, '2023-05-26 16:16:48', '2023-05-26 16:37:12', NULL, 0, 0, 734),
-	(2774, 0, '2023-05-26 16:16:48', '2023-05-26 16:37:12', NULL, 1, 0, 734),
-	(2775, 0, '2023-05-26 16:16:48', '2023-05-26 16:37:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/Hard%20to%20Sleep.m4a?sign=etjxq33YFVeV3Eiu_T4Ur7UYe5S5U1TvnlMkRf0L2CU=:0', 0, 1, 734),
-	(2776, 0, '2023-05-26 16:16:48', '2023-05-26 16:37:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/Hard%20to%20Sleep.jpg?sign=4l5i9PnN9KAIDuRR2Jf3sSYV4J4v0rsiUStpkxchFxk=:0', 1, 1, 734),
-	(2777, 0, '2023-05-26 16:30:45', '2023-05-26 16:37:45', NULL, 0, 0, 735),
-	(2778, 0, '2023-05-26 16:30:45', '2023-05-26 16:37:45', NULL, 1, 0, 735),
-	(2779, 0, '2023-05-26 16:30:45', '2023-05-26 16:37:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%BB%99%E6%88%91%E4%B8%80%E4%B8%AA%E5%90%BB-%E5%BC%A0%E9%9C%B2.m4a?sign=TFTBhvcJakvu96oLDIEwqSxUmdAFknSHYwYVZS877S8=:0', 0, 1, 735),
-	(2780, 0, '2023-05-26 16:30:45', '2023-05-26 16:37:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E7%BB%99%E6%88%91%E4%B8%80%E4%B8%AA%E5%90%BB-%E5%BC%A0%E9%9C%B2.jpg?sign=oawiKZ6kiVT6Vtm3aoBnSNYqLr9KQ0OCKO4jYtXHmcc=:0', 1, 1, 735),
-	(2781, 0, '2023-05-26 16:35:16', '2023-05-26 16:38:10', NULL, 0, 0, 736),
-	(2782, 0, '2023-05-26 16:35:16', '2023-05-26 16:38:10', NULL, 1, 0, 736),
-	(2783, 0, '2023-05-26 16:35:16', '2023-05-26 16:38:10', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E6%97%B6%E5%85%89-%E8%94%A1%E7%90%B4.m4a?sign=-STE1NspbOnhpqYld6s3FX1yOfHJyINh4EbYoDTH_iQ=:0', 0, 1, 736),
-	(2784, 0, '2023-05-26 16:35:16', '2023-05-26 16:38:10', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store07/019/%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E6%97%B6%E5%85%89-%E8%94%A1%E7%90%B4.jpg?sign=D4U1kc19feordKcY03GNlTj_SLzL7ytct7iO8H_MYqo=:0', 1, 1, 736);
+	(2760, 2, '2023-05-25 10:18:56', '2023-05-25 02:34:03', NULL, 1, 1, 730);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
