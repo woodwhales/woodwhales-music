@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/webjars/element-ui/lib/theme-chalk/index.css}">
 </head>
 <body>
 <div id="app">
@@ -53,11 +53,9 @@
     </el-row>
 </div>
 </body>
-<!-- import Vue before Element -->
-<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script th:src="@{/webjars/vue/dist/vue.js}"></script>
+<script th:src="@{/webjars/element-ui/lib/index.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     new Vue({
         el: '#app',
