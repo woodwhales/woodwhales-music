@@ -4,7 +4,7 @@
 
 > 基于 SpringBoot 的开源超简洁音乐播放器
 
-<center><b>在线播放：<a href="https://music.icoders.cn">https://music.icoders.cn</a></b></center>
+<div align=center>在线播放：<a href="https://music.icoders.cn">https://music.icoders.cn</a></div>
 
 环境要求：JDK1.8
 
