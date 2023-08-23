@@ -152,48 +152,6 @@ class 为：`page-container`的 html 源码
 | 38 | The Long And Winding Street | Mellow Candle | Robert de Boron |
 | 39 | 安和桥 | 安和桥北 | 宋冬野 |
 | 40 | The Cello Song | The Piano Guys: Hits Volume 1 | Steven Sharp Nelson |
-| 41 | 当我想你的时候 | 当我想你的时候 | 汪峰 || 序号 | 音乐名称 | 专辑 | 作者 || 序号 | 音乐名称 | 专辑 | 作者 |
-| --- | ------ | ------ | --- |
-| 1 | Someone Like You | Someone Like You | Adele |
-| 2 | いつも何度でも | 千と千尋の神隠し サウンドトラック | 木村弓 |
-| 3 | 容易受伤的女人(国) | 阿菲正传 | 王菲 |
-| 4 | Glad You Came | The Wanted (Special Edition) | The Wanted |
-| 5 | 红日 | 红日 | 李克勤 |
-| 6 | Goodbye | Goodbye Lullaby | Avril Lavigne |
-| 7 | Imagine | Imagine: John Lennon | John Lennon |
-| 8 | 后来 | 我等你 | 刘若英 |
-| 9 | Comptine D'un Autre Été, L'après-Midi | Le Fabuleux Destin d'Amélie Poulain | Yann Tiersen |
-| 10 | 听说 | Rene | 刘若英 |
-| 11 | 光亮 | 光亮 | 周深 |
-| 12 | Journey | Serenity | Capo Productions |
-| 13 | 惊蛰 | 二十四节气 | 音阙诗听 / 王梓钰 |
-| 14 | 孤勇者 | 孤勇者 | 陈奕迅 |
-| 15 | 关于郑州的记忆 | 《你好，郑州》 | 李志 |
-| 16 | 哀歌 (M-5) | 犬夜叉 音楽篇 | 和田薫 |
-| 17 | 野狼disco | 野狼disco | 宝石Gem |
-| 18 | 童年 | 罗大佑自选辑 | 罗大佑 |
-| 19 | For the Love of a Princess | Braveheart (Original Motion Picture Soundtrack) (Expanded Edition) | James Horner |
-| 20 | 老街 | 小黄 | 李荣浩 |
-| 21 | 恋曲1990 | 昨日情歌74-89 | 罗大佑 |
-| 22 | 光阴的故事 | 命中注定最犀利 | 罗大佑 |
-| 23 | 金风玉露 | 金风玉露 | 旅行新蜜蜂 |
-| 24 | 情非得已 | 遇见100%幸福1 烈爱红盘 | 庾澄庆 |
-| 25 | 你要相信这不是最后一天 | 你要相信这不是最后一天 | 华晨宇 |
-| 26 | 蜀绣 | 蜀绣 | 李宇春 |
-| 27 | Jasmine Flower | Love Ballads | Kenny G |
-| 28 | 赤伶 | 赤伶 | 邓寓君(等什么君) |
-| 29 | 追梦赤子心 | 追梦痴子心 | GALA |
-| 30 | 太阳照常升起 | 太阳照常升起 电影原声大碟 | 久石譲 |
-| 31 | Destiny | 마녀유희 OST | 李成旭 |
-| 32 | 1965 | 1965 | Zella Day |
-| 33 | A Thousand Years | A Thousand Years | Christina Perri |
-| 34 | Come By the Hills | Song of the Irish Whistle 2 | Joanie Madden |
-| 35 | La Valse D'Amelie | Le Fabuleux destin d'Amélie Poulain | Yann Tiersen |
-| 36 | 理想三旬 | 浓烟下的诗歌电台 | 陈鸿宇 |
-| 37 | 东风破 | 叶惠美 | 周杰伦 |
-| 38 | The Long And Winding Street | Mellow Candle | Robert de Boron |
-| 39 | 安和桥 | 安和桥北 | 宋冬野 |
-| 40 | The Cello Song | The Piano Guys: Hits Volume 1 | Steven Sharp Nelson |
 | 41 | 当我想你的时候 | 当我想你的时候 | 汪峰 |
 | 42 | 明天，你好 | Lost & Found 去寻找 | 牛奶咖啡 |
 | 43 | 芒种 | 二十四节气 | 音阙诗听 / 赵方婧 |
