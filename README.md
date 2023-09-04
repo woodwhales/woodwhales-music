@@ -153,7 +153,7 @@ dev 环境账号密码：admin / admin
 
 2. 选择要解析的平台，粘贴 html 源码，点击解析：
 
-    ![](doc/images/admin-add-parse.png)
+![](doc/images/admin-add-parse.png)
 
 #### 网易云
 
