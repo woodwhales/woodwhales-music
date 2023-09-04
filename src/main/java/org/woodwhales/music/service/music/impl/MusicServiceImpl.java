@@ -67,8 +67,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 								.like(MusicInfo::getArtist, param.getSearchInfo())
 								.or()
 								.like(MusicInfo::getAlbum, param.getSearchInfo()))
-				.and(i -> i.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code))
-				.orderByAsc(MusicInfo::getSort);
+				.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code)
+				.orderByAsc(MusicInfo::getSort)
+				.orderByDesc(MusicInfo::getId);
 		IPage<MusicInfo> pageResult = musicInfoMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
 		return LayuiPageVO.build(pageResult, musicInfo -> this.convertSimpleInfo(musicInfo, musicInfoLinkContext), MusicSimpleInfo::compare);
