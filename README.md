@@ -15,6 +15,40 @@
 - SQL 文件：woodwhales-music/doc/sql/open_music.sql
 - 配置文件：woodwhales-music/src/main/resources/dev/application-dev.yml
 
+## 编译打包
+
+执行 mvn 命令打包：
+
+```shell
+mvn clean install -Pdev
+```
+
+上述 -P 表示打包 dev 环境参数配置文件。
+
+目前项目中的 pom.xml 配置文件中只指定了 dev 和 prod，开发者可根据需要指定其他环境参数：
+
+> 如果配置生产环境，则需要在 woodwhales-music/src/main/resources/ 中创建 prod 文件夹，并创建 application-prod.yml 配置文件，打包时 -P 参数指定为：prod
+
+```xml
+<profiles>
+    <profile>
+        <id>dev</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <profiles.active>dev</profiles.active>
+        </properties>
+    </profile>
+    <profile>
+        <id>prod</id>
+        <properties>
+            <profiles.active>prod</profiles.active>
+        </properties>
+    </profile>
+</profiles>
+```
+
 ## 功能说明
 
 ### 3.6.0
