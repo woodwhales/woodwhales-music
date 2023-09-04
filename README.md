@@ -10,12 +10,43 @@
 
 技术栈：springboot + thymeleaf + layui + spring security + jsoup + mybatis plus + mysql 
 
-配置说明：
+## 1. 系统说明
 
-- SQL 文件：woodwhales-music/doc/sql/open_music.sql
-- 配置文件：woodwhales-music/src/main/resources/dev/application-dev.yml
+### 1.1 配置文件
 
-## 编译打包
+#### 1.1.1 SQL 文件
+
+文件位置：
+
+- woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本.sql
+- woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本_只含库表结构.sql
+- woodwhales-music/doc/sql/open_music_适用低于v3.6.0版本.sql
+
+文件说明：
+
+- 不建议使用低于 v3.6.0版本的 SQL 文件
+- open_music_适用高于v3.6.0版本.sql 文件中包含下章节中的歌单链接，开发者可导入后从后台页面做批量删除操作。
+- 只导入库表结构，则使用：open_music_适用高于v3.6.0版本_只含库表结构.sql
+
+#### 1.1.2 系统配置
+
+文件位置：
+
+- woodwhales-music/src/main/resources/dev/application-dev.yml
+
+文件说明：
+
+- 配置文件使用 yml 语法，其中 system.username 和 system.password 分别表示后台系统的系统账号名和密码。
+
+    ```yaml
+    system:
+      username: xxx
+      password: xxx
+    ```
+
+    开发者可以使用 org.woodwhales.music.security.PasswordTest#test 单元测试代码，生成自定义的后台系统账号和密码
+
+### 1.2 编译打包
 
 执行 mvn 命令打包：
 
@@ -49,7 +80,7 @@ mvn clean install -Pdev
 </profiles>
 ```
 
-## 功能说明
+## 2. 功能说明
 
 ### 3.6.0
 
@@ -86,19 +117,19 @@ mvn clean install -Pdev
 -   后台系统可添加、编辑、删除音乐，并对音乐列表排序。
 -   添加音乐：可从音乐平台 html 动态解析，支持：网易云、QQ云音乐、虾米音乐（平台已关闭）。
 
-## 前台
+## 3. 前台
 
 访问端口：http://127.0.0.1:8084/music/
 
 ![](doc/images/index.png)
 
-## 后台
+## 4. 后台
 
 访问端口：http://127.0.0.1:8084/music/admin/
 
 dev 环境账号密码：admin / admin
 
-### 首页
+### 4.1 首页
 
 ![](doc/images/v3.6.0/admin-index.png)
 
@@ -106,15 +137,17 @@ dev 环境账号密码：admin / admin
 
 音乐名称为<font color='red'>红色字体</font>，表示该音乐**未关联**音频链接和专辑封面链接。
 
-### 添加/编辑
+### 4.1 添加/编辑
 
 太懒了，加了个解析音乐平台的解析器，一旦解析成功，自动填充：音乐名称、作者、专辑名称。
 
 > 支持：网易云、QQ 音乐、虾米音乐（平台已关闭）
+>
+> 建议开发者自行搭建 [alist](https://github.com/alist-org/alist) 并维护音乐源文件
 
 ![](doc/images/v3.6.0/admin-add.png)
 
-### 解析
+### 4.2 解析
 
 1. 复制要解析的 html 源码。
 
@@ -140,7 +173,7 @@ class 为：`page-container`的 html 源码
 
 ![](doc/images/admin-add-xiami.png)
 
-## 歌单
+## 5. 歌单
 
 已收录 766 首音乐
 
