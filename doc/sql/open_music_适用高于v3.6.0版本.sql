@@ -688,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~930 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~932 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1619,7 +1619,9 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(977, 'Dusk Till Dawn', 'Kurt Hugo Schneider / Kirsten Collins / Blake Rose', 'Piano Acoustic Covers Vol 2', 894, 0, '2023-09-08 14:46:28', '2023-09-25 11:21:49', 1),
 	(978, 'Something Just Like This', 'The Chainsmokers / Coldplay', 'Something Just Like This', 1, 2, '2023-09-09 23:45:56', '2023-09-09 15:46:02', 0),
 	(979, 'Take Me Home Country Roads-John Denver', 'John Denver', 'Take Me Home: The John Denver Story', 700, 0, '2023-09-09 23:46:46', '2023-09-25 11:32:41', 1),
-	(980, 'Alone-Alan Walker', 'Alan Walker', 'Alone', 669, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 1);
+	(980, 'Alone-Alan Walker', 'Alan Walker', 'Alone', 669, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 1),
+	(981, 'Last Dance (Live)-五条人', '五条人', '乐队的夏天2 第7期', 56, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', 1),
+	(982, '阿珍爱上了阿强-五条人', '五条人', '梦幻丽莎发廊', 34, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 CREATE TABLE IF NOT EXISTS `music_info_link` (
@@ -1635,7 +1637,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~3,618 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~3,626 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5396,7 +5398,15 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(3757, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', NULL, 0, 0, 980),
 	(3758, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', NULL, 1, 0, 980),
 	(3759, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/Alone-Alan%20Walker.mp3?sign=St2ds8zze4kUt9lZSb9RUzHcOW0cqJ_9BlU-UBPFpEU=:0', 0, 1, 980),
-	(3760, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/Alone-Alan%20Walker.jpg?sign=4kqzes-AjU3oILNuWyKGNWOLMsykz7UpgEVX0zRKDkw=:0', 1, 1, 980);
+	(3760, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/Alone-Alan%20Walker.jpg?sign=4kqzes-AjU3oILNuWyKGNWOLMsykz7UpgEVX0zRKDkw=:0', 1, 1, 980),
+	(3761, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', NULL, 0, 0, 981),
+	(3762, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', NULL, 1, 0, 981),
+	(3763, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/Last%20Dance%20(Live)-%E4%BA%94%E6%9D%A1%E4%BA%BA.m4a?sign=rUR_CcZIHTzCzhAJD4a8ePgIGsJ20J-W2SYPhF85mxo=:0', 0, 1, 981),
+	(3764, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/Last%20Dance%20(Live)-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=Tzd2FsJ86cpc39GCKcd5yBps_bhYOdEG0TgXvii2d40=:0', 1, 1, 981),
+	(3765, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', NULL, 0, 0, 982),
+	(3766, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', NULL, 1, 0, 982),
+	(3767, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/%E9%98%BF%E7%8F%8D%E7%88%B1%E4%B8%8A%E4%BA%86%E9%98%BF%E5%BC%BA-%E4%BA%94%E6%9D%A1%E4%BA%BA.m4a?sign=KyjUV4x2rLzYRfIXe-1rHKcsQH3b-fMlPNBJi0wcPl8=:0', 0, 1, 982),
+	(3768, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/%E9%98%BF%E7%8F%8D%E7%88%B1%E4%B8%8A%E4%BA%86%E9%98%BF%E5%BC%BA-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=TfBeirfuSS1YjFVjdAzse0DzAJUa8pTWxrZOPY-T7jU=:0', 1, 1, 982);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
