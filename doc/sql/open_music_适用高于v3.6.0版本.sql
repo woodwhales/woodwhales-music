@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.31-log - MySQL Community Server (GPL)
+-- 服务器版本:                        8.0.27 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
 -- HeidiSQL 版本:                  12.5.0.6677
 -- --------------------------------------------------------
@@ -16,23 +16,23 @@
 
 
 -- 导出 open_music 的数据库结构
-CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `open_music`;
 
 -- 导出  表 open_music.music 结构
 CREATE TABLE IF NOT EXISTS `music` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
   `title` varchar(200) NOT NULL COMMENT '音乐名称标题（音乐名称）',
   `artist` varchar(200) DEFAULT NULL COMMENT '作者',
   `album` varchar(180) DEFAULT NULL COMMENT '专辑',
   `audio_url` varchar(500) DEFAULT NULL COMMENT '音乐链接地址',
   `cover_url` varchar(500) DEFAULT NULL COMMENT '音乐封面',
-  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `sort` int DEFAULT '1' COMMENT '排序',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
   `gmt_created` datetime DEFAULT NULL COMMENT '创建时间',
   `gmt_modified` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐表';
 
 -- 正在导出表  open_music.music 的数据：~637 rows (大约)
 INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
@@ -676,19 +676,19 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 
 -- 导出  表 open_music.music_info 结构
 CREATE TABLE IF NOT EXISTS `music_info` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
-  `title` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '音乐名称标题（音乐名称）',
-  `artist` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者',
-  `album` varchar(180) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '专辑',
-  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
+  `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '音乐名称标题（音乐名称）',
+  `artist` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者',
+  `album` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '专辑',
+  `sort` int DEFAULT '1' COMMENT '排序',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
   `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `link_status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '链接填充状态：0-未填充链接，1-已填充链接',
+  `link_status` int unsigned NOT NULL DEFAULT '0' COMMENT '链接填充状态：0-未填充链接，1-已填充链接',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~932 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~942 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1621,23 +1621,33 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(979, 'Take Me Home Country Roads-John Denver', 'John Denver', 'Take Me Home: The John Denver Story', 700, 0, '2023-09-09 23:46:46', '2023-09-25 11:32:41', 1),
 	(980, 'Alone-Alan Walker', 'Alan Walker', 'Alone', 669, 0, '2023-09-09 23:50:30', '2023-09-25 11:32:23', 1),
 	(981, 'Last Dance (Live)-五条人', '五条人', '乐队的夏天2 第7期', 56, 0, '2023-11-08 18:44:26', '2023-11-09 09:05:54', 1),
-	(982, '阿珍爱上了阿强-五条人', '五条人', '梦幻丽莎发廊', 34, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 1);
+	(982, '阿珍爱上了阿强-五条人', '五条人', '梦幻丽莎发廊', 34, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 1),
+	(983, '我要你(电影《驴得水》主题曲)-任素汐', '任素汐', '我要你', 621, 0, '2023-12-04 09:07:51', '2023-12-04 11:00:31', 1),
+	(984, '王招君 (你看你拉住我的模样)(《寻汉计》电影推广曲)-任素汐', '任素汐', '王招君 (你看你拉住我的模样)', 584, 0, '2023-12-04 09:08:23', '2023-12-04 10:59:11', 1),
+	(985, '道山靓仔-五条人', '五条人', '县城记', 169, 0, '2023-12-04 09:09:43', '2023-12-04 10:57:41', 1),
+	(986, '问题出现我再告诉大家-五条人', '五条人', '县城记', 114, 0, '2023-12-04 09:11:49', '2023-12-04 11:00:48', 1),
+	(987, '无论你多怪异我还是会喜欢你-江惠莲', '江惠莲', '刺客伍六七 动画歌曲OST', 108, 0, '2023-12-04 09:23:39', '2023-12-04 11:00:15', 1),
+	(988, '我想和你一起去海边-江惠莲', '江惠莲', '伍六七 原声大碟', 455, 0, '2023-12-04 09:23:55', '2023-12-04 10:59:55', 1),
+	(989, '耍猴儿(百鬼夜行) (唢呐版)-Harry来了', 'Harry来了', '未知', 856, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', 1),
+	(990, 'Maga-Such a Whore（Maga remix）-Maga', 'Maga', 'Such a Whore', 558, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', 1),
+	(991, 'Anacreon-Bear McCreary', 'Bear McCreary', 'Foundation: Season 1 (Apple TV+ Original Series Soundtrack)', 695, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', 1),
+	(992, '浮光 (The History)-Jannik', 'Jannik', '浮光 (The History)', 899, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 CREATE TABLE IF NOT EXISTS `music_info_link` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
   `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `link_url` varchar(1024) DEFAULT NULL,
-  `link_type` int(11) NOT NULL DEFAULT '0' COMMENT '链接类型：0-音频，1-封面',
-  `link_source` int(11) NOT NULL DEFAULT '0' COMMENT '链接来源：0-github，1-alist',
-  `music_id` bigint(20) unsigned NOT NULL COMMENT 'music表id',
+  `link_type` int NOT NULL DEFAULT '0' COMMENT '链接类型：0-音频，1-封面',
+  `link_source` int NOT NULL DEFAULT '0' COMMENT '链接来源：0-github，1-alist',
+  `music_id` bigint unsigned NOT NULL COMMENT 'music表id',
   PRIMARY KEY (`id`),
   KEY `music_id` (`music_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐链接信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~3,626 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~3,711 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5406,7 +5416,47 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(3765, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', NULL, 0, 0, 982),
 	(3766, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', NULL, 1, 0, 982),
 	(3767, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/%E9%98%BF%E7%8F%8D%E7%88%B1%E4%B8%8A%E4%BA%86%E9%98%BF%E5%BC%BA-%E4%BA%94%E6%9D%A1%E4%BA%BA.m4a?sign=KyjUV4x2rLzYRfIXe-1rHKcsQH3b-fMlPNBJi0wcPl8=:0', 0, 1, 982),
-	(3768, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/%E9%98%BF%E7%8F%8D%E7%88%B1%E4%B8%8A%E4%BA%86%E9%98%BF%E5%BC%BA-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=TfBeirfuSS1YjFVjdAzse0DzAJUa8pTWxrZOPY-T7jU=:0', 1, 1, 982);
+	(3768, 0, '2023-11-09 08:57:12', '2023-11-09 09:05:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/02/%E9%98%BF%E7%8F%8D%E7%88%B1%E4%B8%8A%E4%BA%86%E9%98%BF%E5%BC%BA-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=TfBeirfuSS1YjFVjdAzse0DzAJUa8pTWxrZOPY-T7jU=:0', 1, 1, 982),
+	(3769, 0, '2023-12-04 09:07:51', '2023-12-04 11:00:31', NULL, 0, 0, 983),
+	(3770, 0, '2023-12-04 09:07:51', '2023-12-04 11:00:31', NULL, 1, 0, 983),
+	(3771, 0, '2023-12-04 09:07:51', '2023-12-04 11:00:31', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%88%91%E8%A6%81%E4%BD%A0-%E4%BB%BB%E7%B4%A0%E6%B1%90.m4a?sign=vYYExK30JrA9amjQE7oiIPNTdyEUdkc86OmDJGlyTtA=:0', 0, 1, 983),
+	(3772, 0, '2023-12-04 09:07:51', '2023-12-04 11:00:31', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%88%91%E8%A6%81%E4%BD%A0-%E4%BB%BB%E7%B4%A0%E6%B1%90.jpg?sign=riwlbCYZ1Z056xJWsCkyI5b0ErRr-m0YZwD0FMHLKe0=:0', 1, 1, 983),
+	(3773, 0, '2023-12-04 09:08:23', '2023-12-04 10:59:11', NULL, 0, 0, 984),
+	(3774, 0, '2023-12-04 09:08:23', '2023-12-04 10:59:11', NULL, 1, 0, 984),
+	(3775, 0, '2023-12-04 09:08:23', '2023-12-04 10:59:11', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E7%8E%8B%E6%8B%9B%E5%90%9B%20(%E4%BD%A0%E7%9C%8B%E4%BD%A0%E6%8B%89%E4%BD%8F%E6%88%91%E7%9A%84%E6%A8%A1%E6%A0%B7)-%E4%BB%BB%E7%B4%A0%E6%B1%90.m4a?sign=VskLzRjNShyc-iBcmrlqjEfXhnwj4nRLzsVQilyxHJg=:0', 0, 1, 984),
+	(3776, 0, '2023-12-04 09:08:23', '2023-12-04 10:59:11', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E7%8E%8B%E6%8B%9B%E5%90%9B%20(%E4%BD%A0%E7%9C%8B%E4%BD%A0%E6%8B%89%E4%BD%8F%E6%88%91%E7%9A%84%E6%A8%A1%E6%A0%B7)-%E4%BB%BB%E7%B4%A0%E6%B1%90.jpg?sign=eIQ9pqvzBqq7oOyGJZOmNmjg0S1ciwP98V90fVpm6mU=:0https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E7%8E%8B%E6%8B%9B%E5%90%9B%20(%E4%BD%A0%E7%9C%8B%E4%BD%A0%E6%8B%89%E4%BD%8F%E6%88%91%E7%9A%84%E6%A8%A1%E6%A0%B7)-%E4%BB%BB%E7%B4%A0%E6%B1%90.jpg?sign=eIQ9pqvzBqq7oOyGJZOmNmjg0S1ciwP98V90fVpm6mU=:0', 1, 1, 984),
+	(3777, 0, '2023-12-04 09:09:43', '2023-12-04 10:57:41', NULL, 0, 0, 985),
+	(3778, 0, '2023-12-04 09:09:43', '2023-12-04 10:57:41', NULL, 1, 0, 985),
+	(3779, 0, '2023-12-04 09:09:43', '2023-12-04 10:57:41', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/%E9%81%93%E5%B1%B1%E9%9D%93%E4%BB%94-%E4%BA%94%E6%9D%A1%E4%BA%BA.m4a?sign=dawpwIS5j8LQhfzFDVeF4UO2chN8_NXU_bP9A4uIEIs=:0', 0, 1, 985),
+	(3780, 0, '2023-12-04 09:09:43', '2023-12-04 10:57:41', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/%E9%81%93%E5%B1%B1%E9%9D%93%E4%BB%94-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=6vlr7BC5tFjiX5tguM1oNpULdD0R9iT_TnPFMnVvYno=:0', 1, 1, 985),
+	(3781, 0, '2023-12-04 09:11:49', '2023-12-04 11:00:48', NULL, 0, 0, 986),
+	(3782, 0, '2023-12-04 09:11:49', '2023-12-04 11:00:48', NULL, 1, 0, 986),
+	(3783, 0, '2023-12-04 09:11:49', '2023-12-04 11:00:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E9%97%AE%E9%A2%98%E5%87%BA%E7%8E%B0%E6%88%91%E5%86%8D%E5%91%8A%E8%AF%89%E5%A4%A7%E5%AE%B6-%E4%BA%94%E6%9D%A1%E4%BA%BA.m4a?sign=iVN7q536NcjSYPPxtSeqUXZB3S1jDOy_Tb-k1LZ2a80=:0', 0, 1, 986),
+	(3784, 0, '2023-12-04 09:11:49', '2023-12-04 11:00:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E9%97%AE%E9%A2%98%E5%87%BA%E7%8E%B0%E6%88%91%E5%86%8D%E5%91%8A%E8%AF%89%E5%A4%A7%E5%AE%B6-%E4%BA%94%E6%9D%A1%E4%BA%BA.jpg?sign=_6TGwUsu7xwh90YT50wBuA8kvAC7_-Bx-yXpNo9FFg8=:0', 1, 1, 986),
+	(3785, 0, '2023-12-04 09:23:39', '2023-12-04 11:00:15', NULL, 0, 0, 987),
+	(3786, 0, '2023-12-04 09:23:39', '2023-12-04 11:00:15', NULL, 1, 0, 987),
+	(3787, 0, '2023-12-04 09:23:39', '2023-12-04 11:00:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%97%A0%E8%AE%BA%E4%BD%A0%E5%A4%9A%E6%80%AA%E5%BC%82%E6%88%91%E8%BF%98%E6%98%AF%E4%BC%9A%E5%96%9C%E6%AC%A2%E4%BD%A0-%E6%B1%9F%E6%83%A0%E8%8E%B2.m4a?sign=ghjcOsrCgWSx21NJgfd9SsF-gukFq24gduBnKhMu87M=:0', 0, 1, 987),
+	(3788, 0, '2023-12-04 09:23:39', '2023-12-04 11:00:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%97%A0%E8%AE%BA%E4%BD%A0%E5%A4%9A%E6%80%AA%E5%BC%82%E6%88%91%E8%BF%98%E6%98%AF%E4%BC%9A%E5%96%9C%E6%AC%A2%E4%BD%A0-%E6%B1%9F%E6%83%A0%E8%8E%B2.jpg?sign=zQ9mmPRKP2Ej_6iqcpneU-iwmXzp53tNr1xh1Nls-58=:0', 1, 1, 987),
+	(3789, 0, '2023-12-04 09:23:55', '2023-12-04 10:59:55', NULL, 0, 0, 988),
+	(3790, 0, '2023-12-04 09:23:55', '2023-12-04 10:59:55', NULL, 1, 0, 988),
+	(3791, 0, '2023-12-04 09:23:55', '2023-12-04 10:59:55', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%88%91%E6%83%B3%E5%92%8C%E4%BD%A0%E4%B8%80%E8%B5%B7%E5%8E%BB%E6%B5%B7%E8%BE%B9-%E6%B1%9F%E6%83%A0%E8%8E%B2.m4a?sign=Uj6r_uQUCCImXW5fxxCJyXIAaWusCYM8T2uJqvV3Y8I=:0', 0, 1, 988),
+	(3792, 0, '2023-12-04 09:23:55', '2023-12-04 10:59:55', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/05/%E6%88%91%E6%83%B3%E5%92%8C%E4%BD%A0%E4%B8%80%E8%B5%B7%E5%8E%BB%E6%B5%B7%E8%BE%B9-%E6%B1%9F%E6%83%A0%E8%8E%B2.jpg?sign=ETOauPlq-CH0eA-mHL-5yNSLvjNHLxfvKXKxnKy6Jo4=:0', 1, 1, 988),
+	(3793, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', NULL, 0, 0, 989),
+	(3794, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', NULL, 1, 0, 989),
+	(3795, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E8%80%8D%E7%8C%B4%E5%84%BF(%E7%99%BE%E9%AC%BC%E5%A4%9C%E8%A1%8C)%20(%E5%94%A2%E5%91%90%E7%89%88)-Harry%E6%9D%A5%E4%BA%86.m4a?sign=EsqYSCW-9U2FA4FS8PeY5uz9GcqjRwIjDnilEZpUV14=:0', 0, 1, 989),
+	(3796, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E8%80%8D%E7%8C%B4%E5%84%BF(%E7%99%BE%E9%AC%BC%E5%A4%9C%E8%A1%8C)%20(%E5%94%A2%E5%91%90%E7%89%88)-Harry%E6%9D%A5%E4%BA%86.jpg?sign=Qa4Ei7IepXrmrY6qxLDuFL8lrKsRKn5sDferDQlCj80=:0', 1, 1, 989),
+	(3797, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', NULL, 0, 0, 990),
+	(3798, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', NULL, 1, 0, 990),
+	(3799, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/Maga-Such%20a%20Whore%EF%BC%88Maga%20remix%EF%BC%89.m4a?sign=WPq4u0yTrbZ__DlxEGdkTN77Gwwqh_uG83lq1zRZ4vQ=:0', 0, 1, 990),
+	(3800, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/Maga-Such%20a%20Whore%EF%BC%88Maga%20remix%EF%BC%89.jpg?sign=1tyC5Aq4T7u0QUtH_fVrmiAQ2iMlOi3yTn_qPmzaIzM=:0', 1, 1, 990),
+	(3801, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', NULL, 0, 0, 991),
+	(3802, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', NULL, 1, 0, 991),
+	(3803, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/Anacreon-Bear%20McCreary.m4a?sign=GqbK3gHUnlp01fHoFszx9li9NKM1LzxObHNqPjX8dL8=:0', 0, 1, 991),
+	(3804, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/03/Anacreon-Bear%20McCreary.jpg?sign=39NBs-iUVQMytTaAx8c24Cc4L0DEBN9ioTSW0WYc5nE=:0', 1, 1, 991),
+	(3805, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', NULL, 0, 0, 992),
+	(3806, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', NULL, 1, 0, 992),
+	(3807, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E6%B5%AE%E5%85%89%20(The%20History)-Jannik.m4a?sign=zkUZtTtx-IveENt78umC7dbzoHcW_5qYOhHsznE0qig=:0', 0, 1, 992),
+	(3808, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E6%B5%AE%E5%85%89%20(The%20History)-Jannik.jpg?sign=R5LVYFNPqqjVFrNLNhfHYqYfcEXwGfB2cEzKj0VCH_Q=:0', 1, 1, 992);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
