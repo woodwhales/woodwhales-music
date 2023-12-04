@@ -59,7 +59,7 @@
 <script th:inline="javascript">
     $(function () {
 
-        showCopyRight('木鲸鱼', 'https://www.woodwhales.cn/');
+        showCopyRight([[${authorName}]], [[${authorWebsite}]]);
 
         //获取窗口宽度
         let winWidth;

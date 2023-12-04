@@ -31,6 +31,8 @@ public class ViewController {
 		model.addAttribute("musicInfoList", musicInfoVoList);
 		model.addAttribute("githubUrl", appConfig.getGithubUrl());
 		model.addAttribute("githubShow", appConfig.isGithubShow());
+		model.addAttribute("authorName", appConfig.getAuthorName());
+		model.addAttribute("authorWebsite", appConfig.getAuthorWebsite());
 		return "index";
 	}
 	

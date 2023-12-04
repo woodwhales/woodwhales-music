@@ -33,6 +33,18 @@ public class AppConfig {
     @Value("${github.show:true}")
     public boolean githubShow;
 
+    /**
+     * 作者名称
+     */
+    @Value("${author.name:woodwhales}")
+    public String authorName;
+
+    /**
+     * 作者网站
+     */
+    @Value("${author.website:https://www.woodwhales.cn}")
+    public String authorWebsite;
+
     public MusicLinkSourceEnum getMusicLinkSourceEnum() {
         return MusicLinkSourceEnum.ofCode(this.getMusicLinkSource());
     }
