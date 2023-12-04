@@ -47,7 +47,7 @@
                     <div id="aplayer"></div>
                 </el-row>
                 <el-row style="margin-bottom: 12px;">
-                    <el-table :data="sys.tableData" style="width: 100%">
+                    <el-table :data="sys.tableData" ref="tableList" style="width: 100%" @sort-change="sortChange">
                         <el-table-column
                                 fixed
                                 prop="title"
@@ -77,14 +77,17 @@
                         <el-table-column
                                 prop="sort"
                                 label="排序"
-                                width="60">
+                                :sortable="'custom'"
+                                width="100">
                         </el-table-column>
                         <el-table-column
                                 prop="gmtCreated"
+                                :sortable="'custom'"
                                 label="创建时间">
                         </el-table-column>
                         <el-table-column
                                 prop="gmtModified"
+                                :sortable="'custom'"
                                 label="更新时间">
                         </el-table-column>
                         <el-table-column
@@ -133,6 +136,10 @@
                     total: 0,
                     currentPage: 1,
                     pageSize: 10,
+                    orderBy: {
+                        prop: null,
+                        order: null
+                    },
                     tableData: []
                 },
                 musicPlayer: {
@@ -150,6 +157,16 @@
             this.onQuery();
         },
         methods: {
+            sortChange(column) {
+                if(!column.order) {
+                    this.sys.orderBy.prop = null
+                    this.sys.orderBy.order = null
+                } else {
+                    this.sys.orderBy.prop = column.prop
+                    this.sys.orderBy.order = column.order
+                }
+                this.onQuery()
+            },
             initAplyer() {
                 if(this.musicPlayer.musicAudioUrl !== null
                     || this.musicPlayer.musicCoverUrl !== '') {
@@ -182,6 +199,7 @@
                 location.href = './export'
             },
             onReset: function () {
+                this.$refs.tableList.clearSort()
                 this.initSys();
                 this.initQueryForm();
                 this.onQuery();
@@ -194,13 +212,16 @@
                 this.sys.total = 0
                 this.sys.currentPage = 1
                 this.sys.pageSize = 10
+                this.sys.orderBy.prop = null
+                this.sys.orderBy.order = null
                 this.sys.tableData = []
             },
             onQuery: function () {
                 axios.post('./pageMusic', {
                     searchInfo: this.queryForm.searchInfo,
                     page: this.sys.currentPage,
-                    limit: this.sys.pageSize
+                    limit: this.sys.pageSize,
+                    orderBy: this.sys.orderBy
                 })
                 .then(response => {
                     if(response.data.code === 0) {

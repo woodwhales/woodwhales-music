@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.woodwhales.music.controller.param.*;
+import org.woodwhales.music.controller.param.MusicCreateOrUpdateRequestBody;
+import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
+import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.enums.LinkStatusEnum;
@@ -26,7 +28,10 @@ import org.woodwhales.music.mapper.MusicInfoMapper;
 import org.woodwhales.music.model.*;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import static org.apache.commons.collections4.CollectionUtils.size;
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
@@ -67,9 +72,22 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 								.like(MusicInfo::getArtist, param.getSearchInfo())
 								.or()
 								.like(MusicInfo::getAlbum, param.getSearchInfo()))
-				.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code)
-				.orderByAsc(MusicInfo::getSort)
-				.orderByDesc(MusicInfo::getId);
+				.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code);
+		if(Objects.isNull(param.getOrderBy())) {
+			wrapper.orderByAsc(MusicInfo::getSort)
+					.orderByDesc(MusicInfo::getId);
+		} else {
+			PageMusicQueryRequestParam.OrderBy orderBy = param.getOrderBy();
+			boolean asc = StringUtils.equals("ascending", orderBy.getOrder());
+			if(StringUtils.equalsAnyIgnoreCase("gmtModified", orderBy.getProp())) {
+				wrapper.orderBy(true, asc, MusicInfo::getGmtModified);
+			} else if(StringUtils.equalsAnyIgnoreCase("gmtCreated", orderBy.getProp())) {
+				wrapper.orderBy(true, asc, MusicInfo::getGmtCreated);
+			} else if(StringUtils.equalsAnyIgnoreCase("sort", orderBy.getProp())) {
+				wrapper.orderBy(true, asc, MusicInfo::getSort);
+			}
+		}
+
 		IPage<MusicInfo> pageResult = musicInfoMapper.selectPage(page, wrapper);
 		MusicInfoLinkContext musicInfoLinkContext = new MusicInfoLinkContext(pageResult.getRecords());
 		return LayuiPageVO.build(pageResult, musicInfo -> this.convertSimpleInfo(musicInfo, musicInfoLinkContext), MusicSimpleInfo::compare);

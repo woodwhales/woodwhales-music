@@ -16,4 +16,12 @@ public class PageMusicQueryRequestParam extends PageQueryParam {
 
     private String searchInfo;
 
+    private OrderBy orderBy;
+
+    @Data
+    public static class OrderBy {
+        private String order;
+        private String prop;
+    }
+
 }

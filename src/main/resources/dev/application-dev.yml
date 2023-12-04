@@ -8,3 +8,7 @@ spring:
 system:
   username: admin
   password: $2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm
+music:
+  link:
+    # 链接来源：0-github，1-alist
+    source: 1
