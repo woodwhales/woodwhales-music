@@ -21,6 +21,18 @@ public class AppConfig {
     @Value("${music.link.source}")
     public Integer musicLinkSource;
 
+    /**
+     * github链接
+     */
+    @Value("${github.url:https://github.com/woodwhales/woodwhales-music}")
+    public String githubUrl;
+
+    /**
+     * 是否展示 GitHub Corners
+     */
+    @Value("${github.show:true}")
+    public boolean githubShow;
+
     public MusicLinkSourceEnum getMusicLinkSourceEnum() {
         return MusicLinkSourceEnum.ofCode(this.getMusicLinkSource());
     }

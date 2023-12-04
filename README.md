@@ -82,6 +82,12 @@ mvn clean install -Pdev
 
 ## 2. 功能说明
 
+### 3.6.1
+
+- 后台音乐列表支持可排序列：排序、创建时间、更新时间
+- 首页增加增加 GitHub Corners，可以通过 application.yml 自定义配置：是否展示，github 链接
+- 修复开发环境后台列表查询数据接口响应失败
+
 ### 3.6.0
 
 - **与低于 v3.6.0 版本的库表不兼容，请使用 doc 中的 [open_music_适用高于v3.6.0版本.sql](./doc/sql/open_music_适用高于v3.6.0版本.sql) 进行库表数据初始化操作**

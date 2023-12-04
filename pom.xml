@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>org.woodwhales</groupId>
 	<artifactId>woodwhales-music</artifactId>
-	<version>3.6.0</version>
+	<version>3.6.1</version>
 	<name>woodwhales-music</name>
 	<description>woodwhales-music</description>
 
