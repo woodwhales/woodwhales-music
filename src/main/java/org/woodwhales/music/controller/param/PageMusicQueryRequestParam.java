@@ -4,6 +4,8 @@ import cn.woodwhales.common.model.param.PageQueryParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Objects;
+
 /**
  * @projectName: woodwhales-music
  * @author: woodwhales
@@ -22,6 +24,11 @@ public class PageMusicQueryRequestParam extends PageQueryParam {
     public static class OrderBy {
         private String order;
         private String prop;
+    }
+
+    public boolean emptyOrderBy() {
+        return Objects.isNull(this.orderBy) || (Objects.isNull(this.orderBy.order) &&
+                Objects.isNull(this.orderBy.prop));
     }
 
 }

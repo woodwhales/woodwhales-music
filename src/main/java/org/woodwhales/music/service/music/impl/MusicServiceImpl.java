@@ -71,9 +71,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 								.or()
 								.like(MusicInfo::getArtist, param.getSearchInfo())
 								.or()
-								.like(MusicInfo::getAlbum, param.getSearchInfo()))
-				.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code);
-		if(Objects.isNull(param.getOrderBy())) {
+								.like(MusicInfo::getAlbum, param.getSearchInfo()));
+		wrapper.eq(MusicInfo::getStatus, StatusEnum.DEFAULT.code);
+		if(param.emptyOrderBy()) {
 			wrapper.orderByAsc(MusicInfo::getSort)
 					.orderByDesc(MusicInfo::getId);
 		} else {
