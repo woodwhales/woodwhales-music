@@ -688,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~942 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~954 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1631,7 +1631,19 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(989, '耍猴儿(百鬼夜行) (唢呐版)-Harry来了', 'Harry来了', '未知', 856, 0, '2023-12-04 09:37:22', '2023-12-04 10:58:45', 1),
 	(990, 'Maga-Such a Whore（Maga remix）-Maga', 'Maga', 'Such a Whore', 558, 0, '2023-12-04 09:41:19', '2023-12-04 10:58:03', 1),
 	(991, 'Anacreon-Bear McCreary', 'Bear McCreary', 'Foundation: Season 1 (Apple TV+ Original Series Soundtrack)', 695, 0, '2023-12-04 09:44:59', '2023-12-04 10:58:22', 1),
-	(992, '浮光 (The History)-Jannik', 'Jannik', '浮光 (The History)', 899, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 1);
+	(992, '浮光 (The History)-Jannik', 'Jannik', '浮光 (The History)', 899, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 1),
+	(993, '2002 (Acoustic)-Amber Leigh Irish', 'Amber Leigh Irish', 'Unplugged Acoustic, Vol. 2', 866, 0, '2023-12-08 13:43:55', '2023-12-11 15:55:48', 1),
+	(994, 'Winter Without You-Gloria Kim', 'Gloria Kim', 'Winter Without You', 658, 0, '2023-12-08 13:47:37', '2023-12-11 15:58:44', 1),
+	(995, 'Famous-Ivy Adara', 'Ivy Adara', 'Famous', 856, 0, '2023-12-08 13:49:18', '2023-12-11 15:56:50', 1),
+	(996, 'Older-Sasha Alex Sloan', 'Sasha Alex Sloan', 'Older', 744, 0, '2023-12-08 13:50:44', '2023-12-11 15:57:44', 1),
+	(997, 'Dum Dum Dum-RENEE', 'RENEE', 'Extending Playground', 954, 0, '2023-12-08 13:56:25', '2023-12-11 15:56:30', 1),
+	(998, 'Like That-Bea Miller', 'Bea Miller', 'Chapter Two: Red', 699, 0, '2023-12-08 14:13:27', '2023-12-11 15:57:10', 1),
+	(999, 'A Little Bit Broken-Spritely', 'Spritely', 'A Little Bit Broken', 887, 0, '2023-12-08 14:14:40', '2023-12-11 15:56:06', 1),
+	(1000, 'Look4You-Alberto Ciccarini', 'Alberto Ciccarini', 'Look4You', 785, 0, '2023-12-08 14:16:46', '2023-12-11 15:57:25', 1),
+	(1001, 'Why-Sabrina Carpenter', 'Sabrina Carpenter', 'Why', 730, 0, '2023-12-08 14:18:55', '2023-12-11 15:58:30', 1),
+	(1002, '1901-Birdy', 'Birdy', 'Birdy (Deluxe Version)', 865, 0, '2023-12-08 14:31:26', '2023-12-11 15:55:17', 1),
+	(1003, 'One Match-Sarah Harmer', 'Sarah Harmer', 'oh little fire', 702, 0, '2023-12-08 14:34:13', '2023-12-11 15:57:58', 1),
+	(1004, 'Walk on By-Noosa', 'Noosa', 'Wonderland', 733, 0, '2023-12-08 14:36:40', '2023-12-11 15:58:15', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 CREATE TABLE IF NOT EXISTS `music_info_link` (
@@ -1647,7 +1659,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~3,711 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~3,759 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5456,7 +5468,55 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(3805, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', NULL, 0, 0, 992),
 	(3806, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', NULL, 1, 0, 992),
 	(3807, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E6%B5%AE%E5%85%89%20(The%20History)-Jannik.m4a?sign=zkUZtTtx-IveENt78umC7dbzoHcW_5qYOhHsznE0qig=:0', 0, 1, 992),
-	(3808, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E6%B5%AE%E5%85%89%20(The%20History)-Jannik.jpg?sign=R5LVYFNPqqjVFrNLNhfHYqYfcEXwGfB2cEzKj0VCH_Q=:0', 1, 1, 992);
+	(3808, 0, '2023-12-04 09:46:51', '2023-12-04 10:59:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/04/%E6%B5%AE%E5%85%89%20(The%20History)-Jannik.jpg?sign=R5LVYFNPqqjVFrNLNhfHYqYfcEXwGfB2cEzKj0VCH_Q=:0', 1, 1, 992),
+	(3809, 0, '2023-12-08 13:43:55', '2023-12-11 15:55:48', NULL, 0, 0, 993),
+	(3810, 0, '2023-12-08 13:43:55', '2023-12-11 15:55:48', NULL, 1, 0, 993),
+	(3811, 0, '2023-12-08 13:43:55', '2023-12-11 15:55:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/2002%20(Acoustic)-Amber%20Leigh%20Irish.mp3?sign=6LzhWN9Ddp1XAjKfSrZ453ZrrfeRH4yip0ezPGLxKlw=:0', 0, 1, 993),
+	(3812, 0, '2023-12-08 13:43:55', '2023-12-11 15:55:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/2002%20(Acoustic)-Amber%20Leigh%20Irish.jpg?sign=5nbgRLBDCZmX0_w-wsDRw1v917mld--jBBsYJ4KOynU=:0', 1, 1, 993),
+	(3813, 0, '2023-12-08 13:47:37', '2023-12-11 15:58:44', NULL, 0, 0, 994),
+	(3814, 0, '2023-12-08 13:47:37', '2023-12-11 15:58:44', NULL, 1, 0, 994),
+	(3815, 0, '2023-12-08 13:47:37', '2023-12-11 15:58:44', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Winter%20Without%20You-Gloria%20Kim.mp3?sign=5V5gLhPPt7a5OYYfvH2WGIl5TxPMNn4uY1LqvALolsM=:0', 0, 1, 994),
+	(3816, 0, '2023-12-08 13:47:37', '2023-12-11 15:58:44', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Winter%20Without%20You-Gloria%20Kim.jpg?sign=o1PegsoSuKwl52EjOuw7YsBdnhYrewKrpoXl_kS0fPk=:0', 1, 1, 994),
+	(3817, 0, '2023-12-08 13:49:18', '2023-12-11 15:56:50', NULL, 0, 0, 995),
+	(3818, 0, '2023-12-08 13:49:18', '2023-12-11 15:56:50', NULL, 1, 0, 995),
+	(3819, 0, '2023-12-08 13:49:18', '2023-12-11 15:56:50', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Famous-Ivy%20Adara.mp3?sign=GmBqiweyLhJuYIhfYGMndzdX4CflUgk7ADJjbNDJGlY=:0', 0, 1, 995),
+	(3820, 0, '2023-12-08 13:49:18', '2023-12-11 15:56:50', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Famous-Ivy%20Adara.jpg?sign=IP-1MOKZqBYzLBphEmm4_j2ItMBkrpMiMZcFMfefmwI=:0', 1, 1, 995),
+	(3821, 0, '2023-12-08 13:50:44', '2023-12-11 15:57:44', NULL, 0, 0, 996),
+	(3822, 0, '2023-12-08 13:50:44', '2023-12-11 15:57:44', NULL, 1, 0, 996),
+	(3823, 0, '2023-12-08 13:50:44', '2023-12-11 15:57:44', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Older-Sasha%20Alex%20Sloan.mp3?sign=mO1xUuiCR_CpG0W0GQ8w2grNbvB6a9fkefe69KxQR74=:0', 0, 1, 996),
+	(3824, 0, '2023-12-08 13:50:44', '2023-12-11 15:57:44', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Older-Sasha%20Alex%20Sloan.jpg?sign=OQCAqwkp6USXHgWLYJAbvws6LIKXAINbdPc6vRKFEM4=:0', 1, 1, 996),
+	(3825, 0, '2023-12-08 13:56:25', '2023-12-11 15:56:30', NULL, 0, 0, 997),
+	(3826, 0, '2023-12-08 13:56:25', '2023-12-11 15:56:30', NULL, 1, 0, 997),
+	(3827, 0, '2023-12-08 13:56:25', '2023-12-11 15:56:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/Dum%20Dum%20Dum-RENEE.mp3?sign=WRt5PW3N9nNqI8D_hTcu4JKDlrPr04kXQ-bOrfOuh1E=:0', 0, 1, 997),
+	(3828, 0, '2023-12-08 13:56:25', '2023-12-11 15:56:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/Dum%20Dum%20Dum-RENEE.jpg?sign=PKn80M9SD0O-_okMxou-s9wJp3Yh3q-cwOcXxPgogN8=:0', 1, 1, 997),
+	(3829, 0, '2023-12-08 14:13:27', '2023-12-11 15:57:10', NULL, 0, 0, 998),
+	(3830, 0, '2023-12-08 14:13:27', '2023-12-11 15:57:10', NULL, 1, 0, 998),
+	(3831, 0, '2023-12-08 14:13:27', '2023-12-11 15:57:10', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Like%20That-Bea%20Miller.mp3?sign=3kg93klh2_aMvI4mbm_ceF5pDxCI6A53wXpmizauhj0=:0', 0, 1, 998),
+	(3832, 0, '2023-12-08 14:13:27', '2023-12-11 15:57:10', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Like%20That-Bea%20Miller.jpg?sign=YRK4RAdz9xdbXv2EpsmrV8eq6cv_BOp9bszTtRtgwZA=:0', 1, 1, 998),
+	(3833, 0, '2023-12-08 14:14:40', '2023-12-11 15:56:06', NULL, 0, 0, 999),
+	(3834, 0, '2023-12-08 14:14:40', '2023-12-11 15:56:06', NULL, 1, 0, 999),
+	(3835, 0, '2023-12-08 14:14:40', '2023-12-11 15:56:06', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/A%20Little%20Bit%20Broken-Spritely.m4a?sign=xDiobIfJAtMaoCuR1KnQGkzVuBJLEHzf0VvCLzfH1tw=:0', 0, 1, 999),
+	(3836, 0, '2023-12-08 14:14:40', '2023-12-11 15:56:06', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/A%20Little%20Bit%20Broken-Spritely.jpg?sign=ZtDyb8O8ZJOye09AdtHRZszbgirzV1T86uNxmjC5a7Q=:0', 1, 1, 999),
+	(3837, 0, '2023-12-08 14:16:46', '2023-12-11 15:57:25', NULL, 0, 0, 1000),
+	(3838, 0, '2023-12-08 14:16:46', '2023-12-11 15:57:25', NULL, 1, 0, 1000),
+	(3839, 0, '2023-12-08 14:16:46', '2023-12-11 15:57:25', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Look4You-Alberto%20Ciccarini.m4a?sign=tv3sX3kW2_DLwYvqSo7Ywf1dRAWIcIhmiPsVDX1bGJ8=:0', 0, 1, 1000),
+	(3840, 0, '2023-12-08 14:16:46', '2023-12-11 15:57:25', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/Look4You-Alberto%20Ciccarini.jpg?sign=kfTqYiNk9_9DTuiiGyvSZ5ijLm1AHAIXFJ2E-E0csZc=:0', 1, 1, 1000),
+	(3841, 0, '2023-12-08 14:18:55', '2023-12-11 15:58:30', NULL, 0, 0, 1001),
+	(3842, 0, '2023-12-08 14:18:55', '2023-12-11 15:58:30', NULL, 1, 0, 1001),
+	(3843, 0, '2023-12-08 14:18:55', '2023-12-11 15:58:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Why-Sabrina%20Carpenter.m4a?sign=DjCnk7lGA7Gwu1KmtkVcP4E49_n479DXlTb2ZHkVamk=:0', 0, 1, 1001),
+	(3844, 0, '2023-12-08 14:18:55', '2023-12-11 15:58:30', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Why-Sabrina%20Carpenter.jpg?sign=wZMXhzBvP2M_9N4o0-zLfAac8e5VcVGwJiXctFXalxY=:0', 1, 1, 1001),
+	(3845, 0, '2023-12-08 14:31:26', '2023-12-11 15:55:17', NULL, 0, 0, 1002),
+	(3846, 0, '2023-12-08 14:31:26', '2023-12-11 15:55:17', NULL, 1, 0, 1002),
+	(3847, 0, '2023-12-08 14:31:26', '2023-12-11 15:55:17', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/1901-Birdy.mp3?sign=jpeiQKNM3QThH0W2g-0dhZmnanbEKoyhsI7ebYZJN5Q=:0', 0, 1, 1002),
+	(3848, 0, '2023-12-08 14:31:26', '2023-12-11 15:55:17', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/06/1901-Birdy.jpg?sign=9SOYxM2PGHnmAIvsprOYYBGn_4ylW6ZW706quhw4w6o=:0', 1, 1, 1002),
+	(3849, 0, '2023-12-08 14:34:13', '2023-12-11 15:57:58', NULL, 0, 0, 1003),
+	(3850, 0, '2023-12-08 14:34:13', '2023-12-11 15:57:58', NULL, 1, 0, 1003),
+	(3851, 0, '2023-12-08 14:34:13', '2023-12-11 15:57:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/One%20Match-Sarah%20Harmer.mp3?sign=_nHJeqOxMzTP1dqqy70V9e9iLKlaTbYJN9J2qM_gVn0=:0', 0, 1, 1003),
+	(3852, 0, '2023-12-08 14:34:13', '2023-12-11 15:57:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/07/One%20Match-Sarah%20Harmer.jpg?sign=u9TRUFZ8SuzCw7tzdbnKaSfgJBRfRBDS1U8FAbqeeUA=:0', 1, 1, 1003),
+	(3853, 0, '2023-12-08 14:36:40', '2023-12-11 15:58:15', NULL, 0, 0, 1004),
+	(3854, 0, '2023-12-08 14:36:40', '2023-12-11 15:58:15', NULL, 1, 0, 1004),
+	(3855, 0, '2023-12-08 14:36:40', '2023-12-11 15:58:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Walk%20on%20By-Noosa.m4a?sign=slp1-3djNPxjX9SfZqhPvuF1l6Ai4KiEBwzZF_wgRwU=:0', 0, 1, 1004),
+	(3856, 0, '2023-12-08 14:36:40', '2023-12-11 15:58:15', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/08/Walk%20on%20By-Noosa.jpg?sign=NLjrMcM5G97IwtGalE84HAdOiju64DMx8oF8pwYC9hw=:0', 1, 1, 1004);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

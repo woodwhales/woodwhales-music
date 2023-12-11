@@ -181,7 +181,7 @@ class 为：`page-container`的 html 源码
 
 ## 5. 歌单
 
-已收录 932 首音乐
+已收录 944 首音乐
 
 | 序号 | 音乐名称 | 专辑 | 作者 |
 | --- | ------ | ------ | --- |
@@ -992,128 +992,140 @@ class 为：`page-container`的 html 源码
 | 805 | かごめと犬夜叉 | TVアニメーション「犬夜叉」オリジナルサウンドトラックアルバム「犬夜叉 音楽篇」 | 和田薫 |
 | 806 | 비오는 소리 (Intro)下雨的声音-July | To Heaven | July |
 | 807 | アシタカせっ記 (The Legend of Ashitaka)-久石让 | もののけ姫 イメージアルバム | 久石让 (ひさいし じょう) |
-| 808 | Run Me Out-Zola Jesus | How to Get Away with Murder | Zola Jesus |
-| 809 | Pilgrimage-Jannik | Pilgrimage Epic Orchestral | Jannik |
-| 810 | We No Speak Americano(UK Radio Edit)-Yolanda Be Cool | We No Speak Americano | Yolanda Be Cool |
-| 811 | Deflagration-Silver Screen | Under Siege | Silver Screen |
-| 812 | The Boys | 'The Boys' The 3rd Album | 少女时代 |
-| 813 | Wicked Wonderland (Radio Edit)-Martin Tungevaag | Wicked Wonderland | Martin Tungevaag |
-| 814 | 幽默-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
-| 815 | Alone-Alan Walker | Alone | Alan Walker |
-| 816 | Time Back-Bad Style | 最新热歌慢摇63 | Bad Style |
-| 817 | Numb Encore | Look Out For Detox | Dr. Dre / 50 Cent / JAY-Z / Eminem / Linkin Park |
-| 818 | Star Sky-Two Steps From Hell | Battlecry | Two Steps From Hell |
-| 819 | Oceanside | Melody Lane | Lainey Lou |
-| 820 | One Day In Spring | One Day In Spring | Bandari |
-| 821 | Deadwood-Really Slow Motion | Deadwood | Really Slow Motion |
-| 822 | Promises | Promises | Ryn Weaver |
-| 823 | 我知道-By2 | Twins | By2 |
-| 824 | Between Worlds | X I I | Roger Subirana |
-| 825 | Dream It Possible | Dream It Possible | Delacey |
-| 826 | 桔梗谣-金栄実 | 伽倻琴演奏《与你一起》 | 金栄実 |
-| 827 | 桔梗谣-이금미 | Korea: Folk Songs I - Songs Of Kyonggido District | 이금미 |
-| 828 | Simon Birch | The Bucket List (Original Motion Picture Soundtrack) | Marc Shaiman |
-| 829 | Firework | Teenage Dream | Katy Perry |
-| 830 | Everything at Once | Two | Lenka |
-| 831 | 口弦-妙子 | 独家爱唱Ⅲ | 妙子 |
-| 832 | Murder In My Mind-Kordhell | Murder In My Mind | Kordhell |
-| 833 | Once Upon a Time in America: Deborah's Theme-Ennio Morricone | The Grandmaster (Original Score) | Ennio Morricone |
-| 834 | Morsmordre-Crazy Donkey | Morsmordre | Crazy Donkey |
-| 835 | 旅行的意义(TRAVEL IS MEANINGFUL) | 渺渺 电影原声 | 陈绮贞 |
-| 836 | 空 (TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 大黒摩季 |
-| 837 | 模特 | 模特 | 李荣浩 |
-| 838 | FourFiveSeconds | FourFiveSeconds | Rihanna / Kanye West / Paul McCartney |
-| 839 | Anacreon-Bear McCreary | Foundation: Season 1 (Apple TV+ Original Series Soundtrack) | Bear McCreary |
-| 840 | 风居住的街道（Piano ver） (翻自 磯村由紀子）-饭碗的彼岸 | Piano Cover | 饭碗的彼岸 |
-| 841 | 爱转角 | Best Show | 罗志祥 |
-| 842 | Take Me Home Country Roads-John Denver | Take Me Home: The John Denver Story | John Denver |
-| 843 | Maps | Maps | Maroon 5 |
-| 844 | 半生雪-七叔-叶泽浩 | 半生雪 | 七叔-叶泽浩 |
-| 845 | MR.TAXI(Korean ver.) | 'The Boys' The 3rd Album | 少女时代 |
-| 846 | Gentle-Isaac Shepard | Deep Joy | Isaac Shepard |
-| 847 | 故人泪-麦小兜 | 故人泪 | 麦小兜 |
-| 848 | May It Be-Bandari | MistyLand | Bandari |
-| 849 | 赤伶-李玉刚 | 赤伶 | 李玉刚 |
-| 850 | My Songs Know What You Did In The Dark (Light Em Up) (2 Chainz Remix) | My Songs Know What You Did In The Dark (Light Em Up) | Fall Out Boy |
-| 851 | River Flows In You | Tales Of Dusk And Dawn Chapter II | Various Artists |
-| 852 | Roar | Roar | Katy Perry |
-| 853 | Just Blue-Space | Just Blue | Space |
-| 854 | Secrets AMFB Onerepublic | Time Machine (Part 1) | Bryson Andres |
-| 855 | The Telephone Box | The Magic Empire | Uniform Motion |
-| 856 | Sunrise | waiting for the light | Catie Mckinney |
-| 857 | 映山红-刀郎 | 红色经典 | 刀郎 |
-| 858 | Liberators-Epic Score | Vengeance - ES033 | Epic Score |
-| 859 | Dismantle-Peter Sandberg | Dismantle | Peter Sandberg |
-| 860 | Radius-Hi-Finesse | Axiom | Hi-Finesse |
-| 861 | The Final Countdown | The Final Countdown: The Best Of Europe | Europe |
-| 862 | Hyacinth-July | In Love | July |
-| 863 | One More Light(又一道光芒)-Linkin Park | One More Light | Linkin Park |
-| 864 | 敢问路在何方-刀郎 | 电视剧新西游记主题曲 | 刀郎 |
-| 865 | 时を越えて かごめ | 犬夜叉 音楽撰集 | 和田薫 |
-| 866 | The Party Troll-D1ofaquavibe | The Party Troll | D1ofaquavibe |
-| 867 | Novera-Dark Winter Music | Epic World Volume2 Return 归来(2014) | Dark Winter Music |
-| 868 | SCARSONG-flash8 | 最新热歌慢摇3 | flash8 |
-| 869 | Concerto No. 4 in F minor, Op. 8, RV 297, "L'inverno" (Winter): II. Largo | The Four Seasons: The Vivaldi Album | Anne Akiko Meyers / English Chamber Orchestra / David Lockington |
-| 870 | Somewhere | Somewhere | July |
-| 871 | If We Ever Broke Up-Mae Stephens | If We Ever Broke Up | Mae Stephens |
-| 872 | Close Eyes (Slowed + Reverb)-DVRST | Close Eyes (Slowed + Reverb) | DVRST |
-| 873 | Future Funk-Varien | Pick Your Poison Vol. 01 | Varien |
-| 874 | Balenciaga-T3nzu | Balenciaga | T3nzu |
-| 875 | A Quiet Departure-Josh Leake | Benjamin | Josh Leake |
-| 876 | A Mozart Reincarnated-Ennio Morricone | La Leggenda del Pianista Sull'oceano | Ennio Morricone |
-| 877 | Best Moments (feat. Kondor)-Blazo | Alone Journey | Blazo |
-| 878 | Becoming a Legend-John Dreamer | Becoming a Legend - Single | John Dreamer |
-| 879 | Beloved-Dan Gibson | Native Harmony | Dan Gibson |
-| 880 | Brotherhood-John Dreamer | Brotherhood | John Dreamer |
-| 881 | Hello Zepp-Charlie Clouser | Saw (Original Motion Picture Soundtrack) | Charlie Clouser |
-| 882 | RAVE-Dxrk ダーク | RAVE | Dxrk ダーク |
-| 883 | Golden Key-Isgaard | Golden Key [#2] | Isgaard |
-| 884 | Eye of the Tiger-Survivor | Eye Of The Tiger | Survivor |
-| 885 | 耍猴儿(百鬼夜行) (唢呐版)-Harry来了 | 未知 | Harry来了 |
-| 886 | golden hour-JVKE | this is what ____ feels like (Vol. 1-4) | JVKE |
-| 887 | The Black Rose-Joanie Madden | Celtic Twilight 2 | Joanie Madden |
-| 888 | My Sunset (Original Mix)-Feint | Feint EP2 | Feint |
-| 889 | 雨空-α·Pav | Colors | α·Pav |
-| 890 | Tuesday-Burak Yeter Danelle | Dance 2017 - Armada Music | Burak Yeter / Danelle |
-| 891 | Welcome to Jurassic World(电影《侏罗纪世界》配乐)-Michael Giacchino | Jurassic World (Original Motion Picture Soundtrack)- (侏罗纪世界) | Michael Giacchino |
-| 892 | PDD洪荒之力-Hoaprox | #Lov3 #Ngẫu Hứng | Hoaprox |
-| 893 | 告白之夜（纯音乐）-CMJ | 告白の夜 | CMJ |
-| 894 | You-Approaching Nirvana | Blocking the Sky Redux | Approaching Nirvana |
-| 895 | Whisper Of Hope (Main)-Gothic Storm | Epic Emotional Piano | Gothic Storm |
-| 896 | The Imperial March(帝国进行曲)-John Williams | Music from the Star Wars Saga- (星球大战) | John Williams |
-| 897 | Young Hearts-Dirk Reichardt | Kokowääh 2 (Original Motion Picture Soundtrack) | Dirk Reichardt |
-| 898 | James Bond Theme-John Barry Monty Norman | Dr. No (Original Motion Picture Soundtrack) | John Barry / Monty Norman |
-| 899 | メインテーマ「永遠の一瞬」（主题「永恒的一瞬」）-伊藤賢治 | この青空に約束をー~ようこそつぐみ寮へ~Piano Stories | 伊藤賢治 |
-| 900 | 潮鳴り-折戸伸治 | CLANNAD ORIGINAL SOUNDTRACK | 折戸伸治 |
-| 901 | The Pink Panther Theme-Henry Mancini | In the Pink | Henry Mancini |
-| 902 | 白いスーツのテーマ(白色西装主题曲)-市川淳 | TBS系 金曜ドラマ うぬぼれ刑事 オリジナル・サウンドトラック | 市川淳 |
-| 903 | 穿越时空的爱恋-CMJ | 穿越时空的爱恋 | CMJ |
-| 904 | Dusk Till Dawn | Piano Acoustic Covers Vol 2 | Kurt Hugo Schneider / Kirsten Collins / Blake Rose |
-| 905 | Dreamland-Liquid Mind | Liquid Mind XI: Deep Sleep | Liquid Mind |
-| 906 | 浮光 (The History)-Jannik | 浮光 (The History) | Jannik |
-| 907 | Criminals-F.O.O.L | Revenger | F.O.O.L |
-| 908 | P.I.M.P-TangTian | P.I.M.P | TangTian |
-| 909 | 平凡的一天-毛不易 | 平凡的一天 | 毛不易 |
-| 910 | 流浪者之歌-Budapest Festival Orchestra 诹访内晶子 | 惠威试音专用Ⅱ | Budapest Festival Orchestra / 诹访内晶子 |
-| 911 | 恨爱交加-麦振鸿 | 天地传说之创世纪乐章 | 麦振鸿 |
-| 912 | 高山流水-王昌元 | 中国古筝名家名曲——中国民族器乐精品系列 | 王昌元 |
-| 913 | 美丽拍挡-胡伟立 | 国产凌凌漆 | 胡伟立 |
-| 914 | Polska-Sava | Aire | Sava |
-| 915 | 金三角 (恐怖纯音乐) | 金三角（恐怖纯音乐） | R̶ᴇ̶ɢ̶ʀ̶ᴇ̶ᴛ̶. |
-| 916 | sans.-Toby Fox | UNDERTALE Soundtrack | Toby Fox |
-| 917 | 夏夜-四季音色 | 春夏之交，轻旋淡律 | 四季音色 |
-| 918 | 人形の館-岩崎琢 | 黒執事 サウンドコンプリート BLACK BOX | 岩崎琢 |
-| 919 | Single Ladies (Put a Ring on It)-Beyoncé | Single Ladies (Put A Ring On It) - Dance Remixes | Beyoncé |
-| 920 | 十面埋伏(琵琶独奏)-群星 | 中国古典音乐历朝黄金年鉴 | 群星 |
-| 921 | 她的微笑 (original Mix)-阳山伟伟 | 她的微笑 (original Mix) | 阳山伟伟 |
-| 922 | 西楼别序-尹昔眠 / 小田音乐社 | 西楼别序 | 尹昔眠 / 小田音乐社 |
-| 923 | 青天-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
-| 924 | 青空-Candy_Wind | 拂晓车站 | Candy_Wind |
-| 925 | 勇往直前-胡伟立 | 唐伯虎点秋香 | 胡伟立 |
-| 926 | 执迷不悟-铁脑袋mp3 | 执迷不悟 | 铁脑袋mp3 |
-| 927 | 小心な侵入者-根岸貴幸 | カードキャプターさくら オリジナル・サウンドトラック4 | 根岸貴幸 |
-| 928 | 小鱼儿与花无缺片头音乐-麦振鸿 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 |
-| 929 | 雨的舞步-赵大鼾 | 雨的舞步 | 赵大鼾 |
-| 930 | Lost Love (Instrumental)-Lunnna Janey杰尼 | Memories | Lunnna / Janey杰尼 |
-| 931 | Theme from Mission: Impossible-Danny Elfman | Mission Impossible [Original Score] | Danny Elfman |
-| 932 | Theme From Jurassic Park (From "Jurassic Park" Soundtrack)-John Williams | Jurassic Park (Soundtrack) | John Williams |
+| 808 | Winter Without You-Gloria Kim | Winter Without You | Gloria Kim |
+| 809 | Run Me Out-Zola Jesus | How to Get Away with Murder | Zola Jesus |
+| 810 | Pilgrimage-Jannik | Pilgrimage Epic Orchestral | Jannik |
+| 811 | We No Speak Americano(UK Radio Edit)-Yolanda Be Cool | We No Speak Americano | Yolanda Be Cool |
+| 812 | Deflagration-Silver Screen | Under Siege | Silver Screen |
+| 813 | The Boys | 'The Boys' The 3rd Album | 少女时代 |
+| 814 | Wicked Wonderland (Radio Edit)-Martin Tungevaag | Wicked Wonderland | Martin Tungevaag |
+| 815 | 幽默-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
+| 816 | Alone-Alan Walker | Alone | Alan Walker |
+| 817 | Time Back-Bad Style | 最新热歌慢摇63 | Bad Style |
+| 818 | Numb Encore | Look Out For Detox | Dr. Dre / 50 Cent / JAY-Z / Eminem / Linkin Park |
+| 819 | Star Sky-Two Steps From Hell | Battlecry | Two Steps From Hell |
+| 820 | Oceanside | Melody Lane | Lainey Lou |
+| 821 | One Day In Spring | One Day In Spring | Bandari |
+| 822 | Deadwood-Really Slow Motion | Deadwood | Really Slow Motion |
+| 823 | Promises | Promises | Ryn Weaver |
+| 824 | 我知道-By2 | Twins | By2 |
+| 825 | Between Worlds | X I I | Roger Subirana |
+| 826 | Dream It Possible | Dream It Possible | Delacey |
+| 827 | 桔梗谣-金栄実 | 伽倻琴演奏《与你一起》 | 金栄実 |
+| 828 | 桔梗谣-이금미 | Korea: Folk Songs I - Songs Of Kyonggido District | 이금미 |
+| 829 | Simon Birch | The Bucket List (Original Motion Picture Soundtrack) | Marc Shaiman |
+| 830 | Firework | Teenage Dream | Katy Perry |
+| 831 | Everything at Once | Two | Lenka |
+| 832 | 口弦-妙子 | 独家爱唱Ⅲ | 妙子 |
+| 833 | Murder In My Mind-Kordhell | Murder In My Mind | Kordhell |
+| 834 | Once Upon a Time in America: Deborah's Theme-Ennio Morricone | The Grandmaster (Original Score) | Ennio Morricone |
+| 835 | Morsmordre-Crazy Donkey | Morsmordre | Crazy Donkey |
+| 836 | 旅行的意义(TRAVEL IS MEANINGFUL) | 渺渺 电影原声 | 陈绮贞 |
+| 837 | 空 (TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 大黒摩季 |
+| 838 | 模特 | 模特 | 李荣浩 |
+| 839 | FourFiveSeconds | FourFiveSeconds | Rihanna / Kanye West / Paul McCartney |
+| 840 | Anacreon-Bear McCreary | Foundation: Season 1 (Apple TV+ Original Series Soundtrack) | Bear McCreary |
+| 841 | 风居住的街道（Piano ver） (翻自 磯村由紀子）-饭碗的彼岸 | Piano Cover | 饭碗的彼岸 |
+| 842 | 爱转角 | Best Show | 罗志祥 |
+| 843 | Like That-Bea Miller | Chapter Two: Red | Bea Miller |
+| 844 | Take Me Home Country Roads-John Denver | Take Me Home: The John Denver Story | John Denver |
+| 845 | Maps | Maps | Maroon 5 |
+| 846 | One Match-Sarah Harmer | oh little fire | Sarah Harmer |
+| 847 | 半生雪-七叔-叶泽浩 | 半生雪 | 七叔-叶泽浩 |
+| 848 | MR.TAXI(Korean ver.) | 'The Boys' The 3rd Album | 少女时代 |
+| 849 | Gentle-Isaac Shepard | Deep Joy | Isaac Shepard |
+| 850 | 故人泪-麦小兜 | 故人泪 | 麦小兜 |
+| 851 | May It Be-Bandari | MistyLand | Bandari |
+| 852 | 赤伶-李玉刚 | 赤伶 | 李玉刚 |
+| 853 | My Songs Know What You Did In The Dark (Light Em Up) (2 Chainz Remix) | My Songs Know What You Did In The Dark (Light Em Up) | Fall Out Boy |
+| 854 | River Flows In You | Tales Of Dusk And Dawn Chapter II | Various Artists |
+| 855 | Roar | Roar | Katy Perry |
+| 856 | Just Blue-Space | Just Blue | Space |
+| 857 | Secrets AMFB Onerepublic | Time Machine (Part 1) | Bryson Andres |
+| 858 | The Telephone Box | The Magic Empire | Uniform Motion |
+| 859 | Why-Sabrina Carpenter | Why | Sabrina Carpenter |
+| 860 | Sunrise | waiting for the light | Catie Mckinney |
+| 861 | Walk on By-Noosa | Wonderland | Noosa |
+| 862 | 映山红-刀郎 | 红色经典 | 刀郎 |
+| 863 | Liberators-Epic Score | Vengeance - ES033 | Epic Score |
+| 864 | Dismantle-Peter Sandberg | Dismantle | Peter Sandberg |
+| 865 | Older-Sasha Alex Sloan | Older | Sasha Alex Sloan |
+| 866 | Radius-Hi-Finesse | Axiom | Hi-Finesse |
+| 867 | The Final Countdown | The Final Countdown: The Best Of Europe | Europe |
+| 868 | Hyacinth-July | In Love | July |
+| 869 | One More Light(又一道光芒)-Linkin Park | One More Light | Linkin Park |
+| 870 | 敢问路在何方-刀郎 | 电视剧新西游记主题曲 | 刀郎 |
+| 871 | 时を越えて かごめ | 犬夜叉 音楽撰集 | 和田薫 |
+| 872 | The Party Troll-D1ofaquavibe | The Party Troll | D1ofaquavibe |
+| 873 | Novera-Dark Winter Music | Epic World Volume2 Return 归来(2014) | Dark Winter Music |
+| 874 | SCARSONG-flash8 | 最新热歌慢摇3 | flash8 |
+| 875 | Concerto No. 4 in F minor, Op. 8, RV 297, "L'inverno" (Winter): II. Largo | The Four Seasons: The Vivaldi Album | Anne Akiko Meyers / English Chamber Orchestra / David Lockington |
+| 876 | Somewhere | Somewhere | July |
+| 877 | If We Ever Broke Up-Mae Stephens | If We Ever Broke Up | Mae Stephens |
+| 878 | Close Eyes (Slowed + Reverb)-DVRST | Close Eyes (Slowed + Reverb) | DVRST |
+| 879 | Look4You-Alberto Ciccarini | Look4You | Alberto Ciccarini |
+| 880 | Future Funk-Varien | Pick Your Poison Vol. 01 | Varien |
+| 881 | Balenciaga-T3nzu | Balenciaga | T3nzu |
+| 882 | A Quiet Departure-Josh Leake | Benjamin | Josh Leake |
+| 883 | A Mozart Reincarnated-Ennio Morricone | La Leggenda del Pianista Sull'oceano | Ennio Morricone |
+| 884 | Best Moments (feat. Kondor)-Blazo | Alone Journey | Blazo |
+| 885 | Becoming a Legend-John Dreamer | Becoming a Legend - Single | John Dreamer |
+| 886 | Beloved-Dan Gibson | Native Harmony | Dan Gibson |
+| 887 | Brotherhood-John Dreamer | Brotherhood | John Dreamer |
+| 888 | Hello Zepp-Charlie Clouser | Saw (Original Motion Picture Soundtrack) | Charlie Clouser |
+| 889 | RAVE-Dxrk ダーク | RAVE | Dxrk ダーク |
+| 890 | Golden Key-Isgaard | Golden Key [#2] | Isgaard |
+| 891 | Eye of the Tiger-Survivor | Eye Of The Tiger | Survivor |
+| 892 | Famous-Ivy Adara | Famous | Ivy Adara |
+| 893 | 耍猴儿(百鬼夜行) (唢呐版)-Harry来了 | 未知 | Harry来了 |
+| 894 | 1901-Birdy | Birdy (Deluxe Version) | Birdy |
+| 895 | 2002 (Acoustic)-Amber Leigh Irish | Unplugged Acoustic, Vol. 2 | Amber Leigh Irish |
+| 896 | golden hour-JVKE | this is what ____ feels like (Vol. 1-4) | JVKE |
+| 897 | The Black Rose-Joanie Madden | Celtic Twilight 2 | Joanie Madden |
+| 898 | My Sunset (Original Mix)-Feint | Feint EP2 | Feint |
+| 899 | 雨空-α·Pav | Colors | α·Pav |
+| 900 | Tuesday-Burak Yeter Danelle | Dance 2017 - Armada Music | Burak Yeter / Danelle |
+| 901 | Welcome to Jurassic World(电影《侏罗纪世界》配乐)-Michael Giacchino | Jurassic World (Original Motion Picture Soundtrack)- (侏罗纪世界) | Michael Giacchino |
+| 902 | PDD洪荒之力-Hoaprox | #Lov3 #Ngẫu Hứng | Hoaprox |
+| 903 | 告白之夜（纯音乐）-CMJ | 告白の夜 | CMJ |
+| 904 | You-Approaching Nirvana | Blocking the Sky Redux | Approaching Nirvana |
+| 905 | Whisper Of Hope (Main)-Gothic Storm | Epic Emotional Piano | Gothic Storm |
+| 906 | The Imperial March(帝国进行曲)-John Williams | Music from the Star Wars Saga- (星球大战) | John Williams |
+| 907 | Young Hearts-Dirk Reichardt | Kokowääh 2 (Original Motion Picture Soundtrack) | Dirk Reichardt |
+| 908 | James Bond Theme-John Barry Monty Norman | Dr. No (Original Motion Picture Soundtrack) | John Barry / Monty Norman |
+| 909 | A Little Bit Broken-Spritely | A Little Bit Broken | Spritely |
+| 910 | メインテーマ「永遠の一瞬」（主题「永恒的一瞬」）-伊藤賢治 | この青空に約束をー~ようこそつぐみ寮へ~Piano Stories | 伊藤賢治 |
+| 911 | 潮鳴り-折戸伸治 | CLANNAD ORIGINAL SOUNDTRACK | 折戸伸治 |
+| 912 | The Pink Panther Theme-Henry Mancini | In the Pink | Henry Mancini |
+| 913 | 白いスーツのテーマ(白色西装主题曲)-市川淳 | TBS系 金曜ドラマ うぬぼれ刑事 オリジナル・サウンドトラック | 市川淳 |
+| 914 | 穿越时空的爱恋-CMJ | 穿越时空的爱恋 | CMJ |
+| 915 | Dusk Till Dawn | Piano Acoustic Covers Vol 2 | Kurt Hugo Schneider / Kirsten Collins / Blake Rose |
+| 916 | Dreamland-Liquid Mind | Liquid Mind XI: Deep Sleep | Liquid Mind |
+| 917 | 浮光 (The History)-Jannik | 浮光 (The History) | Jannik |
+| 918 | Criminals-F.O.O.L | Revenger | F.O.O.L |
+| 919 | P.I.M.P-TangTian | P.I.M.P | TangTian |
+| 920 | 平凡的一天-毛不易 | 平凡的一天 | 毛不易 |
+| 921 | 流浪者之歌-Budapest Festival Orchestra 诹访内晶子 | 惠威试音专用Ⅱ | Budapest Festival Orchestra / 诹访内晶子 |
+| 922 | 恨爱交加-麦振鸿 | 天地传说之创世纪乐章 | 麦振鸿 |
+| 923 | 高山流水-王昌元 | 中国古筝名家名曲——中国民族器乐精品系列 | 王昌元 |
+| 924 | 美丽拍挡-胡伟立 | 国产凌凌漆 | 胡伟立 |
+| 925 | Polska-Sava | Aire | Sava |
+| 926 | 金三角 (恐怖纯音乐) | 金三角（恐怖纯音乐） | R̶ᴇ̶ɢ̶ʀ̶ᴇ̶ᴛ̶. |
+| 927 | sans.-Toby Fox | UNDERTALE Soundtrack | Toby Fox |
+| 928 | 夏夜-四季音色 | 春夏之交，轻旋淡律 | 四季音色 |
+| 929 | 人形の館-岩崎琢 | 黒執事 サウンドコンプリート BLACK BOX | 岩崎琢 |
+| 930 | Single Ladies (Put a Ring on It)-Beyoncé | Single Ladies (Put A Ring On It) - Dance Remixes | Beyoncé |
+| 931 | 十面埋伏(琵琶独奏)-群星 | 中国古典音乐历朝黄金年鉴 | 群星 |
+| 932 | 她的微笑 (original Mix)-阳山伟伟 | 她的微笑 (original Mix) | 阳山伟伟 |
+| 933 | 西楼别序-尹昔眠 / 小田音乐社 | 西楼别序 | 尹昔眠 / 小田音乐社 |
+| 934 | 青天-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
+| 935 | 青空-Candy_Wind | 拂晓车站 | Candy_Wind |
+| 936 | 勇往直前-胡伟立 | 唐伯虎点秋香 | 胡伟立 |
+| 937 | 执迷不悟-铁脑袋mp3 | 执迷不悟 | 铁脑袋mp3 |
+| 938 | 小心な侵入者-根岸貴幸 | カードキャプターさくら オリジナル・サウンドトラック4 | 根岸貴幸 |
+| 939 | 小鱼儿与花无缺片头音乐-麦振鸿 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 |
+| 940 | 雨的舞步-赵大鼾 | 雨的舞步 | 赵大鼾 |
+| 941 | Lost Love (Instrumental)-Lunnna Janey杰尼 | Memories | Lunnna / Janey杰尼 |
+| 942 | Theme from Mission: Impossible-Danny Elfman | Mission Impossible [Original Score] | Danny Elfman |
+| 943 | Dum Dum Dum-RENEE | Extending Playground | RENEE |
+| 944 | Theme From Jurassic Park (From "Jurassic Park" Soundtrack)-John Williams | Jurassic Park (Soundtrack) | John Williams |
