@@ -11,13 +11,7 @@
     <el-row>
         <el-col :span="2">&nbsp;</el-col>
         <el-col :span="20">
-            <el-row style="text-align: center;">
-                <h2>woodwhales-music</h2>
-            </el-row>
-            <el-row style="text-align: center; margin-bottom: 12px;">
-                <el-divider content-position="center"><span style="color: #67C23A;">移风易俗，莫善于乐。</span></el-divider>
-            </el-row>
-
+            <div th:replace="~{admin2/header::header}"></div>
             <el-row style="margin-bottom: 12px;">
                 <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
             </el-row>

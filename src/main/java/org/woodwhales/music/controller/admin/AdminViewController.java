@@ -39,14 +39,18 @@ public class AdminViewController {
 
     @GetMapping("")
     public String index(Model model) {
-        model.addAttribute("musicSite", appConfig.getMusicSite());
+        this.addMusicSite(model);
         return "redirect:admin/";
     }
 
     @GetMapping({"/"})
     public String home(Model model) {
-        model.addAttribute("musicSite", appConfig.getMusicSite());
+        this.addMusicSite(model);
         return "admin2/index";
+    }
+
+    private void addMusicSite(Model model) {
+        model.addAttribute("musicSite", appConfig.getMusicSite());
     }
 
     @GetMapping({"add"})
@@ -59,6 +63,7 @@ public class AdminViewController {
         if(Objects.nonNull(id)) {
             musicDetailInfo = musicService.getMusicDetailInfoById(id);
         }
+        this.addMusicSite(model);
         model.addAttribute("music", musicDetailInfo);
         return "admin2/add";
     }
@@ -71,11 +76,13 @@ public class AdminViewController {
         model.addAttribute("musicStore", musicStoreService.getMusicStore());
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());
         model.addAttribute("musicPlatformTypes", musicPlatformTypes);
+        this.addMusicSite(model);
         return "add";
     }
 
     @GetMapping({"export"})
     public String export(Model model) {
+        this.addMusicSite(model);
         return "admin2/export";
     }
 
