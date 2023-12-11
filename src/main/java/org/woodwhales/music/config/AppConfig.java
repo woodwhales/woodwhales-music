@@ -22,6 +22,12 @@ public class AppConfig {
     public Integer musicLinkSource;
 
     /**
+     * 音乐网站首页
+     */
+    @Value("${music.link.site:https://music.icoders.cn/}")
+    private String musicSite;
+
+    /**
      * github链接
      */
     @Value("${github.url:https://github.com/woodwhales/woodwhales-music}")

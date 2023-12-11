@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.woodwhales.music.config.AppConfig;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.service.music.MusicStoreService;
@@ -33,13 +34,18 @@ public class AdminViewController {
     @Autowired
     private MusicStoreService musicStoreService;
 
+    @Autowired
+    private AppConfig appConfig;
+
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("musicSite", appConfig.getMusicSite());
         return "redirect:admin/";
     }
 
     @GetMapping({"/"})
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("musicSite", appConfig.getMusicSite());
         return "admin2/index";
     }
 
