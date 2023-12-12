@@ -30,21 +30,102 @@
 
 #### 1.1.2 系统配置
 
-文件位置：
+> 配置文件使用 yml 语法
 
-- woodwhales-music/src/main/resources/dev/application-dev.yml
+**文件位置**
 
-文件说明：
+- 默认环境：[woodwhales-music/src/main/resources/dev/application.yml](https://github.com/woodwhales/woodwhales-music/blob/master/src/main/resources/application.yml)
+- dev 环境：[woodwhales-music/src/main/resources/dev/application-dev.yml](https://github.com/woodwhales/woodwhales-music/blob/master/src/main/resources/dev/application-dev.yml)
 
-- 配置文件使用 yml 语法，其中 system.username 和 system.password 分别表示后台系统的系统账号名和密码。
+**环境配置**
+
+举例，配置生产环境 `prod` 配置文件：
+
+1. 在 woodwhales-music/src/main/resources/ 下创建以文件夹，名称为：prod
+
+2. 在 prod 文件夹下，创建 application-prod.yml 配置文件
+
+3. 在 pom 配置文件中，配置 profiles 节点：
+
+    ```XML
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+    ```
+
+ 4. 使用 maven 命令打包工程时，-P 参数指定 `prod` 环境参数
+
+    ```shell
+    mvn install -Pprod
+    ```
+
+**文件说明**
+
+- 后台系统账号、密码
+
+    - 后台系统账号：`system.username`
+    - 后台系统密码：`system.password`
 
     ```yaml
     system:
+      # 后台系统账号
       username: xxx
+      # 后台系统密码
       password: xxx
     ```
 
-    开发者可以使用 org.woodwhales.music.security.PasswordTest#test 单元测试代码，生成自定义的后台系统账号和密码
+    开发者可以使用 [org.woodwhales.music.security.PasswordTest#test](https://github.com/woodwhales/woodwhales-music/blob/master/src/test/java/org/woodwhales/music/security/PasswordTest.java#L14) 单元测试代码，生成自定义的后台系统账号和密码
+
+- GitHub Corners
+
+    - 是否展示 GitHub Corners：`github.show`
+    - github 链接：`github.url`
+
+    ```yaml
+    github:
+      # 是否展示 GitHub Corners
+      show: true
+      # github 链接
+      url: "https://github.com/woodwhales/woodwhales-music"
+    ```
+
+- 版权信息
+
+    - 作者名称：`author.name`
+    - 作者网站：`author.website`
+
+    ```yaml
+    author:
+      # 作者名称
+      name: "woodwhales"
+      # 作者网站
+      website: "https://www.woodwhales.cn"
+    ```
+
+- 音乐链接来源
+
+    - 首页展示的音乐链接来源：`music.link.source`
+
+    ```yaml
+    music:
+      link:
+        # 链接来源：0-github，1-alist
+        source: 1
+    ```
+- 音乐网站首页
+
+    - 音乐网站首页：`music.site`，用于后台 banner 快捷跳转至网站首页
+
+    ```yaml
+    music:
+      # 音乐网站首页
+      site: "https://music.icoders.cn/"
+    ```
 
 ### 1.2 编译打包
 
@@ -58,7 +139,7 @@ mvn clean install -Pdev
 
 目前项目中的 pom.xml 配置文件中只指定了 dev 和 prod，开发者可根据需要指定其他环境参数：
 
-> 如果配置生产环境，则需要在 woodwhales-music/src/main/resources/ 中创建 prod 文件夹，并创建 application-prod.yml 配置文件，打包时 -P 参数指定为：prod
+> 如果配置生产环境，则需要在 [woodwhales-music/src/main/resources/](https://github.com/woodwhales/woodwhales-music/tree/master/src/main/resources) 中创建 prod 文件夹，并创建 application-prod.yml 配置文件，打包时 -P 参数指定为：prod
 
 ```xml
 <profiles>
