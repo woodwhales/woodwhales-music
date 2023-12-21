@@ -1,6 +1,6 @@
 # woodwhales-music
 
-<div align=center>[![](https://img.shields.io/badge/author-woodwhales-green.svg)](https://woodwhales.cn/) ![](https://img.shields.io/badge/license-GPL%203.0-orange.svg)</div>
+[![](https://img.shields.io/badge/author-woodwhales-green.svg)](https://music.icoders.cn) ![](https://img.shields.io/badge/license-GPL%203.0-orange.svg)
 
 > 基于 SpringBoot 的开源超简洁音乐播放器
 
