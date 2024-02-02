@@ -683,7 +683,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~969 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~999 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1682,7 +1682,9 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(1045, '小河淌水-龚琳娜', '龚琳娜', '小河淌水', 154, 0, '2024-01-19 11:25:55', '2024-01-19 12:26:47', 1),
 	(1046, '爱要坦荡荡-萧潇', '萧潇', 'Beautiful Angel', 338, 0, '2024-01-19 11:32:36', '2024-01-19 11:49:48', 1),
 	(1047, '爱要坦荡荡 (Live)-丁丁', '丁丁', '《中国好声音》2012跨年演唱会', 653, 0, '2024-01-19 11:39:59', '2024-01-19 12:26:31', 1),
-	(1048, '精忠报国-屠洪刚', '屠洪刚', '精忠报国', 134, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', 1);
+	(1048, '精忠报国-屠洪刚', '屠洪刚', '精忠报国', 134, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', 1),
+	(1049, '篇章-张韶涵 / 王赫野', '张韶涵 / 王赫野', '篇章', 87, 0, '2024-02-02 15:29:49', '2024-02-02 15:38:12', 1),
+	(1050, 'May It Be(电影《指环王：魔戒再现》插曲)-Enya', 'Enya', 'The Lord of the Rings: The Fellowship of the Ring (Original Motion Picture Soundtrack)', 102, 0, '2024-02-02 15:42:47', '2024-02-02 15:48:06', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 CREATE TABLE IF NOT EXISTS `music_info_link` (
@@ -1698,7 +1700,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~3,819 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~4,036 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5731,7 +5733,15 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4029, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', NULL, 0, 0, 1048),
 	(4030, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', NULL, 1, 0, 1048),
 	(4031, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/%E7%B2%BE%E5%BF%A0%E6%8A%A5%E5%9B%BD-%E5%B1%A0%E6%B4%AA%E5%88%9A.m4a?sign=jntKMfOUMfXgGeCGXy5UytN-JUdfpEuyNXtny_28tSg=:0', 0, 1, 1048),
-	(4032, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/%E7%B2%BE%E5%BF%A0%E6%8A%A5%E5%9B%BD-%E5%B1%A0%E6%B4%AA%E5%88%9A.jpg?sign=zhE8_Y4rnuFw2wLvcaltujuVtMoH3yGL-3bQsnRdjBs=:0', 1, 1, 1048);
+	(4032, 0, '2024-01-19 11:42:28', '2024-01-19 11:48:56', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/%E7%B2%BE%E5%BF%A0%E6%8A%A5%E5%9B%BD-%E5%B1%A0%E6%B4%AA%E5%88%9A.jpg?sign=zhE8_Y4rnuFw2wLvcaltujuVtMoH3yGL-3bQsnRdjBs=:0', 1, 1, 1048),
+	(4033, 0, '2024-02-02 15:29:49', '2024-02-02 15:38:12', NULL, 0, 0, 1049),
+	(4034, 0, '2024-02-02 15:29:49', '2024-02-02 15:38:12', NULL, 1, 0, 1049),
+	(4035, 0, '2024-02-02 15:29:49', '2024-02-02 15:38:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/%E7%AF%87%E7%AB%A0-%E5%BC%A0%E9%9F%B6%E6%B6%B5%20%E7%8E%8B%E8%B5%AB%E9%87%8E.mp3?sign=bp-4cHRZHpDLFSOY3hZNobmyM7wao4rXZrVBTHIc4Dc=:0', 0, 1, 1049),
+	(4036, 0, '2024-02-02 15:29:49', '2024-02-02 15:38:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/%E7%AF%87%E7%AB%A0-%E5%BC%A0%E9%9F%B6%E6%B6%B5%20%E7%8E%8B%E8%B5%AB%E9%87%8E.jpg?sign=TQmbx8ovMTRwlqz8WA7WnggD-5rH-nz2cfE_uoLFkqA=:0', 1, 1, 1049),
+	(4037, 0, '2024-02-02 15:42:47', '2024-02-02 15:48:06', NULL, 0, 0, 1050),
+	(4038, 0, '2024-02-02 15:42:47', '2024-02-02 15:48:06', NULL, 1, 0, 1050),
+	(4039, 0, '2024-02-02 15:42:47', '2024-02-02 15:48:06', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/May%20It%20Be(%E7%94%B5%E5%BD%B1%E3%80%8A%E6%8C%87%E7%8E%AF%E7%8E%8B%EF%BC%9A%E9%AD%94%E6%88%92%E5%86%8D%E7%8E%B0%E3%80%8B%E6%8F%92%E6%9B%B2)-Enya.m4a?sign=Zx0ldhklncQDkft4RTgXrDU2vw2V9_QaBga4anjugmk=:0', 0, 1, 1050),
+	(4040, 0, '2024-02-02 15:42:47', '2024-02-02 15:48:06', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store11/15/May%20It%20Be(%E7%94%B5%E5%BD%B1%E3%80%8A%E6%8C%87%E7%8E%AF%E7%8E%8B%EF%BC%9A%E9%AD%94%E6%88%92%E5%86%8D%E7%8E%B0%E3%80%8B%E6%8F%92%E6%9B%B2)-Enya.jpg?sign=wt47hdgQdEupCFD4bP7RdGMwzAQ0ooc9N-CSBz6LNWw=:0', 1, 1, 1050);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
