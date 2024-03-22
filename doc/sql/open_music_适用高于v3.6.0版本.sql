@@ -691,7 +691,7 @@ CREATE TABLE IF NOT EXISTS `music_info` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
 
--- 正在导出表  open_music.music_info 的数据：~1,051 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~1,022 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1743,7 +1743,11 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(1098, '我怀念的-孙燕姿', '孙燕姿', '逆光 - (Against The Light)', 822, 0, '2024-03-21 16:03:18', '2024-03-22 14:01:46', 1),
 	(1099, '今天你要嫁给我(Marry Me Today)-蔡依林、陶喆', '蔡依林 / 陶喆', '太美丽', 605, 0, '2024-03-21 16:04:55', '2024-03-22 14:05:33', 1),
 	(1100, '快乐崇拜-潘玮柏、张韶涵', '潘玮柏 / 张韶涵', 'Wu Ha', 308, 0, '2024-03-21 16:06:11', '2024-03-22 13:58:11', 1),
-	(1101, '不得不爱-潘玮柏、弦子', '潘玮柏 / 弦子', '夏日撒糖情歌', 788, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', 1);
+	(1101, '不得不爱-潘玮柏、弦子', '潘玮柏 / 弦子', '夏日撒糖情歌', 788, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', 1),
+	(1102, '我用什么把你留住-福禄寿FloruitShow', '福禄寿FloruitShow', '我用什么把你留住', 667, 0, '2024-03-22 16:47:30', '2024-03-22 17:16:32', 1),
+	(1103, '天堂 (Live)-腾格尔', '腾格尔', '歌手2018 第7期', 107, 0, '2024-03-22 16:49:01', '2024-03-22 17:16:18', 1),
+	(1104, 'No Glory', 'Krale / M.I.M.E / Drama B / Skan', 'No Glory', 1015, 0, '2024-03-22 17:05:04', '2024-03-22 17:15:48', 1),
+	(1105, 'Octopus-ALan', 'ALan', 'Octopus', 1005, 0, '2024-03-22 17:07:40', '2024-03-22 17:16:03', 1);
 
 -- 导出  表 open_music.music_info_link 结构
 DROP TABLE IF EXISTS `music_info_link`;
@@ -1760,7 +1764,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐链接信息表';
 
--- 正在导出表  open_music.music_info_link 的数据：~4,244 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~4,031 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -6005,7 +6009,23 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4241, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', NULL, 0, 0, 1101),
 	(4242, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', NULL, 1, 0, 1101),
 	(4243, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/04/%E4%B8%8D%E5%BE%97%E4%B8%8D%E7%88%B1-%E6%BD%98%E7%8E%AE%E6%9F%8F%E3%80%81%E5%BC%A6%E5%AD%90.m4a?sign=k_EB5vrkjlbRAE_ldyI495Jq44pc26xW6D2eiyiLGIw=:0', 0, 1, 1101),
-	(4244, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/04/%E4%B8%8D%E5%BE%97%E4%B8%8D%E7%88%B1-%E6%BD%98%E7%8E%AE%E6%9F%8F%E3%80%81%E5%BC%A6%E5%AD%90.jpg?sign=hU74kFf_NhXi_FmVuyWcdfEY0siXFs17apq2iW_KBtQ=:0', 1, 1, 1101);
+	(4244, 0, '2024-03-21 16:07:51', '2024-03-22 13:56:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/04/%E4%B8%8D%E5%BE%97%E4%B8%8D%E7%88%B1-%E6%BD%98%E7%8E%AE%E6%9F%8F%E3%80%81%E5%BC%A6%E5%AD%90.jpg?sign=hU74kFf_NhXi_FmVuyWcdfEY0siXFs17apq2iW_KBtQ=:0', 1, 1, 1101),
+	(4245, 0, '2024-03-22 16:47:30', '2024-03-22 17:16:32', NULL, 0, 0, 1102),
+	(4246, 0, '2024-03-22 16:47:30', '2024-03-22 17:16:32', NULL, 1, 0, 1102),
+	(4247, 0, '2024-03-22 16:47:30', '2024-03-22 17:16:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/%E6%88%91%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%8A%E4%BD%A0%E7%95%99%E4%BD%8F-%E7%A6%8F%E7%A6%84%E5%AF%BFFloruitShow.m4a?sign=jE1juLjyHwmBE01s-_gm9jdckzpTvL1TRLkCY9BX25g=:0', 0, 1, 1102),
+	(4248, 0, '2024-03-22 16:47:30', '2024-03-22 17:16:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/%E6%88%91%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%8A%E4%BD%A0%E7%95%99%E4%BD%8F-%E7%A6%8F%E7%A6%84%E5%AF%BFFloruitShow.jpg?sign=3nNZtV1xK3lsyKROT8lPK0tGpxJM5Y1x4DE0bc7sQoA=:0', 1, 1, 1102),
+	(4249, 0, '2024-03-22 16:49:01', '2024-03-22 17:16:18', NULL, 0, 0, 1103),
+	(4250, 0, '2024-03-22 16:49:01', '2024-03-22 17:16:18', NULL, 1, 0, 1103),
+	(4251, 0, '2024-03-22 16:49:01', '2024-03-22 17:16:18', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/%E5%A4%A9%E5%A0%82%20(Live)-%E8%85%BE%E6%A0%BC%E5%B0%94.m4a?sign=S-JxVdOd_D0xjO7PlX8PReH8307aEATv5UmPH-wCDaY=:0', 0, 1, 1103),
+	(4252, 0, '2024-03-22 16:49:01', '2024-03-22 17:16:18', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/%E5%A4%A9%E5%A0%82%20(Live)-%E8%85%BE%E6%A0%BC%E5%B0%94.jpg?sign=TBtvy3N6U8m7_QvdEwQjSm8Ie41uHsw4QNEA0DXuNxM=:0', 1, 1, 1103),
+	(4253, 0, '2024-03-22 17:05:04', '2024-03-22 17:15:48', NULL, 0, 0, 1104),
+	(4254, 0, '2024-03-22 17:05:04', '2024-03-22 17:15:48', NULL, 1, 0, 1104),
+	(4255, 0, '2024-03-22 17:05:04', '2024-03-22 17:15:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/No%20Glory.m4a?sign=g2XZGpv0AiKyr-BB_ZDvNnUTIvnMKczzx8y0auT65T0=:0', 0, 1, 1104),
+	(4256, 0, '2024-03-22 17:05:04', '2024-03-22 17:15:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/No%20Glory.jpg?sign=FqZZ8JoLUNMxR13PIObxAveCjA0lGRsZ8Xro2nKqi4s=:0', 1, 1, 1104),
+	(4257, 0, '2024-03-22 17:07:40', '2024-03-22 17:16:03', NULL, 0, 0, 1105),
+	(4258, 0, '2024-03-22 17:07:40', '2024-03-22 17:16:03', NULL, 1, 0, 1105),
+	(4259, 0, '2024-03-22 17:07:40', '2024-03-22 17:16:03', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/Octopus-ALan.m4a?sign=l6Qoj59Y-qGW9io7g06SlLqhjeoKyREj_4EgzpDk2_Y=:0', 0, 1, 1105),
+	(4260, 0, '2024-03-22 17:07:40', '2024-03-22 17:16:03', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/11/Octopus-ALan.jpg?sign=4pe7ui4oEseDuiLsepibdJh59tOaEeCWMnKmWCFBrk4=:0', 1, 1, 1105);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
