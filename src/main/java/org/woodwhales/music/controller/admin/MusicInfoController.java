@@ -69,6 +69,10 @@ public class MusicInfoController {
 		return RespVO.success(musicService.getMusicDetailInfoById(requestBody.getId()));
 	}
 
+	/**
+	 * 获取音乐来源配置
+	 * @return
+	 */
 	@GetMapping("/getLinkList")
 	public RespVO<List<MusicInfoLinkDetailVo>> getLinkList() {
 		return RespVO.success(musicService.getLinkList());

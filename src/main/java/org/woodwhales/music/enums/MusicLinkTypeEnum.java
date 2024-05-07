@@ -4,6 +4,7 @@ import cn.woodwhales.common.business.DataTool;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.woodwhales.music.entity.MusicInfoLink;
 
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public enum MusicLinkTypeEnum {
             if(CollectionUtils.isNotEmpty(linkList)) {
                 result.put(linkTypeEnum.name(), linkList.get(0).getLinkUrl());
             } else {
-                result.put(linkTypeEnum.name(), null);
+                result.put(linkTypeEnum.name(), StringUtils.EMPTY);
             }
         }
         return result;

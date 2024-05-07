@@ -71,7 +71,8 @@
                             <el-tab-pane
                                     :label="link.linkSourceName"
                                     :name="link.linkSourceName"
-                                    v-for="(link, index) in dataForm.linkList">
+                                    v-for="(link, index) in dataForm.linkList"
+                                    :key="index">
                                 <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="链接">
@@ -151,19 +152,19 @@
                     sort: null,
                     linkList: [
                         {
-                            "linkSource": 0,
-                            "linkSourceName": "github",
-                            "linkMap": {
-                                "AUDIO_LINK": null,
-                                "COVER_LINK": null
+                            linkSource: 0,
+                            linkSourceName: "github",
+                            linkMap: {
+                                AUDIO_LINK: "",
+                                COVER_LINK: ""
                             }
                         },
                         {
-                            "linkSource": 1,
-                            "linkSourceName": "alist",
-                            "linkMap": {
-                                "AUDIO_LINK": null,
-                                "COVER_LINK": null
+                            linkSource: 1,
+                            linkSourceName: "alist",
+                            linkMap: {
+                                AUDIO_LINK: "",
+                                COVER_LINK: ""
                             }
                         }
                     ]
@@ -181,8 +182,8 @@
                 musicPlayer: {
                     musicName: null,
                     musicAuthor: null,
-                    musicAudioUrl: null,
-                    musicCoverUrl: null
+                    musicAudioUrl: '',
+                    musicCoverUrl: ''
                 },
                 rules2: {
                     platformType: [
@@ -271,8 +272,12 @@
             },
             initAplyer() {
                 this.musicPlayer.musicName = this.dataForm.musicName;
-                this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK;
-                this.musicPlayer.musicCoverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK;
+                this.musicPlayer.musicAudioUrl = ''
+                this.musicPlayer.musicCoverUrl = ''
+                if(this.dataForm.linkList[this.sys.linkSourceIndex]) {
+                    this.musicPlayer.musicAudioUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.AUDIO_LINK
+                    this.musicPlayer.musicCoverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK
+                }
                 this.musicPlayer.musicAuthor = this.dataForm.artist;
                 new APlayer({
                     container: document.getElementById('aplayer'),
