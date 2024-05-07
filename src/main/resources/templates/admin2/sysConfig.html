@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/webjars/element-ui/lib/theme-chalk/index.css}">
+    <script th:src="@{/webjars/vue/dist/vue.js}"></script>
+    <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="2">&nbsp;</el-col>
+        <el-col :span="20">
+            <div th:replace="~{admin2/header::header}"></div>
+            <el-row style="margin-bottom: 12px;">
+                <el-button type="success" size="mini" @click="onBackHome">返回</el-button>
+            </el-row>
+            <el-row style="margin-bottom: 12px;">
+                <el-divider content-position="left">系统配置</el-divider>
+            </el-row>
+            <el-row style="margin-bottom: 12px;">
+                <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
+                    <el-form-item>
+                        <el-button type="primary" size="mini" @click="onSubmit('dataForm')">提交</el-button>
+                        <el-button size="mini" @click="resetForm('dataForm')">重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-row>
+        </el-col>
+        <el-col :span="2">&nbsp;</el-col>
+    </el-row>
+</div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                dataForm: {
+
+                },
+                rules: {
+                    musicName: [
+                        { required: true, message: '请输入名称', trigger: 'blur' }
+                    ]
+                }
+            }
+        },
+        mounted() {
+
+        },
+        methods: {
+            onBackHome() {
+                location.href = './';
+            },
+            onSubmit(dataForm) {
+                this.$refs.dataForm.validate((valid) => {
+                    if (!valid) {
+                        return false;
+                    }
+                    axios.post('./createOrUpdateSysConfig', this.dataForm)
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.$message({
+                                    message: response.data.msg,
+                                    type: 'success'
+                                });
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            }
+        }
+    })
+</script>
+</html>

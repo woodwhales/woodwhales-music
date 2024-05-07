@@ -1,0 +1,9 @@
+.floating-area {
+    position: fixed;
+    bottom: 20px; /* 距离底部的距离 */
+    right: 20px; /* 距离右侧的距离 */
+    text-align: center;
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); /* 阴影效果 */
+    z-index: 9999; /* 确保区域位于其他内容之上 */
+}

@@ -53,6 +53,11 @@ public class AdminViewController {
         model.addAttribute("musicSite", appConfig.getMusicSite());
     }
 
+    @GetMapping({"sysConfig"})
+    public String sysConfig(Model model) {
+        return "admin2/sysConfig";
+    }
+
     @GetMapping({"add"})
     public String add(@RequestParam(required = false) Long id, Model model) {
         List<MusicPlatformTypeEnum> musicPlatformTypes = Arrays.asList(MusicPlatformTypeEnum.values());

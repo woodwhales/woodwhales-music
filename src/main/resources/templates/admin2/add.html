@@ -149,7 +149,24 @@
                     artist: null,
                     album: null,
                     sort: null,
-                    linkList: []
+                    linkList: [
+                        {
+                            "linkSource": 0,
+                            "linkSourceName": "github",
+                            "linkMap": {
+                                "AUDIO_LINK": null,
+                                "COVER_LINK": null
+                            }
+                        },
+                        {
+                            "linkSource": 1,
+                            "linkSourceName": "alist",
+                            "linkMap": {
+                                "AUDIO_LINK": null,
+                                "COVER_LINK": null
+                            }
+                        }
+                    ]
                 },
                 sys: {
                     music: [[${music}]],
@@ -269,7 +286,7 @@
                 });
             },
             onParse(dataForm) {
-                this.$refs.parseForm.validate((valid) => {
+                this.$refs[dataForm].validate((valid) => {
                     if (!valid) {
                         return false;
                     }

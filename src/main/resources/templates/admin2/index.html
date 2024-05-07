@@ -11,6 +11,7 @@
     <!-- https://aplayer.js.org/#/zh-Hans/ -->
     <script th:src="@{/aplyer/APlayer.min.js}"></script>
     <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
 </head>
 <body>
     <div id="app">
@@ -116,6 +117,8 @@
             </el-col>
             <el-col :span="2">&nbsp;</el-col>
         </el-row>
+        <!-- 系统设置按钮 -->
+        <el-button @click="onSysConfig" type="success" class="floating-area" icon="el-icon-setting" circle></el-button>
     </div>
 </body>
 <script type="text/javascript" th:inline="none">
@@ -181,6 +184,9 @@
             },
             onAdd() {
                 location.href = './add'
+            },
+            onSysConfig() {
+                location.href = './sysConfig'
             },
             onTry(row) {
                 this.musicPlayer.musicAudioUrl = row.audioUrl;
