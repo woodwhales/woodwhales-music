@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   `music_id` bigint(20) unsigned NOT NULL COMMENT 'music表id',
   PRIMARY KEY (`id`),
   KEY `music_id` (`music_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='音乐链接信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐链接信息表';
 
 -- 数据导出被取消选择。
 
