@@ -21,36 +21,6 @@ public class AppConfig {
     @Value("${music.link.source}")
     public Integer musicLinkSource;
 
-    /**
-     * 音乐网站首页
-     */
-    @Value("${music.link.site:https://music.icoders.cn/}")
-    private String musicSite;
-
-    /**
-     * github链接
-     */
-    @Value("${github.url:https://github.com/woodwhales/woodwhales-music}")
-    public String githubUrl;
-
-    /**
-     * 是否展示 GitHub Corners
-     */
-    @Value("${github.show:true}")
-    public boolean githubShow;
-
-    /**
-     * 作者名称
-     */
-    @Value("${author.name:woodwhales}")
-    public String authorName;
-
-    /**
-     * 作者网站
-     */
-    @Value("${author.website:https://www.woodwhales.cn}")
-    public String authorWebsite;
-
     public MusicLinkSourceEnum getMusicLinkSourceEnum() {
         return MusicLinkSourceEnum.ofCode(this.getMusicLinkSource());
     }

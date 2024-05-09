@@ -50,7 +50,7 @@ public class AdminViewController {
     }
 
     private void addMusicSite(Model model) {
-        model.addAttribute("musicSite", appConfig.getMusicSite());
+        model.addAttribute("musicSite", "../");
     }
 
     @GetMapping({"sysConfig"})

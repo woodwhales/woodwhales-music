@@ -21,15 +21,3 @@ music:
   link:
     # 链接来源：0-github，1-alist
     source: 1
-  # 音乐网站首页
-  site: "https://music.icoders.cn/"
-author:
-  # 作者名称
-  name: "woodwhales"
-  # 作者网站
-  website: "https://www.woodwhales.cn"
-github:
-  # 是否展示 GitHub Corners
-  show: true
-  # github 链接
-  url: "https://github.com/woodwhales/woodwhales-music"
