@@ -42,7 +42,7 @@ public class MusicInfoController {
 	 * @return
 	 */
 	@PostMapping("/createOrUpdateMusic")
-	public RespVO<Boolean> createOrUpdateMusic(@Validated @RequestBody MusicCreateOrUpdateRequestBody requestBody) {
+	public RespVO<Void> createOrUpdateMusic(@Validated @RequestBody MusicCreateOrUpdateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
 		musicService.createOrUpdate(requestBody);
 		return RespVO.success();

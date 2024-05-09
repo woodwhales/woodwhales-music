@@ -22,13 +22,36 @@
             <el-row style="margin-bottom: 12px;">
                 <el-divider content-position="left">系统配置</el-divider>
             </el-row>
-            <el-row style="margin-bottom: 12px;">
-                <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
-                    <el-form-item>
-                        <el-button type="primary" size="mini" @click="onSubmit('dataForm')">提交</el-button>
-                        <el-button size="mini" @click="resetForm('dataForm')">重置</el-button>
-                    </el-form-item>
-                </el-form>
+            <el-row style="margin-bottom: 12px; text-align: left">
+                <el-tabs v-model="activeName" @tab-click="handleClick" type="card">
+                    <el-tab-pane label="首页" name="home" style="padding: 10px">
+                        <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
+                            <el-card shadow="hover" style="margin-bottom: 15px">
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">git HubCorners</span>
+                                <el-form-item label="展示" prop="gitHubCornersShow">
+                                    <el-switch v-model="dataForm.gitHubCornersShow"></el-switch>
+                                </el-form-item>
+                                <el-form-item label="链接" prop="gitHubCornersUrl" :required="dataForm.gitHubCornersShow ? true : false">
+                                    <el-input v-model="dataForm.gitHubCornersUrl" maxlength="300" show-word-limit :disabled="!dataForm.gitHubCornersShow"></el-input>
+                                </el-form-item>
+                            </el-card>
+                            <el-card shadow="hover" style="margin-bottom: 15px">
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">底部版权</span>
+                                <el-form-item label="名称" prop="authorName">
+                                    <el-input v-model="dataForm.authorName" maxlength="50" show-word-limit></el-input>
+                                </el-form-item>
+                                <el-form-item label="链接" prop="authorWebsite">
+                                    <el-input v-model="dataForm.authorWebsite" maxlength="300" show-word-limit></el-input>
+                                </el-form-item>
+                            </el-card>
+                            <el-button type="primary" size="mini" @click="onSubmit('dataForm')">提交</el-button>
+                            <el-button size="mini" @click="resetForm('dataForm')">重置</el-button>
+                        </el-form>
+                    </el-tab-pane>
+                    <el-tab-pane label="后台" name="admin" style="padding: 10px">
+                        <el-empty description="暂未开放，敬请期待"></el-empty>
+                    </el-tab-pane>
+                </el-tabs>
             </el-row>
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
@@ -39,48 +62,88 @@
     new Vue({
         el: '#app',
         data: function() {
-            return {
-                dataForm: {
+            const validateGitHubCornersUrl = (rule, value, callback) => {
+                if (this.dataForm.gitHubCornersShow && this.dataForm.gitHubCornersUrl === '') {
+                    callback(new Error('请输入链接'));
+                } else {
+                    callback();
+                }
+            };
 
+            return {
+                activeName: 'home',
+                dataForm: {
+                    authorName: '',
+                    authorWebsite: '',
+                    gitHubCornersUrl: '',
+                    gitHubCornersShow: true
                 },
                 rules: {
-                    musicName: [
+                    authorName: [
                         { required: true, message: '请输入名称', trigger: 'blur' }
+                    ],
+                    authorWebsite: [
+                        { required: true, message: '请输入链接', trigger: 'blur' }
+                    ],
+                    gitHubCornersUrl:[
+                        { validator: validateGitHubCornersUrl, trigger: 'blur' }
                     ]
                 }
             }
         },
         mounted() {
-
+            this.initDataForm()
         },
         methods: {
+            initDataForm() {
+                axios.post('./sysConfig/getConfig', {
+                    configKey: 'home'
+                })
+                .then(response => {
+                    if(response.data.code === 0) {
+                        this.dataForm = response.data.data.content;
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                    console.log(error);
+                });
+            },
             onBackHome() {
                 location.href = './';
             },
+            handleClick(tab, event) {
+            },
             onSubmit(dataForm) {
-                this.$refs.dataForm.validate((valid) => {
+                this.$refs[dataForm].validate((valid) => {
                     if (!valid) {
                         return false;
                     }
-                    axios.post('./createOrUpdateSysConfig', this.dataForm)
-                        .then(response => {
-                            if(response.data.code === 0) {
-                                this.$message({
-                                    message: response.data.msg,
-                                    type: 'success'
-                                });
-                            } else {
-                                this.$message.error(response.data.msg);
-                            }
-                        })
-                        .catch(error => {
-                            this.$message.error(error);
-                            console.log(error);
-                        });
+                    axios.post('./sysConfig/createOrUpdate', {
+                        configKey: 'home',
+                        content: this.dataForm
+                    })
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.$message({
+                                message: response.data.msg,
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                        console.log(error);
+                    });
                 });
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+                this.initDataForm()
             }
         }
     })

@@ -1,13 +1,17 @@
 package org.woodwhales.music.controller;
 
+import cn.woodwhales.common.model.result.OpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.woodwhales.music.config.AppConfig;
+import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.model.MusicInfoVo;
+import org.woodwhales.music.model.SysConfigVo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
+import org.woodwhales.music.service.sysConfig.SysConfigService;
 
 import java.util.List;
 
@@ -25,14 +29,15 @@ public class ViewController {
 	@Autowired
 	private AppConfig appConfig;
 
+	@Autowired
+	private SysConfigService sysConfigService;
+
 	@GetMapping({"", "index"})
 	public String index(Model model) {
 		List<MusicInfoVo> musicInfoVoList = musicService.listMusic();
 		model.addAttribute("musicInfoList", musicInfoVoList);
-		model.addAttribute("githubUrl", appConfig.getGithubUrl());
-		model.addAttribute("githubShow", appConfig.isGithubShow());
-		model.addAttribute("authorName", appConfig.getAuthorName());
-		model.addAttribute("authorWebsite", appConfig.getAuthorWebsite());
+		OpResult<SysConfigVo> opResult = sysConfigService.getConfig(new SysConfigGetRequestBody("home"));
+		model.addAttribute(opResult.getData().getConfigKey(), opResult.getData().getContent());
 		return "index";
 	}
 	
