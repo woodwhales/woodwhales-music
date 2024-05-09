@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        8.0.27 - MySQL Community Server - GPL
--- 服务器操作系统:                      Linux
+-- 服务器版本:                        5.7.27-log - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  12.6.0.6765
 -- --------------------------------------------------------
 
@@ -14,28 +14,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- 导出 open_music 的数据库结构
-CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `open_music`;
-
--- 导出  表 open_music.music 结构
-CREATE TABLE IF NOT EXISTS `music` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
-  `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '音乐名称标题（音乐名称）',
-  `artist` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者',
-  `album` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '专辑',
-  `audio_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '音乐链接地址',
-  `cover_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '音乐封面',
-  `sort` int DEFAULT '1' COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
-  `gmt_created` datetime DEFAULT NULL COMMENT '创建时间',
-  `gmt_modified` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
-
 -- 正在导出表  open_music.music 的数据：~637 rows (大约)
-INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
+INSERT IGNORE INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`, `sort`, `status`, `gmt_created`, `gmt_modified`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, '2020-08-03 23:40:53', '2022-07-06 23:19:10'),
 	(3, '红日', '李克勤', '红日', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/hong_ri.m4a', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/hong_ri.jpg', 2, 0, '2020-08-03 23:41:55', '2020-08-03 23:41:55'),
 	(4, '后来', '刘若英', '我等你', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/hou_lai.mp3', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/hou_lai.jpg', 3, 0, '2020-08-03 23:43:03', '2020-08-03 23:43:03'),
@@ -674,22 +654,8 @@ INSERT INTO `music` (`id`, `title`, `artist`, `album`, `audio_url`, `cover_url`,
 	(663, '热爱105°C的你', '阿肆', '热爱105°C的你', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@009/music/Nijamena%20(BGM%E7%89%88).m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@009/music/Nijamena%20(BGM%E7%89%88).jpg', 513, 0, '2023-03-02 18:53:01', '2023-03-17 09:17:14'),
 	(664, '热爱105°C的你', '腾格尔 / 艾伦 / 沈腾', '热爱105°C的你', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@009/music/%E7%83%AD%E7%88%B1105%C2%B0C%E7%9A%84%E4%BD%A0-%E8%85%BE%E6%A0%BC%E5%B0%94%20%E8%89%BE%E4%BC%A6%20%E6%B2%88%E8%85%BE.m4a', 'https://fastly.jsdelivr.net/gh/woodwhales/woodwhales-music-store07@009/music/%E7%83%AD%E7%88%B1105%C2%B0C%E7%9A%84%E4%BD%A0-%E8%85%BE%E6%A0%BC%E5%B0%94%20%E8%89%BE%E4%BC%A6%20%E6%B2%88%E8%85%BE.jpg', 354, 0, '2023-03-02 18:55:59', '2023-03-17 09:15:42');
 
--- 导出  表 open_music.music_info 结构
-CREATE TABLE IF NOT EXISTS `music_info` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
-  `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '音乐名称标题（音乐名称）',
-  `artist` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者',
-  `album` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '专辑',
-  `sort` int DEFAULT '1' COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
-  `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `link_status` int unsigned NOT NULL DEFAULT '0' COMMENT '链接填充状态：0-未填充链接，1-已填充链接',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
-
 -- 正在导出表  open_music.music_info 的数据：~1,113 rows (大约)
-INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
+INSERT IGNORE INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
 	(4, '后来', '刘若英', '我等你', 3, 0, '2020-08-03 23:43:03', '2023-03-29 14:45:34', 1),
@@ -1804,22 +1770,8 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(1162, '缘分一道桥(电影《长城》片尾曲)-王力宏、谭维维', '王力宏 / 谭维维', 'A.I. 爱', 1, 2, '2024-04-28 16:15:05', '2024-04-28 08:15:24', 1),
 	(1163, 'やわらかな光(柔和之光)-やまだ豊', 'やまだ豊', 'フジテレビ系ドラマ「僕のいた時間」オリジナルサウンドトラック - (日剧《我存在的时间》原声带)', 400, 0, '2024-04-28 16:44:58', '2024-04-28 17:02:34', 1);
 
--- 导出  表 open_music.music_info_link 结构
-CREATE TABLE IF NOT EXISTS `music_info_link` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
-  `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `link_url` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link_type` int NOT NULL DEFAULT '0' COMMENT '链接类型：0-音频，1-封面',
-  `link_source` int NOT NULL DEFAULT '0' COMMENT '链接来源：0-github，1-alist',
-  `music_id` bigint unsigned NOT NULL COMMENT 'music表id',
-  PRIMARY KEY (`id`),
-  KEY `music_id` (`music_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='音乐链接信息表';
-
--- 正在导出表  open_music.music_info_link 的数据：~3,919 rows (大约)
-INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
+-- 正在导出表  open_music.music_info_link 的数据：~4,492 rows (大约)
+INSERT IGNORE INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
 	(3, 0, '2023-03-28 15:27:38', '2023-03-29 14:46:14', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/hong_ri.m4a', 0, 0, 3),
@@ -4669,7 +4621,8 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(2847, 0, '2023-07-15 22:21:04', '2023-07-16 22:43:42', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store08/03/A%20Day%20In%20The%20Life%20(Remastered)-The%20Beatles.mp3?sign=DKVKUBIT7H1gWBAd2xuuKyq_y5n8OIFQbuXjLjtCIts=:0', 0, 1, 752),
 	(2848, 0, '2023-07-15 22:21:04', '2023-07-16 22:43:42', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store08/03/A%20Day%20In%20The%20Life%20(Remastered)-The%20Beatles.jpg?sign=g6CO4YTfMr1KAXtkfAI0j9NVGsl9X0YFKYAzgMpMAZQ=:0', 1, 1, 752),
 	(2849, 0, '2023-07-15 22:25:30', '2023-07-16 21:30:21', NULL, 0, 0, 753),
-	(2850, 0, '2023-07-15 22:25:30', '2023-07-16 21:30:21', NULL, 1, 0, 753),
+	(2850, 0, '2023-07-15 22:25:30', '2023-07-16 21:30:21', NULL, 1, 0, 753);
+INSERT IGNORE INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(2851, 0, '2023-07-15 22:25:30', '2023-07-16 21:30:21', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store08/02/Always%20With%20Me-%E6%9C%A8%E6%9D%91%E5%BC%93%E3%80%81%E5%A5%A5%E6%88%B7%E5%B7%B4%E5%AF%BF.mp3?sign=wSXcprF8PTR5gjeiXnzbTMK41WWA9QVI0rseN6Q8Ixc=:0', 0, 1, 753),
 	(2852, 0, '2023-07-15 22:25:30', '2023-07-16 21:30:21', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store08/02/Always%20With%20Me-%E6%9C%A8%E6%9D%91%E5%BC%93%E3%80%81%E5%A5%A5%E6%88%B7%E5%B7%B4%E5%AF%BF.jpg?sign=XwE53qwzQgMaA7cCCPpe716A1DH8MdsTLHG6OBBQuok=:0', 1, 1, 753),
 	(2853, 0, '2023-07-15 23:49:40', '2023-07-16 22:44:00', NULL, 0, 0, 754),
@@ -6312,6 +6265,8 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4490, 0, '2024-04-28 16:44:58', '2024-04-28 17:02:34', NULL, 1, 0, 1163),
 	(4491, 0, '2024-04-28 16:44:58', '2024-04-28 17:02:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store13/13/%E3%82%84%E3%82%8F%E3%82%89%E3%81%8B%E3%81%AA%E5%85%89(%E6%9F%94%E5%92%8C%E4%B9%8B%E5%85%89)-%E3%82%84%E3%81%BE%E3%81%A0%E8%B1%8A.m4a?sign=x7qpJePu83b3b_R93W2TMFdqTPgPCc3gn5pk_NBhGqM=:0', 0, 1, 1163),
 	(4492, 0, '2024-04-28 16:44:58', '2024-04-28 17:02:34', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store13/13/%E3%82%84%E3%82%8F%E3%82%89%E3%81%8B%E3%81%AA%E5%85%89(%E6%9F%94%E5%92%8C%E4%B9%8B%E5%85%89)-%E3%82%84%E3%81%BE%E3%81%A0%E8%B1%8A.jpg?sign=c022_aRYhAYLyB0R9kQSfH7vAshvofFOYYa5B4_BfPU=:0', 1, 1, 1163);
+
+-- 正在导出表  open_music.sys_config 的数据：~0 rows (大约)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
