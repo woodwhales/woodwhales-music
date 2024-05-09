@@ -20,13 +20,13 @@
 
 - woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本.sql
 - woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本_只含库表结构.sql
-- woodwhales-music/doc/sql/open_music_适用低于v3.6.0版本.sql
+- woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本_只含数据.sql
 
 文件说明：
 
-- 不建议使用低于 v3.6.0版本的 SQL 文件
-- open_music_适用高于v3.6.0版本.sql 文件中包含下章节中的歌单链接，开发者可导入后从后台页面做批量删除操作。
+- 不建议使用低于 v3.6.0 版本的 SQL 文件
 - 只导入库表结构，则使用：open_music_适用高于v3.6.0版本_只含库表结构.sql
+- 导入数据，则使用：open_music_适用高于v3.6.0版本_只含数据.sql，开发者可导入后从后台页面做批量删除操作。
 
 #### 1.1.2 系统配置
 
@@ -121,11 +121,6 @@
 
     - 音乐网站首页：`music.site`，用于后台 banner 快捷跳转至网站首页
 
-    ```yaml
-    music:
-      # 音乐网站首页
-      site: "https://music.icoders.cn/"
-    ```
 
 ### 1.2 编译打包
 
@@ -162,6 +157,10 @@ mvn clean install -Pdev
 ```
 
 ## 2. 功能说明
+
+### 3.6.3
+
+- 后台首页增加系统配置快捷按钮，跳转至系统配置管理页面，对首页的版权信息和 GitHub Corners 可进行实时动态配置
 
 ### 3.6.2
 
@@ -259,7 +258,7 @@ class 为：`main`的 html 源码
 
 ![](doc/images/admin-add-qqmusic.png)
 
-#### 虾米
+#### 虾米（平台已关闭）
 
 class 为：`page-container`的 html 源码
 
