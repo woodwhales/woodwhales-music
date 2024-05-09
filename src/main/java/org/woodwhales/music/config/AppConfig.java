@@ -15,6 +15,30 @@ import org.woodwhales.music.enums.MusicLinkSourceEnum;
 public class AppConfig {
 
     /**
+     * github链接
+     */
+    @Value("${github.url:https://github.com/woodwhales/woodwhales-music}")
+    public String githubUrl;
+
+    /**
+     * 是否展示 GitHub Corners
+     */
+    @Value("${github.show:true}")
+    public boolean githubShow;
+
+    /**
+     * 作者名称
+     */
+    @Value("${author.name:woodwhales}")
+    public String authorName;
+
+    /**
+     * 作者网站
+     */
+    @Value("${author.website:https://www.woodwhales.cn}")
+    public String authorWebsite;
+
+    /**
      * 链接来源：0-github，1-alist
      * @see org.woodwhales.music.enums.MusicLinkSourceEnum
      */
