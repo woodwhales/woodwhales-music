@@ -27,7 +27,14 @@
                     <el-tab-pane label="首页" name="home" style="padding: 10px">
                         <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
                             <el-card shadow="hover" style="margin-bottom: 15px">
-                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">git HubCorners</span>
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">git HubCorners
+                                <el-tooltip class="item"
+                                            effect="dark"
+                                            content="首页左上角的 github HubCorners"
+                                            placement="right">
+                                        <i class="el-icon-question" style="font-size: 14px; vertical-align: middle;"></i>
+                                    </el-tooltip>
+                                </span>
                                 <el-form-item label="展示" prop="gitHubCornersShow">
                                     <el-switch v-model="dataForm.gitHubCornersShow"></el-switch>
                                 </el-form-item>
@@ -36,7 +43,14 @@
                                 </el-form-item>
                             </el-card>
                             <el-card shadow="hover" style="margin-bottom: 15px">
-                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">底部版权</span>
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">版权信息
+                                <el-tooltip class="item"
+                                            effect="dark"
+                                            content="首页底部的版本信息"
+                                            placement="right">
+                                        <i class="el-icon-question" style="font-size: 14px; vertical-align: middle;"></i>
+                                    </el-tooltip>
+                                </span>
                                 <el-form-item label="名称" prop="authorName">
                                     <el-input v-model="dataForm.authorName" maxlength="50" show-word-limit></el-input>
                                 </el-form-item>
@@ -49,7 +63,23 @@
                         </el-form>
                     </el-tab-pane>
                     <el-tab-pane label="后台" name="admin" style="padding: 10px">
-                        <el-empty description="暂未开放，敬请期待"></el-empty>
+                        <el-form ref="dataForm2" :model="dataForm2" :rules="rules2" label-width="80px">
+                            <el-card shadow="hover" style="margin-bottom: 15px">
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">banner
+                                    <el-tooltip class="item"
+                                                effect="dark"
+                                                content="后台页面音乐图标跳转链接"
+                                                placement="right">
+                                        <i class="el-icon-question" style="font-size: 14px; vertical-align: middle;"></i>
+                                    </el-tooltip>
+                                </span>
+                                <el-form-item label="链接" prop="bannerLinkUrl">
+                                    <el-input v-model="dataForm2.bannerLinkUrl" maxlength="300" show-word-limit></el-input>
+                                </el-form-item>
+                            </el-card>
+                            <el-button type="primary" size="mini" @click="onSubmit2('dataForm2')">提交</el-button>
+                            <el-button size="mini" @click="resetForm2('dataForm2')">重置</el-button>
+                        </el-form>
                     </el-tab-pane>
                 </el-tabs>
             </el-row>
@@ -78,6 +108,14 @@
                     gitHubCornersUrl: '',
                     gitHubCornersShow: true
                 },
+                dataForm2: {
+                    bannerUrl: ''
+                },
+                rules2: {
+                    bannerUrl: [
+                        { required: true, message: '请输入链接', trigger: 'blur' }
+                    ]
+                },
                 rules: {
                     authorName: [
                         { required: true, message: '请输入名称', trigger: 'blur' }
@@ -93,15 +131,16 @@
         },
         mounted() {
             this.initDataForm()
+            this.initDataForm2()
         },
         methods: {
-            initDataForm() {
+            getConfigProcess(configKey, fun) {
                 axios.post('./sysConfig/getConfig', {
-                    configKey: 'home'
+                    configKey: configKey
                 })
                 .then(response => {
                     if(response.data.code === 0) {
-                        this.dataForm = response.data.data.content;
+                        fun(response.data)
                     } else {
                         this.$message.error(response.data.msg);
                     }
@@ -111,19 +150,35 @@
                     console.log(error);
                 });
             },
+            initDataForm2() {
+                this.getConfigProcess('admin', res => {
+                    this.dataForm2 = res.data.content
+                })
+            },
+            initDataForm() {
+                this.getConfigProcess('home', res => {
+                    this.dataForm = res.data.content
+                })
+            },
             onBackHome() {
                 location.href = './';
             },
             handleClick(tab, event) {
+                if(tab.name === 'home') {
+                    this.initDataForm()
+                }
+                if(tab.name === 'admin') {
+                    this.initDataForm2()
+                }
             },
-            onSubmit(dataForm) {
+            submitProcess(dataForm, configKey, content) {
                 this.$refs[dataForm].validate((valid) => {
                     if (!valid) {
                         return false;
                     }
                     axios.post('./sysConfig/createOrUpdate', {
-                        configKey: 'home',
-                        content: this.dataForm
+                        configKey: configKey,
+                        content: content
                     })
                     .then(response => {
                         if(response.data.code === 0) {
@@ -140,6 +195,16 @@
                         console.log(error);
                     });
                 });
+            },
+            onSubmit2(dataForm) {
+                this.submitProcess(dataForm, 'admin', this.dataForm2)
+            },
+            resetForm2(formName) {
+                this.$refs[formName].resetFields();
+                this.initDataForm2()
+            },
+            onSubmit(dataForm) {
+                this.submitProcess(dataForm, 'home', this.dataForm)
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();

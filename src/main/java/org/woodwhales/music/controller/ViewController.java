@@ -35,11 +35,6 @@ public class ViewController {
 		List<MusicInfoVo> musicInfoVoList = musicService.listMusic();
 		model.addAttribute("musicInfoList", musicInfoVoList);
 		OpResult<SysConfigVo> opResult = sysConfigService.getConfig(new SysConfigGetRequestBody("home"));
-		if(opResult.isFailure()) {
-			SysConfigVo sysConfigVo = new SysConfigVo();
-
-			opResult = OpResult.success(sysConfigVo);
-		}
 		model.addAttribute(opResult.getData().getConfigKey(), opResult.getData().getContent());
 		return "index";
 	}

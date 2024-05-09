@@ -5,17 +5,16 @@ import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.woodwhales.music.config.AppConfig;
 import org.woodwhales.music.controller.param.SysConfigCreateOrUpdateRequestBody;
 import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.entity.SysConfig;
 import org.woodwhales.music.mapper.SysConfigMapper;
 import org.woodwhales.music.model.SysConfigVo;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,7 +27,7 @@ import java.util.Objects;
 public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
 
     @Autowired
-    private AppConfig appConfig;
+    private Map<String, SysConfigDefaultFun> sysConfigDefaultFunMap;
 
     public OpResult<Void> createOrUpdate(SysConfigCreateOrUpdateRequestBody requestBody) {
         SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
@@ -46,19 +45,29 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
         SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
                 .eq(SysConfig::getConfigKey, requestBody.getConfigKey()));
         if(Objects.isNull(sysConfig)) {
-            sysConfig = new SysConfig();
-            sysConfig.setConfigKey("home");
-            Map<String, Object> content = new HashMap<>();
-            content.put("gitHubCornersShow", appConfig.isGithubShow());
-            content.put("gitHubCornersUrl", appConfig.getGithubUrl());
-            content.put("authorName", appConfig.getAuthorName());
-            content.put("authorWebsite", appConfig.getAuthorWebsite());
-            sysConfig.setConfigContent(JSON.toJSONString(content));
+            sysConfig = this.matchDefault(requestBody.getConfigKey());
+            if(Objects.isNull(sysConfig)) {
+                return OpResult.failure();
+            }
         }
         SysConfigVo sysConfigVo = new SysConfigVo();
         sysConfigVo.setConfigKey(sysConfig.getConfigKey());
         sysConfigVo.setContent(JSON.parseObject(sysConfig.getConfigContent()));
         return OpResult.success(sysConfigVo);
+    }
+
+    private SysConfig matchDefault(String configKey) {
+        SysConfig sysConfig = null;
+        for (SysConfigDefaultFun sysConfigDefaultFun : sysConfigDefaultFunMap.values()) {
+            if (StringUtils.equals(sysConfigDefaultFun.configKey(), configKey)) {
+                sysConfig = new SysConfig();
+                Map<String, Object> content = sysConfigDefaultFun.defaultConfig();
+                sysConfig.setConfigKey(configKey);
+                sysConfig.setConfigContent(JSON.toJSONString(content));
+                return sysConfig;
+            }
+        }
+        return sysConfig;
     }
 
 }
