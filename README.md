@@ -117,10 +117,10 @@
         # 链接来源：0-github，1-alist
         source: 1
     ```
+    
 - 音乐网站首页
 
     - 音乐网站首页：`music.site`，用于后台 banner 快捷跳转至网站首页
-
 
 ### 1.2 编译打包
 
@@ -160,7 +160,9 @@ mvn clean install -Pdev
 
 ### 3.6.3
 
-- 后台首页增加系统配置快捷按钮，跳转至系统配置管理页面，对首页的版权信息和 GitHub Corners 可进行实时动态配置
+- 后台首页增加系统配置快捷按钮，跳转至系统配置管理页面，可实时动态修改：
+    1. 首页的底部版权信息和 GitHub Corners 可进行
+    2. 后台页面公共头部的 icon 跳转首页链接配置
 
 ### 3.6.2
 
@@ -263,6 +265,10 @@ class 为：`main`的 html 源码
 class 为：`page-container`的 html 源码
 
 ![](doc/images/admin-add-xiami.png)
+
+### 4.3 系统配置
+
+![](doc/images/v3.6.3/admin-sys-config.png)
 
 ## 5. 歌单
 
