@@ -3,6 +3,8 @@
 [![](https://img.shields.io/badge/author-woodwhales-green.svg)](https://music.icoders.cn) ![](https://img.shields.io/badge/license-GPL%203.0-orange.svg)
 
 > 基于 SpringBoot 的开源超简洁音乐播放器
+> 
+> A open source Music Player developed based on Java Springboot
 
 <div align=center>在线播放：<a href="https://music.icoders.cn">https://music.icoders.cn</a></div>
 
