@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/admin/loginTo") 			// 自定义的登录接口，如果没有配置，则使用：loginPage
 				.defaultSuccessUrl("/admin/")					// login 成功之后，默认跳转的页面
 				// .failureForwardUrl() // 本质是添加了一个 链接重定向处理器（failureHandler）： = org.springframework.security.web.authentication.ForwardAuthenticationFailureHandler
-				.failureHandler(myAuthenticationFailureHandler.forwardUrl("admin/login"))
+				.failureHandler(myAuthenticationFailureHandler.forwardUrl("/admin/login"))
 				.and()
 
 				// ========== 登出配置 ==========

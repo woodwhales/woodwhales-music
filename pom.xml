@@ -231,6 +231,7 @@
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>application.yml</include>
+					<include>*.sql</include>
 					<include>static/**</include>
 					<include>templates/**</include>
 					<include>${profiles.active}/**</include>
