@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>org.woodwhales</groupId>
 	<artifactId>woodwhales-music</artifactId>
-	<version>3.6.2</version>
+	<version>3.6.3</version>
 	<name>woodwhales-music</name>
 	<description>woodwhales-music</description>
 
@@ -81,6 +81,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.32</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
