@@ -20,21 +20,17 @@ import java.io.IOException;
 @Component("myAuthenticationFailureHandler")
 public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private String forwardUrl;
-
     @Override
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
         // TODO 可以增加登录失败统计，锁定指定时间内该IP禁止登录
         log.warn("登录失败");
-        this.getRedirectStrategy().sendRedirect(request, response, forwardUrl);
+        this.getRedirectStrategy().sendRedirect(request, response, "/admin/login");
     }
 
     public MyAuthenticationFailureHandler forwardUrl(String forwardUrl) {
-        Assert.isTrue(UrlUtils.isValidRedirectUrl(forwardUrl),
-                () -> "'" + forwardUrl + "' is not a valid forward URL");
-        this.forwardUrl = forwardUrl;
+        Assert.isTrue(UrlUtils.isValidRedirectUrl(forwardUrl), () -> "'" + forwardUrl + "' is not a valid forward URL");
         return this;
     }
 

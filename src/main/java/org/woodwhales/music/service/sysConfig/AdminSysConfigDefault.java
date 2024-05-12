@@ -16,7 +16,6 @@ public class AdminSysConfigDefault implements SysConfigDefaultFun {
     @Autowired
     private AppConfig appConfig;
 
-
     @Override
     public String configKey() {
         return "admin";

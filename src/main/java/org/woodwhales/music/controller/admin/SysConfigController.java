@@ -43,4 +43,5 @@ public class SysConfigController {
         log.info("requestBody = {}", JsonUtil.toString(requestBody));
         return RespVO.resp(service.getConfig(requestBody));
     }
+
 }

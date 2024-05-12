@@ -2,6 +2,9 @@ package org.woodwhales.music.controller.admin;
 
 import cn.woodwhales.common.model.result.OpResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,10 +15,14 @@ import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.SysConfigVo;
+import org.woodwhales.music.security.TwoFactorAuthentication;
 import org.woodwhales.music.service.music.MusicStoreService;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
 import org.woodwhales.music.service.sysConfig.SysConfigService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +57,17 @@ public class AdminViewController {
     public String home(Model model) {
         this.addMusicSite(model);
         return "admin2/index";
+    }
+
+    @GetMapping("/two-factor")
+    public String twoFactor(Model model,
+                            HttpServletRequest request,
+                            HttpServletResponse response) throws IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication.getPrincipal() instanceof TwoFactorAuthentication)) {
+            new DefaultRedirectStrategy().sendRedirect(request, response, "/admin/login");
+        }
+        return "admin2/two-factor";
     }
 
     private void addMusicSite(Model model) {

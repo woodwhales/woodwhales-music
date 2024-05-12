@@ -56,4 +56,18 @@ CREATE TABLE IF NOT EXISTS `sys_config` (
                                             `config_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '配置key',
                                             `config_content` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT '配置内容',
                                             PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='系统配置表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统配置表';
+
+-- 导出  表 open_music.sys_user 结构
+CREATE TABLE IF NOT EXISTS `sys_user` (
+                                            `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+                                            `status` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+                                            `gmt_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                            `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                                            `username` VARCHAR(120) NOT NULL COMMENT '用户名' COLLATE 'utf8mb4_general_ci',
+                                            `password` VARCHAR(300) NOT NULL COMMENT '密码' COLLATE 'utf8mb4_general_ci',
+                                            `two_factor_secret` VARCHAR(300) NOT NULL COMMENT '2fa密钥' COLLATE 'utf8mb4_general_ci',
+                                            `two_factor_enabled` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否开启2fa：0-不开启，1-开启',
+                                            PRIMARY KEY (`id`) USING BTREE,
+                                            UNIQUE INDEX `username` (`username`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';

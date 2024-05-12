@@ -20,6 +20,7 @@ spring:
 logging:
   level:
     org.woodwhales.music: debug
+    com.baomidou: debug
 music:
   link:
     # 链接来源：0-github，1-alist
