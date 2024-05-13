@@ -4,9 +4,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
+import org.woodwhales.music.entity.SysUser;
 
 import java.io.IOException;
 
@@ -28,7 +30,13 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        this.getRedirectStrategy().sendRedirect(request, response, this.forwardUrl);
+        SysUser sysUser = (SysUser) authentication.getPrincipal();
+        if (sysUser.isTwoFactorEnabled()) {
+            SecurityContextHolder.getContext().setAuthentication(new TwoFactorAuthentication(authentication));
+            this.getRedirectStrategy().sendRedirect(request, response, "/admin/two-factor");
+        } else {
+            this.getRedirectStrategy().sendRedirect(request, response, this.forwardUrl);
+        }
     }
 
 }

@@ -14,8 +14,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.woodwhales.music.security.MyAuthenticationFailureHandler;
 import org.woodwhales.music.security.MyAuthenticationSuccessHandler;
+import org.woodwhales.music.security.TwoFactorAuthorizationManager;
 
 /**
  * spring security 配置文件
@@ -49,18 +52,21 @@ public class WebSecurityConfig {
 							"/images/**",
 							"/css/**",
 							"/fonts/**",
+							"/aplyer/**",
 							"/js/**",
 							"/**.png",
 							"/**.ico",
 							"/favicon.ico").permitAll()
+					.requestMatchers("/admin/two-factor")
+					.access(new TwoFactorAuthorizationManager())
 					.anyRequest().authenticated();
 		});
 
 		http.formLogin(formLogin ->
 			formLogin.loginPage("/admin/login").permitAll()
 					.loginProcessingUrl("/admin/loginTo").permitAll()
-					.successHandler(new MyAuthenticationSuccessHandler("/admin/"))
-					.failureHandler(new MyAuthenticationFailureHandler("/admin/login"))
+					.successHandler(authenticationSuccessHandler())
+					.failureHandler(authenticationFailureHandler())
 		);
 		http.logout(formLogout ->
 				formLogout.logoutUrl("/logout").permitAll()
@@ -68,6 +74,16 @@ public class WebSecurityConfig {
 						.invalidateHttpSession(true));
 		http.securityContext(securityContext -> securityContext.requireExplicitSave(false));
 		return http.build();
+	}
+
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		return new MyAuthenticationSuccessHandler("/admin/");
+	}
+
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		return new MyAuthenticationFailureHandler("/admin/login");
 	}
 
 	@Bean

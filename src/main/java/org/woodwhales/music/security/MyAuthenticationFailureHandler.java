@@ -19,7 +19,6 @@ import java.io.IOException;
 public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     private final String forwardUrl;
-    
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request,

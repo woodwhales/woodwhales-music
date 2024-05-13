@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
@@ -81,6 +82,28 @@
                             <el-button size="mini" @click="resetForm2('dataForm2')">重置</el-button>
                         </el-form>
                     </el-tab-pane>
+                    <el-tab-pane label="用户" name="user" style="padding: 10px">
+                        <el-form ref="dataForm3" :model="dataForm3" label-width="80px">
+                            <el-card shadow="hover" style="margin-bottom: 15px">
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">
+                                    <span sec:authentication="principal.username"></span>
+                                </span>
+                                <el-form-item label="2FA认证" prop="enable">
+                                    <el-switch v-model="dataForm3.enable" @change="changeEnable"></el-switch>
+                                </el-form-item>
+                                <el-form-item label="二维码" prop="code" v-if="temp.codeImg !== ''">
+                                    <el-image style="width: 200px; height: 200px"
+                                            :src="temp.codeImg"
+                                            fit="fit"></el-image>
+                                </el-form-item>
+                                <el-form-item label="验证码" prop="code" v-if="dataForm3.enable && temp.codeImg !== ''">
+                                    <el-input v-model="dataForm3.code" maxlength="6" show-word-limit></el-input>
+                                </el-form-item>
+                            </el-card>
+                            <el-button type="primary" size="mini" @click="onSubmit3('dataForm3')">提交</el-button>
+                            <el-button size="mini" @click="resetForm3('dataForm3')">重置</el-button>
+                        </el-form>
+                    </el-tab-pane>
                 </el-tabs>
             </el-row>
         </el-col>
@@ -111,6 +134,13 @@
                 dataForm2: {
                     bannerUrl: ''
                 },
+                dataForm3: {
+                    enable: false,
+                    code: ''
+                },
+                temp: {
+                    codeImg: ''
+                },
                 rules2: {
                     bannerUrl: [
                         { required: true, message: '请输入链接', trigger: 'blur' }
@@ -132,6 +162,8 @@
         mounted() {
             this.initDataForm()
             this.initDataForm2()
+
+            console.log('aaa', )
         },
         methods: {
             getConfigProcess(configKey, fun) {
@@ -149,6 +181,24 @@
                     this.$message.error(error);
                     console.log(error);
                 });
+            },
+            changeEnable(enable) {
+                axios.post('/admin/two-factor/enable', this.dataForm3)
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.$message({
+                                message: response.data.msg,
+                                type: 'success'
+                            });
+                            this.temp.codeImg = response.data.data
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                        console.log(error);
+                    });
             },
             initDataForm2() {
                 this.getConfigProcess('admin', res => {
@@ -198,6 +248,32 @@
             },
             onSubmit2(dataForm) {
                 this.submitProcess(dataForm, 'admin', this.dataForm2)
+            },
+            onSubmit3(dataForm) {
+                this.$refs[dataForm].validate((valid) => {
+                    if (!valid) {
+                        return false;
+                    }
+                    axios.post('/admin/two-factor/verify', this.dataForm3)
+                        .then(response => {
+                            if(response.data.code === 0) {
+                                this.$message({
+                                    message: response.data.msg,
+                                    type: 'success'
+                                });
+                                this.dataForm3.code = ''
+                            } else {
+                                this.$message.error(response.data.msg);
+                            }
+                        })
+                        .catch(error => {
+                            this.$message.error(error);
+                            console.log(error);
+                        });
+                });
+            },
+            resetForm3(formName) {
+                this.$refs[formName].resetFields();
             },
             resetForm2(formName) {
                 this.$refs[formName].resetFields();

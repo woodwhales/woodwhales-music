@@ -24,4 +24,8 @@ public class TwoFactorAuthentication extends AbstractAuthenticationToken {
     public Object getPrincipal() {
         return this.authentication.getPrincipal();
     }
+
+    public Authentication getAuthentication() {
+        return authentication;
+    }
 }

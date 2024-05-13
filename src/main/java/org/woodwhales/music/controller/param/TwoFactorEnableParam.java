@@ -6,7 +6,7 @@ import lombok.Data;
  * @author woodwhales on 2024-05-12 21:42
  */
 @Data
-public class EnableTwoFactorParam {
+public class TwoFactorEnableParam {
 
     /**
      * 是否开启 2FA
