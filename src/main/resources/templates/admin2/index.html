@@ -141,10 +141,10 @@
                     tableData: []
                 },
                 musicPlayer: {
-                    musicName: null,
-                    musicAuthor: null,
-                    musicAudioUrl: null,
-                    musicCoverUrl: null,
+                    musicName: '',
+                    musicAuthor: '',
+                    musicAudioUrl: '',
+                    musicCoverUrl: '',
                     imageId: null
                 }
             }
@@ -166,8 +166,7 @@
                 this.onQuery()
             },
             initAplyer() {
-                if(this.musicPlayer.musicAudioUrl !== null
-                    || this.musicPlayer.musicCoverUrl !== '') {
+                if(this.musicPlayer && this.musicPlayer.musicCoverUrl !== '') {
                     const ap = new APlayer({
                         container: document.getElementById('aplayer'),
                         loop: 'none',
@@ -199,7 +198,7 @@
             onExport() {
                 location.href = './export'
             },
-            onReset: function () {
+            onReset() {
                 this.$refs.tableList.clearSort()
                 this.initSys();
                 this.initQueryForm();
@@ -208,7 +207,7 @@
             initQueryForm() {
                 this.queryForm.searchInfo = null
             },
-            initSys: function () {
+            initSys() {
                 this.sys.dateYear = new Date().getFullYear();
                 this.sys.total = 0
                 this.sys.currentPage = 1
@@ -217,7 +216,7 @@
                 this.sys.orderBy.order = null
                 this.sys.tableData = []
             },
-            onQuery: function () {
+            onQuery() {
                 axios.post('./pageMusic', {
                     searchInfo: this.queryForm.searchInfo,
                     page: this.sys.currentPage,

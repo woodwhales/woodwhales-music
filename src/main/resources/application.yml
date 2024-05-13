@@ -14,9 +14,10 @@ spring:
     time-zone: GMT+8
   profiles:
     active: '@profiles.active@'
-  datasource:
-    initialization-mode: always
-    schema: classpath:/init.sql
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:/init.sql
 logging:
   level:
     org.woodwhales.music: debug

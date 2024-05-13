@@ -3,6 +3,7 @@ package org.woodwhales.music.service.sysUser;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.j256.twofactorauth.TimeBasedOneTimePasswordUtil;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,6 @@ import org.woodwhales.music.config.SystemConfig;
 import org.woodwhales.music.entity.SysUser;
 import org.woodwhales.music.mapper.SysUserMapper;
 
-import javax.annotation.PostConstruct;
 import java.util.Objects;
 
 /**

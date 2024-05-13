@@ -1,12 +1,13 @@
 package org.woodwhales.music.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.beust.jcommander.internal.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -74,7 +75,7 @@ public class SysUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ADMIN");
+        return Lists.newArrayList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override

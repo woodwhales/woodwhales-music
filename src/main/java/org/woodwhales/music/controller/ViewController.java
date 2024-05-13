@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.model.MusicInfoVo;
 import org.woodwhales.music.model.SysConfigVo;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author woodwhales
  */
 @Slf4j
+@RequestMapping("/")
 @Controller
 public class ViewController {
 

@@ -1,11 +1,10 @@
 package org.woodwhales.music.controller.param;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
 import org.woodwhales.music.validation.EnumValidator;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
  * @projectName: woodwhales-music

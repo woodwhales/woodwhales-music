@@ -1,5 +1,8 @@
 package org.woodwhales.music.controller.param;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -7,9 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.model.MusicInfoLinkDetailVo;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Map;
 

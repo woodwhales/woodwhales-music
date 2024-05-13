@@ -1,8 +1,7 @@
 package org.woodwhales.music.controller.param;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * @author woodwhales on 2023-03-28 16:26
