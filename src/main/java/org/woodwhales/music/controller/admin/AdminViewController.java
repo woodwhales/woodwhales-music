@@ -66,6 +66,12 @@ public class AdminViewController {
         return "admin/login";
     }
 
+    @GetMapping("/404")
+    public String notFound(Model model) {
+        this.addMusicSite(model);
+        return "admin2/404";
+    }
+
     @GetMapping("/two-factor")
     public String twoFactor(Model model,
                             HttpServletRequest request,

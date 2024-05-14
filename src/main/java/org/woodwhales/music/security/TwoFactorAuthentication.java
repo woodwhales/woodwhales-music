@@ -8,8 +8,14 @@ import org.springframework.security.core.Authentication;
  */
 public class TwoFactorAuthentication extends AbstractAuthenticationToken {
 
+    private static final long serialVersionUID = 1L;
+
     private final Authentication authentication;
 
+    /**
+     * 创建 Authentication，但是不进行授权成功，即：authenticated = false
+     * @param authentication
+     */
     public TwoFactorAuthentication(Authentication authentication) {
         super(null);
         this.authentication = authentication;

@@ -13,4 +13,9 @@ public class TwoFactorEnableParam {
      */
     private boolean enable;
 
+    /**
+     * 验证码
+     */
+    private String code;
+
 }

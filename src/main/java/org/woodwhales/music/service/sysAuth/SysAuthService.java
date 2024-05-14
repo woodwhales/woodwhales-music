@@ -46,7 +46,7 @@ public class SysAuthService {
         sysUserService.saveOrUpdate(sysUser);
         String imageUrl = "";
         if(sysUser.isEnabled()) {
-            String otpAuthUrl = "otpauth://totp/%s?secret=%s&issuer=AAA".formatted("AAA: " + sysUser.getUsername(),
+            String otpAuthUrl = "otpauth://totp/%s?secret=%s&issuer=woodwhales".formatted("woodwhales: " + sysUser.getUsername(),
                     sysUser.getTwoFactorSecret());
             imageUrl = this.qrCode.dataUrl(otpAuthUrl);
         }
@@ -72,10 +72,12 @@ public class SysAuthService {
                     new SimpleUrlAuthenticationSuccessHandler("/admin/").onAuthenticationSuccess(request, response, primaryAuthentication);
                     return;
                 } else {
+                    log.warn("验证码失败");
                     this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("Invalid code"));
                     return;
                 }
             } catch (Exception e) {
+                log.error("验证码异常");
                 this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("Invalid code"));
                 return;
             }

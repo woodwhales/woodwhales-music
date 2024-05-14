@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.woodwhales.music.security.MyAuthenticationFailureHandler;
 import org.woodwhales.music.security.MyAuthenticationSuccessHandler;
@@ -38,10 +37,11 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// 禁用basic明文验证
 		http.httpBasic(Customizer.withDefaults());
+		http.cors(AbstractHttpConfigurer::disable);
 		// 前后端分离架构不需要csrf保护
 		http.csrf(AbstractHttpConfigurer::disable);
 		http.authorizeHttpRequests(authorize -> {
-			authorize.requestMatchers("/", "/index", "/error").permitAll()
+			authorize.requestMatchers("/", "/index").permitAll()
 					.requestMatchers(
 							"/admin/fonts/**",
 							"/admin/css/**",
@@ -57,20 +57,23 @@ public class WebSecurityConfig {
 							"/**.png",
 							"/**.ico",
 							"/favicon.ico").permitAll()
-					.requestMatchers("/admin/two-factor")
-					.access(new TwoFactorAuthorizationManager())
+					// 2FA 相关的 url 使用 TwoFactorAuthorizationManager 鉴权
+					.requestMatchers("/admin/two-factor", "/admin/two-factor/verify").access(new TwoFactorAuthorizationManager())
 					.anyRequest().authenticated();
 		});
 
 		http.formLogin(formLogin ->
 			formLogin.loginPage("/admin/login").permitAll()
 					.loginProcessingUrl("/admin/loginTo").permitAll()
-					.successHandler(authenticationSuccessHandler())
-					.failureHandler(authenticationFailureHandler())
+					.successHandler(this.authenticationSuccessHandler())
+					.failureHandler(this.authenticationFailureHandler())
 		);
+		// 403 鉴权失败异常处理器，默认为：org.springframework.security.web.access.AccessDeniedHandlerImpl
+		http.exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedHandler(this.authenticationFailureHandler()));
 		http.logout(formLogout ->
 				formLogout.logoutUrl("/logout").permitAll()
 						.logoutSuccessUrl("/login").permitAll()
+						// 登录之后，清除 session，默认值 true
 						.invalidateHttpSession(true));
 		http.securityContext(securityContext -> securityContext.requireExplicitSave(false));
 		return http.build();
@@ -82,7 +85,7 @@ public class WebSecurityConfig {
 	}
 
 	@Bean
-	public AuthenticationFailureHandler authenticationFailureHandler() {
+	public MyAuthenticationFailureHandler authenticationFailureHandler() {
 		return new MyAuthenticationFailureHandler("/admin/login");
 	}
 
