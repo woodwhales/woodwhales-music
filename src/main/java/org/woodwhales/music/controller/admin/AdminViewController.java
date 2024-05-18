@@ -63,7 +63,7 @@ public class AdminViewController {
 
     @GetMapping("/login")
     public String login() {
-        return "admin/login";
+        return "admin/login2";
     }
 
     @GetMapping("/404")

@@ -73,6 +73,12 @@ public class SysUser implements UserDetails {
     @TableField(value = "two_factor_enabled")
     private boolean twoFactorEnabled;
 
+    /**
+     * 临时2fa密钥
+     */
+    @TableField(exist = false)
+    private String tempTwoFactorSecret;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Lists.newArrayList(new SimpleGrantedAuthority("ROLE_ADMIN"));

@@ -5,6 +5,7 @@
     <title>woodwhales-music</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/webjars/element-ui/lib/theme-chalk/index.css}">
+    <link rel="stylesheet" th:href="@{/css/login-style.css}">
     <script th:src="@{/webjars/vue/dist/vue.js}"></script>
     <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
@@ -15,7 +16,7 @@
 </head>
 <body>
 <div id="app">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form class="login" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="code" prop="code">
             <el-input v-model="ruleForm.code"></el-input>
         </el-form-item>

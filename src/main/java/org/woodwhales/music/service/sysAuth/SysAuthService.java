@@ -1,7 +1,6 @@
 package org.woodwhales.music.service.sysAuth;
 
 import cn.woodwhales.common.model.result.OpResult;
-import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.j256.twofactorauth.TimeBasedOneTimePasswordUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,12 +15,16 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import org.woodwhales.music.controller.param.TwoFactorEnableParam;
 import org.woodwhales.music.controller.param.TwoFactorVerifyParam;
+import org.woodwhales.music.controller.result.VerifyErrorRepResult;
 import org.woodwhales.music.controller.util.QrCode;
 import org.woodwhales.music.entity.SysUser;
+import org.woodwhales.music.model.GenerateVo;
+import org.woodwhales.music.model.UserMeVo;
 import org.woodwhales.music.security.TwoFactorAuthentication;
 import org.woodwhales.music.service.sysUser.SysUserService;
+
+import java.security.GeneralSecurityException;
 
 /**
  * @author woodwhales on 2024-05-12 20:36
@@ -37,28 +40,43 @@ public class SysAuthService {
     @Autowired
     private QrCode qrCode;
 
-    public OpResult<String> enableTwoFactor(TwoFactorEnableParam param) {
-        SysUser authentication = (SysUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SysUser sysUser = sysUserService.getOne(Wrappers.<SysUser>lambdaQuery()
-                .eq(SysUser::getUsername, authentication.getUsername()));
-        sysUser.setTwoFactorEnabled(param.isEnable());
-        authentication.setTwoFactorEnabled(param.isEnable());
-        sysUserService.saveOrUpdate(sysUser);
-        String imageUrl = "";
-        if(sysUser.isEnabled()) {
-            String otpAuthUrl = "otpauth://totp/%s?secret=%s&issuer=woodwhales".formatted("woodwhales: " + sysUser.getUsername(),
-                    sysUser.getTwoFactorSecret());
-            imageUrl = this.qrCode.dataUrl(otpAuthUrl);
-        }
-        return OpResult.success(imageUrl);
+    public OpResult<Void> disableTwoFactor() {
+        SysUser sysUser = (SysUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        sysUser.setTwoFactorEnabled(false);
+        sysUserService.update(Wrappers.<SysUser>lambdaUpdate()
+                        .eq(SysUser::getId, sysUser.getId())
+                        .set(SysUser::isTwoFactorEnabled, sysUser.isTwoFactorEnabled()));
+        return OpResult.success();
     }
 
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
+    public OpResult<Void> enableTwoFactor(TwoFactorVerifyParam param) {
+        SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String code = param.getCode();
+        String tempTwoFactorSecret = sysUser.getTempTwoFactorSecret();
+        try {
+            if (TimeBasedOneTimePasswordUtil.validateCurrentNumber(tempTwoFactorSecret,
+                    StringUtils.hasText(code) ? Integer.parseInt(code) : 0, 10000)) {
+                SysUser user = this.sysUserService.getById(sysUser.getId());
+                user.setTwoFactorSecret(tempTwoFactorSecret);
+                user.setTwoFactorEnabled(true);
+                sysUser.setTwoFactorEnabled(true);
+                this.sysUserService.update(Wrappers.<SysUser>lambdaUpdate()
+                        .eq(SysUser::getId, sysUser.getId())
+                        .set(SysUser::getTwoFactorSecret, tempTwoFactorSecret)
+                        .set(SysUser::isTwoFactorEnabled, sysUser.isTwoFactorEnabled()));
+                return OpResult.success();
+            }
+        } catch (GeneralSecurityException e) {
+            log.error("验证失败, errorMsg={}", e.getMessage(), e);
+        }
+        return OpResult.failure(new VerifyErrorRepResult());
+    }
+
     public void verify(HttpServletRequest request, HttpServletResponse response,
                        TwoFactorVerifyParam param) throws Exception {
-        log.info("param={}", JSON.toJSONString(param));
         String code = param.getCode();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication instanceof TwoFactorAuthentication) {
@@ -73,15 +91,38 @@ public class SysAuthService {
                     return;
                 } else {
                     log.warn("验证码失败");
-                    this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("Invalid code"));
+                    this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
                     return;
                 }
             } catch (Exception e) {
                 log.error("验证码异常");
-                this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("Invalid code"));
+                this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
                 return;
             }
         }
-        this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("Invalid code"));
+        this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
     }
+
+    public OpResult<UserMeVo> userMe() {
+        SysUser sysUser = (SysUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        sysUser = this.sysUserService.getById(sysUser.getId());
+        String username = sysUser.getUsername();
+        boolean twoFactorEnabled = sysUser.isTwoFactorEnabled();
+        UserMeVo vo = new UserMeVo();
+        vo.setUsername(username);
+        vo.setTwoFactorEnabled(twoFactorEnabled);
+        return OpResult.success(vo);
+    }
+
+    public OpResult<GenerateVo> generate() {
+        SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String twoFactorSecret = TimeBasedOneTimePasswordUtil.generateBase32Secret();
+        sysUser.setTempTwoFactorSecret(twoFactorSecret);
+        String otpAuthUrl = "otpauth://totp/%s?secret=%s&issuer=woodwhales".formatted("woodwhales: " + sysUser.getUsername(), twoFactorSecret);
+        GenerateVo generateVo = new GenerateVo();
+        generateVo.setTwoFactorSecret(sysUser.getTwoFactorSecret());
+        generateVo.setQrCodeUrl(this.qrCode.dataUrl(otpAuthUrl));
+        return OpResult.success(generateVo);
+    }
+
 }

@@ -86,22 +86,15 @@
                         <el-form ref="dataForm3" :model="dataForm3" label-width="80px">
                             <el-card shadow="hover" style="margin-bottom: 15px">
                                 <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">
-                                    <span sec:authentication="principal.username"></span>
+                                    {{dataForm3.username}}
                                 </span>
-                                <el-form-item label="2FA认证" prop="enable">
-                                    <el-switch v-model="dataForm3.enable" @change="changeEnable"></el-switch>
+                                <el-form-item label="2FA认证" prop="twoFactorEnabled">
+                                    <el-tag :type="dataForm3.twoFactorEnabled ? 'success' : 'danger'">{{dataForm3.twoFactorEnabled ? '已开启' : '已关闭'}}</el-tag>
                                 </el-form-item>
-                                <el-form-item label="二维码" prop="code" v-if="temp.codeImg !== ''">
-                                    <el-image style="width: 200px; height: 200px"
-                                            :src="temp.codeImg"
-                                            fit="fit"></el-image>
-                                </el-form-item>
-                                <el-form-item label="验证码" prop="code" v-if="dataForm3.enable && temp.codeImg !== ''">
-                                    <el-input v-model="dataForm3.code" maxlength="6" show-word-limit></el-input>
+                                <el-form-item>
+                                    <el-button type="primary" @click="onSubmit3('dataForm3')" :type="dataForm3.twoFactorEnabled ? 'danger' : 'success'" size="mini">{{dataForm3.twoFactorEnabled ? '关闭2FA' : '开启2FA'}}</el-button>
                                 </el-form-item>
                             </el-card>
-                            <el-button type="primary" size="mini" @click="onSubmit3('dataForm3')">提交</el-button>
-                            <el-button size="mini" @click="resetForm3('dataForm3')">重置</el-button>
                         </el-form>
                     </el-tab-pane>
                 </el-tabs>
@@ -109,7 +102,42 @@
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
     </el-row>
+
+    <el-dialog
+            title="2FA认证提示"
+            :visible.sync="temp.close2FADialogVisible"
+            width="30%">
+        <span>是否确认关闭2FA认证？</span>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="temp.close2FADialogVisible = false" size="mini">取 消</el-button>
+            <el-button type="primary" @click="close2FA" size="mini">确 定</el-button>
+        </span>
+    </el-dialog>
+
+    <el-dialog
+            title="2FA认证提示"
+           :visible.sync="temp.open2FADialogVisible"
+            :show-close="false"
+            :close-on-click-modal="false"
+            width="30%">
+        <el-form :model="open2FAForm" :rules="open2FAFormRules" ref="open2FAForm" label-position="top">
+            <el-form-item label="扫描二维码保存密钥">
+                <el-image :src="open2FAForm.qrCodeUrl"></el-image>
+            </el-form-item>
+            <el-form-item label="或者手动输入密钥">
+                <el-input v-model="open2FAForm.twoFactorSecret" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="验证码" prop="verifyCode">
+                <el-input v-model="open2FAForm.verifyCode" maxlength="6" show-word-limit ></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="cancelOpen2FA" size="mini">取 消</el-button>
+            <el-button type="primary" @click="open2FA('open2FAForm')" size="mini">提 交</el-button>
+        </span>
+    </el-dialog>
 </div>
+
 </body>
 <script type="text/javascript" th:inline="javascript">
     new Vue({
@@ -135,11 +163,22 @@
                     bannerUrl: ''
                 },
                 dataForm3: {
-                    enable: false,
-                    code: ''
+                    twoFactorEnabled: false,
+                    username: ''
+                },
+                open2FAForm: {
+                    twoFactorSecret: '',
+                    qrCodeUrl: '',
+                    verifyCode: ''
                 },
                 temp: {
-                    codeImg: ''
+                    close2FADialogVisible: false,
+                    open2FADialogVisible: false
+                },
+                open2FAFormRules: {
+                    verifyCode: [
+                        { required: true, message: '请输入验证码', trigger: 'blur' }
+                    ]
                 },
                 rules2: {
                     bannerUrl: [
@@ -162,8 +201,6 @@
         mounted() {
             this.initDataForm()
             this.initDataForm2()
-
-            console.log('aaa', )
         },
         methods: {
             getConfigProcess(configKey, fun) {
@@ -182,15 +219,18 @@
                     console.log(error);
                 });
             },
-            changeEnable(enable) {
-                axios.post('/admin/two-factor/enable', this.dataForm3)
+            initDataForm3() {
+                this.temp.close2FADialogVisible = false
+                this.temp.open2FADialogVisible = false
+
+                this.open2FAForm.twoFactorSecret = ''
+                this.open2FAForm.qrCodeUrl = ''
+                this.open2FAForm.verifyCode = ''
+
+                axios.post('/admin/user/me')
                     .then(response => {
                         if(response.data.code === 0) {
-                            this.$message({
-                                message: response.data.msg,
-                                type: 'success'
-                            });
-                            this.temp.codeImg = response.data.data
+                            this.dataForm3 = response.data.data
                         } else {
                             this.$message.error(response.data.msg);
                         }
@@ -220,6 +260,9 @@
                 if(tab.name === 'admin') {
                     this.initDataForm2()
                 }
+                if(tab.name === 'user') {
+                    this.initDataForm3()
+                }
             },
             submitProcess(dataForm, configKey, content) {
                 this.$refs[dataForm].validate((valid) => {
@@ -246,22 +289,32 @@
                     });
                 });
             },
-            onSubmit2(dataForm) {
-                this.submitProcess(dataForm, 'admin', this.dataForm2)
+            cancelOpen2FA() {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        this.open2FAForm.twoFactorSecret = ''
+                        this.open2FAForm.qrCodeUrl = ''
+                        this.open2FAForm.verifyCode = ''
+                        this.temp.open2FADialogVisible = false
+                    })
+                    .catch(_ => {});
             },
-            onSubmit3(dataForm) {
+            open2FA(dataForm) {
                 this.$refs[dataForm].validate((valid) => {
                     if (!valid) {
                         return false;
                     }
-                    axios.post('/admin/two-factor/verify', this.dataForm3)
+                    axios.post('/admin/two-factor/enable', {
+                        code: this.open2FAForm.verifyCode
+                    })
                         .then(response => {
                             if(response.data.code === 0) {
+                                this.initDataForm3()
+                                this.temp.open2FADialogVisible = false
                                 this.$message({
                                     message: response.data.msg,
                                     type: 'success'
                                 });
-                                this.dataForm3.code = ''
                             } else {
                                 this.$message.error(response.data.msg);
                             }
@@ -271,6 +324,51 @@
                             console.log(error);
                         });
                 });
+            },
+            close2FA() {
+                axios.post('/admin/two-factor/disable', {})
+                .then(response => {
+                    if(response.data.code === 0) {
+                        this.initDataForm3()
+                        this.temp.close2FADialogVisible = false
+                        this.$message({
+                            message: response.data.msg,
+                            type: 'success'
+                        });
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                    console.log(error);
+                });
+            },
+            onSubmit3(dataForm) {
+                // 开启 -> 关闭
+                if (this.dataForm3.twoFactorEnabled) {
+                    this.temp.close2FADialogVisible = true
+                } else {
+                    axios.post('/admin/two-factor/generate', {})
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.open2FAForm.qrCodeUrl = response.data.data.qrCodeUrl
+                            this.open2FAForm.twoFactorSecret = response.data.data.twoFactorSecret
+                            this.open2FAForm.verifyCode = ''
+                            this.temp.open2FADialogVisible = true
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                        console.log(error);
+                    });
+                }
+                return false;
+            },
+            onSubmit2(dataForm) {
+                this.submitProcess(dataForm, 'admin', this.dataForm2)
             },
             resetForm3(formName) {
                 this.$refs[formName].resetFields();

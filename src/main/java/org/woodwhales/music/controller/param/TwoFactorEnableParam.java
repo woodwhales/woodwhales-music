@@ -11,7 +11,7 @@ public class TwoFactorEnableParam {
     /**
      * 是否开启 2FA
      */
-    private boolean enable;
+    private boolean twoFactorEnabled;
 
     /**
      * 验证码
