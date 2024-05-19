@@ -4,69 +4,13 @@
     <meta charset="UTF-8">
     <title>woodwhales-music</title>
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
-    <link rel="stylesheet" th:href="@{/webjars/element-ui/lib/theme-chalk/index.css}">
     <link rel="stylesheet" th:href="@{/css/login-style.css}">
-    <script th:src="@{/webjars/vue/dist/vue.js}"></script>
-    <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
-    <!-- https://aplayer.js.org/#/zh-Hans/ -->
-    <script th:src="@{/aplyer/APlayer.min.js}"></script>
-    <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
-    <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
 </head>
 <body>
-<div id="app">
-    <el-form class="login" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="code" prop="code">
-            <el-input v-model="ruleForm.code"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-    </el-form>
-</div>
+<form class="login" action="/admin/two-factor/verify" method="post">
+    <input name="code" placeholder="验证码">
+    <button type="submit">提 交</button>
+</form>
 </body>
 
-<script type="text/javascript" th:inline="javascript">
-    new Vue({
-        el: '#app',
-        data: function() {
-            return {
-                ruleForm: {
-                    code: ''
-                },
-                rules: {
-                    code: [
-                        { required: true, message: '请输入code', trigger: 'blur' },
-                    ]
-                }
-            }
-        },
-        methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        axios.post('/admin/two-factor/verify', this.ruleForm)
-                        .then(response => {
-                            console.log('response', response)
-                            if(response.status === 200) {
-                                window.location.href = response.request.responseURL
-                            }
-                        })
-                        .catch(error => {
-                            this.$message.error(error);
-                            console.log(error);
-                        });
-                    } else {
-                        return false;
-                    }
-                });
-            },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            }
-        }
-    })
-</script>
 </html>

@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.woodwhales.music.controller.param.TwoFactorVerifyParam;
 import org.woodwhales.music.model.GenerateVo;
 import org.woodwhales.music.model.UserMeVo;
@@ -44,8 +41,9 @@ public class SysAuthController {
     }
 
     @PostMapping("/two-factor/verify")
-    public void verify(HttpServletRequest request, HttpServletResponse response,
-                       @RequestBody TwoFactorVerifyParam param) throws Exception {
+    public void verify(HttpServletRequest request,
+                       HttpServletResponse response,
+                       @ModelAttribute TwoFactorVerifyParam param) throws Exception {
         sysAuthService.verify(request, response, param);
     }
 

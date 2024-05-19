@@ -88,19 +88,15 @@ public class SysAuthService {
                     Authentication primaryAuthentication = ((TwoFactorAuthentication) authentication).getAuthentication();
                     SecurityContextHolder.getContext().setAuthentication(primaryAuthentication);
                     new SimpleUrlAuthenticationSuccessHandler("/admin/").onAuthenticationSuccess(request, response, primaryAuthentication);
-                    return;
                 } else {
                     log.warn("验证码失败");
                     this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
-                    return;
                 }
             } catch (Exception e) {
                 log.error("验证码异常");
                 this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
-                return;
             }
         }
-        this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
     }
 
     public OpResult<UserMeVo> userMe() {
