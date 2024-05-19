@@ -43,9 +43,11 @@ public class SysAuthService {
     public OpResult<Void> disableTwoFactor() {
         SysUser sysUser = (SysUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         sysUser.setTwoFactorEnabled(false);
+        sysUser.setTwoFactorSecret("");
         sysUserService.update(Wrappers.<SysUser>lambdaUpdate()
                         .eq(SysUser::getId, sysUser.getId())
-                        .set(SysUser::isTwoFactorEnabled, sysUser.isTwoFactorEnabled()));
+                        .set(SysUser::isTwoFactorEnabled, sysUser.isTwoFactorEnabled())
+                        .set(SysUser::getTwoFactorSecret, sysUser.getTwoFactorSecret()));
         return OpResult.success();
     }
 
@@ -59,13 +61,12 @@ public class SysAuthService {
         try {
             if (TimeBasedOneTimePasswordUtil.validateCurrentNumber(tempTwoFactorSecret,
                     StringUtils.hasText(code) ? Integer.parseInt(code) : 0, 10000)) {
-                SysUser user = this.sysUserService.getById(sysUser.getId());
-                user.setTwoFactorSecret(tempTwoFactorSecret);
-                user.setTwoFactorEnabled(true);
                 sysUser.setTwoFactorEnabled(true);
+                sysUser.setTwoFactorSecret(tempTwoFactorSecret);
+                sysUser.setTempTwoFactorSecret("");
                 this.sysUserService.update(Wrappers.<SysUser>lambdaUpdate()
                         .eq(SysUser::getId, sysUser.getId())
-                        .set(SysUser::getTwoFactorSecret, tempTwoFactorSecret)
+                        .set(SysUser::getTwoFactorSecret, sysUser.getTwoFactorSecret())
                         .set(SysUser::isTwoFactorEnabled, sysUser.isTwoFactorEnabled()));
                 return OpResult.success();
             }
