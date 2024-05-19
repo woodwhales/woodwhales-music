@@ -16,7 +16,6 @@ public class TwoFactorAuthorizationManager implements AuthorizationManager<Reque
 
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
-        log.info("TwoFactorAuthorizationManager check: {}", authentication.get() instanceof TwoFactorAuthentication);
         return new AuthorizationDecision(authentication.get() instanceof TwoFactorAuthentication);
     }
 

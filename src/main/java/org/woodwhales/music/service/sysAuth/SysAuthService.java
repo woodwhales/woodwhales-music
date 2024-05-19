@@ -7,9 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
@@ -76,6 +77,8 @@ public class SysAuthService {
         return OpResult.failure(new VerifyErrorRepResult());
     }
 
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
     public void verify(HttpServletRequest request, HttpServletResponse response,
                        TwoFactorVerifyParam param) throws Exception {
         String code = param.getCode();
@@ -88,14 +91,15 @@ public class SysAuthService {
                 if (match) {
                     Authentication primaryAuthentication = ((TwoFactorAuthentication) authentication).getAuthentication();
                     SecurityContextHolder.getContext().setAuthentication(primaryAuthentication);
+                    request.getSession().removeAttribute("errorMsg");
                     new SimpleUrlAuthenticationSuccessHandler("/admin/").onAuthenticationSuccess(request, response, primaryAuthentication);
                 } else {
-                    log.warn("验证码失败");
-                    this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
+                    request.getSession().setAttribute("errorMsg", "验证码无效");
+                    this.redirectStrategy.sendRedirect(request, response, "/admin/two-factor");
                 }
             } catch (Exception e) {
-                log.error("验证码异常");
-                this.authenticationFailureHandler.onAuthenticationFailure(request, response, new BadCredentialsException("验证码无效"));
+                request.getSession().setAttribute("errorMsg", "验证码无效");
+                this.redirectStrategy.sendRedirect(request, response, "/admin/two-factor");
             }
         }
     }

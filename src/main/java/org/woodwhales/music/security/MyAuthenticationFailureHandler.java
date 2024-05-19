@@ -27,7 +27,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
         // TODO 可以增加登录失败统计，锁定指定时间内该IP禁止登录
-        log.warn("登录失败");
+        request.getSession().setAttribute("errorMsg", "账号密码错误");
         this.getRedirectStrategy().sendRedirect(request, response, this.forwardUrl);
     }
 

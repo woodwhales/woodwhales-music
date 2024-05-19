@@ -31,6 +31,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         SysUser sysUser = (SysUser) authentication.getPrincipal();
+        request.getSession().removeAttribute("errorMsg");
         if (sysUser.isTwoFactorEnabled()) {
             SecurityContextHolder.getContext().setAuthentication(new TwoFactorAuthentication(authentication));
             this.getRedirectStrategy().sendRedirect(request, response, "/admin/two-factor");

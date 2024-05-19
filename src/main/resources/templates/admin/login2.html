@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>woodwhales-music</title>
+  <meta name="keywords" content="woodwhales,music"/>
+  <meta name="author" content="woodwhales.cn"/>
+  <meta name="robots" content="index,all"/>
+  <meta name="description" content="woodwhales-music是一个基于SpringBoot开发的轻量级简洁音乐播放器，可视化后台管理可做到独立自主可控音乐信息">
+  <link rel="canonical" th:href="${admin.bannerLinkUrl}"/>
   <link rel="stylesheet" th:href="@{/css/login-style.css}">
   <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
 </head>
 <body>
 <form class="login" action="/admin/loginTo" method="post">
+  <div th:if="${session.errorMsg}" th:text="${session.errorMsg}" style="color: red;"></div>
   <input type="text" name="username" placeholder="账号">
   <input type="password" name="password" placeholder="密码">
   <button type="submit">登 录</button>

@@ -1,5 +1,6 @@
 package org.woodwhales.music.service.sysConfig;
 
+import cn.hutool.extra.spring.SpringUtil;
 import cn.woodwhales.common.model.result.OpResult;
 import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.woodwhales.music.controller.param.SysConfigCreateOrUpdateRequestBody;
 import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.entity.SysConfig;
@@ -68,6 +70,17 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
             }
         }
         return sysConfig;
+    }
+
+    public static void addMusicSite(Model model, String ...keys) {
+        SysConfigService sysConfigService = SpringUtil.getBean(SysConfigService.class);
+        if(Objects.isNull(keys) || keys.length == 0) {
+            keys = new String[] {"admin", "home"};
+        }
+        for (String key : keys) {
+            OpResult<SysConfigVo> opResult = sysConfigService.getConfig(new SysConfigGetRequestBody(key));
+            model.addAttribute(opResult.getData().getConfigKey(), opResult.getData().getContent());
+        }
     }
 
 }
