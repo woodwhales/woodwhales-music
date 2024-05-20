@@ -10,13 +10,93 @@
 
 环境要求：JDK1.8
 
-技术栈：springboot + thymeleaf + layui + spring security + jsoup + mybatis plus + mysql 
+技术栈：springboot + thymeleaf + layui + spring security + jsoup + mybatis plus + mySQL
 
-## 1. 系统说明
+## 1. 前台效果图
 
-### 1.1 配置文件
+dev 环境：http://127.0.0.1:8084/
 
-#### 1.1.1 SQL 文件
+![](doc/images/index.png)
+
+## 2 后台效果图
+
+dev 环境：http://127.0.0.1:8084/music/admin/
+
+dev 环境账号密码：admin / admin
+
+### 2.1 首页
+
+![](doc/images/admin-index.png)
+
+音乐名称为<font color='gree'>绿色字体</font>，表示该音乐**已关联**音频链接和专辑封面链接。
+
+音乐名称为<font color='red'>红色字体</font>，表示该音乐**未关联**音频链接和专辑封面链接。
+
+### 2.2 登录页面
+
+#### 2.2.1 账号密码登录
+
+![](doc/images/admin-sign-in.png)
+
+#### 2.2.2 2FA认证
+
+![](doc/images/admin-2FA.png)
+
+### 2.3 添加/编辑
+
+太懒了，加了个解析音乐平台的解析器，一旦解析成功，自动填充：音乐名称、作者、专辑名称。
+
+> 支持：网易云、QQ 音乐、虾米音乐（平台已关闭）
+>
+> 建议开发者自行搭建 [alist](https://github.com/alist-org/alist) 并维护音乐源文件
+
+![](doc/images/admin-add.png)
+
+### 2.4 解析
+
+1. 复制要解析的 html 源码。
+
+2. 选择要解析的平台，粘贴 html 源码，点击解析：
+
+![](doc/images/admin-add-parse.png)
+
+#### 2.4.1 网易云
+
+class 为：`g-bd4 f-cb`的 html 源码
+
+![](doc/images/admin-add-wangyiyun.png)
+
+#### 2.4.2 QQ 音乐
+
+class 为：`main`的 html 源码
+
+![](doc/images/admin-add-qqmusic.png)
+
+#### 2.4.3 虾米（平台已关闭）
+
+class 为：`page-container`的 html 源码
+
+![](doc/images/admin-add-xiami.png)
+
+### 2.5 系统配置
+
+#### 2.5.1 首页配置
+
+![](doc/images/admin-sys-config-index.png)
+
+#### 2.5.2 后台配置
+
+![](doc/images/admin-sys-config-admin.png)
+
+#### 2.5.3 用户配置
+
+![](doc/images/admin-sys-config-user.png)
+
+## 2. 系统说明
+
+### 2.1 配置文件
+
+#### 2.1.1 SQL 文件
 
 文件位置：
 
@@ -30,7 +110,7 @@
 - 只导入库表结构，则使用：open_music_适用高于v3.6.0版本_只含库表结构.sql
 - 导入数据，则使用：open_music_适用高于v3.6.0版本_只含数据.sql，开发者可导入后从后台页面做批量删除操作。
 
-#### 1.1.2 系统配置
+#### 2.1.2 系统配置
 
 > 配置文件使用 yml 语法
 
@@ -124,7 +204,7 @@
 
     - 音乐网站首页：`music.site`，用于后台 banner 快捷跳转至网站首页
 
-### 1.2 编译打包
+### 2.2 编译打包
 
 执行 mvn 命令打包：
 
@@ -158,9 +238,9 @@ mvn clean install -Pdev
 </profiles>
 ```
 
-## 2. 功能说明
+## 3. 功能说明
 
-### 3.6.3
+### v3.6.3
 
 - 后台首页增加系统配置快捷按钮，跳转至系统配置管理页面，可实时动态修改：
 
@@ -169,18 +249,18 @@ mvn clean install -Pdev
 
 - 修复在 jdk17 版本以上编译失败
 
-### 3.6.2
+### v3.6.2
 
 - 重构后台页面头
 - 后台页面头增加跳转前台页面链接
 
-### 3.6.1
+### v3.6.1
 
 - 后台音乐列表支持可排序列：排序、创建时间、更新时间
 - 首页增加增加 GitHub Corners，可以通过 application.yml 自定义配置：是否展示，github 链接
 - 修复开发环境后台列表查询数据接口响应失败
 
-### 3.6.0
+### v3.6.0
 
 - **与低于 v3.6.0 版本的库表不兼容，请使用 doc 中的 [open_music_适用高于v3.6.0版本.sql](./doc/sql/open_music_适用高于v3.6.0版本.sql) 进行库表数据初始化操作**
 
@@ -192,90 +272,30 @@ mvn clean install -Pdev
 
 - 音乐链接支持 github、alist 来源
 
-### 3.5.5
+### v3.5.5
 
 - 修复 cdn.jsdelivr.net 因未翻墙而无法访问题
 - woodwhales-common 版本依赖更新
 
-###  3.5.0
+###  v3.5.0
 
 - 引入 [woodwhales-common](https://github.com/woodwhales/woodwhales-common) 依赖
 
-### 3.0.0
+### v3.0.0
 
 - 支持导出已关联音乐清单。
 
-### 2.0.0
+### v2.0.0
 
 -   添加、编辑音乐信息时，当填写了音乐链接或者封面链接其中之一后，可自动填充另外一个文本内容。
 
-### 1.0.0
+### v1.0.0
 
 -   前端页面加载完毕，可离线播放。
 -   后台系统可添加、编辑、删除音乐，并对音乐列表排序。
 -   添加音乐：可从音乐平台 html 动态解析，支持：网易云、QQ云音乐、虾米音乐（平台已关闭）。
 
-## 3. 前台
-
-访问端口：http://127.0.0.1:8084/music/
-
-![](doc/images/index.png)
-
-## 4. 后台
-
-访问端口：http://127.0.0.1:8084/music/admin/
-
-dev 环境账号密码：admin / admin
-
-### 4.1 首页
-
-![](doc/images/v3.6.0/admin-index.png)
-
-音乐名称为<font color='gree'>绿色字体</font>，表示该音乐**已关联**音频链接和专辑封面链接。
-
-音乐名称为<font color='red'>红色字体</font>，表示该音乐**未关联**音频链接和专辑封面链接。
-
-### 4.1 添加/编辑
-
-太懒了，加了个解析音乐平台的解析器，一旦解析成功，自动填充：音乐名称、作者、专辑名称。
-
-> 支持：网易云、QQ 音乐、虾米音乐（平台已关闭）
->
-> 建议开发者自行搭建 [alist](https://github.com/alist-org/alist) 并维护音乐源文件
-
-![](doc/images/v3.6.0/admin-add.png)
-
-### 4.2 解析
-
-1. 复制要解析的 html 源码。
-
-2. 选择要解析的平台，粘贴 html 源码，点击解析：
-
-![](doc/images/admin-add-parse.png)
-
-#### 网易云
-
-class 为：`g-bd4 f-cb`的 html 源码
-
-![](doc/images/admin-add-wangyiyun.png)
-
-#### QQ 音乐
-
-class 为：`main`的 html 源码
-
-![](doc/images/admin-add-qqmusic.png)
-
-#### 虾米（平台已关闭）
-
-class 为：`page-container`的 html 源码
-
-![](doc/images/admin-add-xiami.png)
-
-### 4.3 系统配置
-
-![](doc/images/v3.6.3/admin-sys-config.png)
-
-## 5. 歌单
+## 4. 歌单
 
 已收录 1113 首音乐
 
