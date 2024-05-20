@@ -10,40 +10,6 @@
     <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
     <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
-    <script type="text/css">
-        .app-container {
-            padding: 30px 0;
-            text-align: center;
-            border-right: 1px solid #eff2f6;
-            display: inline-block;
-            width: 20%;
-            box-sizing: border-box;
-            vertical-align: top;
-        }
-
-        .app-container .demonstration {
-            display: block;
-            color: #8492a6;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .app-container .demonstration .el-image {
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .app-container span {
-            display: block;
-            color: #8492a6;
-            font-size: 14px;
-        }
-
-        .app-container div {
-            color: #8492a6;
-        }
-    </script>
 </head>
 <body>
 <div id="app">
@@ -150,19 +116,34 @@
 
     <el-dialog
             title="2FA认证"
-           :visible.sync="temp.open2FADialogVisible"
+            :visible.sync="temp.open2FADialogVisible"
             :show-close="false"
             :close-on-click-modal="false"
             width="75%">
         <el-form :model="open2FAForm" :rules="open2FAFormRules" ref="open2FAForm" label-position="top">
             <el-form-item label="步骤1. 在移动设备上安装验证器应用">
-                <div class="app-container" v-for="app in temp.apps">
-                    <span class="demonstration">{{app.name}}</span>
-                    <el-image class="el-image" style="width: 64px; height: 64px"
-                            :src="app.img"></el-image>
+                <div class="app-container" style="padding: 30px 0;
+            text-align: center;
+            border-right: 1px solid #eff2f6;
+            border-left: 1px solid #eff2f6;
+            display: inline-block;
+            width: 20%;
+            box-sizing: border-box;
+            vertical-align: top;" v-for="app in temp.apps">
+                    <span style="display: block;">{{app.name}}</span>
+                    <el-image style="width: 64px; height: 64px;
+                                    border: 1px solid #eff2f6;
+                                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                                    border-radius: 8px;"
+                                    :src="app.img"></el-image>
                     <div>
-                        <el-link style="margin-right: 5px" :href="app.googlePlay" :underline="false" target="_blank">Google Play</el-link>
-                        <el-link :href="app.appStore" :underline="false" target="_blank">App Store</el-link>
+                        <el-link style="margin-right: 10px" :href="app.googlePlay" :underline="false" target="_blank">
+                            <el-image style="width: 24px; height: 24px;
+                                    border: 1px solid #eff2f6;" src="/img/google_play.jpg"></el-image>
+                        </el-link>
+                        <el-link :href="app.appStore" :underline="false" target="_blank">
+                            <el-image style="width: 24px; height: 24px;" src="/img/app_store.jpg"></el-image>
+                        </el-link>
                     </div>
                 </div>
             </el-form-item>
