@@ -4,13 +4,15 @@
 
 > 基于 SpringBoot 的开源超简洁音乐播放器
 > 
-> A open source Music Player developed based on Java Springboot
+> A open source Music Player developed based on Java SpringBoot
 
 <div align=center>在线播放：<a href="https://music.icoders.cn">https://music.icoders.cn</a></div>
 
-环境要求：JDK1.8
+环境要求：JDK 17+
 
-技术栈：springboot + thymeleaf + layui + spring security + jsoup + mybatis plus + mySQL
+前端技术栈：Vue 2.0 + Element-UI + Thymeleaf + Axios + APlayer
+
+后端技术栈：Spring Boot3 + Spring Security6 + jsoup + MyBatis-Plus + MySQL
 
 ## 1. 前台效果图
 
@@ -240,7 +242,20 @@ mvn clean install -Pdev
 </profiles>
 ```
 
+### 2.3 后台登录流程图
+
+![](doc/images/Admin-Login-Process-Flowchart.jpg)
+
 ## 3. 功能说明
+
+### v3.7.0
+
+- Spring Boot 2.0 升级至 Spring Boot 3.0，Spring Security 5.0 升级至 Spring Security 6.0（JDK 版本要求 17 以上）
+- 系统启动时增加默认执行初始化库表 SQL 脚本
+- 增加 2FA 认证
+- 后台可视化配置 2FA 认证
+- 重构后台登录页面
+- README 文档说明排版更新
 
 ### v3.6.3
 
