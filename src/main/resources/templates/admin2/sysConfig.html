@@ -10,6 +10,40 @@
     <script th:src="@{/webjars/element-ui/lib/index.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/axios/dist/axios.js}"></script>
     <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
+    <script type="text/css">
+        .app-container {
+            padding: 30px 0;
+            text-align: center;
+            border-right: 1px solid #eff2f6;
+            display: inline-block;
+            width: 20%;
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+
+        .app-container .demonstration {
+            display: block;
+            color: #8492a6;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .app-container .demonstration .el-image {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .app-container span {
+            display: block;
+            color: #8492a6;
+            font-size: 14px;
+        }
+
+        .app-container div {
+            color: #8492a6;
+        }
+    </script>
 </head>
 <body>
 <div id="app">
@@ -115,19 +149,27 @@
     </el-dialog>
 
     <el-dialog
-            title="2FA认证提示"
+            title="2FA认证"
            :visible.sync="temp.open2FADialogVisible"
             :show-close="false"
             :close-on-click-modal="false"
-            width="30%">
+            width="75%">
         <el-form :model="open2FAForm" :rules="open2FAFormRules" ref="open2FAForm" label-position="top">
-            <el-form-item label="扫描二维码保存密钥">
+            <el-form-item label="步骤1. 在移动设备上安装验证器应用">
+                <div class="app-container" v-for="app in temp.apps">
+                    <span class="demonstration">{{app.name}}</span>
+                    <el-image class="el-image" style="width: 64px; height: 64px"
+                            :src="app.img"></el-image>
+                    <div>
+                        <el-link style="margin-right: 5px" :href="app.googlePlay" :underline="false" target="_blank">Google Play</el-link>
+                        <el-link :href="app.appStore" :underline="false" target="_blank">App Store</el-link>
+                    </div>
+                </div>
+            </el-form-item>
+            <el-form-item label="步骤2. 在验证器应用中扫描以下二维码">
                 <el-image :src="open2FAForm.qrCodeUrl"></el-image>
             </el-form-item>
-            <el-form-item label="或者手动输入密钥">
-                <el-input v-model="open2FAForm.twoFactorSecret" :disabled="true"></el-input>
-            </el-form-item>
-            <el-form-item label="验证码" prop="verifyCode">
+            <el-form-item label="步骤3. 在下面输入由验证器应用生成的代码" prop="verifyCode">
                 <el-input v-model="open2FAForm.verifyCode" maxlength="6" show-word-limit ></el-input>
             </el-form-item>
         </el-form>
@@ -172,6 +214,38 @@
                     verifyCode: ''
                 },
                 temp: {
+                    apps: [
+                        {
+                            name: 'Google Authenticator',
+                            img: "/img/Google_Authenticator.jpg",
+                            googlePlay: 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2',
+                            appStore: 'https://apps.apple.com/us/app/google-authenticator/id388497605'
+                        },
+                        {
+                            name: 'Microsoft Authenticator',
+                            img: "/img/Microsoft_Authenticator.jpg",
+                            googlePlay: 'https://play.google.com/store/apps/details?id=com.azure.authenticator&hl=en_US',
+                            appStore: 'https://apps.apple.com/us/app/microsoft-authenticator/id983156458'
+                        },
+                        {
+                            name: '2FA Authenticator (2FAS)',
+                            img: "/img/2FA_Authenticator_(2FAS).jpg",
+                            googlePlay: 'https://2fas.com/',
+                            appStore: 'https://apps.apple.com/us/app/2fa-authenticator-2fas/id1217793794'
+                        },
+                        {
+                            name: 'LastPass Authenticator',
+                            img: "/img/LastPass_Authenticator.jpg",
+                            googlePlay: 'https://play.google.com/store/apps/details?id=com.lastpass.authenticator&hl=en_US',
+                            appStore: 'https://apps.apple.com/us/app/lastpass-authenticator/id1079110004'
+                        },
+                        {
+                            name: 'Twilio Authy Authenticator',
+                            img: "/img/Twilio_Authy_Authenticator.jpg",
+                            googlePlay: 'https://play.google.com/store/apps/details?id=com.authy.authy&hl=en',
+                            appStore: 'https://apps.apple.com/us/app/twilio-authy/id494168017'
+                        }
+                    ],
                     close2FADialogVisible: false,
                     open2FADialogVisible: false
                 },

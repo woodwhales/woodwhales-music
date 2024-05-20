@@ -98,6 +98,8 @@ class 为：`page-container`的 html 源码
 
 #### 2.1.1 SQL 文件
 
+> 系统启动时会执行 [woodwhales-music/src/main/resources/init.sql](https://github.com/woodwhales/woodwhales-music/blob/master/src/main/resources/init.sql) 脚本进行库表结构初始化
+
 文件位置：
 
 - woodwhales-music/doc/sql/open_music_适用高于v3.6.0版本.sql
