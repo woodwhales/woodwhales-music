@@ -1,13 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/open_music?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: root1234
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:open_music}?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root1234}
 system:
-  username: admin
-  password: $2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm
+  username: ${SYSTEM_USERNAME:admin}
+  password: ${SYSTEM_PASSWORD:$2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm}
 music:
   link:
     # 链接来源：0-github，1-alist

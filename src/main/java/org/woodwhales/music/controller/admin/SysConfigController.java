@@ -4,10 +4,12 @@ import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.woodwhales.music.controller.param.SysConfigCreateOrUpdateRequestBody;
 import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
-import org.woodwhales.music.controller.util.JsonUtil;
 import org.woodwhales.music.model.SysConfigVo;
 import org.woodwhales.music.service.sysConfig.SysConfigService;
 
@@ -15,7 +17,7 @@ import org.woodwhales.music.service.sysConfig.SysConfigService;
  * @author woodwhales on 2024-05-08 17:23
  */
 @Slf4j
-@RequestMapping("admin/sysConfig")
+@RequestMapping("/admin/sysConfig")
 @RestController
 public class SysConfigController {
 
@@ -29,7 +31,6 @@ public class SysConfigController {
      */
     @PostMapping("/createOrUpdate")
     public RespVO<Void> createOrUpdateMusic(@Validated @RequestBody SysConfigCreateOrUpdateRequestBody requestBody) {
-        log.info("requestBody = {}", JsonUtil.toString(requestBody));
         return RespVO.resp(service.createOrUpdate(requestBody));
     }
 
@@ -40,7 +41,6 @@ public class SysConfigController {
      */
     @PostMapping("/getConfig")
     public RespVO<SysConfigVo> getConfig(@Validated @RequestBody SysConfigGetRequestBody requestBody) {
-        log.info("requestBody = {}", JsonUtil.toString(requestBody));
         return RespVO.resp(service.getConfig(requestBody));
     }
 

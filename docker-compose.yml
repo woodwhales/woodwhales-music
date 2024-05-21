@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: woodwhales-music
+    build: .
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: open_music
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root1234
+    ports:
+      - "8084:8084"

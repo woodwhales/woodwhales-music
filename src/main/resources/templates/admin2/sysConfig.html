@@ -151,7 +151,7 @@
                 <el-image :src="open2FAForm.qrCodeUrl"></el-image>
             </el-form-item>
             <el-form-item label="步骤3. 在下面输入由验证器应用生成的代码" prop="verifyCode">
-                <el-input v-model="open2FAForm.verifyCode" maxlength="6" show-word-limit ></el-input>
+                <el-input v-model="open2FAForm.verifyCode" maxlength="6" type="password" show-word-limit ></el-input>
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">

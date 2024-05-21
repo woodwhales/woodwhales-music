@@ -9,6 +9,11 @@ spring:
     name: woodwhales-music
   thymeleaf:
     cache: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:open_music}?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root1234}
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -21,7 +26,6 @@ spring:
 logging:
   level:
     org.woodwhales.music: debug
-    com.baomidou: debug
 music:
   link:
     # 链接来源：0-github，1-alist
@@ -38,3 +42,6 @@ github:
   show: true
   # github 链接
   url: "https://github.com/woodwhales/woodwhales-music"
+system:
+  username: ${SYSTEM_USERNAME:admin}
+  password: ${SYSTEM_PASSWORD:$2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm}

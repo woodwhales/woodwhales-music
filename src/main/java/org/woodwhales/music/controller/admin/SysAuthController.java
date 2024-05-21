@@ -15,7 +15,7 @@ import org.woodwhales.music.service.sysAuth.SysAuthService;
  * @author woodwhales on 2024-05-12 20:35
  */
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("/admin")
 @RestController
 public class SysAuthController {
 

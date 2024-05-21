@@ -20,7 +20,7 @@ import java.util.List;
  * @author woodwhales
  */
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("/admin")
 @RestController
 public class MusicInfoController {
 	
@@ -31,7 +31,7 @@ public class MusicInfoController {
 	 * 导出音乐
 	 * @return
 	 */
-	@PostMapping("exportMusic")
+	@PostMapping("/exportMusic")
 	public RespVO<MusicListInfo> exportMusic() {
 		return RespVO.success(musicService.exportMusic());
 	}

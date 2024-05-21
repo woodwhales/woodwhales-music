@@ -19,7 +19,7 @@ import org.woodwhales.music.service.parse.ParseMusicPlatformHtmlService;
  * @description:
  */
 @Slf4j
-@RequestMapping("admin")
+@RequestMapping("/admin")
 @RestController
 public class ParseHtmlController {
 
