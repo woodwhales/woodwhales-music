@@ -4,9 +4,6 @@ spring:
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:root1234}
 system:
-  username: ${SYSTEM_USERNAME:admin}
-  password: ${SYSTEM_PASSWORD:$2a$10$M.ojk5M4ZafKqkOJTeAcneh9QZXlYm2JEreeuJE0VmlEtv4fm2KHm}
-music:
-  link:
-    # 链接来源：0-github，1-alist
-    source: 1
+  init:
+    # 后台系统admin账号的登录密码，每次初始化都会初始化
+    password: ${SYSTEM_INIT_PASSWORD:admin}

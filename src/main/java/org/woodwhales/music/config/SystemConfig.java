@@ -11,10 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "system")
+@ConfigurationProperties(prefix = "system.init")
 public class SystemConfig {
-
-    private String username;
 
     private String password;
 }
