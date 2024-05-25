@@ -16,6 +16,13 @@
 	<name>woodwhales-music</name>
 	<description>woodwhales-music 基于 SpringBoot 的开源超简洁音乐播放器 A open source Music Player developed based on Java SpringBoot</description>
 
+	<developers>
+		<developer>
+			<name>woodwhales</name>
+			<organizationUrl>https://woodwhales.cn</organizationUrl>
+		</developer>
+	</developers>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>

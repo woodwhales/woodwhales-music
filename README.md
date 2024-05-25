@@ -261,6 +261,11 @@ mvn clean package -Pdev
 命令行执行目录切换到项目根目录，执行如下命令：
 
 ```shell
+mvn clean install
+```
+或者：
+
+```shell
 mvn clean package docker:build
 ```
 
