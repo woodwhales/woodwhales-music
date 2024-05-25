@@ -161,8 +161,8 @@ class 为：`page-container`的 html 源码
       init:
       	# 后台系统admin账号的登录密码，每次初始化都会初始化
       	password: xxx
-    ```
-    
+```
+
     开发者可以使用 [org.woodwhales.music.security.PasswordTest#test](https://github.com/woodwhales/woodwhales-music/blob/master/src/test/java/org/woodwhales/music/security/PasswordTest.java#L14) 单元测试代码，生成自定义的后台系统账号和密码
 
 - GitHub Corners
@@ -206,13 +206,21 @@ class 为：`page-container`的 html 源码
 
     - 音乐网站首页：`music.site`，用于后台 banner 快捷跳转至网站首页
 
-### 2.2 编译打包
+### 2.2 后台登录流程图
+
+![](doc/images/Admin-Login-Process-Flowchart.jpg)
+
+## 3. 编译打包
+
+### 3.1 打包 jar 文件 
 
 执行 mvn 命令打包：
 
 ```shell
-mvn clean install -Pdev
+mvn clean package -Pdev
 ```
+
+打包成功的 woodwhales-music.jar 文件在项目根目录下的 target 文件目录中。
 
 上述 -P 表示打包 dev 环境参数配置文件。
 
@@ -240,11 +248,91 @@ mvn clean install -Pdev
 </profiles>
 ```
 
-### 2.3 后台登录流程图
+### 3.2 docker 构建
 
-![](doc/images/Admin-Login-Process-Flowchart.jpg)
+> 本系统在 docker hub 仓库中提供了最新版本镜像
+>
+> ```shell
+> docker pull woodwhales/woodwhales-music
+> ```
 
-## 3. 功能说明
+本系统提供俩种构建方式：
+
+#### 方式1：mvn 命令构建
+
+命令行执行目录切换到项目根目录，执行如下命令：
+
+```shell
+mvn clean package docker:build
+```
+
+控制台输出 BUILD SUCCESS 信息，即表示构建成功。
+
+![](doc/images/build-with-maven.png)
+
+#### 方式2：docker-compose 命令构建
+
+命令行执行目录切换到项目根目录，执行如下命令：
+
+```shell
+docker-compose build
+```
+
+控制台输出 docker 镜像信息，即表示构建成功
+
+![](doc/images/build-with-docker-compose.png)
+
+## 4. 启动方式
+
+注意：本系统服务需要依赖 mysql 数据库，在第一次安装之前请自行准备一个可以访问的 mysql 服务。
+
+执行创建名为 open-music 数据库 sql 命令：
+
+```sql
+CREATE DATABASE IF NOT EXISTS open_music CHARACTER 
+	SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 方式1：jar 包启动
+
+系统安装 jdk 版本 17 以上，命令行切换至 woodwhales-music.jar 所在目录，执行如下命令：
+
+```shell
+java -jar woodwhales-music.jar
+```
+
+如果出现数据库链接失败，则检查在编译打包 jar 文件时指定什么环境参数，确认数据库链接是否配置正确。
+
+### 方式2：docker 启动
+
+完整的 docker 启动命令：
+
+```shell
+docker run -d \
+--restart=always \
+--name woodwhales-music \
+-p 8084:8084 \
+-e "MYSQL_HOST=host.docker.internal" \
+-e "MYSQL_DATABASE=open-music" \
+-e "MYSQL_PORT=3306" \
+-e "MYSQL_USER=root" \
+-e "MYSQL_PASSWORD=root1234" \
+-e "SYSTEM_INIT_PASSWORD=admin" \
+woodwhales/woodwhales-music:3.7.0
+```
+
+环境命令参数说明：
+
+| 环境参数             | 说明                                                         | 默认值               |
+| -------------------- | ------------------------------------------------------------ | -------------------- |
+| MYSQL_HOST           | mysql 数据库服务的链接地址，默认值针对 windows、mac 系统生效，linux 系统需要用户强制指定宿主机 IP | host.docker.internal |
+| MYSQL_DATABASE       | 数据库名称                                                   | open-music           |
+| MYSQL_PORT           | mysql 数据库服务的端口号                                     | 3306                 |
+| MYSQL_USER           | mysql 数据库服务的账号名称                                   | root                 |
+| MYSQL_PASSWORD       | mysql 数据库服务的账号密码                                   | root1234             |
+| SYSTEM_INIT_PASSWORD | woodwhales-music 系统的后台管理员 admin 账号登录密码，**生产环境请勿必自定义** | admin                |
+
+## 5. 功能说明
 
 ### v3.7.0
 
@@ -254,6 +342,7 @@ mvn clean install -Pdev
 - 后台可视化配置 2FA 认证
 - 重构后台登录页面
 - README 文档说明排版更新
+- 增加 docker 构建配置文件
 
 ### v3.6.3
 
@@ -310,7 +399,7 @@ mvn clean install -Pdev
 -   后台系统可添加、编辑、删除音乐，并对音乐列表排序。
 -   添加音乐：可从音乐平台 html 动态解析，支持：网易云、QQ云音乐、虾米音乐（平台已关闭）。
 
-## 4. 歌单
+## 6. 歌单
 
 已收录 1113 首音乐
 

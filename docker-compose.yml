@@ -1,14 +1,16 @@
-version: '3.8'
-
 services:
   app:
-    container_name: woodwhales-music
-    build: .
+    image: woodwhales/woodwhales-music:3.7.0
+    build:
+      context: .
+      args:
+        JAR_FILE: woodwhales-music.jar
     environment:
-      MYSQL_HOST: localhost
+      MYSQL_HOST: host.docker.internal
       MYSQL_PORT: 3306
       MYSQL_DATABASE: open_music
       MYSQL_USER: root
       MYSQL_PASSWORD: root1234
+      SYSTEM_INIT_PASSWORD: admin
     ports:
       - "8084:8084"

@@ -228,6 +228,55 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
+				<configuration>
+					<images>
+						<image>
+							<name>woodwhales/${project.artifactId}:${project.version}</name>
+							<alias>${project.artifactId}</alias>
+							<build>
+								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
+							</build>
+						</image>
+					</images>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>docker-exec</id>
+						<!-- 绑定mvn install阶段，当执行mvn install时 就会执行docker build 和docker push-->
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>com.spotify</groupId>-->
+<!--				<artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--				<version>1.4.13</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>default</id>-->
+<!--						<goals>-->
+<!--							<goal>build</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<configuration>-->
+<!--					<repository>woodwhales/${project.artifactId}</repository>-->
+<!--					<tag>${project.version}</tag>-->
+<!--					<buildArgs>-->
+<!--						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--					</buildArgs>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
