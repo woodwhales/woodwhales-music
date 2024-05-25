@@ -156,15 +156,13 @@ class 为：`page-container`的 html 源码
 
     - 后台系统密码：`system.init.password`
     
-```yaml
+    ```yaml
     system:
-      init:
-      	# 后台系统admin账号的登录密码，每次初始化都会初始化
-      	password: xxx
-```
-
-    开发者可以使用 [org.woodwhales.music.security.PasswordTest#test](https://github.com/woodwhales/woodwhales-music/blob/master/src/test/java/org/woodwhales/music/security/PasswordTest.java#L14) 单元测试代码，生成自定义的后台系统账号和密码
-
+    init:
+    # 后台系统admin账号的登录密码，每次初始化都会初始化
+    password: xxx
+    ```
+    
 - GitHub Corners
 
     - 是否展示 GitHub Corners：`github.show`
