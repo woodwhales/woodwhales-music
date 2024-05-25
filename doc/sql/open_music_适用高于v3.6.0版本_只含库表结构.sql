@@ -19,23 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `open_music`;
 
--- 导出  表 open_music.music 结构
-CREATE TABLE IF NOT EXISTS `music` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
-  `title` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '音乐名称标题（音乐名称）',
-  `artist` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '作者',
-  `album` varchar(180) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '专辑',
-  `audio_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '音乐链接地址',
-  `cover_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '音乐封面',
-  `sort` int(11) DEFAULT '1' COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
-  `gmt_created` datetime DEFAULT NULL COMMENT '创建时间',
-  `gmt_modified` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐表';
-
--- 数据导出被取消选择。
-
 -- 导出  表 open_music.music_info 结构
 CREATE TABLE IF NOT EXISTS `music_info` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
