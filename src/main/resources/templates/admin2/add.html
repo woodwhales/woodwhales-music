@@ -40,6 +40,11 @@
                     <el-form-item label="专辑" prop="album">
                         <el-input v-model.trim="dataForm.album"></el-input>
                     </el-form-item>
+                    <el-form-item label="封面" prop="coverUrl" v-show="dataForm.coverUrl">
+                        <el-image :src="dataForm.coverUrl" style="width: 130px; height: 130px"></el-image>
+                        <el-link style="margin-left: 10px" :underline="false" @click="downloadImage" v-show="sys.downloadImageSuccess">下载</el-link>
+                        <el-link style="margin-left: 10px" :underline="false" :href="dataForm.coverUrl" target="_blank" v-show="!sys.downloadImageSuccess">另存</el-link>
+                    </el-form-item>
                     <el-row :gutter="20">
                         <el-col :span="8">
                             <el-form-item label="自动填充">
@@ -146,9 +151,10 @@
                 },
                 dataForm: {
                     id: null,
-                    musicName: null,
-                    artist: null,
-                    album: null,
+                    musicName: '',
+                    artist: '',
+                    album: '',
+                    coverUrl: '',
                     sort: null,
                     linkList: [
                         {
@@ -177,7 +183,8 @@
                     coverSuffix: '.jpg',
                     dateYear: new Date().getFullYear(),
                     linkSourceName: 'alist',
-                    linkSourceIndex: '1'
+                    linkSourceIndex: '1',
+                    downloadImageSuccess: true
                 },
                 musicPlayer: {
                     musicName: null,
@@ -220,8 +227,53 @@
                 this.sys.linkSourceIndex = tab.index;
                 this.initAplyer();
             },
+            downloadImage() {
+                const url = this.dataForm.coverUrl
+                const filename = (this.dataForm.musicName ? this.dataForm.musicName : 'music') + '.jpg'
+                this.getBlob(url, (blob) => {
+                    this.saveAs(blob, filename)
+                })
+            },
+            getBlob(url, cb) {
+                var xhr = new XMLHttpRequest()
+                xhr.open('GET', url, true)
+                xhr.responseType = 'blob'
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        this.sys.downloadImageSuccess = true
+                        cb(xhr.response)
+                    } else {
+                        this.sys.downloadImageSuccess = false
+                        this.$message.error('下载失败，请点击[另存]');
+                    }
+                }
+                xhr.onerror = () => {
+                    this.sys.downloadImageSuccess = false
+                    this.$message.error('下载失败，请点击[另存]');
+                };
+                xhr.send()
+            },
+            saveAs(blob, filename) {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    navigator.msSaveBlob(blob, filename)
+                }
+                else {
+                    var link = document.createElement('a')
+                    var body = document.querySelector('body')
+
+                    link.href = window.URL.createObjectURL(blob)
+                    link.download = filename
+
+                    link.style.display = 'none'
+                    body.appendChild(link)
+
+                    link.click()
+                    body.removeChild(link)
+                    window.URL.revokeObjectURL(link.href)
+                }
+            },
             showDetail() {
-                if(this.sys.music !== null) {
+                if(this.sys.music && this.sys.music.id) {
                     axios.post('./detailMusic', {
                             id: this.sys.music.id
                         })
@@ -302,7 +354,9 @@
                                 this.dataForm.musicName = response.data.data.musicTitle;
                                 this.dataForm.artist = response.data.data.artist;
                                 this.dataForm.album = response.data.data.album;
+                                this.dataForm.coverUrl = response.data.data.coverUrl;
                             } else {
+                                this.dataForm.coverUrl = ''
                                 this.$message.error(response.data.msg);
                             }
                         })
@@ -314,6 +368,8 @@
             },
             onReset2() {
                 this.$refs.parseForm.resetFields();
+                this.dataForm.coverUrl = ''
+                this.sys.downloadImageSuccess = true
             },
             onSubmit(dataForm) {
                 this.$refs.dataForm.validate((valid) => {
@@ -380,12 +436,14 @@
                 this.initAplyer();
             },
             initDataForm() {
-                this.dataForm.musicName = null
-                this.dataForm.artist = null
-                this.dataForm.album = null
+                this.dataForm.musicName = ''
+                this.dataForm.coverUrl = ''
+                this.dataForm.artist = ''
+                this.dataForm.album = ''
                 this.dataForm.sort = null
             },
             initSys: function () {
+                this.sys.downloadImageSuccess = true
                 this.sys.autoFill = 'true'
                 this.sys.audioSuffix = '.mp3'
                 this.sys.coverSuffix = '.jpg'
