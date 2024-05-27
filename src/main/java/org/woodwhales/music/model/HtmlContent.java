@@ -25,13 +25,6 @@ public class HtmlContent {
 
     private String album;
 
-    @Override
-    public String toString() {
-        return "HtmlContent{" +
-                "platformType='" + platformType + '\'' +
-                ", musicTitle='" + musicTitle + '\'' +
-                ", artist='" + artist + '\'' +
-                ", album='" + album + '\'' +
-                '}';
-    }
+    private String coverUrl;
+
 }

@@ -58,4 +58,9 @@ public class WangYiYunMusicPlatformParser extends BaseMusicPlatformParser {
         }
         return title;
     }
+
+    @Override
+    protected String parseCoverUrl(Document document) {
+        return document.getElementsByClass("j-img").get(0).attr("data-src");
+    }
 }

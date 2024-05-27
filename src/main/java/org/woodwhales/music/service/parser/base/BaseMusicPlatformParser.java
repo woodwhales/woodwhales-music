@@ -34,6 +34,12 @@ public abstract class BaseMusicPlatformParser implements MusicPlatformParser {
      */
     protected abstract String parseMusicTitle(Document document);
 
+    /**
+     * 解析专辑封面图片文件链接
+     * @param document
+     */
+    protected abstract String parseCoverUrl(Document document);
+
     @Override
     public HtmlContent parse(String platformType, String content) {
         HtmlContent htmlContent = new HtmlContent();
@@ -51,6 +57,10 @@ public abstract class BaseMusicPlatformParser implements MusicPlatformParser {
         String artist = parseArtist(document);
         htmlContent.setArtist(artist);
 
+        String coverUrl = parseCoverUrl(document);
+        htmlContent.setCoverUrl(coverUrl);
+
         return htmlContent;
     }
+
 }

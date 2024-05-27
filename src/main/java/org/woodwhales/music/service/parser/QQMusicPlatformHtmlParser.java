@@ -33,4 +33,9 @@ public class QQMusicPlatformHtmlParser extends BaseMusicPlatformParser {
     protected String parseMusicTitle(Document document) {
         return document.getElementsByClass("data__name").get(0).text();
     }
+
+    @Override
+    protected String parseCoverUrl(Document document) {
+        return "https:" + document.getElementsByClass("data__photo").get(0).attr("src");
+    }
 }

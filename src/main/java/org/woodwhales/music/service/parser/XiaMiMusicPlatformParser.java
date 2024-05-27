@@ -36,4 +36,9 @@ public class XiaMiMusicPlatformParser extends BaseMusicPlatformParser {
                 .get(0)
                 .text();
     }
+
+    @Override
+    protected String parseCoverUrl(Document document) {
+        return "";
+    }
 }
