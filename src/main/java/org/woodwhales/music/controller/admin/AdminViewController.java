@@ -56,7 +56,7 @@ public class AdminViewController {
     @GetMapping("/login")
     public String login(Model model) {
         SysConfigService.addMusicSite(model);
-        return "admin/login2";
+        return "admin2/login";
     }
 
     @GetMapping("/404")

@@ -56,7 +56,8 @@ public class WebSecurityConfig {
 							"/js/**",
 							"/**.png",
 							"/**.ico",
-							"/favicon.ico").permitAll()
+							"/site.webmanifest",
+							"/**.svg").permitAll()
 					// 2FA 相关的 url 使用 TwoFactorAuthorizationManager 鉴权
 					.requestMatchers("/admin/two-factor", "/admin/two-factor/verify").access(new TwoFactorAuthorizationManager())
 					.anyRequest().authenticated();
