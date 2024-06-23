@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- 主机:                           39.99.231.248
+-- 主机:                           127.0.0.1
 -- 服务器版本:                        8.0.27 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.6.0.6765
+-- HeidiSQL 版本:                  12.2.0.6576
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- 正在导出表  open_music.music_info 的数据：~1,124 rows (大约)
+-- 正在导出表  open_music.music_info 的数据：~1,134 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1152,9 +1152,19 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(1184, 'Titanium-David Guetta / Sia', 'David Guetta / Sia', 'Best Of...', 714, 0, '2024-05-23 11:26:08', '2024-06-11 09:23:55', 1),
 	(1185, 'Dream-Priscilla Ahn', 'Priscilla Ahn', 'A Good Day', 605, 0, '2024-05-27 14:04:32', '2024-06-11 09:25:43', 1),
 	(1186, 'Trouble Is A Friend-Lenka', 'Lenka', 'Trouble Is A Friend - The Remixes', 251, 0, '2024-05-27 14:11:38', '2024-06-11 09:26:02', 1),
-	(1187, 'Don\'t Let Me Fall-Lenka', 'Lenka', 'Lenka (Expanded Edition)', 401, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', 1);
+	(1187, 'Don\'t Let Me Fall-Lenka', 'Lenka', 'Lenka (Expanded Edition)', 401, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', 1),
+	(1188, '万物生 (国语)-萨顶顶', '萨顶顶', '万物生', 667, 0, '2024-06-21 11:45:36', '2024-06-21 13:59:27', 1),
+	(1189, '万物生 (梵语)-萨顶顶', '萨顶顶', '万物生', 854, 0, '2024-06-21 12:24:59', '2024-06-21 13:59:48', 1),
+	(1190, '青丝-唐伯虎Annie', '唐伯虎Annie', '青丝', 200, 0, '2024-06-21 12:35:55', '2024-06-21 13:57:32', 1),
+	(1191, '铁血丹心(1983年TVB版电视剧《射雕英雄传之铁血丹心》主题曲)-罗文、甄妮', '罗文 / 甄妮', '射雕英雄传', 887, 0, '2024-06-21 12:40:37', '2024-06-21 14:00:57', 1),
+	(1192, '上海滩(无线电视剧《上海滩》主题曲)', '叶丽仪', '上海滩', 751, 0, '2024-06-21 12:44:11', '2024-06-21 13:58:57', 1),
+	(1193, '新鸳鸯蝴蝶梦(电视剧《包青天》片尾曲)-黄安', '黄安', '新鸳鸯蝴蝶梦', 854, 0, '2024-06-21 12:46:26', '2024-06-21 14:00:14', 1),
+	(1194, '难念的经(1997年TVB版电视剧《天龙八部》片头曲)-周华健', '周华健', '电视剧歌曲大全', 500, 0, '2024-06-21 12:47:40', '2024-06-21 13:57:58', 1),
+	(1195, '射雕英雄传(电影《射雕英雄传之东成西就》片尾曲)-林穆', '林穆', '笑傲歌坛 传世经典', 901, 0, '2024-06-21 12:48:45', '2024-06-21 14:01:45', 1),
+	(1196, '江湖笑(张纪中版《神雕侠侣》片尾曲)-周华健', '周华健', '雨人', 701, 0, '2024-06-21 12:50:56', '2024-06-21 14:11:26', 1),
+	(1197, '月光-胡彦斌', '胡彦斌', '音乐斌潮', 165, 0, '2024-06-21 12:52:20', '2024-06-21 14:00:38', 1);
 
--- 正在导出表  open_music.music_info_link 的数据：~4,461 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~4,501 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5335,7 +5345,8 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4177, 0, '2024-03-21 15:07:35', '2024-03-22 14:02:32', NULL, 0, 0, 1085),
 	(4178, 0, '2024-03-21 15:07:35', '2024-03-22 14:02:32', NULL, 1, 0, 1085),
 	(4179, 0, '2024-03-21 15:07:35', '2024-03-22 14:02:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/09/%E6%88%91%E7%9C%9F%E7%9A%84%E5%8F%97%E4%BC%A4%E4%BA%86(%E7%94%B5%E5%BD%B1%E3%80%8ADelete%E7%88%B1%E4%BA%BA%E3%80%8B%E6%8F%92%E6%9B%B2)-%E7%8E%8B%E8%8F%80%E4%B9%8B.mp3?sign=ZyGjLOmx-TJ6k6ga9_fhIzxecmz7vpm-V9xyOS-cors=:0', 0, 1, 1085),
-	(4180, 0, '2024-03-21 15:07:35', '2024-03-22 14:02:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/09/%E6%88%91%E7%9C%9F%E7%9A%84%E5%8F%97%E4%BC%A4%E4%BA%86(%E7%94%B5%E5%BD%B1%E3%80%8ADelete%E7%88%B1%E4%BA%BA%E3%80%8B%E6%8F%92%E6%9B%B2)-%E7%8E%8B%E8%8F%80%E4%B9%8B.jpg?sign=6iSPC7-cyZR247-ZQ4GgHONwjITk03_cVGqvS7LwxTg=:0', 1, 1, 1085),
+	(4180, 0, '2024-03-21 15:07:35', '2024-03-22 14:02:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/09/%E6%88%91%E7%9C%9F%E7%9A%84%E5%8F%97%E4%BC%A4%E4%BA%86(%E7%94%B5%E5%BD%B1%E3%80%8ADelete%E7%88%B1%E4%BA%BA%E3%80%8B%E6%8F%92%E6%9B%B2)-%E7%8E%8B%E8%8F%80%E4%B9%8B.jpg?sign=6iSPC7-cyZR247-ZQ4GgHONwjITk03_cVGqvS7LwxTg=:0', 1, 1, 1085);
+INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(4181, 0, '2024-03-21 15:15:12', '2024-03-22 13:56:35', NULL, 0, 0, 1086),
 	(4182, 0, '2024-03-21 15:15:12', '2024-03-22 13:56:35', NULL, 1, 0, 1086),
 	(4183, 0, '2024-03-21 15:15:12', '2024-03-22 13:56:35', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/04/K%E6%AD%8C%E4%B9%8B%E7%8E%8B-%E9%99%88%E5%A5%95%E8%BF%85.m4a?sign=vTQ3peec5Txylu3Phj9sO_b3v5ATvio96jn35F6Pztg=:0', 0, 1, 1086),
@@ -5345,8 +5356,7 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4187, 0, '2024-03-21 15:17:20', '2024-03-22 14:03:43', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/09/%E6%B7%98%E6%B1%B0-%E9%99%88%E5%A5%95%E8%BF%85.m4a?sign=VFBUW3wayNsYwlno9nx8uNXqsfkJXBX-44aqZrpGEfA=:0', 0, 1, 1087),
 	(4188, 0, '2024-03-21 15:17:20', '2024-03-22 14:03:43', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/09/%E6%B7%98%E6%B1%B0-%E9%99%88%E5%A5%95%E8%BF%85.jpg?sign=UJhTS7Ahw2Xb0UkPeeCWKCcH7616Pa8XAvNGhJqi5FY=:0', 1, 1, 1087),
 	(4189, 0, '2024-03-21 15:19:04', '2024-03-22 14:07:01', NULL, 0, 0, 1088),
-	(4190, 0, '2024-03-21 15:19:04', '2024-03-22 14:07:01', NULL, 1, 0, 1088);
-INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
+	(4190, 0, '2024-03-21 15:19:04', '2024-03-22 14:07:01', NULL, 1, 0, 1088),
 	(4191, 0, '2024-03-21 15:19:04', '2024-03-22 14:07:01', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/05/%E7%BA%A2%E7%8E%AB%E7%91%B0-%E9%99%88%E5%A5%95%E8%BF%85.m4a?sign=k2CxFAztDrScaohggw2kisPUfMX8soXRD9aFLqdMTmw=:0', 0, 1, 1088),
 	(4192, 0, '2024-03-21 15:19:04', '2024-03-22 14:07:01', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store12/05/%E7%BA%A2%E7%8E%AB%E7%91%B0-%E9%99%88%E5%A5%95%E8%BF%85.jpg?sign=BfwLERF-DkbvFEuWKkR53qME4FOcBGL6nk9mnZt8qhI=:0', 1, 1, 1088),
 	(4193, 0, '2024-03-21 15:21:35', '2024-03-22 13:59:55', NULL, 0, 0, 1089),
@@ -5744,13 +5754,49 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(4585, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', '', 0, 0, 1187),
 	(4586, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', '', 1, 0, 1187),
 	(4587, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/03/Don\'t%20Let%20Me%20Fall-Lenka.m4a?sign=t6X4bV38Wo4-71BKbAlHmIeZ7aAe4ZdfjRiCIerEJqE=:0', 0, 1, 1187),
-	(4588, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/03/Don\'t%20Let%20Me%20Fall-Lenka.jpg?sign=FeIEuZ9YcbSAN0jOhnVnXw6umHSxu42jwH_m8Dsh_WU=:0', 1, 1, 1187);
+	(4588, 0, '2024-05-27 14:14:36', '2024-06-11 09:25:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/03/Don\'t%20Let%20Me%20Fall-Lenka.jpg?sign=FeIEuZ9YcbSAN0jOhnVnXw6umHSxu42jwH_m8Dsh_WU=:0', 1, 1, 1187),
+	(4589, 0, '2024-06-21 11:45:36', '2024-06-21 13:59:27', '', 0, 0, 1188),
+	(4590, 0, '2024-06-21 11:45:36', '2024-06-21 13:59:27', '', 1, 0, 1188),
+	(4591, 0, '2024-06-21 11:45:36', '2024-06-21 13:59:27', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E4%B8%87%E7%89%A9%E7%94%9F%20(%E5%9B%BD%E8%AF%AD)-%E8%90%A8%E9%A1%B6%E9%A1%B6.m4a?sign=3OxFRiCs2rK_dsXVgBt_-0lFQXQ-jbXS7IsaxG9xCso=:0', 0, 1, 1188),
+	(4592, 0, '2024-06-21 11:45:36', '2024-06-21 13:59:27', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E4%B8%87%E7%89%A9%E7%94%9F%20(%E5%9B%BD%E8%AF%AD)-%E8%90%A8%E9%A1%B6%E9%A1%B6.jpg?sign=eJW2Htb5IR0DDoNrxsqUf0NxDWA4TdXWo5-yYG5ue1w=:0', 1, 1, 1188),
+	(4593, 0, '2024-06-21 12:24:59', '2024-06-21 13:59:48', '', 0, 0, 1189),
+	(4594, 0, '2024-06-21 12:24:59', '2024-06-21 13:59:48', '', 1, 0, 1189),
+	(4595, 0, '2024-06-21 12:24:59', '2024-06-21 13:59:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E4%B8%87%E7%89%A9%E7%94%9F%20(%E6%A2%B5%E8%AF%AD)-%E8%90%A8%E9%A1%B6%E9%A1%B6.m4a?sign=zJ3joyaJnB2OHh6HjXgSBSHLBw3q0SsNpMwxlrgXznE=:0', 0, 1, 1189),
+	(4596, 0, '2024-06-21 12:24:59', '2024-06-21 13:59:48', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E4%B8%87%E7%89%A9%E7%94%9F%20(%E6%A2%B5%E8%AF%AD)-%E8%90%A8%E9%A1%B6%E9%A1%B6.jpg?sign=Cup_ZZLdcqzoLPwnWiW5fm50f2oRzWU_VodwyZhk4UE=:0', 1, 1, 1189),
+	(4597, 0, '2024-06-21 12:35:55', '2024-06-21 13:57:32', '', 0, 0, 1190),
+	(4598, 0, '2024-06-21 12:35:55', '2024-06-21 13:57:32', '', 1, 0, 1190),
+	(4599, 0, '2024-06-21 12:35:55', '2024-06-21 13:57:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E9%9D%92%E4%B8%9D-%E5%94%90%E4%BC%AF%E8%99%8EAnnie.m4a?sign=bKLL609A2PWbvOYXolmUo2z0tbauPrEzqQUJUg_g1g8=:0', 0, 1, 1190),
+	(4600, 0, '2024-06-21 12:35:55', '2024-06-21 13:57:32', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E9%9D%92%E4%B8%9D-%E5%94%90%E4%BC%AF%E8%99%8EAnnie.jpg?sign=sdhVdMyplhTRcI1xRko3eutSeYoF7JISLEQ3IRNtsqg=:0', 1, 1, 1190),
+	(4601, 0, '2024-06-21 12:40:37', '2024-06-21 14:00:57', '', 0, 0, 1191),
+	(4602, 0, '2024-06-21 12:40:37', '2024-06-21 14:00:57', '', 1, 0, 1191),
+	(4603, 0, '2024-06-21 12:40:37', '2024-06-21 14:00:57', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E9%93%81%E8%A1%80%E4%B8%B9%E5%BF%83(1983%E5%B9%B4TVB%E7%89%88%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0%E4%B9%8B%E9%93%81%E8%A1%80%E4%B8%B9%E5%BF%83%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E7%BD%97%E6%96%87%E3%80%81%E7%94%84%E5%A6%AE.m4a?sign=_ExNNJ1Hjg02Up4j4T5cg1C7EyF1OwjBZz6PP0WTGOc=:0', 0, 1, 1191),
+	(4604, 0, '2024-06-21 12:40:37', '2024-06-21 14:00:57', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E9%93%81%E8%A1%80%E4%B8%B9%E5%BF%83(1983%E5%B9%B4TVB%E7%89%88%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0%E4%B9%8B%E9%93%81%E8%A1%80%E4%B8%B9%E5%BF%83%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E7%BD%97%E6%96%87%E3%80%81%E7%94%84%E5%A6%AE.jpg?sign=Mz1uRsDJg9AYRc00JV5jSVouuSiIO-MtDSbh1oY_psA=:0', 1, 1, 1191),
+	(4605, 0, '2024-06-21 12:44:11', '2024-06-21 13:58:57', '', 0, 0, 1192),
+	(4606, 0, '2024-06-21 12:44:11', '2024-06-21 13:58:57', '', 1, 0, 1192),
+	(4607, 0, '2024-06-21 12:44:11', '2024-06-21 13:58:57', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E4%B8%8A%E6%B5%B7%E6%BB%A9(%E6%97%A0%E7%BA%BF%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E4%B8%8A%E6%B5%B7%E6%BB%A9%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E5%8F%B6%E4%B8%BD%E4%BB%AA.m4a?sign=tWWYbXhFfKozLkHNFLSRA0DKTeP07HbWMcZdOMxaBoA=:0', 0, 1, 1192),
+	(4608, 0, '2024-06-21 12:44:11', '2024-06-21 13:58:57', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E4%B8%8A%E6%B5%B7%E6%BB%A9(%E6%97%A0%E7%BA%BF%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E4%B8%8A%E6%B5%B7%E6%BB%A9%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E5%8F%B6%E4%B8%BD%E4%BB%AA.jpg?sign=CXDhBB6S-jVB6d0zDShQr8DD6S9_r6LxlPVyHnp07rY=:0', 1, 1, 1192),
+	(4609, 0, '2024-06-21 12:46:26', '2024-06-21 14:00:14', '', 0, 0, 1193),
+	(4610, 0, '2024-06-21 12:46:26', '2024-06-21 14:00:14', '', 1, 0, 1193),
+	(4611, 0, '2024-06-21 12:46:26', '2024-06-21 14:00:14', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E6%96%B0%E9%B8%B3%E9%B8%AF%E8%9D%B4%E8%9D%B6%E6%A2%A6(%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%8C%85%E9%9D%92%E5%A4%A9%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E9%BB%84%E5%AE%89.m4a?sign=5eSHh6IGCTU4xYPtBxoYKmah0VruN2O93SpnE1edmdo=:0', 0, 1, 1193),
+	(4612, 0, '2024-06-21 12:46:26', '2024-06-21 14:00:14', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E6%96%B0%E9%B8%B3%E9%B8%AF%E8%9D%B4%E8%9D%B6%E6%A2%A6(%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%8C%85%E9%9D%92%E5%A4%A9%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E9%BB%84%E5%AE%89.jpg?sign=_JzYQr_ffVnCWfmCNnu8DN2otLtK5wVyuXc78IE7lfs=:0', 1, 1, 1193),
+	(4613, 0, '2024-06-21 12:47:40', '2024-06-21 13:57:58', '', 0, 0, 1194),
+	(4614, 0, '2024-06-21 12:47:40', '2024-06-21 13:57:58', '', 1, 0, 1194),
+	(4615, 0, '2024-06-21 12:47:40', '2024-06-21 13:57:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E9%9A%BE%E5%BF%B5%E7%9A%84%E7%BB%8F(1997%E5%B9%B4TVB%E7%89%88%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%A4%A9%E9%BE%99%E5%85%AB%E9%83%A8%E3%80%8B%E7%89%87%E5%A4%B4%E6%9B%B2)-%E5%91%A8%E5%8D%8E%E5%81%A5.m4a?sign=fBPbo-LphjjhDijHXW9i58e3eCXjxxhHxL22kK4Hj0s=:0', 0, 1, 1194),
+	(4616, 0, '2024-06-21 12:47:40', '2024-06-21 13:57:58', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E9%9A%BE%E5%BF%B5%E7%9A%84%E7%BB%8F(1997%E5%B9%B4TVB%E7%89%88%E7%94%B5%E8%A7%86%E5%89%A7%E3%80%8A%E5%A4%A9%E9%BE%99%E5%85%AB%E9%83%A8%E3%80%8B%E7%89%87%E5%A4%B4%E6%9B%B2)-%E5%91%A8%E5%8D%8E%E5%81%A5.jpg?sign=dSirKh5f9BwEpzcYHlWAbbnoq4Lmt0tEx5uIgexOkP8=:0', 1, 1, 1194),
+	(4617, 0, '2024-06-21 12:48:45', '2024-06-21 14:01:45', '', 0, 0, 1195),
+	(4618, 0, '2024-06-21 12:48:45', '2024-06-21 14:01:45', '', 1, 0, 1195),
+	(4619, 0, '2024-06-21 12:48:45', '2024-06-21 14:01:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0(%E7%94%B5%E5%BD%B1%E3%80%8A%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0%E4%B9%8B%E4%B8%9C%E6%88%90%E8%A5%BF%E5%B0%B1%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E6%9E%97%E7%A9%86.m4a?sign=gP4kYmO9KcaqLgnGV8wzGO7n9f6BbvE1yk54qsyMJ3Y=:0', 0, 1, 1195),
+	(4620, 0, '2024-06-21 12:48:45', '2024-06-21 14:01:45', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0(%E7%94%B5%E5%BD%B1%E3%80%8A%E5%B0%84%E9%9B%95%E8%8B%B1%E9%9B%84%E4%BC%A0%E4%B9%8B%E4%B8%9C%E6%88%90%E8%A5%BF%E5%B0%B1%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E6%9E%97%E7%A9%86.jpg?sign=NFAFWY0DP6Kni8B4_X1WDCQHbHLcosDMwI4hHNwj7JY=:0', 1, 1, 1195),
+	(4621, 0, '2024-06-21 12:50:56', '2024-06-21 14:11:26', '', 0, 0, 1196),
+	(4622, 0, '2024-06-21 12:50:56', '2024-06-21 14:11:26', '', 1, 0, 1196),
+	(4623, 0, '2024-06-21 12:50:56', '2024-06-21 14:11:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E6%B1%9F%E6%B9%96%E7%AC%91(%E5%BC%A0%E7%BA%AA%E4%B8%AD%E7%89%88%E3%80%8A%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E5%91%A8%E5%8D%8E%E5%81%A5.mp3?sign=vtzndCsQ2jhMKELS9QDChwR30kjuB0_OpiqohZQJrk0=:0', 0, 1, 1196),
+	(4624, 0, '2024-06-21 12:50:56', '2024-06-21 14:11:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/04/%E6%B1%9F%E6%B9%96%E7%AC%91(%E5%BC%A0%E7%BA%AA%E4%B8%AD%E7%89%88%E3%80%8A%E7%A5%9E%E9%9B%95%E4%BE%A0%E4%BE%A3%E3%80%8B%E7%89%87%E5%B0%BE%E6%9B%B2)-%E5%91%A8%E5%8D%8E%E5%81%A5.jpg?sign=Vw2zVwq7QxM3Ej1xgJrtVogLBC-dNQCZhCJ1mcwW66I=:0', 1, 1, 1196),
+	(4625, 0, '2024-06-21 12:52:20', '2024-06-21 14:00:38', '', 0, 0, 1197),
+	(4626, 0, '2024-06-21 12:52:20', '2024-06-21 14:00:38', '', 1, 0, 1197),
+	(4627, 0, '2024-06-21 12:52:20', '2024-06-21 14:00:38', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E6%9C%88%E5%85%89(%E5%8A%A8%E7%94%BB%E3%80%8A%E7%A7%A6%E6%97%B6%E6%98%8E%E6%9C%88%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E8%83%A1%E5%BD%A6%E6%96%8C.m4a?sign=sK5lkMXG3AfKEqw6kevMz9ZS9cUlPPlo-m-C_bhNt44=:0', 0, 1, 1197),
+	(4628, 0, '2024-06-21 12:52:20', '2024-06-21 14:00:38', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store14/05/%E6%9C%88%E5%85%89(%E5%8A%A8%E7%94%BB%E3%80%8A%E7%A7%A6%E6%97%B6%E6%98%8E%E6%9C%88%E3%80%8B%E4%B8%BB%E9%A2%98%E6%9B%B2)-%E8%83%A1%E5%BD%A6%E6%96%8C.jpg?sign=C8VaHRRa6e_U8QeM_myUaDPWbw_HHXuRGxxfPCB5LDQ=:0', 1, 1, 1197);
 
 -- 正在导出表  open_music.sys_config 的数据：~0 rows (大约)
-
--- 正在导出表  open_music.sys_user 的数据：~0 rows (大约)
-INSERT INTO `sys_user` (`id`, `status`, `gmt_created`, `gmt_modified`, `username`, `password`, `two_factor_secret`, `two_factor_enabled`) VALUES
-	(1, 0, '2024-05-21 03:40:10', '2024-05-27 10:04:57', 'admin', '$2a$10$ePbFaBET/UwN8kDL9iU0OuPaVhVLHX5pdBJc3eeXc2Vq5rOAx2E7.', 'NXNVRV6NBBPYMR5K', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
