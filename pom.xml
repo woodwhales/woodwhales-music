@@ -12,7 +12,7 @@
 
 	<groupId>org.woodwhales</groupId>
 	<artifactId>woodwhales-music</artifactId>
-	<version>3.7.0</version>
+	<version>3.7.1</version>
 	<name>woodwhales-music</name>
 	<description>woodwhales-music 基于 SpringBoot 的开源超简洁音乐播放器 A open source Music Player developed based on Java SpringBoot</description>
 
