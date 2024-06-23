@@ -37,17 +37,18 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         if(StringUtils.isBlank(password)) {
             password = "admin";
         }
+        String encodePassword = passwordEncoder.encode(password);
         if(Objects.isNull(sysUser)) {
             sysUser = new SysUser();
             sysUser.setUsername("admin");
-            sysUser.setPassword(passwordEncoder.encode(password));
+            sysUser.setPassword(encodePassword);
             sysUser.setTwoFactorSecret("");
             sysUser.setTwoFactorEnabled(false);
             this.saveOrUpdate(sysUser);
         } else {
             this.update(Wrappers.<SysUser>lambdaUpdate()
                     .eq(SysUser::getId, sysUser.getId())
-                    .set(SysUser::getPassword, passwordEncoder.encode(password)));
+                    .set(SysUser::getPassword, encodePassword));
         }
     }
 
