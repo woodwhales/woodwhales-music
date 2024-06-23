@@ -321,7 +321,7 @@ docker run -d \
 -e "MYSQL_USER=root" \
 -e "MYSQL_PASSWORD=root1234" \
 -e "SYSTEM_INIT_PASSWORD=admin" \
-woodwhales/woodwhales-music:3.7.0
+woodwhales/woodwhales-music:latest
 ```
 
 环境命令参数说明：
