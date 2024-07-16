@@ -125,14 +125,7 @@
             width="75%">
         <el-form :model="open2FAForm" :rules="open2FAFormRules" ref="open2FAForm" label-position="top">
             <el-form-item label="步骤1. 在移动设备上安装验证器应用">
-                <div class="app-container" style="padding: 30px 0;
-            text-align: center;
-            border-right: 1px solid #eff2f6;
-            border-left: 1px solid #eff2f6;
-            display: inline-block;
-            width: 20%;
-            box-sizing: border-box;
-            vertical-align: top;" v-for="app in temp.apps">
+                <div class="app-container" v-for="app in temp.apps">
                     <span style="display: block;">{{app.name}}</span>
                     <el-image style="width: 64px; height: 64px;
                                     border: 1px solid #eff2f6;
@@ -222,12 +215,6 @@
                             img: "/img/LastPass_Authenticator.jpg",
                             googlePlay: 'https://play.google.com/store/apps/details?id=com.lastpass.authenticator&hl=en_US',
                             appStore: 'https://apps.apple.com/us/app/lastpass-authenticator/id1079110004'
-                        },
-                        {
-                            name: 'Twilio Authy Authenticator',
-                            img: "/img/Twilio_Authy_Authenticator.jpg",
-                            googlePlay: 'https://play.google.com/store/apps/details?id=com.authy.authy&hl=en',
-                            appStore: 'https://apps.apple.com/us/app/twilio-authy/id494168017'
                         }
                     ],
                     close2FADialogVisible: false,
@@ -445,4 +432,17 @@
         }
     })
 </script>
+
+<style>
+.app-container {
+    padding: 30px 0;
+    text-align: center;
+    border-right: 1px solid #eff2f6;
+    border-left: 1px solid #eff2f6;
+    display: inline-block;
+    width: 25%;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+</style>
 </html>
