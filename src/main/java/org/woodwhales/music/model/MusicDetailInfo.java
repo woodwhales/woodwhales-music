@@ -1,6 +1,7 @@
 package org.woodwhales.music.model;
 
 import lombok.Data;
+import org.woodwhales.music.entity.TagInfo;
 
 import java.util.List;
 
@@ -42,5 +43,10 @@ public class MusicDetailInfo {
      * 排序
      */
     private Integer sort;
+
+    /**
+     * 标签集合
+     */
+    private List<TagInfo> tagList;
 
 }

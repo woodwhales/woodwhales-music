@@ -10,11 +10,11 @@ import java.io.Serializable;
 /**
  * @author woodwhales on 2024-08-21 22:44
  */
-@TableName(value= "tag_info")
+@TableName(value= "music_tag")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TagInfo implements Serializable {
+public class MusicTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,9 +44,15 @@ public class TagInfo implements Serializable {
     private java.util.Date gmtModified;
 
     /**
-     * 标签名称
+     * music_info 表id
      */
-    @TableField(value = "name")
-    private String name;
+    @TableField(value = "music_id")
+    private Long musicId;
+
+    /**
+     * tag_info 表id
+     */
+    @TableField(value = "tag_id")
+    private Long tagId;
 
 }

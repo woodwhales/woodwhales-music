@@ -1,6 +1,8 @@
 package org.woodwhales.music.service.music.impl;
 
 import cn.woodwhales.common.business.DataTool;
+import cn.woodwhales.common.business.collection.CollectionMathResult;
+import cn.woodwhales.common.model.result.OpResult;
 import cn.woodwhales.common.model.util.PageUtil;
 import cn.woodwhales.common.model.vo.LayuiPageVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -17,21 +19,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woodwhales.music.controller.param.MusicCreateOrUpdateRequestBody;
 import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
+import org.woodwhales.music.controller.param.MusicTagListAddRequestBody;
 import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
 import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
+import org.woodwhales.music.entity.MusicTag;
+import org.woodwhales.music.entity.TagInfo;
 import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.enums.StatusEnum;
 import org.woodwhales.music.mapper.MusicInfoMapper;
 import org.woodwhales.music.model.*;
+import org.woodwhales.music.service.tagInfo.MusicTagService;
+import org.woodwhales.music.service.tagInfo.TagInfoService;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static org.apache.commons.collections4.CollectionUtils.size;
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
@@ -45,12 +49,61 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
-	
+
+	@Autowired
+	private MusicTagService musicTagService;
+
+	@Autowired
+	private TagInfoService tagInfoService;
+
 	@Autowired
 	private MusicInfoMapper musicInfoMapper;
 
 	@Autowired
 	private MusicLinkServiceImpl musicLinkService;
+
+	public OpResult<List<TagInfo>> saveOrUpdateTagList(MusicTagListAddRequestBody param) {
+		List<TagInfo> tagInfoList;
+		if(CollectionUtils.isEmpty(param.getTagNameList())) {
+			tagInfoList = Collections.emptyList();
+		} else {
+			tagInfoList = this.tagInfoService.list(Wrappers.<TagInfo>lambdaQuery()
+					.in(TagInfo::getName, param.getTagNameList()));
+			Set<String> tagNameSet = DataTool.toSet(tagInfoList, TagInfo::getName);
+			List<TagInfo> willInsertList = new ArrayList<>();
+			for (String tagName : param.getTagNameList()) {
+				if (!tagNameSet.contains(tagName)) {
+					TagInfo tagInfo = new TagInfo();
+					tagInfo.setName(tagName);
+					willInsertList.add(tagInfo);
+				}
+			}
+			if (CollectionUtils.isNotEmpty(willInsertList)) {
+				this.tagInfoService.saveBatch(willInsertList);
+				tagInfoList.addAll(willInsertList);
+			}
+		}
+		this.saveOrUpdateTagListProcess(param.getMusicId(), tagInfoList);
+		return OpResult.success(musicTagService.getListByMusicId(param.getMusicId()));
+	}
+
+	public OpResult<Void> saveOrUpdateTagListProcess(Long musicId, List<TagInfo> tagInfoList) {
+		List<MusicTag> oldMusicTagList = this.musicTagService.list(Wrappers.<MusicTag>lambdaQuery()
+				.eq(MusicTag::getMusicId, musicId));
+		CollectionMathResult<Long, MusicTag, TagInfo> compute = CollectionMathResult.compute(oldMusicTagList, MusicTag::getTagId,
+				tagInfoList, TagInfo::getId);
+		List<MusicTag> willDelList = compute.getPositiveDifferenceList();
+		this.musicTagService.removeByIds(willDelList);
+
+		List<MusicTag> willInsertList = DataTool.toList(compute.getNegativeDifferenceList(), tagInfo -> {
+			MusicTag musicTag = new MusicTag();
+			musicTag.setMusicId(musicId);
+			musicTag.setTagId(tagInfo.getId());
+			return musicTag;
+		});
+		this.musicTagService.saveBatch(willInsertList);
+		return OpResult.success();
+	}
 
     public List<MusicInfoVo> listMusic() {
 		List<MusicInfo> musicList = musicInfoMapper.selectList(Wrappers.<MusicInfo>lambdaQuery()
@@ -101,7 +154,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
 		BeanUtils.copyProperties(musicInfo, musicDetailInfo);
 		List<MusicInfoLinkDetailVo> linkList = musicLinkService.getLinkDetailVoListByMusicId(musicInfo.getId());
+		List<TagInfo> tagList = musicTagService.getListByMusicId(musicInfo.getId());
 		musicDetailInfo.setLinkList(linkList);
+		musicDetailInfo.setTagList(tagList);
 		return musicDetailInfo;
 	}
 
@@ -150,6 +205,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 		musicSimpleInfo.setAudioUrl(musicInfoLinkContext.getAudioUrl(musicInfo.getId()));
 		musicSimpleInfo.setCoverUrl(musicInfoLinkContext.getCoverUrl(musicInfo.getId()));
 		musicSimpleInfo.setLinked(LinkStatusEnum.LINKED.match(musicInfo.getLinkStatus()));
+		musicSimpleInfo.setTagList(musicInfoLinkContext.getMusicTagMapping().getOrDefault(musicInfo.getId(), Collections.emptyList()));
 		if(StringUtils.isBlank(musicSimpleInfo.getAudioUrl())) {
 			musicSimpleInfo.setLinked(false);
 		}
@@ -229,4 +285,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 		musicLinkService.createOrUpdate(music, requestBody.getLinkList());
 	}
 
+	public OpResult<List<String>> tagNameDictList() {
+		return OpResult.success(DataTool.toList(this.tagInfoService.list(), TagInfo::getName));
+	}
 }

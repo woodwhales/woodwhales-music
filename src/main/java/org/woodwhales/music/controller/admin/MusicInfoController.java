@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.controller.util.JsonUtil;
+import org.woodwhales.music.entity.TagInfo;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.model.MusicInfoLinkDetailVo;
 import org.woodwhales.music.model.MusicListInfo;
@@ -23,7 +24,7 @@ import java.util.List;
 @RequestMapping("/admin")
 @RestController
 public class MusicInfoController {
-	
+
 	@Autowired
 	private MusicServiceImpl musicService;
 
@@ -89,4 +90,23 @@ public class MusicInfoController {
 		return RespVO.success(musicService.deleteMusic(requestBody));
 	}
 
+	/**
+	 * 保存或更新音乐标签集合
+	 * @param requestBody
+	 * @return
+	 */
+	@PostMapping("/saveOrUpdateTagList")
+	public RespVO<List<TagInfo>> saveOrUpdateTagList(@Validated @RequestBody MusicTagListAddRequestBody requestBody) {
+		log.info("requestBody = {}", JsonUtil.toString(requestBody));
+		return RespVO.resp(musicService.saveOrUpdateTagList(requestBody));
+	}
+
+	/**
+	 * 标签字典
+	 * @return
+	 */
+	@PostMapping("/tagNameDictList")
+	public RespVO<List<String>> tagNameDictList() {
+		return RespVO.resp(musicService.tagNameDictList());
+	}
 }

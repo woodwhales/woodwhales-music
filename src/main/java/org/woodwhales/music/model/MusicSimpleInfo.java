@@ -3,6 +3,9 @@ package org.woodwhales.music.model;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import lombok.Data;
+import org.woodwhales.music.entity.TagInfo;
+
+import java.util.List;
 
 /**
  * @projectName: woodwhales-music
@@ -65,6 +68,11 @@ public class MusicSimpleInfo {
      * 更新时间
      */
     private java.util.Date gmtModified;
+
+    /**
+     * 标签集合
+     */
+    private List<TagInfo> tagList;
 
     public int compare(MusicSimpleInfo musicSimpleInfo) {
         return ComparisonChain.start()

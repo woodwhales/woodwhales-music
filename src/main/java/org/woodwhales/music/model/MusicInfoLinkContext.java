@@ -7,8 +7,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.woodwhales.music.config.AppConfig;
 import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
+import org.woodwhales.music.entity.TagInfo;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
 import org.woodwhales.music.service.music.impl.MusicLinkServiceImpl;
+import org.woodwhales.music.service.tagInfo.MusicTagService;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.Map;
 @Data
 public class MusicInfoLinkContext {
     private List<MusicInfo> musicInfoList;
+    private Map<Long, List<TagInfo>> musicTagMapping;
     private Map<Long, MusicInfoLink> audioUrlMapping;
     private Map<Long, MusicInfoLink> coverUrlMapping;
 
@@ -41,6 +44,7 @@ public class MusicInfoLinkContext {
 
     public MusicInfoLinkContext(List<MusicInfo> musicInfoList) {
         this.musicInfoList = musicInfoList;
+
         if(CollectionUtils.isNotEmpty(this.musicInfoList)) {
             AppConfig appConfig = SpringUtil.getBean(AppConfig.class);
             MusicLinkServiceImpl musicLinkService = SpringUtil.getBean(MusicLinkServiceImpl.class);
@@ -53,7 +57,11 @@ public class MusicInfoLinkContext {
                             musicLink -> MusicLinkTypeEnum.COVER_LINK.match(musicLink.getLinkType())
                                     && appConfig.getMusicLinkSourceEnum().match(musicLink.getLinkSource())),
                     MusicInfoLink::getMusicId);
+
+            MusicTagService musicTagService = SpringUtil.getBean(MusicTagService.class);
+            this.musicTagMapping = musicTagService.getMusicTagMapping(this.musicInfoList);
         } else {
+            this.musicTagMapping = Collections.emptyMap();
             this.audioUrlMapping = Collections.emptyMap();
             this.coverUrlMapping = Collections.emptyMap();
         }

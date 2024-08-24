@@ -15,6 +15,23 @@
     <script th:src="@{/aplyer/APlayer.min.js}"></script>
     <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
     <link rel="stylesheet" th:href="@{/css/admin-css.css}" />
+    <style>
+        .el-tag + .el-tag {
+            margin-left: 10px;
+        }
+        .button-new-tag {
+            margin-left: 10px;
+            height: 32px;
+            line-height: 30px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .input-new-tag {
+            width: 90px;
+            margin-left: 10px;
+            vertical-align: bottom;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -47,6 +64,40 @@
                 </el-row>
                 <el-row style="margin-bottom: 12px;">
                     <el-table :data="sys.tableData" ref="tableList" style="width: 100%" @sort-change="sortChange">
+                        <el-table-column
+                                fixed
+                                type="index"
+                                :index="calcIndex"
+                                width="50">
+                        </el-table-column>
+                        <el-table-column fixed type="expand">
+                            <template slot-scope="props">
+                                <el-tag
+                                    :key="tagName"
+                                    v-for="(tagName, index)  in props.row.tagNameList"
+                                    closable
+                                    :disable-transitions="false"
+                                    @close="handleCloseTag(tagName, props.row)">
+                                    {{tagName}}
+                                </el-tag>
+                                <el-input
+                                        class="input-new-tag"
+                                        v-show="props.row.inputVisible"
+                                        v-model="props.row.inputValue"
+                                        :ref="`saveTagInput${props.row.id}`"
+                                        size="small">
+<!--                                        @keyup.enter.native="handleInputConfirm(props.row)"-->
+                                </el-input>
+                                <el-button v-show="!props.row.inputVisible" class="button-new-tag" size="small" @click="showInput(props.row)">+ 新增标签</el-button>
+                                <el-button size="small" @click="onSaveOrUpdateMusicTagList(props.row)">确认提交</el-button>
+                                <el-row style="margin-top: 5px;" v-if="props.row.inputVisible && sys.quickTagNameList.length > 0">
+                                    快捷选择：
+                                    <template v-for="(quickTagName, index) in sys.quickTagNameList">
+                                        <el-tag size="small" type="info" @click="onSelectTagName(quickTagName, props.row)">{{quickTagName}}</el-tag>
+                                    </template>
+                                </el-row>
+                            </template>
+                        </el-table-column>
                         <el-table-column
                                 fixed
                                 prop="title"
@@ -133,6 +184,7 @@
                     searchInfo: null
                 },
                 sys: {
+                    quickTagNameList: [],
                     dateYear: new Date().getFullYear(),
                     total: 0,
                     currentPage: 1,
@@ -158,6 +210,72 @@
             this.onQuery();
         },
         methods: {
+            onSelectTagName(tagName, musicInfo) {
+                console.log('tagName', tagName)
+                musicInfo.inputValue = tagName
+                this.handleInputConfirm(musicInfo)
+            },
+            onSaveOrUpdateMusicTagList(musicInfo) {
+                axios.post('./saveOrUpdateTagList', {
+                    musicId: musicInfo.id,
+                    tagNameList: musicInfo.tagNameList
+                })
+                .then(response => {
+                    if(response.data.code === 0) {
+                        musicInfo.tagList = response.data.data
+                        this.$message.success(response.data.msg);
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                });
+            },
+            handleCloseTag(tagName, musicInfo) {
+                musicInfo.tagNameList.splice(musicInfo.tagNameList.indexOf(tagName), 1);
+                // 更新 musicInfo // 更新成功则更新当前 musicInfo 中的 tagList
+            },
+            showInput(musicInfo) {
+                // 查询历史标签
+                axios.post('./tagNameDictList', {})
+                .then(response => {
+                    if(response.data.code === 0) {
+                        console.log(response.data)
+                        this.sys.quickTagNameList = response.data.data
+                        console.log(this.sys.quickTagNameList)
+                    } else {
+                        this.sys.quickTagNameList = []
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                });
+                musicInfo.inputVisible = true;
+
+                this.$nextTick(_ => {
+                    this.$refs[`saveTagInput${musicInfo.id}`].$refs.input.focus();
+                });
+            },
+            handleInputConfirm(musicInfo) {
+                let inputValue = musicInfo.inputValue;
+                if (inputValue) {
+                    inputValue = inputValue.trim();
+                    if(musicInfo.tagNameList.find(data => data === inputValue)) {
+                        this.$message.error(`当前标签已存在，请勿重复添加`);
+                        return
+                    }
+
+                    // 保存
+                    musicInfo.tagNameList.push(inputValue);
+                }
+                musicInfo.inputVisible = false;
+                musicInfo.inputValue = '';
+            },
+            calcIndex(index) {
+                return (this.sys.currentPage - 1) * this.sys.pageSize + index + 1
+            },
             sortChange(column) {
                 if(!column.order) {
                     this.sys.orderBy.prop = null
@@ -230,6 +348,14 @@
                     if(response.data.code === 0) {
                         this.sys.total = response.data.count;
                         this.sys.tableData = response.data.data;
+                        this.sys.tableData = this.sys.tableData.map(data => {
+                            return {
+                                ...data,
+                                tagNameList: data.tagList.map(data => data.name),
+                                inputVisible: false,
+                                inputValue: ''
+                            }
+                        })
                     } else {
                         this.$message.error(response.data.msg);
                     }

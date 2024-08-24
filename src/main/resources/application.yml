@@ -9,6 +9,12 @@ spring:
     name: woodwhales-music
   thymeleaf:
     cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+        - src/main/java/**
+        - resources/**
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:open_music}?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
