@@ -316,7 +316,7 @@ docker run -d \
 --name woodwhales-music \
 -p 8084:8084 \
 -e "MYSQL_HOST=host.docker.internal" \
--e "MYSQL_DATABASE=open-music" \
+-e "MYSQL_DATABASE=open_music" \
 -e "MYSQL_PORT=3306" \
 -e "MYSQL_USER=root" \
 -e "MYSQL_PASSWORD=root1234" \
@@ -326,10 +326,10 @@ woodwhales/woodwhales-music:latest
 
 环境命令参数说明：
 
-| 环境参数             | 说明                                                         | 默认值               |
-| -------------------- | ------------------------------------------------------------ | -------------------- |
+| 环境参数             | 说明                                                         | 默认值                  |
+| -------------------- | ------------------------------------------------------------ |----------------------|
 | MYSQL_HOST           | mysql 数据库服务的链接地址，默认值针对 windows、mac 系统生效，linux 系统需要用户强制指定宿主机 IP | host.docker.internal |
-| MYSQL_DATABASE       | 数据库名称                                                   | open-music           |
+| MYSQL_DATABASE       | 数据库名称                                                   | open_music           |
 | MYSQL_PORT           | mysql 数据库服务的端口号                                     | 3306                 |
 | MYSQL_USER           | mysql 数据库服务的账号名称                                   | root                 |
 | MYSQL_PASSWORD       | mysql 数据库服务的账号密码                                   | root1234             |

@@ -54,3 +54,26 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
                                             PRIMARY KEY (`id`) USING BTREE,
                                             UNIQUE INDEX `username` (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+
+-- 导出  表 open_music.music_tag 结构
+CREATE TABLE IF NOT EXISTS `music_tag` (
+                                           `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
+                                           `music_id` bigint unsigned NOT NULL DEFAULT '0' COMMENT 'music_info 表id',
+                                           `tag_id` bigint unsigned NOT NULL DEFAULT '0' COMMENT 'tag_info 表id',
+                                           `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+    `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `music_info_id` (`music_id`) USING BTREE,
+    KEY `tag_info_id` (`tag_id`) USING BTREE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='音乐标签表';
+
+-- 导出  表 open_music.tag_info 结构
+CREATE TABLE IF NOT EXISTS `tag_info` (
+                                          `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+                                          `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+    `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标签名称',
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='标签表';
