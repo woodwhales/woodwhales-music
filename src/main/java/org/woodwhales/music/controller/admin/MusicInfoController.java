@@ -109,4 +109,15 @@ public class MusicInfoController {
 	public RespVO<List<String>> tagNameDictList() {
 		return RespVO.resp(musicService.tagNameDictList());
 	}
+
+	/**
+	 * 保存或更新标签
+	 * @param requestBody
+	 * @return
+	 */
+	@PostMapping("/saveOrUpdateTag")
+	public RespVO<Void> saveOrUpdateTag(@Validated @RequestBody AddTagInfoRequestBody requestBody) {
+		log.info("requestBody = {}", JsonUtil.toString(requestBody));
+		return RespVO.resp(musicService.saveOrUpdateTag(requestBody));
+	}
 }

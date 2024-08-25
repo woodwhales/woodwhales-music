@@ -14,6 +14,11 @@
     <!-- https://aplayer.js.org -->
     <script th:src="@{/aplyer/APlayer.min.js}"></script>
     <link rel="stylesheet" th:href="@{/aplyer/APlayer.min.css}">
+    <style>
+        .el-tag + .el-tag {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -104,6 +109,47 @@
                             </el-tab-pane>
                         </el-tabs>
                     </el-form-item>
+                    <el-form-item label="标签" prop="sort">
+                        <el-tag
+                                :key="tagName"
+                                v-for="(tagName, index)  in dataForm.tagNameList"
+                                closable
+                                :disable-transitions="false"
+                                @close="handleCloseTag(tagName)">
+                            {{tagName}}
+                        </el-tag>
+                        <el-row style="margin-top: 10px;">
+                            选择标签：
+                            <el-select
+                                    size="mini"
+                                    v-model="dataForm.tagNameList"
+                                    collapse-tags
+                                    multiple
+                                    filterable
+                                    placeholder="搜索标签">
+                                <el-option
+                                        v-for="tagName in sys.quickTagNameList"
+                                        :key="tagName"
+                                        :label="tagName"
+                                        :value="tagName">
+                                </el-option>
+                            </el-select>
+                            <el-popover
+                                    placement="right"
+                                    width="350"
+                                    trigger="click">
+                                <el-form :inline="true" :model="addTagForm">
+                                    <el-form-item label="标签">
+                                        <el-input v-model="addTagForm.tagName" placeholder="请输入"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" size="mini" @click="onAddMusicTag">确认</el-button>
+                                    </el-form-item>
+                                </el-form>
+                                <el-button style="border-left: 10px;" type="info" size="mini" icon="el-icon-plus" slot="reference" circle></el-button>
+                            </el-popover>
+                        </el-row>
+                    </el-form-item>
                     <el-form-item label="排序" prop="sort">
                         <el-input v-model.number="dataForm.sort"></el-input>
                     </el-form-item>
@@ -152,6 +198,9 @@
                     platformType: null,
                     content: null
                 },
+                addTagForm: {
+                    tagName: ''
+                },
                 dataForm: {
                     id: null,
                     musicName: '',
@@ -176,9 +225,12 @@
                                 COVER_LINK: ""
                             }
                         }
-                    ]
+                    ],
+                    tagNameList: [],
+                    tagList: []
                 },
                 sys: {
+                    quickTagNameList: [],
                     music: [[${music}]],
                     activeNames: null,
                     autoFill: 'true',
@@ -225,6 +277,40 @@
             this.initAplyer();
         },
         methods: {
+            onAddMusicTag() {
+                axios.post('/admin/saveOrUpdateTag', this.addTagForm)
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.addTagForm = {
+                                tagName: ''
+                            }
+                            this.syncTagNameList()
+                            this.$message.success(response.data.msg);
+                        } else {
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                    });
+            },
+            syncTagNameList() {
+                axios.post('/admin/tagNameDictList', {})
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.sys.quickTagNameList = response.data.data
+                        } else {
+                            this.sys.quickTagNameList = []
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                    });
+            },
+            handleCloseTag(tagName) {
+                this.dataForm.tagNameList.splice(this.dataForm.tagNameList.indexOf(tagName), 1);
+            },
             onChangeLinkSource(tab, event) {
                 this.sys.linkSourceName = this.dataForm.linkList[tab.index].linkSourceName;
                 this.sys.linkSourceIndex = tab.index;
@@ -298,6 +384,8 @@
                     this.dataForm.album = this.sys.music.album;
                     this.dataForm.linkList = this.sys.music.linkList;
                     this.dataForm.sort = this.sys.music.sort;
+                    this.dataForm.tagList = this.sys.music.tagList;
+                    this.dataForm.tagNameList = this.sys.music.tagList.map(data => data.name)
 
                     this.initAplyer();
                 } else {
@@ -451,6 +539,7 @@
                 this.sys.audioSuffix = '.mp3'
                 this.sys.coverSuffix = '.jpg'
                 this.sys.dateYear = new Date().getFullYear()
+                this.syncTagNameList();
             }
         }
     })

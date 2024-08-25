@@ -17,10 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.woodwhales.music.controller.param.MusicCreateOrUpdateRequestBody;
-import org.woodwhales.music.controller.param.MusicDeleteRequestBody;
-import org.woodwhales.music.controller.param.MusicTagListAddRequestBody;
-import org.woodwhales.music.controller.param.PageMusicQueryRequestParam;
+import org.woodwhales.music.controller.param.*;
 import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.entity.MusicTag;
@@ -63,15 +60,19 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 	private MusicLinkServiceImpl musicLinkService;
 
 	public OpResult<List<TagInfo>> saveOrUpdateTagList(MusicTagListAddRequestBody param) {
+		return saveOrUpdateTagList(param.getMusicId(), param.getTagNameList());
+	}
+
+	public OpResult<List<TagInfo>> saveOrUpdateTagList(Long musicId, List<String> tagNameList) {
 		List<TagInfo> tagInfoList;
-		if(CollectionUtils.isEmpty(param.getTagNameList())) {
+		if(CollectionUtils.isEmpty(tagNameList)) {
 			tagInfoList = Collections.emptyList();
 		} else {
 			tagInfoList = this.tagInfoService.list(Wrappers.<TagInfo>lambdaQuery()
-					.in(TagInfo::getName, param.getTagNameList()));
+					.in(TagInfo::getName, tagNameList));
 			Set<String> tagNameSet = DataTool.toSet(tagInfoList, TagInfo::getName);
 			List<TagInfo> willInsertList = new ArrayList<>();
-			for (String tagName : param.getTagNameList()) {
+			for (String tagName : tagNameList) {
 				if (!tagNameSet.contains(tagName)) {
 					TagInfo tagInfo = new TagInfo();
 					tagInfo.setName(tagName);
@@ -83,8 +84,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 				tagInfoList.addAll(willInsertList);
 			}
 		}
-		this.saveOrUpdateTagListProcess(param.getMusicId(), tagInfoList);
-		return OpResult.success(musicTagService.getListByMusicId(param.getMusicId()));
+		this.saveOrUpdateTagListProcess(musicId, tagInfoList);
+		return OpResult.success(musicTagService.getListByMusicId(musicId));
 	}
 
 	public OpResult<Void> saveOrUpdateTagListProcess(Long musicId, List<TagInfo> tagInfoList) {
@@ -281,11 +282,25 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 		music.setGmtModified(Date.from(now));
 		music.setLinkStatus(linkStatusEnum.getCode());
 		this.saveOrUpdate(music);
-
 		musicLinkService.createOrUpdate(music, requestBody.getLinkList());
+		this.saveOrUpdateTagList(music.getId(), requestBody.getTagNameList());
 	}
 
 	public OpResult<List<String>> tagNameDictList() {
-		return OpResult.success(DataTool.toList(this.tagInfoService.list(), TagInfo::getName));
+		List<String> tagNameDictList = DataTool.toList(this.tagInfoService.list(), TagInfo::getName);
+		tagNameDictList.sort(Comparator.comparing(String::toString));
+		return OpResult.success(tagNameDictList);
+	}
+
+	public OpResult<Void> saveOrUpdateTag(AddTagInfoRequestBody requestBody) {
+		requestBody.setTagName(StringUtils.trim(requestBody.getTagName()));
+		TagInfo tagInfo = this.tagInfoService.getOne(Wrappers.<TagInfo>lambdaQuery()
+				.eq(TagInfo::getName, requestBody.getTagName()));
+		if(Objects.isNull(tagInfo)) {
+			tagInfo = new TagInfo();
+			tagInfo.setName(requestBody.getTagName());
+			this.tagInfoService.save(tagInfo);
+		}
+		return OpResult.success();
 	}
 }

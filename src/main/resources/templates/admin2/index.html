@@ -19,18 +19,6 @@
         .el-tag + .el-tag {
             margin-left: 10px;
         }
-        .button-new-tag {
-            margin-left: 10px;
-            height: 32px;
-            line-height: 30px;
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-        .input-new-tag {
-            width: 90px;
-            margin-left: 10px;
-            vertical-align: bottom;
-        }
     </style>
 </head>
 <body>
@@ -63,7 +51,8 @@
                     <div id="aplayer"></div>
                 </el-row>
                 <el-row style="margin-bottom: 12px;">
-                    <el-table :data="sys.tableData" ref="tableList" style="width: 100%" @sort-change="sortChange">
+                    <el-table :data="sys.tableData" ref="tableList" style="width: 100%" @sort-change="sortChange"
+                    @expand-change="expandMusicTag">
                         <el-table-column
                                 fixed
                                 type="index"
@@ -72,29 +61,47 @@
                         </el-table-column>
                         <el-table-column fixed type="expand">
                             <template slot-scope="props">
-                                <el-tag
-                                    :key="tagName"
-                                    v-for="(tagName, index)  in props.row.tagNameList"
-                                    closable
-                                    :disable-transitions="false"
-                                    @close="handleCloseTag(tagName, props.row)">
-                                    {{tagName}}
-                                </el-tag>
-                                <el-input
-                                        class="input-new-tag"
-                                        v-show="props.row.inputVisible"
-                                        v-model="props.row.inputValue"
-                                        :ref="`saveTagInput${props.row.id}`"
-                                        size="small">
-<!--                                        @keyup.enter.native="handleInputConfirm(props.row)"-->
-                                </el-input>
-                                <el-button v-show="!props.row.inputVisible" class="button-new-tag" size="small" @click="showInput(props.row)">+ 新增标签</el-button>
-                                <el-button size="small" @click="onSaveOrUpdateMusicTagList(props.row)">确认提交</el-button>
-                                <el-row style="margin-top: 5px;" v-if="props.row.inputVisible && sys.quickTagNameList.length > 0">
-                                    快捷选择：
-                                    <template v-for="(quickTagName, index) in sys.quickTagNameList">
-                                        <el-tag size="small" type="info" @click="onSelectTagName(quickTagName, props.row)">{{quickTagName}}</el-tag>
-                                    </template>
+                                <el-row>
+                                    标签：<el-tag
+                                            :key="tagName"
+                                            v-for="(tagName, index)  in props.row.tagNameList"
+                                            closable
+                                            :disable-transitions="false"
+                                            @close="handleCloseTag(tagName, props.row)">
+                                        {{tagName}}
+                                    </el-tag>
+                                </el-row>
+                                <el-row style="margin-top: 10px;">
+                                    选择标签：
+                                    <el-select
+                                            size="mini"
+                                            v-model="props.row.tagNameList"
+                                            collapse-tags
+                                            multiple
+                                            filterable
+                                            placeholder="搜索标签">
+                                        <el-option
+                                                v-for="tagName in sys.quickTagNameList"
+                                                :key="tagName"
+                                                :label="tagName"
+                                                :value="tagName">
+                                        </el-option>
+                                    </el-select>
+                                    <el-button size="mini" type="success" @click="onSaveOrUpdateMusicTagList(props.row)">确认更新</el-button>
+                                    <el-popover
+                                            placement="right"
+                                            width="350"
+                                            trigger="click">
+                                        <el-form :inline="true" :model="addTagForm">
+                                            <el-form-item label="标签">
+                                                <el-input v-model="addTagForm.tagName" placeholder="请输入"></el-input>
+                                            </el-form-item>
+                                            <el-form-item>
+                                                <el-button type="primary" size="mini" @click="onAddMusicTag">确认</el-button>
+                                            </el-form-item>
+                                        </el-form>
+                                        <el-button style="border-left: 10px;" type="info" size="mini" icon="el-icon-plus" slot="reference" circle></el-button>
+                                    </el-popover>
                                 </el-row>
                             </template>
                         </el-table-column>
@@ -183,7 +190,11 @@
                 queryForm: {
                     searchInfo: null
                 },
+                addTagForm: {
+                    tagName: ''
+                },
                 sys: {
+                    showAddTagVisible: false,
                     quickTagNameList: [],
                     dateYear: new Date().getFullYear(),
                     total: 0,
@@ -210,10 +221,28 @@
             this.onQuery();
         },
         methods: {
-            onSelectTagName(tagName, musicInfo) {
-                console.log('tagName', tagName)
-                musicInfo.inputValue = tagName
-                this.handleInputConfirm(musicInfo)
+            onAddMusicTag() {
+                axios.post('./saveOrUpdateTag', this.addTagForm)
+                .then(response => {
+                    if(response.data.code === 0) {
+                        this.addTagForm = {
+                            tagName: ''
+                        }
+                        this.syncTagNameList()
+                        this.$message.success(response.data.msg);
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                })
+                .catch(error => {
+                    this.$message.error(error);
+                });
+            },
+            expandMusicTag(row) {
+                this.addTagForm = {
+                    tagName: ''
+                }
+                this.syncTagNameList()
             },
             onSaveOrUpdateMusicTagList(musicInfo) {
                 axios.post('./saveOrUpdateTagList', {
@@ -231,32 +260,25 @@
                 .catch(error => {
                     this.$message.error(error);
                 });
+                this.syncTagNameList()
             },
             handleCloseTag(tagName, musicInfo) {
                 musicInfo.tagNameList.splice(musicInfo.tagNameList.indexOf(tagName), 1);
-                // 更新 musicInfo // 更新成功则更新当前 musicInfo 中的 tagList
+                this.syncTagNameList()
             },
-            showInput(musicInfo) {
-                // 查询历史标签
+            syncTagNameList() {
                 axios.post('./tagNameDictList', {})
-                .then(response => {
-                    if(response.data.code === 0) {
-                        console.log(response.data)
-                        this.sys.quickTagNameList = response.data.data
-                        console.log(this.sys.quickTagNameList)
-                    } else {
-                        this.sys.quickTagNameList = []
-                        this.$message.error(response.data.msg);
-                    }
-                })
-                .catch(error => {
-                    this.$message.error(error);
-                });
-                musicInfo.inputVisible = true;
-
-                this.$nextTick(_ => {
-                    this.$refs[`saveTagInput${musicInfo.id}`].$refs.input.focus();
-                });
+                    .then(response => {
+                        if(response.data.code === 0) {
+                            this.sys.quickTagNameList = response.data.data
+                        } else {
+                            this.sys.quickTagNameList = []
+                            this.$message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error => {
+                        this.$message.error(error);
+                    });
             },
             handleInputConfirm(musicInfo) {
                 let inputValue = musicInfo.inputValue;
@@ -351,9 +373,7 @@
                         this.sys.tableData = this.sys.tableData.map(data => {
                             return {
                                 ...data,
-                                tagNameList: data.tagList.map(data => data.name),
-                                inputVisible: false,
-                                inputValue: ''
+                                tagNameList: data.tagList.map(data => data.name)
                             }
                         })
                     } else {

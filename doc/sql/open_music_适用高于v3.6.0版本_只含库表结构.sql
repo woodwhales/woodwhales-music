@@ -2,7 +2,7 @@
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        8.0.27 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.6.0.6765
+-- HeidiSQL 版本:                  12.2.0.6576
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -48,6 +48,21 @@ CREATE TABLE IF NOT EXISTS `music_info_link` (
   PRIMARY KEY (`id`),
   KEY `music_id` (`music_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='音乐链接信息表';
+
+-- 数据导出被取消选择。
+
+-- 导出  表 open_music.music_tag 结构
+CREATE TABLE IF NOT EXISTS `music_tag` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
+  `music_id` bigint unsigned NOT NULL DEFAULT '0' COMMENT 'music_info 表id',
+  `tag_id` bigint unsigned NOT NULL DEFAULT '0' COMMENT 'tag_info 表id',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+  `gmt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `music_info_id` (`music_id`) USING BTREE,
+  KEY `tag_info_id` (`tag_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='音乐标签表';
 
 -- 数据导出被取消选择。
 
