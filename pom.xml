@@ -37,20 +37,26 @@
 			<version>3.7.4</version>
 			<exclusions>
 				<exclusion>
-					<artifactId>slf4j-log4j12</artifactId>
+					<artifactId>slf4j-simple</artifactId>
 					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>reload4j</artifactId>
+					<groupId>ch.qos.reload4j</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-boot-starter-logging</artifactId>
-					<groupId>org.springframework.boot</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
@@ -122,7 +128,7 @@
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
-			<version>5.8.22</version>
+			<version>5.8.25</version>
 		</dependency>
 		<!-- spring security -->
 		<dependency>
