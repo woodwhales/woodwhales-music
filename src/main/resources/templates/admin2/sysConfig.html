@@ -30,7 +30,7 @@
                 <el-tabs v-model="activeName" @tab-click="handleClick" type="card">
                     <el-tab-pane label="首页" name="home" style="padding: 10px">
                         <el-form ref="dataForm" :model="dataForm" :rules="rules" label-width="80px">
-                            <el-card shadow="hover" style="margin-bottom: 15px">
+                            <el-card shadow="always" style="margin-bottom: 15px">
                                 <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">git HubCorners
                                 <el-tooltip class="item"
                                             effect="dark"
@@ -46,7 +46,7 @@
                                     <el-input v-model="dataForm.gitHubCornersUrl" maxlength="300" show-word-limit :disabled="!dataForm.gitHubCornersShow"></el-input>
                                 </el-form-item>
                             </el-card>
-                            <el-card shadow="hover" style="margin-bottom: 15px">
+                            <el-card shadow="always" style="margin-bottom: 15px">
                                 <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">版权信息
                                 <el-tooltip class="item"
                                             effect="dark"
@@ -62,13 +62,49 @@
                                     <el-input v-model="dataForm.authorWebsite" maxlength="300" show-word-limit></el-input>
                                 </el-form-item>
                             </el-card>
+
+                            <el-card shadow="always" style="margin-bottom: 15px">
+                                <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">友情链接</span>
+                                <el-row style="margin-top: 10px;">
+                                    <el-button type="primary" size="mini" @click="addFriendly" plain>添加</el-button>
+                                    <el-popconfirm title="确定清空吗？" @confirm="clearFriendly">
+                                        <el-button type="info" slot="reference" size="mini" plain>清空</el-button>
+                                    </el-popconfirm>
+                                </el-row>
+                                <el-row style="margin-top: 10px;">
+                                    <el-table :data="dataForm.friendlyInfos" style="width: 100%">
+                                        <el-table-column
+                                                type="index"
+                                                width="50">
+                                        </el-table-column>
+                                        <el-table-column prop="name" label="name" width="200">
+                                            <template slot-scope="scope">
+                                                <el-input size="mini" v-model="scope.row.name" clearable></el-input>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="url" label="url">
+                                            <template slot-scope="scope">
+                                                <el-input size="mini" v-model="scope.row.url" clearable></el-input>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="操作" align="center" width="100">
+                                            <template slot-scope="scope">
+                                                <el-popconfirm title="确定删除吗？" @confirm="removeFriendly(scope.row)">
+                                                    <el-button size="mini" type="danger" slot="reference" plain>删除</el-button>
+                                                </el-popconfirm>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+                                </el-row>
+                            </el-card>
+
                             <el-button type="primary" size="mini" @click="onSubmit('dataForm')">提交</el-button>
                             <el-button size="mini" @click="resetForm('dataForm')">重置</el-button>
                         </el-form>
                     </el-tab-pane>
                     <el-tab-pane label="后台" name="admin" style="padding: 10px">
                         <el-form ref="dataForm2" :model="dataForm2" :rules="rules2" label-width="80px">
-                            <el-card shadow="hover" style="margin-bottom: 15px">
+                            <el-card shadow="always" style="margin-bottom: 15px">
                                 <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">banner
                                     <el-tooltip class="item"
                                                 effect="dark"
@@ -87,7 +123,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="用户" name="user" style="padding: 10px">
                         <el-form ref="dataForm3" :model="dataForm3" label-width="80px">
-                            <el-card shadow="hover" style="margin-bottom: 15px">
+                            <el-card shadow="always" style="margin-bottom: 15px">
                                 <span style="font-size: 14px; font-weight: bold; margin-bottom: 10px; display: block;">
                                     {{dataForm3.username}}
                                 </span>
@@ -176,7 +212,8 @@
                     authorName: '',
                     authorWebsite: '',
                     gitHubCornersUrl: '',
-                    gitHubCornersShow: true
+                    gitHubCornersShow: true,
+                    friendlyInfos: []
                 },
                 dataForm2: {
                     bannerUrl: ''
@@ -248,6 +285,24 @@
             this.initDataForm2()
         },
         methods: {
+            clearFriendly() {
+                this.dataForm.friendlyInfos = []
+            },
+            removeFriendly(friendlyInfo) {
+                let index = this.dataForm.friendlyInfos.indexOf(friendlyInfo)
+                if (index !== -1) {
+                    this.dataForm.friendlyInfos.splice(index, 1)
+                }
+            },
+            addFriendly() {
+                if(!this.dataForm.friendlyInfos) {
+                    this.dataForm.friendlyInfos = []
+                }
+                this.dataForm.friendlyInfos.push({
+                    name: '',
+                    url: '',
+                });
+            },
             getConfigProcess(configKey, fun) {
                 axios.post('./sysConfig/getConfig', {
                     configKey: configKey
@@ -293,6 +348,9 @@
             initDataForm() {
                 this.getConfigProcess('home', res => {
                     this.dataForm = res.data.content
+                    if(!this.dataForm.friendlyInfos) {
+                        this.dataForm.friendlyInfos = []
+                    }
                 })
             },
             onBackHome() {
@@ -423,6 +481,13 @@
                 this.initDataForm2()
             },
             onSubmit(dataForm) {
+                if(this.dataForm.friendlyInfos || this.dataForm.friendlyInfos.length > 0) {
+                    let targetIndex = this.dataForm.friendlyInfos.findIndex(data => !data.url || data.url === '' || !data.name || data.name === '')
+                    if(targetIndex !== -1) {
+                        this.$message.error(`友情链接的第 ${targetIndex + 1} 行信息未填写完整`)
+                        return
+                    }
+                }
                 this.submitProcess(dataForm, 'home', this.dataForm)
             },
             resetForm(formName) {
