@@ -4,6 +4,17 @@
 	footerElement.innerHTML = 'Copyright &copy; ' + now.getFullYear() + ' <a href="' + url + '" target="_blank">' + tag + '</a>';
 }
 
+var showFriendly = function(friendlyInfos) {
+	if(friendlyInfos && friendlyInfos.length > 0) {
+		let friendly = document.getElementById("friendly");
+		let str = ''
+		friendlyInfos.forEach(data => {
+			str += '<a class="friendlyLink" href="' + data.url + '" target="_blank">' + data.name + '</a>';
+		})
+		friendly.innerHTML = str
+	}
+}
+
 var playMusic = function(musicArray) {
 	var repeat = localStorage.repeat || 0, shuffle = localStorage.shuffle
 			|| "false", continous = true, autoplay = true, playlist = musicArray;

@@ -63,6 +63,7 @@
     </div>
 </div>
 <ul id="playlist"></ul>
+<div id="friendly" style="display: flex; align-items: center; justify-content: center;"></div>
 <footer id="footer">
 </footer>
 <div id="box" class="box">
@@ -75,6 +76,8 @@
     $(function () {
 
         showCopyRight([[${home.authorName}]], [[${home.authorWebsite}]]);
+
+        showFriendly([[${home.friendlyInfos}]])
 
         //获取窗口宽度
         let winWidth;

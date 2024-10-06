@@ -99,3 +99,15 @@ body {
 #footer a:hover {
     color: white;
 }
+
+.friendlyLink {
+    margin-left: 10px;
+}
+
+#friendly a {
+    color: #aaa;
+}
+
+#friendly a:hover {
+    color: white;
+}
