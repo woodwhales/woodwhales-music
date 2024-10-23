@@ -74,9 +74,9 @@
 <script th:src="@{js/jquery-ui-1.8.17.custom.min.js}"></script>
 <script th:src="@{js/script.js}"></script>
 <script th:inline="javascript">
-    let authorName = [[${home !=null ? home.authorName : 'woodwhales.cn'}]]
-    let authorWebsite = [[${home !=null ? home.authorWebsite : 'https://woodwhales.cn'}]]
-    let friendlyInfos = [[${home !=null ? home.friendlyInfos : null}]]
+    let authorName = [[${home !=null && home.authorName !=null ? home.authorName : 'woodwhales.cn'}]]
+    let authorWebsite = [[${home !=null && home.authorWebsite !=null ? home.authorWebsite : 'https://woodwhales.cn'}]]
+    let friendlyInfos = [[${home !=null && home.friendlyInfos !=null ? home.friendlyInfos : null}]]
     $(function () {
         showCopyRight(authorName, authorWebsite);
 
