@@ -17,10 +17,7 @@ import org.woodwhales.music.entity.SysConfig;
 import org.woodwhales.music.mapper.SysConfigMapper;
 import org.woodwhales.music.model.SysConfigVo;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author woodwhales on 2024-05-08 17:35
@@ -56,23 +53,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
         }
         SysConfigVo sysConfigVo = new SysConfigVo();
         sysConfigVo.setConfigKey(sysConfig.getConfigKey());
-
-        Map<String, Object> content = new HashMap<>();
-        if(StringUtils.isBlank(sysConfig.getConfigContent())) {
-            if(StringUtils.equals(sysConfigVo.getConfigKey(), "admin")) {
-                content.put("bannerLinkUrl", "");
-            }
-            if(StringUtils.equals(sysConfigVo.getConfigKey(), "home")) {
-                content.put("authorWebsite", "https://www.woodwhales.cn");
-                content.put("gitHubCornersUrl", "https://github.com/woodwhales/woodwhales-music");
-                content.put("authorName", "woodwhales");
-                content.put("gitHubCornersShow", true);
-                content.put("friendlyInfos", Collections.emptyList());
-            }
-        } else {
-            content = JSON.parseObject(sysConfig.getConfigContent());
-        }
-        sysConfigVo.setContent(content);
+        sysConfigVo.setContent(JSON.parseObject(sysConfig.getConfigContent()));
         return OpResult.success(sysConfigVo);
     }
 

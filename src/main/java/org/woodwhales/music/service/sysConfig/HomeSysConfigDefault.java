@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import org.woodwhales.music.config.AppConfig;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,6 @@ public class HomeSysConfigDefault implements SysConfigDefaultFun {
 
     @Autowired
     private AppConfig appConfig;
-
 
     @Override
     public String configKey() {
@@ -30,6 +30,7 @@ public class HomeSysConfigDefault implements SysConfigDefaultFun {
         content.put("gitHubCornersUrl", appConfig.getGithubUrl());
         content.put("authorName", appConfig.getAuthorName());
         content.put("authorWebsite", appConfig.getAuthorWebsite());
+        content.put("friendlyInfos", new ArrayList<>());
         return content;
     }
 }
