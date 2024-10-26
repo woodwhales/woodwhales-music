@@ -89,7 +89,8 @@
                                 <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="链接">
-                                            <el-input v-model.trim="link.linkMap.AUDIO_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                            <el-input type="textarea"
+                                                      autosize v-model.trim="link.linkMap.AUDIO_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="1">
@@ -99,7 +100,8 @@
                                 <el-row :gutter="10" style="margin-bottom: 10px;">
                                     <el-col :span="23">
                                         <el-form-item label="封面">
-                                            <el-input v-model.trim="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
+                                            <el-input type="textarea"
+                                                      autosize v-model.trim="link.linkMap.COVER_LINK" @change="changeAudioUrlEvent" @blur="changeAudioUrlEvent"></el-input>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="1">

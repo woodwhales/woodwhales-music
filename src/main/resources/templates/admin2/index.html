@@ -32,12 +32,12 @@
                         <el-col :span="20">
                             <el-form ref="queryForm" :model="queryForm" label-width="80px" @submit.native.prevent>
                                 <el-form-item label="名称/作者">
-                                    <el-input v-model.trim="queryForm.searchInfo" @keyup.enter.native="onQuery"></el-input>
+                                    <el-input v-model.trim="queryForm.searchInfo" @keyup.enter.native="onQueryForSearch"></el-input>
                                 </el-form-item>
                             </el-form>
                         </el-col>
                         <el-col :span="4">
-                            <el-button type="primary" @click="onQuery">搜索</el-button>
+                            <el-button type="primary" @click="onQueryForSearch">搜索</el-button>
                             <el-button type="info" @click="onReset">重置</el-button>
                         </el-col>
                     </el-row>
@@ -358,6 +358,10 @@
                 this.sys.orderBy.prop = null
                 this.sys.orderBy.order = null
                 this.sys.tableData = []
+            },
+            onQueryForSearch() {
+              this.sys.currentPage = 1
+              this.onQuery()
             },
             onQuery() {
                 axios.post('./pageMusic', {
