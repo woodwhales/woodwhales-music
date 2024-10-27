@@ -340,6 +340,7 @@ woodwhales/woodwhales-music:latest
 ### V3.7.4
 
 - 修复后台首页搜索问题
+- 优化新增、编辑链接文本框（自适应文本高度）
 - 后台增加友情链接配置
 
 ### V3.7.3
@@ -425,7 +426,7 @@ woodwhales/woodwhales-music:latest
 
 ## 6. 歌单
 
-已收录 1404 首音乐
+已收录 1414 首音乐
 
 | 序号 | 音乐名称 | 专辑 | 作者 |
 | --- | ------ | ------ | --- |
@@ -1166,670 +1167,680 @@ woodwhales/woodwhales-music:latest
 | 735 | 浮夸 | U-87 | 陈奕迅 |
 | 736 | Asphyxia 窒息 | asphyxia | 逆时针向 |
 | 737 | The Ocean (Radio Edit) | The Ocean | Mike Perry / SHY Martin |
-| 738 | 西海情歌-黑鸭子 | 典盛集5 | 黑鸭子 |
-| 739 | 乌兰巴托的夜-葱香科学家（王悠然） | 乌兰巴托的夜 | 葱香科学家（王悠然） |
-| 740 | 听 | 拾 | 张杰 |
-| 741 | Lonely | Nana | Nana |
-| 742 | 冰雨-刘德华 | 爱在刻骨铭心时 | 刘德华 |
-| 743 | Unity | Sounds of Syndication, Vol .1 (Presented by Syndicate) | TheFatRat |
-| 744 | Hey, Soul Sister | Save Me, San Francisco | Train |
-| 745 | Waltz No.6 'Petit Chien' in D Flat Major Op.40-1 | 越听越聪明 1 | Classical Artists |
-| 746 | 我们的纪念-弦子 | 我们的纪念 | 弦子 |
-| 747 | Elsinore Revisited(重访埃尔西诺) | Rosencrantz & Guildenstern are Undead | Sean Lennon |
-| 748 | Too Far | King in the Mirror | Anna F |
-| 749 | Inspire | Serenity | Capo Productions |
-| 750 | 映山红(电影《闪闪的红星》插曲)-刘欢 | 六十年代生人 | 刘欢 |
-| 751 | Happy-Pharrell Williams | Happy (From "Despicable Me 2") | Pharrell Williams |
-| 752 | 让我偷偷看你 | 阿弥陀佛么么哒·一个孩子的心愿 | 赵雷 |
-| 753 | やわらかな光(柔和之光)-やまだ豊 | フジテレビ系ドラマ「僕のいた時間」オリジナルサウンドトラック - (日剧《我存在的时间》原声带) | やまだ豊 |
-| 754 | 夜的钢琴曲五 | 夜的钢琴曲 Demo集 | 石进 |
-| 755 | Sutter's Mill | The Music of Dan Fogelberg | Dan Fogelberg |
-| 756 | Please Don't Go | Please Don't Go | Joel Adams |
-| 757 | 曾经的你 | 每一刻都是崭新的 | 许巍 |
-| 758 | 最伟大的作品-周杰伦 | 最伟大的作品 | 周杰伦 |
-| 759 | Don't Let Me Fall-Lenka | Lenka (Expanded Edition) | Lenka |
-| 760 | Stay Here Forever | Valentine's Day OST | Jewel |
-| 761 | 存在 | 生无所求 | 汪峰 |
-| 762 | Stay Alive | The Secret Life Of Walter Mitty (Music From And Inspired By The Motion Picture) | José González |
-| 763 | Counting Stars-OneRepublic | Native (Deluxe Version) | OneRepublic |
-| 764 | 往生咒（黑神话：悟空）-游戏科学 | 黑神话：悟空（Black Myth：WuKong） | 游戏科学 |
-| 765 | 我就喜欢你这样的丫头 | 匆匆那年 电视原声带 | 杜维瀚 |
-| 766 | Everybody | Everybody | Ingrid Michaelson |
-| 767 | 传奇 | 传奇 | 王菲 |
-| 768 | 易燃易爆炸 | 如也 | 陈粒 |
-| 769 | 飞向别人的床 | 飞向别人的床 | 沉珂（C.K）& 光光 |
-| 770 | 赤伶 (弹唱版) | 赤伶 | 孙鹏凯 |
-| 771 | Astronomia（黑人抬棺古风版） | 黑人抬棺古风版 | litterzy、水玥儿 |
-| 772 | I Want My Tears Back | Imaginaerum | Nightwish |
-| 773 | 红颜 | MuSiC混合体 | 胡彦斌 |
-| 774 | 혼자시킨 사랑 独自的爱情 | 명랑소녀 성공기 OST | True Bird |
-| 775 | 潮湿的心 | 蜕变1少女的心情故事 | 卓依婷 |
-| 776 | brave heart | brave heart | 宮崎歩 |
-| 777 | 世界第一等-伍佰 | 滚石香港黄金十年 伍佰精选 | 伍佰 |
-| 778 | 明天过后 | 明天过后 | 张杰 |
-| 779 | 暖暖-1个球 | 暖暖 | 1个球 |
-| 780 | Love Theme | 명랑소녀 성공기 OST | 吴振宇 |
-| 781 | Read My Mind | Jade | Sweetbox |
-| 782 | 千里之外-周杰伦、费玉清 | 依然范特西 | 周杰伦/费玉清 |
-| 783 | Let It Out | Let It Out | Frances |
-| 784 | Love Song | 명랑소녀 성공기 OST | 赵长赫 |
-| 785 | 芒种(梦幻西游普陀山门派曲)-腾格尔 | 芒种 | 腾格尔 |
-| 786 | 飞得更高 | 笑着哭 | 汪峰 |
-| 787 | 花火 | 花火 | 汪峰 |
-| 788 | 直到永远 | 生死不离 我们在一起 | 汪峰 |
-| 789 | 跟往事干杯 | 不朽金曲精选 Ⅰ | 姜育恒 |
-| 790 | 枫-周杰伦 | 十一月的萧邦 | 周杰伦 |
-| 791 | 蓝莲花 | 时光.漫步 | 许巍 |
-| 792 | 娃娃脸 | 娃娃脸 | 后弦 |
-| 793 | 我爱你中国 | 怒放的生命 | 汪峰 |
-| 794 | 星象仪 プラネタリウム | プラネタリウム | 大塚爱 |
-| 795 | 推理(オリジナル・ヴァージョン)-大野克夫 | 「名探偵コナン」サントラ・スーパー・ベスト- (名侦探柯南) | 大野克夫 |
-| 796 | 一直很安静 | 寂寞在唱歌 | 阿桑 |
-| 797 | 生活不止眼前的苟且 | 生活不止眼前的苟且 | 许巍 |
-| 798 | Mark's Theme-顾嘉辉 | 英雄本色1&2 | 顾嘉辉 |
-| 799 | Tears Of A Clown | Mastercutor | U.D.O. |
-| 800 | 運命のルーレット廻して (转动命运之轮) | 運命のルーレット廻して | ZARD (ザード) |
-| 801 | The Dawn-Dreamtale | Beyond Reality (Japanese Edition) | Dreamtale |
-| 802 | 兰亭序 (粤语版) (Single Version) | 兰亭序 | 王十三 |
-| 803 | For Free | Folk For Kids | Lana Del Rey / Zella Day / Weyes Blood |
-| 804 | Poker Face-Lady Gaga | Poker Face | Lady Gaga |
-| 805 | My Destiny (我的命运) | 별에서 온 그대 OST Part 1 | LYn (린) |
-| 806 | 亲爱的路人 | 亲爱的路人 | 刘若英 |
-| 807 | Casablanca(卡萨布兰卡)-Bertie Higgins | Movie 930 | Bertie Higgins |
-| 808 | 等不到的爱 | 裸婚时代 电视剧原声带 | 文章 |
-| 809 | Call Me Maybe | Call Me Maybe | Carly Rae Jepsen |
-| 810 | 花开在眼前 | 花开在眼前 | 韩磊 |
-| 811 | 如果不能好好爱 | 如果不能好好爱 | 吴克群 |
-| 812 | 童年 | 纵贯线演唱会 | 罗大佑、李宗盛、张震岳、周华健 |
-| 813 | 魔訶不思議アドベンチャー! | ドラゴンボール全曲集 | 高橋洋樹 |
-| 814 | 我是一只小小鸟-任贤齐&李宗盛 | 台湾男儿任贤齐认真精选辑 | 任贤齐 / 李宗盛 |
-| 815 | 白羊座的忧伤-石进 | 夜的钢琴曲Ⅱ | 石进 |
-| 816 | One Night In 北京 | SHIN 同名专辑 | 信乐团 |
-| 817 | The Monster | The Monster | Eminem / Rihanna |
-| 818 | 1%-Oscar Scheller、Lily Allen | 1% | Oscar Scheller / Lily Allen |
-| 819 | Groundhog Day | Groundhog Day | Em Beihold |
-| 820 | 我期待-张雨生 | 卡拉OK.台北.我 | 张雨生 |
-| 821 | Amazing Grace 天赐恩宠 | 苏格兰音乐之旅 苏格兰风笛 | 群星 |
-| 822 | 童年-张艾嘉 | 童年 | 张艾嘉 |
-| 823 | 漂洋过海来看你-孙露 | 寂寞女人心 | 孙露 |
-| 824 | 兰亭序【笛子版】-亿只张勤洗 | 兰亭序 | 亿只张勤洗 |
-| 825 | 小仙女 | 武侠音乐系列之缠绵悱恻 （截取版） | 麦振鸿 |
-| 826 | Élan | Élan | Nightwish |
-| 827 | 美丽的神话Ⅰ(Endless Love 1)-成龙、金喜善 | 神话 电影原声带 | 成龙 / 金喜善 |
-| 828 | 下个路口见 （完整版）-藤柒吖 | 下个路口见 | 藤柒吖 |
-| 829 | 爱你在心口难开-高胜美 | 怀念老歌七 | 高胜美 |
-| 830 | Fengxia Leaves Her Parents-Zhao Jiping | Lifetimes (Vivre!) [Original Motion Picture Soundtrack] | Zhao Jiping |
-| 831 | The Hampster Dance Song-Hampton the Hampster | The Hamsterdance Album | Hampton the Hampster |
-| 832 | Dans la maison (Thème)-Philippe Rombi | Dans la maison | Philippe Rombi |
-| 833 | 一千年以后(A Thousand Years Later)-林俊杰 | 编号89757 | 林俊杰 |
-| 834 | 「名探偵コナン」~メインテーマ-大野克夫 | 「名探偵コナン」メインテーマ | 大野克夫 |
-| 835 | 万里の長城-太田美知彦 | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 太田美知彦 |
-| 836 | 喜剧之王 | 喜剧之王 | 李荣浩 |
-| 837 | Tennessee-Hans Zimmer | Pearl Harbor [O.S.T] | Hans Zimmer |
-| 838 | 浮沉的兄弟-戎祥 | 浮沉的兄弟 | 戎祥 |
-| 839 | 幸せ（幸福）-小林幸子 | 小林幸子全曲集 2013 | 小林幸子 |
-| 840 | Liekkas | Assogattis: By The Embers | Sofia Jannok |
-| 841 | 不是因为寂寞才想你-T.R.Y. | 精彩TRY | T.R.Y. |
-| 842 | 郎的诱惑-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
-| 843 | 我真的受伤了-张学友 | 学友 热 | 张学友 |
-| 844 | 我想和你一起去海边-江惠莲 | 伍六七 原声大碟 | 江惠莲 |
-| 845 | For the World-谭盾 | Late Night Tales: Air | 谭盾 |
-| 846 | Scotland the Brave 苏格兰勇士 | 苏格兰音乐之旅 苏格兰风笛 | 群星 |
-| 847 | 月牙湾 | 爱.歌姬 | F.I.R. |
-| 848 | Gangsta Bop | Konvicted | Akon |
-| 849 | Hallelujah | Warmer In The Winter (Deluxe Edition) | Lindsey Stirling |
-| 850 | Nijamena (BGM版) | Nijamena | H2s |
-| 851 | 弱水三千-唐伯虎Annie、伯爵Johnny | 弱水三千 | 唐伯虎Annie / 伯爵Johnny |
-| 852 | O Come O Come Emmanuel-Tommee Profitt | The Birth Of A King | Tommee Profitt |
-| 853 | 二泉映月 | 阿炳全集 | 阿炳 |
-| 854 | 男儿当自强 | 笑傲歌坛 传世经典 | 林子祥 |
-| 855 | 上海滩 | 上海滩 | 叶丽仪 |
-| 856 | 我和你 | 北京2008 奥运会、残奥会开闭幕式主题歌曲专辑 | 刘欢 / Sarah Brightman |
-| 857 | 算你狠 | 绝对收藏 | 陈小春 |
-| 858 | 黄种人 | 黄·锋 | 谢霆锋 |
-| 859 | Croatian Rhapsody | The Piano Player | Maksim Mrvica |
-| 860 | He's a Pirate | Pirates of the Caribbean: The Curse of the Black Pearl | Klaus Badelt |
-| 861 | Natural-Imagine Dragons | Origins (Deluxe) | Imagine Dragons |
-| 862 | 星月神话 | 女人又一次哭泣 | 金莎 |
-| 863 | 夜上海 | 夜上海精选 | 周璇 |
-| 864 | 带你去旅行 | 带你去旅行 | 校长（张驰） |
-| 865 | 天下第一 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 / 罗坚 |
-| 866 | 飘洋过海来看你-文武贝 | 文武贝钢琴改编作品集（2015年全集） | 文武贝 |
-| 867 | 没有你的日子我真的好孤单-韩晶 | 不要用我的爱来伤害我 | 韩晶 |
-| 868 | 给我一个吻-张露 | 群星会 38 张露 (珍藏系列) | 张露 |
-| 869 | '97爱情宣言 | 狼 97黄金自选辑 | 齐秦 |
-| 870 | 东风破-欧阳耀莹 | 欧阳耀莹 Cover合辑 | 欧阳耀莹 |
-| 871 | 外面的世界 | 燃烧爱情（狼之旅） | 齐秦 |
-| 872 | 小酒窝 | JJ陆 | 林俊杰 / 蔡卓妍 |
-| 873 | Past Lives | Drowning | Slushii |
-| 874 | 往事随风 | 痛并快乐着 | 齐秦 |
-| 875 | Go Time | Go Time | Mark Petrie |
-| 876 | Only Love(电视剧《妙手仁心 II》插曲)-Trademark | #Love | Trademark |
-| 877 | 日不落-蔡依林 | 特务J - (Agent J) | 蔡依林 |
-| 878 | 难念的经(1997年TVB版电视剧《天龙八部》片头曲)-周华健 | 电视剧歌曲大全 | 周华健 |
-| 879 | 李香兰-张学友 | Jacky Cheung 15 | 张学友 |
-| 880 | Someone to Stay | Someone to Stay | Vancouver Sleep Clinic |
-| 881 | The Portrait | Titanic: Special Edition | James Horner |
-| 882 | 看见-陈鸿宇、游戏科学、8082Audio | 《黑神话：悟空》游戏音乐精选集 | 陈鸿宇 / 游戏科学 / 8082Audio |
-| 883 | 假如爱有天意-李健 | 李健 | 李健 |
-| 884 | 那年我双手插兜 不知道什么叫做对手 | 那年我双手插兜 不知道什么叫做对手（语录版） | 黑左 / 莎馬淑鳐 / 刘liu创意人 |
-| 885 | 你还欠我一个拥抱 | 很有爱 | 后弦 / Sara |
-| 886 | Strength of a Thousand Men | Archangel | Two Steps From Hell |
-| 887 | 匆匆那年 | 匆匆那年 电影原声带 | 王菲 |
-| 888 | 说好的幸福呢-周杰伦 | 魔杰座 | 周杰伦 |
-| 889 | 存在-雷婷 | 存在 | 雷婷 |
-| 890 | 麻雀-李荣浩 | 麻雀 | 李荣浩 |
-| 891 | 一路 | 匆匆那年 电视原声带 | 白敬亭 / 杨玏 / 杜维瀚 |
-| 892 | Spirit of the Wild | Age of Wonders | BrunuhVille |
-| 893 | 命运 운명 | 풀 하우스 OST (KBS 미니시리즈) | Why |
-| 894 | 青い空に出逢えた(TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 辻尾有紗 |
-| 895 | 大海~ | Asia | THE JAYWALK |
-| 896 | 男人海洋-周传雄 | 男人.海洋 | 周传雄 |
-| 897 | 映山红-韩红 | 红歌② | 韩红 |
-| 898 | 热爱105°C的你 | 热爱105°C的你 | 阿肆 |
-| 899 | Flavor Of Life | Flavor Of Life | 宇多田ヒカル |
-| 900 | 披着羊皮的狼-刀郎 | 披着羊皮的狼 | 刀郎 |
-| 901 | 我的未来不是梦-张雨生 | 6个朋友 | 张雨生 |
-| 902 | 阳光宅男-周杰伦 | 我很忙 | 周杰伦 |
-| 903 | 我们的纪念-弦子 | 我们的纪念 | 弦子 |
-| 904 | Death Of Titanic | Titanic: Music from the Motion Picture Soundtrack | James Horner |
-| 905 | Lordly (Instrumental Mix)-Feder | Lordly (Instrumental Mix) | Feder |
-| 906 | 最浪漫的事-赵咏华 | 我的爱我的梦我的家 | 赵咏华 |
-| 907 | 孤勇者_凤凰传奇 | 孤勇者 | 凤凰传奇 |
-| 908 | 不如不见 | What's Going On…? | 陈奕迅 |
-| 909 | Distant Memories | Titanic: Music from the Motion Picture Soundtrack | James Horner |
-| 910 | 偏爱 | 破天荒 | 张芸京 |
-| 911 | 爱的代价(The Price of Love 电影《念念》首波宣传曲)-张艾嘉 | 爱的代价 | 张艾嘉 |
-| 912 | 大侠霍元甲(电视剧《大侠霍元甲》主题曲)-叶振棠 | 叶振棠精选全集(珍藏版) | 叶振棠 |
-| 913 | 我们的纪念-徐薇 | 我们的纪念 | 徐薇 |
-| 914 | Diamonds | Diamonds | Rihanna |
-| 915 | 風の住む街（风居住的街道）-磯村由紀子 | 風の住む街 | 磯村由紀子 |
-| 916 | 还有我-任贤齐 | 如果没有你 | 任贤齐 |
-| 917 | 太多(电视剧《穿越时空的爱恋》片头曲)-陈冠蒲 | 就让你走 | 陈冠蒲 |
-| 918 | 绅士-薛之谦 | 绅士 | 薛之谦 |
-| 919 | Je m'appelle Hélène | Hélène | Hélène Rolles |
-| 920 | 我欲成仙 | 西游记后传片头曲 | 刘欢 |
-| 921 | 阿普的思念(写给爷爷的歌)-诺米么Lodmemo | risingstar12.6 | 诺米么Lodmemo |
-| 922 | 新套马杆-乌兰托娅 | 新套马杆 | 乌兰托娅 |
-| 923 | 希望 (国语) | 我是阳光的 | 陈慧琳 |
-| 924 | 双截棍-周杰伦 | 范特西 | 周杰伦 |
-| 925 | 我想当风(电影《抓娃娃》片尾曲)-鹿先森乐队 | 我想当风 | 鹿先森乐队 |
-| 926 | Something Just Like This | Something Just Like This | The Chainsmokers / Coldplay |
-| 927 | 探故知-浅影阿、汐音社 | 探故知 | 浅影阿 / 汐音社 |
-| 928 | 玫瑰花的葬礼-许嵩 | 许嵩单曲集 | 许嵩 |
-| 929 | 花海-周杰伦 | 魔杰座 | 周杰伦 |
-| 930 | Children of the Dark | Together Till the End | Mono Inc. / Joachim Witt / Tilo Wolff / Chris Harms |
-| 931 | 極楽浄土 | 約束 -Promise code- | GARNiDELiA |
-| 932 | 作曲家 | 李荣浩 | 李荣浩 |
-| 933 | 辞九门回忆(DJ版) | 未知 | 未知 |
-| 934 | 当爱已成往事(电影《霸王别姬》主题曲)-林忆莲、李宗盛 | 我们的主打歌 | 林忆莲 / 李宗盛 |
-| 935 | 黑色幽默-周杰伦 | Jay | 周杰伦 |
-| 936 | 须尽欢(正式授权版)-要不要买菜 | 须尽欢 | 要不要买菜 |
-| 937 | 盗将行-花粥、马雨阳 | 粥请客（二） | 花粥 / 马雨阳 |
-| 938 | 诺言 (正式版)-海来阿木 | 诺言 (正式版) | 海来阿木 |
-| 939 | Maga-Such a Whore（Maga remix）-Maga | Such a Whore | Maga |
-| 940 | 闯将令-香港中乐团 于会咏 胡登跳 | 功夫 电影原声大碟 | 香港中乐团 / 于会咏 / 胡登跳 |
-| 941 | 黑暗中的舞者 | 寂静的天空 | 黛青塔娜 / HAYA乐团 |
-| 942 | 亲爱的旅人啊-周深 | 亲爱的旅人啊《千与千寻》（Cover 木村弓） | 周深 |
-| 943 | 銀の龍の背に乗って | 銀の龍の背に乗って | 中島みゆき |
-| 944 | She Is My Sin-Nightwish | Tales from the Elvenpath | Nightwish |
-| 945 | To Ramona | The Complete Album Collection Vol.1 | Bob Dylan |
-| 946 | Azul | Acoustik Guitar | John H. Clarke |
-| 947 | 痴情冢（完整版）-吴严武 | 痴情冢（完整版） | 吴严武 |
-| 948 | Opening | 少林足球 电影原声带 | 黄英华 |
-| 949 | Natural-Imagine Dragons | Origins (Deluxe) | Imagine Dragons |
-| 950 | Feel Me-Selena Gomez | Feel Me | Selena Gomez |
-| 951 | Hummell Gets The Rockets | The Rock (Original Motion Picture Score) | Nick Glennie-Smith /Harry Gregson-Williams |
-| 952 | 星の下での邂逅-赵大鼾 | 星の下での邂逅 | 赵大鼾 |
-| 953 | Impossible-Two Steps From Hell | Unleashed | Two Steps From Hell |
-| 954 | 爱是你我(Live)-徐子尧、刀郎 | 爱是你我 | 徐子尧、刀郎 |
-| 955 | Love From Me-Johnson Rodgie | Love From Me | Johnson Rodgie |
-| 956 | 猜不透 | 我爱上的 | 丁当 |
-| 957 | Samba-Ludovico Einaudi | I Giorni | Ludovico Einaudi |
-| 958 | Håll Om Mig-Nanne Grönvall | Melodifestivalen 1958-2013 | Nanne Grönvall |
-| 959 | 难却 | 难却 | 平生不晚 |
-| 960 | Until You-Shayne Ward | Breathless | Shayne Ward |
-| 961 | 梦醒时分-杨钰莹 | 我有一段情 | 杨钰莹 |
-| 962 | 王招君 (你看你拉住我的模样)(《寻汉计》电影推广曲)-任素汐 | 王招君 (你看你拉住我的模样) | 任素汐 |
-| 963 | Old Threads-Deep East Music | Vintage Sunshine | Deep East Music |
-| 964 | 甜甜的-周杰伦 | 我很忙 | 周杰伦 |
-| 965 | Not Angry-Chris James | Not Angry | Chris James |
-| 966 | 萤火之森-CMJ | 萤火之森 | CMJ |
-| 967 | 万疆-李玉刚 | 万疆 | 李玉刚 |
-| 968 | 日不落(温柔抒情版)-藤柒吖 | 日不落 | 藤柒吖 |
-| 969 | 友谊天长地久-杨钰莹、毛宁 | 快乐时光（12）世界名歌精选（一） | 杨钰莹 / 毛宁 |
-| 970 | 珊瑚海-周杰伦、Lara梁心颐 | 十一月的萧邦 | 周杰伦 / Lara梁心颐 |
-| 971 | Closer-The Chainsmokers、Halsey | Closer | The Chainsmokers / Halsey |
-| 972 | 慢慢喜欢你-莫文蔚 | 我们在中场相遇 | 莫文蔚 |
-| 973 | Opening Credits-Hans Zimmer | Call of Duty: Modern Warfare 2 OST | Hans Zimmer |
-| 974 | 沈园外 (DJ版)-阿YueYue、戾格、小田音乐社 | 沈园外 | 阿YueYue / 戾格 / 小田音乐社 |
-| 975 | 棉花糖-至上励合 | 降临 | 至上励合 |
-| 976 | Samsara-Tungevaag & Raaban | Club Sounds Vol.73 | Tungevaag & Raaban |
-| 977 | Dream-Priscilla Ahn | A Good Day | Priscilla Ahn |
-| 978 | 今天你要嫁给我(Marry Me Today)-蔡依林、陶喆 | 太美丽 | 蔡依林 / 陶喆 |
-| 979 | The X-Files (Original Version)-Mark Snow | The X Files? | Mark Snow |
-| 980 | 蓝色土耳其-周传雄 | 蓝色土耳其 | 周传雄 |
-| 981 | BOOM-Tiësto / Sevenn | BOOM | Tiësto / Sevenn |
-| 982 | 初识太极 | 太极张三丰 电影原声带 | 胡伟立 |
-| 983 | At Anchor | The Airship | Port Blue |
-| 984 | 以父之名-周杰伦 | 叶惠美 | 周杰伦 |
-| 985 | 愿得一人心-李行亮 | 愿得一人心 | 李行亮 |
-| 986 | 青花-周传雄 | 蓝色土耳其 | 周传雄 |
-| 987 | 难却 (DJ版0.85x|待上浓妆好戏开场) | 难却 | 平生不晚 |
-| 988 | 我落泪情绪零碎-周杰伦 | 跨时代 | 周杰伦 |
-| 989 | 同桌的你(电影《同桌的你》片尾主题曲)-胡夏 | 同桌的你 | 胡夏 |
-| 990 | 悬溺-葛东琪 | 第二街区 | 葛东琪 |
-| 991 | 我要你(电影《驴得水》主题曲)-任素汐 | 我要你 | 任素汐 |
-| 992 | 遇上你是我的缘-央金兰泽 | 爱琴海 | 央金兰泽 |
-| 993 | Special Ops-Silver Screen | Under Siege | Silver Screen |
-| 994 | Frontier-Doctor Vox | Level Up | Doctor Vox |
-| 995 | 芦苇飞（哈市DJ小鹏2024）-泡芙芙Scarlett | 芦苇飞（哈市DJ小鹏2024） | 泡芙芙Scarlett |
-| 996 | Electric Romeo | Themes for Orchestra and Choir 2 - Abbey Road | Immediate Music |
-| 997 | 賭神 | 赌神 电影原声 | 卢冠廷 |
-| 998 | 那盏茶 (新编版)-金志文 | 那盏茶 (新编版) | 金志文 |
-| 999 | 下雨天-南拳妈妈 | 优の良曲 南搞小孩 | 南拳妈妈 |
-| 1000 | 姑娘别哭泣（弹唱版）-柯柯柯啊 | 姑娘别哭泣 | 柯柯柯啊 |
-| 1001 | 美酒加咖啡-邓丽君 | 花样年华 | 邓丽君 |
-| 1002 | 真心英雄 (Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
-| 1003 | 秘密-卡洛儿 | 秘密 | 卡洛儿 |
-| 1004 | Time (Official)-MKJ | Time After Time | MKJ |
-| 1005 | 我的地盘-周杰伦 | 七里香 | 周杰伦 |
-| 1006 | 但愿人长久-邓丽君 | 但愿人长久 15周年纪念集 | 邓丽君 |
-| 1007 | The Next Episode | The Next Episode | Dr. Dre / Snoop Dogg / Kurupt / Nate Dogg |
-| 1008 | 会呼吸的痛-梁静茹 | 崇拜 | 梁静茹 |
-| 1009 | 纸短情长 (完整版)-烟把儿 | 纸短情长 | 烟把儿 |
-| 1010 | 你潇洒我漂亮-韩宝仪 | 台湾福建 畅销金曲沙龙镭射效果音乐 | 韩宝仪 |
-| 1011 | 驼铃-刀郎 | 披着羊皮的狼 | 刀郎 |
-| 1012 | 爱要坦荡荡 (Live)-丁丁 | 《中国好声音》2012跨年演唱会 | 丁丁 |
-| 1013 | Italia e voi（Orginal Mix）-HSHK | Italia e voi | HSHK / 贰皮 / VodKa / Pnan |
-| 1014 | かごめと犬夜叉 | TVアニメーション「犬夜叉」オリジナルサウンドトラックアルバム「犬夜叉 音楽篇」 | 和田薫 |
-| 1015 | Rather Be(宁愿)-Clean Bandit、Jess Glynne | Rather Be | Clean Bandit / Jess Glynne |
-| 1016 | 琵琶语-林海 | 林海影视配乐精选 | 林海 |
-| 1017 | 비오는 소리 (Intro)下雨的声音-July | To Heaven | July |
-| 1018 | 北国之春-邓丽君 | 邓丽君 纪念特别专辑 第二辑 | 邓丽君 |
-| 1019 | アシタカせっ記 (The Legend of Ashitaka)-久石让 | もののけ姫 イメージアルバム | 久石让 (ひさいし じょう) |
-| 1020 | Past Lives-Jasper、Martin Arteta | Past Lives | Jasper / Martin Arteta / 11:11 Music Group |
-| 1021 | 我们的爱-F.I.R. | 同名专辑 | F.I.R. |
-| 1022 | K歌之王-陈奕迅 | 打得火热 | 陈奕迅 |
-| 1023 | Winter Without You-Gloria Kim | Winter Without You | Gloria Kim |
-| 1024 | 泪桥-伍佰 | 泪桥 | 伍佰 & China Blue |
-| 1025 | 喀什噶尔胡杨-刀郎 | 喀什噶尔胡杨 | 刀郎 |
-| 1026 | 成全(电视剧《梦想成真》片头曲)-刘若英 | 年华 | 刘若英 |
-| 1027 | Run Me Out-Zola Jesus | How to Get Away with Murder | Zola Jesus |
-| 1028 | Pilgrimage-Jannik | Pilgrimage Epic Orchestral | Jannik |
-| 1029 | 情人-刀郎 | 2002年的第一场雪 | 刀郎 |
-| 1030 | 云宫迅音（Black Myth：WuKong）-游戏科学 | 黑神话：悟空（Black Myth：WuKong） | 游戏科学 |
-| 1031 | We No Speak Americano(UK Radio Edit)-Yolanda Be Cool | We No Speak Americano | Yolanda Be Cool |
-| 1032 | 桔梗谣-卢爱兰 | 朝鲜族民歌 《桔梗谣 . 道拉基》中国音乐地图 听见吉林 | 卢爱兰 |
-| 1033 | 爱的飞行日记-周杰伦、杨瑞代 | 跨时代 | 周杰伦 / 杨瑞代 |
-| 1034 | Just the Way You Are-Bruno Mars | The Brit Awards Album 2011 | Bruno Mars |
-| 1035 | 关山月-路南 | 关山月 | 路南 |
-| 1036 | 那盏茶-金志文 | 热门华语149 | 金志文 |
-| 1037 | 荷塘月色-凤凰传奇 | 我从草原来 新歌+精选 | 凤凰传奇 |
-| 1038 | 芦苇荡(电影《大话西游》插曲)-赵季平 | 热门华语20 | 赵季平 |
-| 1039 | 友谊天长地久-黑鸭子 | 伴你二十年特辑 黑鸭子圣诞经典 | 黑鸭子 |
-| 1040 | Deflagration-Silver Screen | Under Siege | Silver Screen |
-| 1041 | The Boys | 'The Boys' The 3rd Album | 少女时代 |
-| 1042 | 万物生 (国语)-萨顶顶 | 万物生 | 萨顶顶 |
-| 1043 | 我用什么把你留住-福禄寿FloruitShow | 我用什么把你留住 | 福禄寿FloruitShow |
-| 1044 | 春不晚-李常超 (Lao乾妈) | 春不晚 | 李常超 (Lao乾妈) |
-| 1045 | 退后-周杰伦 | 依然范特西 | 周杰伦 |
-| 1046 | 黄金甲-周杰伦 | 黄金甲 | 周杰伦 |
-| 1047 | 须尽欢(热播女声版)-糯米Nomi、余子林 | 须尽欢 | 糯米Nomi / 余子林 |
-| 1048 | 弱水三千 (0.9x版)-阮言Ruany | 弱水三千 | 阮言Ruany |
-| 1049 | What Do You Mean?-Justin Bieber | What Do You Mean? | Justin Bieber |
-| 1050 | Wicked Wonderland (Radio Edit)-Martin Tungevaag | Wicked Wonderland | Martin Tungevaag |
-| 1051 | 幽默-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
-| 1052 | 半岛铁盒-周杰伦 | 八度空间 | 周杰伦 |
-| 1053 | 不将就(电影《何以笙箫默》片尾主题曲)-李荣浩 | 有理想 | 李荣浩 |
-| 1054 | Alone-Alan Walker | Alone | Alan Walker |
-| 1055 | Time Back-Bad Style | 最新热歌慢摇63 | Bad Style |
-| 1056 | Numb Encore | Look Out For Detox | Dr. Dre / 50 Cent / JAY-Z / Eminem / Linkin Park |
-| 1057 | Star Sky-Two Steps From Hell | Battlecry | Two Steps From Hell |
-| 1058 | Oceanside | Melody Lane | Lainey Lou |
-| 1059 | One Day In Spring | One Day In Spring | Bandari |
-| 1060 | 明明就-周杰伦 | 十二新作 | 周杰伦 |
-| 1061 | Deadwood-Really Slow Motion | Deadwood | Really Slow Motion |
-| 1062 | Promises | Promises | Ryn Weaver |
-| 1063 | 我知道-By2 | Twins | By2 |
-| 1064 | Between Worlds | X I I | Roger Subirana |
-| 1065 | Dream It Possible | Dream It Possible | Delacey |
-| 1066 | 桔梗谣-金栄実 | 伽倻琴演奏《与你一起》 | 金栄実 |
-| 1067 | 桔梗谣-이금미 | Korea: Folk Songs I - Songs Of Kyonggido District | 이금미 |
-| 1068 | Simon Birch | The Bucket List (Original Motion Picture Soundtrack) | Marc Shaiman |
-| 1069 | Firework | Teenage Dream | Katy Perry |
-| 1070 | Everything at Once | Two | Lenka |
-| 1071 | 口弦-妙子 | 独家爱唱Ⅲ | 妙子 |
-| 1072 | 可能否-腾格尔 | 可能否 | 腾格尔 |
-| 1073 | Murder In My Mind-Kordhell | Murder In My Mind | Kordhell |
-| 1074 | 敢问路在何方（黑神话：悟空）-黑神话：悟空、Benjamin·Scott、杨洪基 | 《黑神话：悟空》游戏原声带 | 黑神话：悟空 / Benjamin·Scott / 杨洪基 |
-| 1075 | 一千个伤心的理由-张学友 | 刻骨铭心 | 张学友 |
-| 1076 | 在你的身边 (0.8x)-慢热的气球 | 在你的身边 (0.8x) | 慢热的气球 |
-| 1077 | Once Upon a Time in America: Deborah's Theme-Ennio Morricone | The Grandmaster (Original Score) | Ennio Morricone |
-| 1078 | 童年 (童声版)-宋小睿 | 宋小睿的电台 | 宋小睿 |
-| 1079 | Morsmordre-Crazy Donkey | Morsmordre | Crazy Donkey |
-| 1080 | 旅行的意义(TRAVEL IS MEANINGFUL) | 渺渺 电影原声 | 陈绮贞 |
-| 1081 | 空 (TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 大黒摩季 |
-| 1082 | 模特 | 模特 | 李荣浩 |
-| 1083 | FourFiveSeconds | FourFiveSeconds | Rihanna / Kanye West / Paul McCartney |
-| 1084 | Psycho, Pt. 2-Russ | Psycho, Pt. 2 | Russ |
-| 1085 | Anacreon-Bear McCreary | Foundation: Season 1 (Apple TV+ Original Series Soundtrack) | Bear McCreary |
-| 1086 | 风居住的街道（Piano ver） (翻自 磯村由紀子）-饭碗的彼岸 | Piano Cover | 饭碗的彼岸 |
-| 1087 | 爱转角 | Best Show | 罗志祥 |
-| 1088 | 须尽欢 (0.8x)-郑浩 | 须尽欢 | 郑浩 |
-| 1089 | Sing You To Sleep-Matt Cab | Sing You To Sleep | Matt Cab |
-| 1090 | 我真的受伤了(电影《Delete爱人》插曲)-王菀之 | Audiophile Compilations | 王菀之 |
-| 1091 | Like That-Bea Miller | Chapter Two: Red | Bea Miller |
-| 1092 | Take Me Home Country Roads-John Denver | Take Me Home: The John Denver Story | John Denver |
-| 1093 | 江湖笑(张纪中版《神雕侠侣》片尾曲)-周华健 | 雨人 | 周华健 |
-| 1094 | Maps | Maps | Maroon 5 |
-| 1095 | 寂寞沙洲冷-周传雄 | 星空下的传说 | 周传雄 |
-| 1096 | One Match-Sarah Harmer | oh little fire | Sarah Harmer |
-| 1097 | 半生雪-七叔-叶泽浩 | 半生雪 | 七叔-叶泽浩 |
-| 1098 | MR.TAXI(Korean ver.) | 'The Boys' The 3rd Album | 少女时代 |
-| 1099 | Gentle-Isaac Shepard | Deep Joy | Isaac Shepard |
-| 1100 | 故人泪-麦小兜 | 故人泪 | 麦小兜 |
-| 1101 | May It Be-Bandari | MistyLand | Bandari |
-| 1102 | 龙拳-周杰伦 | 八度空间 | 周杰伦 |
-| 1103 | 秘密-王珺 | 一尘不染 | 王珺 |
-| 1104 | 赤伶-李玉刚 | 赤伶 | 李玉刚 |
-| 1105 | My Songs Know What You Did In The Dark (Light Em Up) (2 Chainz Remix) | My Songs Know What You Did In The Dark (Light Em Up) | Fall Out Boy |
-| 1106 | 一生最爱的人-伍佰 | 白鸽 | 伍佰 & China Blue |
-| 1107 | Emerald-Ariel | Elan | Ariel |
-| 1108 | River Flows In You | Tales Of Dusk And Dawn Chapter II | Various Artists |
-| 1109 | Roar | Roar | Katy Perry |
-| 1110 | 同桌的你-老狼 | 龙凤金歌榜 | 老狼 |
-| 1111 | Just Blue-Space | Just Blue | Space |
-| 1112 | Secrets AMFB Onerepublic | Time Machine (Part 1) | Bryson Andres |
-| 1113 | 止战之殇-周杰伦 | 七里香 | 周杰伦 |
-| 1114 | 弱水三千 (阮言版) | 弱水三千 (阮言版) | 阮言Ruany |
-| 1115 | 一路向北-周杰伦 | J III MP3 Player | 周杰伦 |
-| 1116 | 纸短情长-花粥 | 纸短情长 | 花粥 |
-| 1117 | Sign-DEAMN | Sign | DEAMN |
-| 1118 | 当爱已成往事-张国荣 | 最红 | 张国荣 |
-| 1119 | Titanium-David Guetta / Sia | Best Of... | David Guetta / Sia |
-| 1120 | The Telephone Box | The Magic Empire | Uniform Motion |
-| 1121 | 探故知 (DJlucky小阳版)-浅影阿 | 探故知 | 浅影阿 |
-| 1122 | 在你的身边-盛哲 | 在你的身边 | 盛哲 |
-| 1123 | Why-Sabrina Carpenter | Why | Sabrina Carpenter |
-| 1124 | Sunrise | waiting for the light | Catie Mckinney |
-| 1125 | Walk on By-Noosa | Wonderland | Noosa |
-| 1126 | 春庭雪-邓寓君(等什么君) | 春庭雪 | 邓寓君(等什么君) |
-| 1127 | Shiver-skel | Shiver | skel |
-| 1128 | 映山红-刀郎 | 红色经典 | 刀郎 |
-| 1129 | Liberators-Epic Score | Vengeance - ES033 | Epic Score |
-| 1130 | Dismantle-Peter Sandberg | Dismantle | Peter Sandberg |
-| 1131 | 小宇-张震岳 | OK | 张震岳 |
-| 1132 | 彩虹-周杰伦 | 我很忙 | 周杰伦 |
-| 1133 | Older-Sasha Alex Sloan | Older | Sasha Alex Sloan |
-| 1134 | Radius-Hi-Finesse | Axiom | Hi-Finesse |
-| 1135 | The Final Countdown | The Final Countdown: The Best Of Europe | Europe |
-| 1136 | 世界第一等-刘德华 | 爱在刻骨铭心时 | 刘德华 |
-| 1137 | 春庭雪（0.8x_DJ小瑞） | 春庭雪 | 小瑞 |
-| 1138 | 友谊天长地久-亚洲天使童声合唱团 | 天使在唱歌 | 亚洲天使童声合唱团 |
-| 1139 | 上海滩(无线电视剧《上海滩》主题曲) | 上海滩 | 叶丽仪 |
-| 1140 | Hyacinth-July | In Love | July |
-| 1141 | 我们的纪念-徐薇 | 我们的纪念 | 徐薇 |
-| 1142 | 遺憾-陈洁仪 | 重譯 陳潔儀.重奏 | 陈洁仪 |
-| 1143 | 须尽欢-郑浩 | 须尽欢 | 郑浩 |
-| 1144 | So Far Away(遥不可及) | So Far Away | Martin Garrix / David Guetta / Jamie Scott / Romy Dya |
-| 1145 | One More Light(又一道光芒)-Linkin Park | One More Light | Linkin Park |
-| 1146 | 敢问路在何方-刀郎 | 电视剧新西游记主题曲 | 刀郎 |
-| 1147 | 时を越えて かごめ | 犬夜叉 音楽撰集 | 和田薫 |
-| 1148 | Lovin' You On My Mind-Josh Turner | Haywire (Deluxe Edition) | Josh Turner |
-| 1149 | 隐形的翅膀 (Live)-腾格尔 | 聚划算99划算盛典Live | 腾格尔 |
-| 1150 | The Party Troll-D1ofaquavibe | The Party Troll | D1ofaquavibe |
-| 1151 | 有形的翅膀-张韶涵 | 有形的翅膀 | 张韶涵 |
-| 1152 | Novera-Dark Winter Music | Epic World Volume2 Return 归来(2014) | Dark Winter Music |
-| 1153 | SCARSONG-flash8 | 最新热歌慢摇3 | flash8 |
-| 1154 | Concerto No. 4 in F minor, Op. 8, RV 297, "L'inverno" (Winter): II. Largo | The Four Seasons: The Vivaldi Album | Anne Akiko Meyers / English Chamber Orchestra / David Lockington |
-| 1155 | 光阴的故事(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
-| 1156 | Somewhere | Somewhere | July |
-| 1157 | If We Ever Broke Up-Mae Stephens | If We Ever Broke Up | Mae Stephens |
-| 1158 | 东风破-刘芳 | 再醉一次 | 刘芳 |
-| 1159 | Close Eyes (Slowed + Reverb)-DVRST | Close Eyes (Slowed + Reverb) | DVRST |
-| 1160 | 别再闹了(电影《来电狂响》暖冬主题曲)-毛不易 | 别再闹了 | 毛不易 |
-| 1161 | 月亮代表我的心-张国荣 | Miss You Much, Leslie | 张国荣 |
-| 1162 | Look4You-Alberto Ciccarini | Look4You | Alberto Ciccarini |
-| 1163 | 北国の春-木村好夫 | 木村好夫-ギター演歌名曲全集2 | 木村好夫 |
-| 1164 | 那些花儿(电影《那时花开》片尾曲)-朴树 | 我去2000年 | 朴树 |
-| 1165 | 等你下课 (with 杨瑞代)-周杰伦 | 等你下课 | 周杰伦 |
-| 1166 | 不得不爱-潘玮柏、弦子 | 夏日撒糖情歌 | 潘玮柏 / 弦子 |
-| 1167 | Future Funk-Varien | Pick Your Poison Vol. 01 | Varien |
-| 1168 | Balenciaga-T3nzu | Balenciaga | T3nzu |
-| 1169 | cocoon-林ゆうき | 「トライアングル」オリジナル・サウンドトラック | 林ゆうき |
-| 1170 | A Quiet Departure-Josh Leake | Benjamin | Josh Leake |
-| 1171 | A Mozart Reincarnated-Ennio Morricone | La Leggenda del Pianista Sull'oceano | Ennio Morricone |
-| 1172 | Best Moments (feat. Kondor)-Blazo | Alone Journey | Blazo |
-| 1173 | As It Was-PREP | As It Was | PREP |
-| 1174 | 舞女泪-韩宝仪 | 怀念金曲 | 韩宝仪 |
-| 1175 | Becoming a Legend-John Dreamer | Becoming a Legend - Single | John Dreamer |
-| 1176 | 下一站天后(电影《下一站天后》主题曲)-Twins | 我们相爱6年(新曲+精选) | Twins |
-| 1177 | Beloved-Dan Gibson | Native Harmony | Dan Gibson |
-| 1178 | 手写的从前-周杰伦 | 哎呦，不错哦 | 周杰伦 |
-| 1179 | 夏日之梦-傅许 | 夏日之梦 | 傅许 |
-| 1180 | 明天会更好-群星 | 明天会更好 | 群星 |
-| 1181 | 须尽欢-柯柯柯啊 | 须尽欢 | 柯柯柯啊 |
-| 1182 | 套马杆-乌兰托娅 | 我要去西藏 | 乌兰托娅 |
-| 1183 | 我的楼兰-云朵 | 倔强 | 云朵 |
-| 1184 | 全是爱-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
-| 1185 | 弱水三千 (0.8x DJ苏熠鸣) | 弱水三千 (DJ苏熠鸣版) | 苏熠鸣 |
-| 1186 | 我怀念的-孙燕姿 | 逆光 - (Against The Light) | 孙燕姿 |
-| 1187 | Brotherhood-John Dreamer | Brotherhood | John Dreamer |
-| 1188 | 我们的纪念-李雅微 | 我们的纪念 | 李雅微 |
-| 1189 | 昨夜星辰-高胜美 | 旧情绵绵(珍藏版3) | 高胜美 |
-| 1190 | 爱在西元前-周杰伦 | 范特西 | 周杰伦 |
-| 1191 | Hello Zepp-Charlie Clouser | Saw (Original Motion Picture Soundtrack) | Charlie Clouser |
-| 1192 | 晚秋-毛宁 | 二十世纪原创经典典藏 龙凤金歌榜 | 毛宁 |
-| 1193 | Mind Heist(电影《盗梦空间》预告片配乐) | Inception Trailer | Zack Hemsey |
-| 1194 | RAVE-Dxrk ダーク | RAVE | Dxrk ダーク |
-| 1195 | Golden Key-Isgaard | Golden Key [#2] | Isgaard |
-| 1196 | Uptown Funk-Mark Ronson、Bruno Mars | Uptown Funk | Mark Ronson / Bruno Mars |
-| 1197 | Koko-Ariel | Koko | Ariel |
-| 1198 | Anatomy | Anatomy | DJRUSTAM / FIZO FAOUEZ |
-| 1199 | 爱的初体验-张震岳 | 这个下午很无聊 | 张震岳 |
-| 1200 | 苏慕遮-张晓棠 | 苏幕遮 | 张晓棠 |
-| 1201 | 新鸳鸯蝴蝶梦(电视剧《包青天》片尾曲)-黄安 | 新鸳鸯蝴蝶梦 | 黄安 |
-| 1202 | 万物生 (梵语)-萨顶顶 | 万物生 | 萨顶顶 |
-| 1203 | Eye of the Tiger-Survivor | Eye Of The Tiger | Survivor |
-| 1204 | 甜蜜蜜(Sweet)-邓丽君 | 宝丽金经典中文金曲 | 邓丽君 |
-| 1205 | 遗憾(新加坡电视剧《实况剧场》主题曲)-许美静 | 遗憾 | 许美静 |
-| 1206 | Famous-Ivy Adara | Famous | Ivy Adara |
-| 1207 | 耍猴儿(百鬼夜行) (唢呐版)-Harry来了 | 未知 | Harry来了 |
-| 1208 | 丁香花-唐磊 | 丁香花 | 唐磊 |
-| 1209 | 无问(电影《无问西东》宣传曲)-毛不易 | 无问 | 毛不易 |
-| 1210 | 1901-Birdy | Birdy (Deluxe Version) | Birdy |
-| 1211 | 童年-叶蒨文 | Inside Out | 叶蒨文 |
-| 1212 | 2002 (Acoustic)-Amber Leigh Irish | Unplugged Acoustic, Vol. 2 | Amber Leigh Irish |
-| 1213 | 水星记-郭顶 | 飞行器的执行周期 | 郭顶 |
-| 1214 | golden hour-JVKE | this is what ____ feels like (Vol. 1-4) | JVKE |
-| 1215 | The Black Rose-Joanie Madden | Celtic Twilight 2 | Joanie Madden |
-| 1216 | My Sunset (Original Mix)-Feint | Feint EP2 | Feint |
-| 1217 | 雨空-α·Pav | Colors | α·Pav |
-| 1218 | One Day-Matisyahu | One Day | Matisyahu |
-| 1219 | 白色风车-周杰伦 | 依然范特西 | 周杰伦 |
-| 1220 | 兰花草-叶蒨文 | Inside Out | 叶蒨文 |
-| 1221 | Tuesday-Burak Yeter Danelle | Dance 2017 - Armada Music | Burak Yeter / Danelle |
-| 1222 | 红玫瑰-陈奕迅 | 认了吧 | 陈奕迅 |
-| 1223 | Welcome to Jurassic World(电影《侏罗纪世界》配乐)-Michael Giacchino | Jurassic World (Original Motion Picture Soundtrack)- (侏罗纪世界) | Michael Giacchino |
-| 1224 | PDD洪荒之力-Hoaprox | #Lov3 #Ngẫu Hứng | Hoaprox |
-| 1225 | Because I Love You-Shakin' Stevens | Strawberry Love | Shakin' Stevens |
-| 1226 | 飘洋过海来看你（钢琴唯美版） | 李宗盛经典金曲钢琴版 | QQ音乐·助眠减压俱乐部 |
-| 1227 | 告白之夜（纯音乐）-CMJ | 告白の夜 | CMJ |
-| 1228 | 爱你一万年-伍佰 | 爱你伍佰年 | 伍佰 & China Blue |
-| 1229 | 青丝-时光胶囊 | 记忆给他的礼物 | 时光胶囊 |
-| 1230 | 匆匆那年 (纯音乐)-梁翘柏 | 匆匆那年 电影原声带 | 梁翘柏 |
-| 1231 | 兰亭序-吴紫涵 | 情动心弦 | 吴紫涵 |
-| 1232 | 往事只能回味-韩宝仪 | 旧情绵绵 | 韩宝仪 |
-| 1233 | Ghost Bride Prelude-Nate Connelly | 僵尸 电影原声大碟 | Nate Connelly |
-| 1234 | You-Approaching Nirvana | Blocking the Sky Redux | Approaching Nirvana |
-| 1235 | Whisper Of Hope (Main)-Gothic Storm | Epic Emotional Piano | Gothic Storm |
-| 1236 | The Imperial March(帝国进行曲)-John Williams | Music from the Star Wars Saga- (星球大战) | John Williams |
-| 1237 | Young Hearts-Dirk Reichardt | Kokowääh 2 (Original Motion Picture Soundtrack) | Dirk Reichardt |
-| 1238 | James Bond Theme-John Barry Monty Norman | Dr. No (Original Motion Picture Soundtrack) | John Barry / Monty Norman |
-| 1239 | 轨迹-周杰伦 | 寻找周杰伦 | 周杰伦 |
-| 1240 | 友情岁月-陈小春 | 夜生活 | 陈小春 |
-| 1241 | Welcome To New York-Taylor Swift | reputation Stadium Tour Surprise Song Playlist | Taylor Swift |
-| 1242 | 铁血丹心(1983年TVB版电视剧《射雕英雄传之铁血丹心》主题曲)-罗文、甄妮 | 射雕英雄传 | 罗文 / 甄妮 |
-| 1243 | A Little Bit Broken-Spritely | A Little Bit Broken | Spritely |
-| 1244 | メインテーマ「永遠の一瞬」（主题「永恒的一瞬」）-伊藤賢治 | この青空に約束をー~ようこそつぐみ寮へ~Piano Stories | 伊藤賢治 |
-| 1245 | 潮鳴り-折戸伸治 | CLANNAD ORIGINAL SOUNDTRACK | 折戸伸治 |
-| 1246 | The Pink Panther Theme-Henry Mancini | In the Pink | Henry Mancini |
-| 1247 | 白いスーツのテーマ(白色西装主题曲)-市川淳 | TBS系 金曜ドラマ うぬぼれ刑事 オリジナル・サウンドトラック | 市川淳 |
-| 1248 | 爱是你我-刀郎、云朵、王翰仪 | 谢谢你 | 刀郎、云朵、王翰仪 |
-| 1249 | 穿越时空的爱恋-CMJ | 穿越时空的爱恋 | CMJ |
-| 1250 | 红色高跟鞋（温柔版）-藤柒吖 | 红色高跟鞋 | 藤柒吖 |
-| 1251 | 像我这样的人-毛不易 | 平凡的一天 | 毛不易 |
-| 1252 | 北国の春(北国之春)-渥美二郎 | 全日傳 砂金之卷+鉑環之卷 | 渥美二郎 |
-| 1253 | Dusk Till Dawn | Piano Acoustic Covers Vol 2 | Kurt Hugo Schneider / Kirsten Collins / Blake Rose |
-| 1254 | Dreamland-Liquid Mind | Liquid Mind XI: Deep Sleep | Liquid Mind |
-| 1255 | 月亮之上-凤凰传奇 | 月亮之上 | 凤凰传奇 |
-| 1256 | 浮光 (The History)-Jannik | 浮光 (The History) | Jannik |
-| 1257 | Criminals-F.O.O.L | Revenger | F.O.O.L |
-| 1258 | 黄昏-周传雄 | Transfer | 周传雄 |
-| 1259 | P.I.M.P-TangTian | P.I.M.P | TangTian |
-| 1260 | 射雕英雄传(电影《射雕英雄传之东成西就》片尾曲)-林穆 | 笑傲歌坛 传世经典 | 林穆 |
-| 1261 | 赤伶-是二智呀 | 赤伶（民谣版） | 是二智呀 |
-| 1262 | Halloween Theme - Main Title | Greatest Hits | John Carpenter |
-| 1263 | 王进打高俅-赵季平 | 水浒传 原声音乐 | 赵季平 |
-| 1264 | 平凡的一天-毛不易 | 平凡的一天 | 毛不易 |
-| 1265 | きっとまたいつか（album version）(午后柠檬树下的阳光)-DEPAPEPE | Ciao!Bravo!! | DEPAPEPE |
-| 1266 | 七月上-Jam | 阿敬的单曲集 | Jam |
-| 1267 | 梦醒时分(电视剧《1989一念间》插曲)-陈淑桦 | 1989一念间 电视原声带 | 陈淑桦 |
-| 1268 | 无名的人(电影《雄狮少年》主题曲)-毛不易 | 无名的人 | 毛不易 |
-| 1269 | 流浪者之歌-Budapest Festival Orchestra 诹访内晶子 | 惠威试音专用Ⅱ | Budapest Festival Orchestra / 诹访内晶子 |
-| 1270 | 恨爱交加-麦振鸿 | 天地传说之创世纪乐章 | 麦振鸿 |
-| 1271 | 最长的电影-周杰伦 | 我很忙 | 周杰伦 |
-| 1272 | Payphone-Maroon 5、Wiz Khalifa | Overexposed | Maroon 5 / Wiz Khalifa |
-| 1273 | 虞兮叹-闻人听書_ | 虞兮叹 | 闻人听書_ |
-| 1274 | 淘汰-陈奕迅 | 认了吧 | 陈奕迅 |
-| 1275 | 消愁-毛不易 | 平凡的一天 | 毛不易 |
-| 1276 | 高山流水-王昌元 | 中国古筝名家名曲——中国民族器乐精品系列 | 王昌元 |
-| 1277 | 美丽拍挡-胡伟立 | 国产凌凌漆 | 胡伟立 |
-| 1278 | Polska-Sava | Aire | Sava |
-| 1279 | 我是如此相信-周杰伦 | 我是如此相信 | 周杰伦 |
-| 1280 | Dehors(外面)-JORDANN | Dehors | JORDANN |
-| 1281 | Curtain-凌晨一点的莱茵猫 | Curtain falls | 凌晨一点的莱茵猫 |
-| 1282 | 奢香夫人-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
-| 1283 | 金三角 (恐怖纯音乐) | 金三角（恐怖纯音乐） | R̶ᴇ̶ɢ̶ʀ̶ᴇ̶ᴛ̶. |
-| 1284 | sans.-Toby Fox | UNDERTALE Soundtrack | Toby Fox |
-| 1285 | 美酒加咖啡-高胜美 | 美丽的回忆 | 高胜美 |
-| 1286 | 一荤一素-毛不易 | 平凡的一天 | 毛不易 |
-| 1287 | 一程山路-毛不易 | 小王 | 毛不易 |
-| 1288 | 夏夜-四季音色 | 春夏之交，轻旋淡律 | 四季音色 |
-| 1289 | 人形の館-岩崎琢 | 黒執事 サウンドコンプリート BLACK BOX | 岩崎琢 |
-| 1290 | Single Ladies (Put a Ring on It)-Beyoncé | Single Ladies (Put A Ring On It) - Dance Remixes | Beyoncé |
-| 1291 | 十面埋伏(琵琶独奏)-群星 | 中国古典音乐历朝黄金年鉴 | 群星 |
-| 1292 | 她的微笑 (original Mix)-阳山伟伟 | 她的微笑 (original Mix) | 阳山伟伟 |
-| 1293 | 映山红-黄英 | Cover Girls | 黄英 |
-| 1294 | Mystery of Love-Luke Pickman | Mystery of Love | Luke Pickman |
-| 1295 | 西厢寻他-伯爵Johnny / 唐伯虎Annie | 西厢寻他 | 伯爵Johnny / 唐伯虎Annie |
-| 1296 | 西楼别序-尹昔眠 / 小田音乐社 | 西楼别序 | 尹昔眠 / 小田音乐社 |
-| 1297 | 青天-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
-| 1298 | 青空-Candy_Wind | 拂晓车站 | Candy_Wind |
-| 1299 | 勇往直前-胡伟立 | 唐伯虎点秋香 | 胡伟立 |
-| 1300 | 遗憾-李代沫 | 我的歌声里 | 李代沫 |
-| 1301 | 执迷不悟-铁脑袋mp3 | 执迷不悟 | 铁脑袋mp3 |
-| 1302 | 小心な侵入者-根岸貴幸 | カードキャプターさくら オリジナル・サウンドトラック4 | 根岸貴幸 |
-| 1303 | 弱水三千-石头、张晓棠 | 念 | 石头 / 张晓棠 |
-| 1304 | 小鱼儿与花无缺片头音乐-麦振鸿 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 |
-| 1305 | 菊花台-周杰伦 | 依然范特西 | 周杰伦 |
-| 1306 | 雨的舞步-赵大鼾 | 雨的舞步 | 赵大鼾 |
-| 1307 | Lost Love (Instrumental)-Lunnna Janey杰尼 | Memories | Lunnna / Janey杰尼 |
-| 1308 | 我从草原来-凤凰传奇 | 我从草原来 新歌+精选 | 凤凰传奇 |
-| 1309 | 起风了(BILIBILI 11周年演讲)-周深 | 起风了 | 周深 |
-| 1310 | Betrayal Voices | Horror/Sci-Fi #1 | Immediate Music |
-| 1311 | Theme from Mission: Impossible-Danny Elfman | Mission Impossible [Original Score] | Danny Elfman |
-| 1312 | 樱花草 (治愈版)-藤柒吖 | 樱花草 | 藤柒吖 |
-| 1313 | 明月夜-张国荣 | 兜风心情 | 张国荣 |
-| 1314 | 匆匆那年-周深 | 匆匆那年 | 周深 |
-| 1315 | 童年-卓依婷 | 校园青春乐 | 卓依婷 |
-| 1316 | Trinity: Con la Stella Di Vicesceriffo-Franco Micalizzi | Lo Chiamavano Trinita (They Call Me Trinity) | Franco Micalizzi |
-| 1317 | 大笨钟-周杰伦 | 十二新作 | 周杰伦 |
-| 1318 | Dum Dum Dum-RENEE | Extending Playground | RENEE |
-| 1319 | Theme From Jurassic Park (From "Jurassic Park" Soundtrack)-John Williams | Jurassic Park (Soundtrack) | John Williams |
-| 1320 | 说了再见-周杰伦 | 跨时代 | 周杰伦 |
-| 1321 | 弱水三千 (0.7x)-张晓棠、石头、赵允哲、DJ Wave | 弱水三千 (0.7x) | 张晓棠 /石头 /赵允哲 /DJ Wave |
-| 1322 | 天路 (世界音乐版)-韩红 | 感动 | 韩红 |
-| 1323 | 萍聚-卓依婷 | 蜕变1少女的心情故事 | 卓依婷 |
-| 1324 | 春不晚 (DJHZ版)-RE-D、郑浩 | 春不晚 (Remixes) | RE-D / 郑浩 |
-| 1325 | 认真的雪 (温柔版)-藤柒吖 | 认真的雪 | 藤柒吖 |
-| 1326 | We Can't Stop-Boyce Avenue、Bea Miller | Cover Sessions, Vol. 3 | Boyce Avenue / Bea Miller |
-| 1327 | 至少还有你-林忆莲 | 林忆莲's | 林忆莲 |
-| 1328 | 简单爱-周杰伦 | 范特西 | 周杰伦 |
-| 1329 | 须尽欢(DJ弹鼓版)-沐泽 | 须尽欢 | 沐泽 |
-| 1330 | 春庭雪（DJ弹鼓版）-DJ光头 | 春庭雪 （DJ弹鼓版） | DJ光头 |
-| 1331 | 春庭雪 (DJ名龙 Mix) | 春庭雪 (DJ名龙 Mix) | DJ名龙 |
-| 1332 | 漂洋过海来看你-周深 | 漂洋过海来看你 周深翻唱精选Vol. 2 | 周深 |
-| 1333 | 梦醒时分-迪克牛仔 | 咆哮 | 迪克牛仔 |
-| 1334 | 刀马旦-CoCo李玟、周杰伦 | Promise | CoCo李玟 / 周杰伦 |
-| 1335 | 再见(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
-| 1336 | 不能说的秘密-周杰伦 | 不能说的秘密 电影原声带 | 周杰伦 |
-| 1337 | 暗号-周杰伦 | 八度空间 | 周杰伦 |
-| 1338 | 下个，路口，见-李宇春 | 李宇春 同名专辑 | 李宇春 |
-| 1339 | 暖暖 (香皂泡版) | 暖暖 | 香皂泡 |
-| 1340 | 漂洋过海来看你-周深 | 漂洋过海来看你 | 周深 |
-| 1341 | 告白气球-周杰伦 | 周杰伦的床边故事 | 周杰伦 |
-| 1342 | Luminous-贝奇Becky | Luminous | 贝奇Becky |
-| 1343 | 不再犹豫-Twins | 青春重置计划之BEYOND 40 | Twins |
-| 1344 | 搁浅-周杰伦 | 七里香 | 周杰伦 |
-| 1345 | 最炫民族风-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
-| 1346 | 园游会-周杰伦 | 七里香 | 周杰伦 |
-| 1347 | 勇气-梁静茹 | 勇气 | 梁静茹 |
-| 1348 | 春风再美也比不上你的笑，没见过你的人自然不会明了。（Demo） | 一个人跨年的你看啊，今晚月色真美。 | 十指流玉 |
-| 1349 | 自由飞翔-凤凰传奇 | 吉祥如意 | 凤凰传奇 |
-| 1350 | Octopus-ALan | Octopus | ALan |
-| 1351 | 一剪梅(电视剧《一剪梅》主题曲)-费玉清 | 一剪梅 | 费玉清 |
-| 1352 | 霍元甲-周杰伦 | 霍元甲 | 周杰伦 |
-| 1353 | 暖暖-梁静茹 | 亲亲 | 梁静茹 |
-| 1354 | 光阴的故事-张艾嘉 | 童年 | 张艾嘉 |
-| 1355 | All of Me-John Legend | Love In The Future | John Legend |
-| 1356 | 迷迭香-周杰伦 | 依然范特西 | 周杰伦 |
-| 1357 | 恋曲1980 (Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
-| 1358 | 光阴的故事-北京天使合唱团 | 光阴的故事 | 北京天使合唱团 |
-| 1359 | 欢沁-林海 | 林海影视配乐精选 | 林海 |
-| 1360 | No Glory | No Glory | Krale / M.I.M.E / Drama B / Skan |
-| 1361 | Shape Of My Heart(电影《这个杀手不太冷》片尾曲)-Sting | Fifteen Healing Bites | Sting |
-| 1362 | 这，就是爱-张杰 | 这，就是爱 | 张杰 |
-| 1363 | 断了的弦-周杰伦 | 寻找周杰伦 | 周杰伦 |
-| 1364 | Angel-Sarah McLachlan | Closer: The Best Of Sarah McLachlan | Sarah McLachlan |
-| 1365 | 青丝（～迷乱我双眼）-DJLH | DJ-LH说唱版Mix旋律版} | DJLH |
-| 1366 | I Really Like You-Carly Rae Jepsen | I Really Like You | Carly Rae Jepsen |
-| 1367 | 春庭雪 (DJ默涵版) | 春庭雪 (DJ默涵版) | DJ默涵 |
-| 1368 | Criticalpoint-凌晨一点的莱茵猫 | Criticalpoint | 凌晨一点的莱茵猫 |
-| 1369 | 青藏高原-韩红 | 醒了 | 韩红 |
-| 1370 | Letting Go-藤柒吖 | Letting Go | 藤柒吖 |
-| 1371 | 夜曲-周杰伦 | 十一月的萧邦 | 周杰伦 |
-| 1372 | 烟花易冷-周杰伦 | 跨时代 | 周杰伦 |
-| 1373 | 你是落日弥漫的橘，天边透亮的星-Hea2t | 你是落日弥漫的橘，天边透亮的星 | Hea2t |
-| 1374 | 爷爷泡的茶-周杰伦 | 八度空间 | 周杰伦 |
-| 1375 | 蒲公英的约定-周杰伦 | 我很忙 | 周杰伦 |
-| 1376 | 夜的第七章-周杰伦、潘儿 | 依然范特西 | 周杰伦 /潘儿 |
-| 1377 | 我会好好的-伍佰 | 诗情摇滚 | 伍佰 & China Blue |
-| 1378 | 粉色海洋-周杰伦 | 最伟大的作品 | 周杰伦 |
-| 1379 | 说好不哭-周杰伦 | 说好不哭 | 周杰伦 |
-| 1380 | 恋曲1990(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
-| 1381 | 可爱女人-周杰伦 | Jay | 周杰伦 |
-| 1382 | 爱是你我-云朵、刀郎 | 云朵 | 云朵 /刀郎 |
-| 1383 | 给我一首歌的时间-周杰伦 | 魔杰座 | 周杰伦 |
-| 1384 | 十送红军-刀郎、云朵 | 红色经典 | 刀郎 / 云朵 |
-| 1385 | 再不疯狂我们就老了-李宇春 | 再不疯狂我们就老了 | 李宇春 |
-| 1386 | 龙卷风-周杰伦 | Jay | 周杰伦 |
-| 1387 | 反方向的钟-周杰伦 | Jay | 周杰伦 |
-| 1388 | 友谊天长地久-北海雄哥 | 友谊天长地久 | 北海雄哥 |
-| 1389 | 我不配-周杰伦 | 我很忙 | 周杰伦 |
-| 1390 | Lifestyle-HMHK | Lifestyle | HMHK |
-| 1391 | 映山红-刀郎 | 红色经典 | 刀郎 |
-| 1392 | 映山红-黑鸭子 | 红色经典特别版 | 黑鸭子 |
-| 1393 | 春娇与志明 (咚鼓版)-陈毅 | 愁深几许 | 陈毅 |
-| 1394 | 回到过去-周杰伦 | 八度空间 | 周杰伦 |
-| 1395 | 轻轻的告诉你-卓依婷 | 春语1 | 卓依婷 |
-| 1396 | 爱你爱到死-李宇春 | 在吗？ | 李宇春 |
-| 1397 | 潇洒走一回(电影《京城四少》主题曲)-叶蒨文 | 潇洒走一回 | 叶蒨文 |
-| 1398 | Mojito-周杰伦 | Mojito | 周杰伦 |
-| 1399 | 红颜如霜-周杰伦 | 最伟大的作品 | 周杰伦 |
-| 1400 | 送别-亚洲天使童声合唱团 | 天使在唱歌 | 亚洲天使童声合唱团 |
-| 1401 | 绣红旗-刀郎、徐子尧 | 绣红旗 | 刀郎、徐子尧 |
-| 1402 | 爱你爱到死-杨荞安、同恩、夏宇童 | 海角七号 电影原声带 | 杨荞安 / 同恩 / 夏宇童 |
-| 1403 | 外婆-周杰伦 | 七里香 | 周杰伦 |
-| 1404 | 开不了口-周杰伦 | 范特西 | 周杰伦 |
+| 738 | 琴师-要不要买菜 | 琴师 | 要不要买菜 |
+| 739 | 西海情歌-黑鸭子 | 典盛集5 | 黑鸭子 |
+| 740 | 乌兰巴托的夜-葱香科学家（王悠然） | 乌兰巴托的夜 | 葱香科学家（王悠然） |
+| 741 | 听 | 拾 | 张杰 |
+| 742 | Lonely | Nana | Nana |
+| 743 | 冰雨-刘德华 | 爱在刻骨铭心时 | 刘德华 |
+| 744 | Unity | Sounds of Syndication, Vol .1 (Presented by Syndicate) | TheFatRat |
+| 745 | Hey, Soul Sister | Save Me, San Francisco | Train |
+| 746 | Waltz No.6 'Petit Chien' in D Flat Major Op.40-1 | 越听越聪明 1 | Classical Artists |
+| 747 | 我们的纪念-弦子 | 我们的纪念 | 弦子 |
+| 748 | Elsinore Revisited(重访埃尔西诺) | Rosencrantz & Guildenstern are Undead | Sean Lennon |
+| 749 | Too Far | King in the Mirror | Anna F |
+| 750 | Inspire | Serenity | Capo Productions |
+| 751 | 映山红(电影《闪闪的红星》插曲)-刘欢 | 六十年代生人 | 刘欢 |
+| 752 | Happy-Pharrell Williams | Happy (From "Despicable Me 2") | Pharrell Williams |
+| 753 | 让我偷偷看你 | 阿弥陀佛么么哒·一个孩子的心愿 | 赵雷 |
+| 754 | やわらかな光(柔和之光)-やまだ豊 | フジテレビ系ドラマ「僕のいた時間」オリジナルサウンドトラック - (日剧《我存在的时间》原声带) | やまだ豊 |
+| 755 | 夜的钢琴曲五 | 夜的钢琴曲 Demo集 | 石进 |
+| 756 | Sutter's Mill | The Music of Dan Fogelberg | Dan Fogelberg |
+| 757 | Please Don't Go | Please Don't Go | Joel Adams |
+| 758 | 曾经的你 | 每一刻都是崭新的 | 许巍 |
+| 759 | 最伟大的作品-周杰伦 | 最伟大的作品 | 周杰伦 |
+| 760 | Don't Let Me Fall-Lenka | Lenka (Expanded Edition) | Lenka |
+| 761 | Stay Here Forever | Valentine's Day OST | Jewel |
+| 762 | 存在 | 生无所求 | 汪峰 |
+| 763 | Stay Alive | The Secret Life Of Walter Mitty (Music From And Inspired By The Motion Picture) | José González |
+| 764 | Counting Stars-OneRepublic | Native (Deluxe Version) | OneRepublic |
+| 765 | 往生咒（黑神话：悟空）-游戏科学 | 黑神话：悟空（Black Myth：WuKong） | 游戏科学 |
+| 766 | 我就喜欢你这样的丫头 | 匆匆那年 电视原声带 | 杜维瀚 |
+| 767 | Everybody | Everybody | Ingrid Michaelson |
+| 768 | 传奇 | 传奇 | 王菲 |
+| 769 | 易燃易爆炸 | 如也 | 陈粒 |
+| 770 | 飞向别人的床 | 飞向别人的床 | 沉珂（C.K）& 光光 |
+| 771 | 赤伶 (弹唱版) | 赤伶 | 孙鹏凯 |
+| 772 | Astronomia（黑人抬棺古风版） | 黑人抬棺古风版 | litterzy、水玥儿 |
+| 773 | I Want My Tears Back | Imaginaerum | Nightwish |
+| 774 | 红颜 | MuSiC混合体 | 胡彦斌 |
+| 775 | 혼자시킨 사랑 独自的爱情 | 명랑소녀 성공기 OST | True Bird |
+| 776 | 潮湿的心 | 蜕变1少女的心情故事 | 卓依婷 |
+| 777 | brave heart | brave heart | 宮崎歩 |
+| 778 | 世界第一等-伍佰 | 滚石香港黄金十年 伍佰精选 | 伍佰 |
+| 779 | 明天过后 | 明天过后 | 张杰 |
+| 780 | 暖暖-1个球 | 暖暖 | 1个球 |
+| 781 | Love Theme | 명랑소녀 성공기 OST | 吴振宇 |
+| 782 | Read My Mind | Jade | Sweetbox |
+| 783 | 千里之外-周杰伦、费玉清 | 依然范特西 | 周杰伦/费玉清 |
+| 784 | Let It Out | Let It Out | Frances |
+| 785 | Love Song | 명랑소녀 성공기 OST | 赵长赫 |
+| 786 | 芒种(梦幻西游普陀山门派曲)-腾格尔 | 芒种 | 腾格尔 |
+| 787 | 飞得更高 | 笑着哭 | 汪峰 |
+| 788 | 花火 | 花火 | 汪峰 |
+| 789 | 直到永远 | 生死不离 我们在一起 | 汪峰 |
+| 790 | 跟往事干杯 | 不朽金曲精选 Ⅰ | 姜育恒 |
+| 791 | 枫-周杰伦 | 十一月的萧邦 | 周杰伦 |
+| 792 | 蓝莲花 | 时光.漫步 | 许巍 |
+| 793 | 娃娃脸 | 娃娃脸 | 后弦 |
+| 794 | 我爱你中国 | 怒放的生命 | 汪峰 |
+| 795 | 星象仪 プラネタリウム | プラネタリウム | 大塚爱 |
+| 796 | 推理(オリジナル・ヴァージョン)-大野克夫 | 「名探偵コナン」サントラ・スーパー・ベスト- (名侦探柯南) | 大野克夫 |
+| 797 | 一直很安静 | 寂寞在唱歌 | 阿桑 |
+| 798 | 生活不止眼前的苟且 | 生活不止眼前的苟且 | 许巍 |
+| 799 | Mark's Theme-顾嘉辉 | 英雄本色1&2 | 顾嘉辉 |
+| 800 | Tears Of A Clown | Mastercutor | U.D.O. |
+| 801 | 運命のルーレット廻して (转动命运之轮) | 運命のルーレット廻して | ZARD (ザード) |
+| 802 | The Dawn-Dreamtale | Beyond Reality (Japanese Edition) | Dreamtale |
+| 803 | 兰亭序 (粤语版) (Single Version) | 兰亭序 | 王十三 |
+| 804 | For Free | Folk For Kids | Lana Del Rey / Zella Day / Weyes Blood |
+| 805 | Poker Face-Lady Gaga | Poker Face | Lady Gaga |
+| 806 | My Destiny (我的命运) | 별에서 온 그대 OST Part 1 | LYn (린) |
+| 807 | 亲爱的路人 | 亲爱的路人 | 刘若英 |
+| 808 | Casablanca(卡萨布兰卡)-Bertie Higgins | Movie 930 | Bertie Higgins |
+| 809 | 等不到的爱 | 裸婚时代 电视剧原声带 | 文章 |
+| 810 | Call Me Maybe | Call Me Maybe | Carly Rae Jepsen |
+| 811 | 花开在眼前 | 花开在眼前 | 韩磊 |
+| 812 | 如果不能好好爱 | 如果不能好好爱 | 吴克群 |
+| 813 | 童年 | 纵贯线演唱会 | 罗大佑、李宗盛、张震岳、周华健 |
+| 814 | 魔訶不思議アドベンチャー! | ドラゴンボール全曲集 | 高橋洋樹 |
+| 815 | 我是一只小小鸟-任贤齐&李宗盛 | 台湾男儿任贤齐认真精选辑 | 任贤齐 / 李宗盛 |
+| 816 | 白羊座的忧伤-石进 | 夜的钢琴曲Ⅱ | 石进 |
+| 817 | One Night In 北京 | SHIN 同名专辑 | 信乐团 |
+| 818 | The Monster | The Monster | Eminem / Rihanna |
+| 819 | 1%-Oscar Scheller、Lily Allen | 1% | Oscar Scheller / Lily Allen |
+| 820 | Groundhog Day | Groundhog Day | Em Beihold |
+| 821 | 我期待-张雨生 | 卡拉OK.台北.我 | 张雨生 |
+| 822 | Amazing Grace 天赐恩宠 | 苏格兰音乐之旅 苏格兰风笛 | 群星 |
+| 823 | 童年-张艾嘉 | 童年 | 张艾嘉 |
+| 824 | 漂洋过海来看你-孙露 | 寂寞女人心 | 孙露 |
+| 825 | 兰亭序【笛子版】-亿只张勤洗 | 兰亭序 | 亿只张勤洗 |
+| 826 | 小仙女 | 武侠音乐系列之缠绵悱恻 （截取版） | 麦振鸿 |
+| 827 | Élan | Élan | Nightwish |
+| 828 | 美丽的神话Ⅰ(Endless Love 1)-成龙、金喜善 | 神话 电影原声带 | 成龙 / 金喜善 |
+| 829 | 下个路口见 （完整版）-藤柒吖 | 下个路口见 | 藤柒吖 |
+| 830 | 爱你在心口难开-高胜美 | 怀念老歌七 | 高胜美 |
+| 831 | Fengxia Leaves Her Parents-Zhao Jiping | Lifetimes (Vivre!) [Original Motion Picture Soundtrack] | Zhao Jiping |
+| 832 | The Hampster Dance Song-Hampton the Hampster | The Hamsterdance Album | Hampton the Hampster |
+| 833 | Dans la maison (Thème)-Philippe Rombi | Dans la maison | Philippe Rombi |
+| 834 | 一千年以后(A Thousand Years Later)-林俊杰 | 编号89757 | 林俊杰 |
+| 835 | 「名探偵コナン」~メインテーマ-大野克夫 | 「名探偵コナン」メインテーマ | 大野克夫 |
+| 836 | 万里の長城-太田美知彦 | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 太田美知彦 |
+| 837 | 喜剧之王 | 喜剧之王 | 李荣浩 |
+| 838 | Tennessee-Hans Zimmer | Pearl Harbor [O.S.T] | Hans Zimmer |
+| 839 | 浮沉的兄弟-戎祥 | 浮沉的兄弟 | 戎祥 |
+| 840 | 幸せ（幸福）-小林幸子 | 小林幸子全曲集 2013 | 小林幸子 |
+| 841 | Liekkas | Assogattis: By The Embers | Sofia Jannok |
+| 842 | 不是因为寂寞才想你-T.R.Y. | 精彩TRY | T.R.Y. |
+| 843 | 郎的诱惑-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
+| 844 | 我真的受伤了-张学友 | 学友 热 | 张学友 |
+| 845 | 我想和你一起去海边-江惠莲 | 伍六七 原声大碟 | 江惠莲 |
+| 846 | For the World-谭盾 | Late Night Tales: Air | 谭盾 |
+| 847 | Scotland the Brave 苏格兰勇士 | 苏格兰音乐之旅 苏格兰风笛 | 群星 |
+| 848 | 月牙湾 | 爱.歌姬 | F.I.R. |
+| 849 | Gangsta Bop | Konvicted | Akon |
+| 850 | Hallelujah | Warmer In The Winter (Deluxe Edition) | Lindsey Stirling |
+| 851 | Nijamena (BGM版) | Nijamena | H2s |
+| 852 | 弱水三千-唐伯虎Annie、伯爵Johnny | 弱水三千 | 唐伯虎Annie / 伯爵Johnny |
+| 853 | O Come O Come Emmanuel-Tommee Profitt | The Birth Of A King | Tommee Profitt |
+| 854 | 二泉映月 | 阿炳全集 | 阿炳 |
+| 855 | 男儿当自强 | 笑傲歌坛 传世经典 | 林子祥 |
+| 856 | 上海滩 | 上海滩 | 叶丽仪 |
+| 857 | 我和你 | 北京2008 奥运会、残奥会开闭幕式主题歌曲专辑 | 刘欢 / Sarah Brightman |
+| 858 | 算你狠 | 绝对收藏 | 陈小春 |
+| 859 | 黄种人 | 黄·锋 | 谢霆锋 |
+| 860 | 时间煮雨(电影《小时代》主题曲)-郁可唯 | 小时代 电影原声带 | 郁可唯 |
+| 861 | Croatian Rhapsody | The Piano Player | Maksim Mrvica |
+| 862 | He's a Pirate | Pirates of the Caribbean: The Curse of the Black Pearl | Klaus Badelt |
+| 863 | Natural-Imagine Dragons | Origins (Deluxe) | Imagine Dragons |
+| 864 | 星月神话 | 女人又一次哭泣 | 金莎 |
+| 865 | 夜上海 | 夜上海精选 | 周璇 |
+| 866 | 带你去旅行 | 带你去旅行 | 校长（张驰） |
+| 867 | 天下第一 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 / 罗坚 |
+| 868 | 飘洋过海来看你-文武贝 | 文武贝钢琴改编作品集（2015年全集） | 文武贝 |
+| 869 | 没有你的日子我真的好孤单-韩晶 | 不要用我的爱来伤害我 | 韩晶 |
+| 870 | 给我一个吻-张露 | 群星会 38 张露 (珍藏系列) | 张露 |
+| 871 | '97爱情宣言 | 狼 97黄金自选辑 | 齐秦 |
+| 872 | 东风破-欧阳耀莹 | 欧阳耀莹 Cover合辑 | 欧阳耀莹 |
+| 873 | 外面的世界 | 燃烧爱情（狼之旅） | 齐秦 |
+| 874 | 小酒窝 | JJ陆 | 林俊杰 / 蔡卓妍 |
+| 875 | Past Lives | Drowning | Slushii |
+| 876 | 往事随风 | 痛并快乐着 | 齐秦 |
+| 877 | Go Time | Go Time | Mark Petrie |
+| 878 | Only Love(电视剧《妙手仁心 II》插曲)-Trademark | #Love | Trademark |
+| 879 | 日不落-蔡依林 | 特务J - (Agent J) | 蔡依林 |
+| 880 | 难念的经(1997年TVB版电视剧《天龙八部》片头曲)-周华健 | 电视剧歌曲大全 | 周华健 |
+| 881 | 李香兰-张学友 | Jacky Cheung 15 | 张学友 |
+| 882 | Someone to Stay | Someone to Stay | Vancouver Sleep Clinic |
+| 883 | The Portrait | Titanic: Special Edition | James Horner |
+| 884 | 看见-陈鸿宇、游戏科学、8082Audio | 《黑神话：悟空》游戏音乐精选集 | 陈鸿宇 / 游戏科学 / 8082Audio |
+| 885 | 假如爱有天意-李健 | 李健 | 李健 |
+| 886 | 那年我双手插兜 不知道什么叫做对手 | 那年我双手插兜 不知道什么叫做对手（语录版） | 黑左 / 莎馬淑鳐 / 刘liu创意人 |
+| 887 | 你还欠我一个拥抱 | 很有爱 | 后弦 / Sara |
+| 888 | Strength of a Thousand Men | Archangel | Two Steps From Hell |
+| 889 | 匆匆那年 | 匆匆那年 电影原声带 | 王菲 |
+| 890 | 说好的幸福呢-周杰伦 | 魔杰座 | 周杰伦 |
+| 891 | 存在-雷婷 | 存在 | 雷婷 |
+| 892 | 麻雀-李荣浩 | 麻雀 | 李荣浩 |
+| 893 | 一路 | 匆匆那年 电视原声带 | 白敬亭 / 杨玏 / 杜维瀚 |
+| 894 | Spirit of the Wild | Age of Wonders | BrunuhVille |
+| 895 | 命运 운명 | 풀 하우스 OST (KBS 미니시리즈) | Why |
+| 896 | 青い空に出逢えた(TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 辻尾有紗 |
+| 897 | 大海~ | Asia | THE JAYWALK |
+| 898 | 男人海洋-周传雄 | 男人.海洋 | 周传雄 |
+| 899 | 映山红-韩红 | 红歌② | 韩红 |
+| 900 | 热爱105°C的你 | 热爱105°C的你 | 阿肆 |
+| 901 | Flavor Of Life | Flavor Of Life | 宇多田ヒカル |
+| 902 | 披着羊皮的狼-刀郎 | 披着羊皮的狼 | 刀郎 |
+| 903 | 我的未来不是梦-张雨生 | 6个朋友 | 张雨生 |
+| 904 | 阳光宅男-周杰伦 | 我很忙 | 周杰伦 |
+| 905 | 我们的纪念-弦子 | 我们的纪念 | 弦子 |
+| 906 | Death Of Titanic | Titanic: Music from the Motion Picture Soundtrack | James Horner |
+| 907 | Lordly (Instrumental Mix)-Feder | Lordly (Instrumental Mix) | Feder |
+| 908 | 最浪漫的事-赵咏华 | 我的爱我的梦我的家 | 赵咏华 |
+| 909 | 孤勇者_凤凰传奇 | 孤勇者 | 凤凰传奇 |
+| 910 | 不如不见 | What's Going On…? | 陈奕迅 |
+| 911 | Distant Memories | Titanic: Music from the Motion Picture Soundtrack | James Horner |
+| 912 | 偏爱 | 破天荒 | 张芸京 |
+| 913 | 爱的代价(The Price of Love 电影《念念》首波宣传曲)-张艾嘉 | 爱的代价 | 张艾嘉 |
+| 914 | 大侠霍元甲(电视剧《大侠霍元甲》主题曲)-叶振棠 | 叶振棠精选全集(珍藏版) | 叶振棠 |
+| 915 | 我们的纪念-徐薇 | 我们的纪念 | 徐薇 |
+| 916 | Diamonds | Diamonds | Rihanna |
+| 917 | 風の住む街（风居住的街道）-磯村由紀子 | 風の住む街 | 磯村由紀子 |
+| 918 | 还有我-任贤齐 | 如果没有你 | 任贤齐 |
+| 919 | 太多(电视剧《穿越时空的爱恋》片头曲)-陈冠蒲 | 就让你走 | 陈冠蒲 |
+| 920 | 绅士-薛之谦 | 绅士 | 薛之谦 |
+| 921 | Je m'appelle Hélène | Hélène | Hélène Rolles |
+| 922 | 我欲成仙 | 西游记后传片头曲 | 刘欢 |
+| 923 | 阿普的思念(写给爷爷的歌)-诺米么Lodmemo | risingstar12.6 | 诺米么Lodmemo |
+| 924 | 新套马杆-乌兰托娅 | 新套马杆 | 乌兰托娅 |
+| 925 | 希望 (国语) | 我是阳光的 | 陈慧琳 |
+| 926 | 双截棍-周杰伦 | 范特西 | 周杰伦 |
+| 927 | 我想当风(电影《抓娃娃》片尾曲)-鹿先森乐队 | 我想当风 | 鹿先森乐队 |
+| 928 | Something Just Like This | Something Just Like This | The Chainsmokers / Coldplay |
+| 929 | 探故知-浅影阿、汐音社 | 探故知 | 浅影阿 / 汐音社 |
+| 930 | 玫瑰花的葬礼-许嵩 | 许嵩单曲集 | 许嵩 |
+| 931 | 花海-周杰伦 | 魔杰座 | 周杰伦 |
+| 932 | Children of the Dark | Together Till the End | Mono Inc. / Joachim Witt / Tilo Wolff / Chris Harms |
+| 933 | 極楽浄土 | 約束 -Promise code- | GARNiDELiA |
+| 934 | 作曲家 | 李荣浩 | 李荣浩 |
+| 935 | 辞九门回忆(DJ版) | 未知 | 未知 |
+| 936 | 当爱已成往事(电影《霸王别姬》主题曲)-林忆莲、李宗盛 | 我们的主打歌 | 林忆莲 / 李宗盛 |
+| 937 | 黑色幽默-周杰伦 | Jay | 周杰伦 |
+| 938 | 须尽欢(正式授权版)-要不要买菜 | 须尽欢 | 要不要买菜 |
+| 939 | 盗将行-花粥、马雨阳 | 粥请客（二） | 花粥 / 马雨阳 |
+| 940 | 诺言 (正式版)-海来阿木 | 诺言 (正式版) | 海来阿木 |
+| 941 | Maga-Such a Whore（Maga remix）-Maga | Such a Whore | Maga |
+| 942 | 闯将令-香港中乐团 于会咏 胡登跳 | 功夫 电影原声大碟 | 香港中乐团 / 于会咏 / 胡登跳 |
+| 943 | 黑暗中的舞者 | 寂静的天空 | 黛青塔娜 / HAYA乐团 |
+| 944 | 亲爱的旅人啊-周深 | 亲爱的旅人啊《千与千寻》（Cover 木村弓） | 周深 |
+| 945 | 銀の龍の背に乗って | 銀の龍の背に乗って | 中島みゆき |
+| 946 | She Is My Sin-Nightwish | Tales from the Elvenpath | Nightwish |
+| 947 | To Ramona | The Complete Album Collection Vol.1 | Bob Dylan |
+| 948 | Azul | Acoustik Guitar | John H. Clarke |
+| 949 | 痴情冢（完整版）-吴严武 | 痴情冢（完整版） | 吴严武 |
+| 950 | Opening | 少林足球 电影原声带 | 黄英华 |
+| 951 | Natural-Imagine Dragons | Origins (Deluxe) | Imagine Dragons |
+| 952 | Feel Me-Selena Gomez | Feel Me | Selena Gomez |
+| 953 | Hummell Gets The Rockets | The Rock (Original Motion Picture Score) | Nick Glennie-Smith /Harry Gregson-Williams |
+| 954 | 星の下での邂逅-赵大鼾 | 星の下での邂逅 | 赵大鼾 |
+| 955 | Impossible-Two Steps From Hell | Unleashed | Two Steps From Hell |
+| 956 | 爱是你我(Live)-徐子尧、刀郎 | 爱是你我 | 徐子尧、刀郎 |
+| 957 | Love From Me-Johnson Rodgie | Love From Me | Johnson Rodgie |
+| 958 | 猜不透 | 我爱上的 | 丁当 |
+| 959 | Samba-Ludovico Einaudi | I Giorni | Ludovico Einaudi |
+| 960 | Håll Om Mig-Nanne Grönvall | Melodifestivalen 1958-2013 | Nanne Grönvall |
+| 961 | 难却 | 难却 | 平生不晚 |
+| 962 | Until You-Shayne Ward | Breathless | Shayne Ward |
+| 963 | 梦醒时分-杨钰莹 | 我有一段情 | 杨钰莹 |
+| 964 | 王招君 (你看你拉住我的模样)(《寻汉计》电影推广曲)-任素汐 | 王招君 (你看你拉住我的模样) | 任素汐 |
+| 965 | Old Threads-Deep East Music | Vintage Sunshine | Deep East Music |
+| 966 | 甜甜的-周杰伦 | 我很忙 | 周杰伦 |
+| 967 | Not Angry-Chris James | Not Angry | Chris James |
+| 968 | 萤火之森-CMJ | 萤火之森 | CMJ |
+| 969 | 万疆-李玉刚 | 万疆 | 李玉刚 |
+| 970 | 日不落(温柔抒情版)-藤柒吖 | 日不落 | 藤柒吖 |
+| 971 | 友谊天长地久-杨钰莹、毛宁 | 快乐时光（12）世界名歌精选（一） | 杨钰莹 / 毛宁 |
+| 972 | 珊瑚海-周杰伦、Lara梁心颐 | 十一月的萧邦 | 周杰伦 / Lara梁心颐 |
+| 973 | Closer-The Chainsmokers、Halsey | Closer | The Chainsmokers / Halsey |
+| 974 | 慢慢喜欢你-莫文蔚 | 我们在中场相遇 | 莫文蔚 |
+| 975 | Opening Credits-Hans Zimmer | Call of Duty: Modern Warfare 2 OST | Hans Zimmer |
+| 976 | 茉莉花(江苏民歌)-龚琳娜 | 走西口 | 龚琳娜 |
+| 977 | 沈园外 (DJ版)-阿YueYue、戾格、小田音乐社 | 沈园外 | 阿YueYue / 戾格 / 小田音乐社 |
+| 978 | 棉花糖-至上励合 | 降临 | 至上励合 |
+| 979 | Samsara-Tungevaag & Raaban | Club Sounds Vol.73 | Tungevaag & Raaban |
+| 980 | Dream-Priscilla Ahn | A Good Day | Priscilla Ahn |
+| 981 | 今天你要嫁给我(Marry Me Today)-蔡依林、陶喆 | 太美丽 | 蔡依林 / 陶喆 |
+| 982 | The X-Files (Original Version)-Mark Snow | The X Files? | Mark Snow |
+| 983 | 蓝色土耳其-周传雄 | 蓝色土耳其 | 周传雄 |
+| 984 | BOOM-Tiësto / Sevenn | BOOM | Tiësto / Sevenn |
+| 985 | 初识太极 | 太极张三丰 电影原声带 | 胡伟立 |
+| 986 | At Anchor | The Airship | Port Blue |
+| 987 | 以父之名-周杰伦 | 叶惠美 | 周杰伦 |
+| 988 | 愿得一人心-李行亮 | 愿得一人心 | 李行亮 |
+| 989 | 青花-周传雄 | 蓝色土耳其 | 周传雄 |
+| 990 | 难却 (DJ版0.85x|待上浓妆好戏开场) | 难却 | 平生不晚 |
+| 991 | 我落泪情绪零碎-周杰伦 | 跨时代 | 周杰伦 |
+| 992 | 同桌的你(电影《同桌的你》片尾主题曲)-胡夏 | 同桌的你 | 胡夏 |
+| 993 | 悬溺-葛东琪 | 第二街区 | 葛东琪 |
+| 994 | 我要你(电影《驴得水》主题曲)-任素汐 | 我要你 | 任素汐 |
+| 995 | 遇上你是我的缘-央金兰泽 | 爱琴海 | 央金兰泽 |
+| 996 | Special Ops-Silver Screen | Under Siege | Silver Screen |
+| 997 | Frontier-Doctor Vox | Level Up | Doctor Vox |
+| 998 | 芦苇飞（哈市DJ小鹏2024）-泡芙芙Scarlett | 芦苇飞（哈市DJ小鹏2024） | 泡芙芙Scarlett |
+| 999 | Electric Romeo | Themes for Orchestra and Choir 2 - Abbey Road | Immediate Music |
+| 1000 | 賭神 | 赌神 电影原声 | 卢冠廷 |
+| 1001 | 那盏茶 (新编版)-金志文 | 那盏茶 (新编版) | 金志文 |
+| 1002 | 下雨天-南拳妈妈 | 优の良曲 南搞小孩 | 南拳妈妈 |
+| 1003 | 姑娘别哭泣（弹唱版）-柯柯柯啊 | 姑娘别哭泣 | 柯柯柯啊 |
+| 1004 | 美酒加咖啡-邓丽君 | 花样年华 | 邓丽君 |
+| 1005 | 真心英雄 (Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
+| 1006 | 秘密-卡洛儿 | 秘密 | 卡洛儿 |
+| 1007 | Time (Official)-MKJ | Time After Time | MKJ |
+| 1008 | 琴师-音频怪物 | 老妖的奇异之旅 | 音频怪物 |
+| 1009 | 我的地盘-周杰伦 | 七里香 | 周杰伦 |
+| 1010 | 但愿人长久-邓丽君 | 但愿人长久 15周年纪念集 | 邓丽君 |
+| 1011 | The Next Episode | The Next Episode | Dr. Dre / Snoop Dogg / Kurupt / Nate Dogg |
+| 1012 | 会呼吸的痛-梁静茹 | 崇拜 | 梁静茹 |
+| 1013 | 纸短情长 (完整版)-烟把儿 | 纸短情长 | 烟把儿 |
+| 1014 | 你潇洒我漂亮-韩宝仪 | 台湾福建 畅销金曲沙龙镭射效果音乐 | 韩宝仪 |
+| 1015 | 驼铃-刀郎 | 披着羊皮的狼 | 刀郎 |
+| 1016 | 爱要坦荡荡 (Live)-丁丁 | 《中国好声音》2012跨年演唱会 | 丁丁 |
+| 1017 | Italia e voi（Orginal Mix）-HSHK | Italia e voi | HSHK / 贰皮 / VodKa / Pnan |
+| 1018 | かごめと犬夜叉 | TVアニメーション「犬夜叉」オリジナルサウンドトラックアルバム「犬夜叉 音楽篇」 | 和田薫 |
+| 1019 | Rather Be(宁愿)-Clean Bandit、Jess Glynne | Rather Be | Clean Bandit / Jess Glynne |
+| 1020 | 琵琶语-林海 | 林海影视配乐精选 | 林海 |
+| 1021 | 비오는 소리 (Intro)下雨的声音-July | To Heaven | July |
+| 1022 | 北国之春-邓丽君 | 邓丽君 纪念特别专辑 第二辑 | 邓丽君 |
+| 1023 | アシタカせっ記 (The Legend of Ashitaka)-久石让 | もののけ姫 イメージアルバム | 久石让 (ひさいし じょう) |
+| 1024 | Past Lives-Jasper、Martin Arteta | Past Lives | Jasper / Martin Arteta / 11:11 Music Group |
+| 1025 | 我们的爱-F.I.R. | 同名专辑 | F.I.R. |
+| 1026 | K歌之王-陈奕迅 | 打得火热 | 陈奕迅 |
+| 1027 | Winter Without You-Gloria Kim | Winter Without You | Gloria Kim |
+| 1028 | 泪桥-伍佰 | 泪桥 | 伍佰 & China Blue |
+| 1029 | 喀什噶尔胡杨-刀郎 | 喀什噶尔胡杨 | 刀郎 |
+| 1030 | 成全(电视剧《梦想成真》片头曲)-刘若英 | 年华 | 刘若英 |
+| 1031 | Run Me Out-Zola Jesus | How to Get Away with Murder | Zola Jesus |
+| 1032 | Pilgrimage-Jannik | Pilgrimage Epic Orchestral | Jannik |
+| 1033 | 情人-刀郎 | 2002年的第一场雪 | 刀郎 |
+| 1034 | 云宫迅音（Black Myth：WuKong）-游戏科学 | 黑神话：悟空（Black Myth：WuKong） | 游戏科学 |
+| 1035 | We No Speak Americano(UK Radio Edit)-Yolanda Be Cool | We No Speak Americano | Yolanda Be Cool |
+| 1036 | 桔梗谣-卢爱兰 | 朝鲜族民歌 《桔梗谣 . 道拉基》中国音乐地图 听见吉林 | 卢爱兰 |
+| 1037 | 爱的飞行日记-周杰伦、杨瑞代 | 跨时代 | 周杰伦 / 杨瑞代 |
+| 1038 | Just the Way You Are-Bruno Mars | The Brit Awards Album 2011 | Bruno Mars |
+| 1039 | 关山月-路南 | 关山月 | 路南 |
+| 1040 | 那盏茶-金志文 | 热门华语149 | 金志文 |
+| 1041 | 荷塘月色-凤凰传奇 | 我从草原来 新歌+精选 | 凤凰传奇 |
+| 1042 | 芦苇荡(电影《大话西游》插曲)-赵季平 | 热门华语20 | 赵季平 |
+| 1043 | 友谊天长地久-黑鸭子 | 伴你二十年特辑 黑鸭子圣诞经典 | 黑鸭子 |
+| 1044 | Deflagration-Silver Screen | Under Siege | Silver Screen |
+| 1045 | The Boys | 'The Boys' The 3rd Album | 少女时代 |
+| 1046 | 万物生 (国语)-萨顶顶 | 万物生 | 萨顶顶 |
+| 1047 | 我用什么把你留住-福禄寿FloruitShow | 我用什么把你留住 | 福禄寿FloruitShow |
+| 1048 | 春不晚-李常超 (Lao乾妈) | 春不晚 | 李常超 (Lao乾妈) |
+| 1049 | 退后-周杰伦 | 依然范特西 | 周杰伦 |
+| 1050 | 黄金甲-周杰伦 | 黄金甲 | 周杰伦 |
+| 1051 | 须尽欢(热播女声版)-糯米Nomi、余子林 | 须尽欢 | 糯米Nomi / 余子林 |
+| 1052 | 弱水三千 (0.9x版)-阮言Ruany | 弱水三千 | 阮言Ruany |
+| 1053 | What Do You Mean?-Justin Bieber | What Do You Mean? | Justin Bieber |
+| 1054 | Wicked Wonderland (Radio Edit)-Martin Tungevaag | Wicked Wonderland | Martin Tungevaag |
+| 1055 | 幽默-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
+| 1056 | 半岛铁盒-周杰伦 | 八度空间 | 周杰伦 |
+| 1057 | 不将就(电影《何以笙箫默》片尾主题曲)-李荣浩 | 有理想 | 李荣浩 |
+| 1058 | Alone-Alan Walker | Alone | Alan Walker |
+| 1059 | Time Back-Bad Style | 最新热歌慢摇63 | Bad Style |
+| 1060 | Numb Encore | Look Out For Detox | Dr. Dre / 50 Cent / JAY-Z / Eminem / Linkin Park |
+| 1061 | Star Sky-Two Steps From Hell | Battlecry | Two Steps From Hell |
+| 1062 | Oceanside | Melody Lane | Lainey Lou |
+| 1063 | One Day In Spring | One Day In Spring | Bandari |
+| 1064 | 明明就-周杰伦 | 十二新作 | 周杰伦 |
+| 1065 | Deadwood-Really Slow Motion | Deadwood | Really Slow Motion |
+| 1066 | Promises | Promises | Ryn Weaver |
+| 1067 | 我知道-By2 | Twins | By2 |
+| 1068 | Between Worlds | X I I | Roger Subirana |
+| 1069 | Dream It Possible | Dream It Possible | Delacey |
+| 1070 | 桔梗谣-金栄実 | 伽倻琴演奏《与你一起》 | 金栄実 |
+| 1071 | 桔梗谣-이금미 | Korea: Folk Songs I - Songs Of Kyonggido District | 이금미 |
+| 1072 | Simon Birch | The Bucket List (Original Motion Picture Soundtrack) | Marc Shaiman |
+| 1073 | Firework | Teenage Dream | Katy Perry |
+| 1074 | Everything at Once | Two | Lenka |
+| 1075 | 口弦-妙子 | 独家爱唱Ⅲ | 妙子 |
+| 1076 | 可能否-腾格尔 | 可能否 | 腾格尔 |
+| 1077 | Murder In My Mind-Kordhell | Murder In My Mind | Kordhell |
+| 1078 | 敢问路在何方（黑神话：悟空）-黑神话：悟空、Benjamin·Scott、杨洪基 | 《黑神话：悟空》游戏原声带 | 黑神话：悟空 / Benjamin·Scott / 杨洪基 |
+| 1079 | 一千个伤心的理由-张学友 | 刻骨铭心 | 张学友 |
+| 1080 | 在你的身边 (0.8x)-慢热的气球 | 在你的身边 (0.8x) | 慢热的气球 |
+| 1081 | Once Upon a Time in America: Deborah's Theme-Ennio Morricone | The Grandmaster (Original Score) | Ennio Morricone |
+| 1082 | 童年 (童声版)-宋小睿 | 宋小睿的电台 | 宋小睿 |
+| 1083 | Morsmordre-Crazy Donkey | Morsmordre | Crazy Donkey |
+| 1084 | 旅行的意义(TRAVEL IS MEANINGFUL) | 渺渺 电影原声 | 陈绮贞 |
+| 1085 | 空 (TV Mix) | 中華一番! スペシャルTVオンエアーミックス& ― オリジナル・サウンドトラック | 大黒摩季 |
+| 1086 | 模特 | 模特 | 李荣浩 |
+| 1087 | FourFiveSeconds | FourFiveSeconds | Rihanna / Kanye West / Paul McCartney |
+| 1088 | Psycho, Pt. 2-Russ | Psycho, Pt. 2 | Russ |
+| 1089 | Anacreon-Bear McCreary | Foundation: Season 1 (Apple TV+ Original Series Soundtrack) | Bear McCreary |
+| 1090 | 风居住的街道（Piano ver） (翻自 磯村由紀子）-饭碗的彼岸 | Piano Cover | 饭碗的彼岸 |
+| 1091 | 爱转角 | Best Show | 罗志祥 |
+| 1092 | 须尽欢 (0.8x)-郑浩 | 须尽欢 | 郑浩 |
+| 1093 | Sing You To Sleep-Matt Cab | Sing You To Sleep | Matt Cab |
+| 1094 | 我真的受伤了(电影《Delete爱人》插曲)-王菀之 | Audiophile Compilations | 王菀之 |
+| 1095 | Like That-Bea Miller | Chapter Two: Red | Bea Miller |
+| 1096 | Take Me Home Country Roads-John Denver | Take Me Home: The John Denver Story | John Denver |
+| 1097 | 江湖笑(张纪中版《神雕侠侣》片尾曲)-周华健 | 雨人 | 周华健 |
+| 1098 | Maps | Maps | Maroon 5 |
+| 1099 | 寂寞沙洲冷-周传雄 | 星空下的传说 | 周传雄 |
+| 1100 | One Match-Sarah Harmer | oh little fire | Sarah Harmer |
+| 1101 | 半生雪-七叔-叶泽浩 | 半生雪 | 七叔-叶泽浩 |
+| 1102 | MR.TAXI(Korean ver.) | 'The Boys' The 3rd Album | 少女时代 |
+| 1103 | Gentle-Isaac Shepard | Deep Joy | Isaac Shepard |
+| 1104 | 故人泪-麦小兜 | 故人泪 | 麦小兜 |
+| 1105 | May It Be-Bandari | MistyLand | Bandari |
+| 1106 | 龙拳-周杰伦 | 八度空间 | 周杰伦 |
+| 1107 | 秘密-王珺 | 一尘不染 | 王珺 |
+| 1108 | 赤伶-李玉刚 | 赤伶 | 李玉刚 |
+| 1109 | My Songs Know What You Did In The Dark (Light Em Up) (2 Chainz Remix) | My Songs Know What You Did In The Dark (Light Em Up) | Fall Out Boy |
+| 1110 | 一生最爱的人-伍佰 | 白鸽 | 伍佰 & China Blue |
+| 1111 | Emerald-Ariel | Elan | Ariel |
+| 1112 | River Flows In You | Tales Of Dusk And Dawn Chapter II | Various Artists |
+| 1113 | Roar | Roar | Katy Perry |
+| 1114 | 同桌的你-老狼 | 龙凤金歌榜 | 老狼 |
+| 1115 | Just Blue-Space | Just Blue | Space |
+| 1116 | Secrets AMFB Onerepublic | Time Machine (Part 1) | Bryson Andres |
+| 1117 | 止战之殇-周杰伦 | 七里香 | 周杰伦 |
+| 1118 | 弱水三千 (阮言版) | 弱水三千 (阮言版) | 阮言Ruany |
+| 1119 | 一路向北-周杰伦 | J III MP3 Player | 周杰伦 |
+| 1120 | 纸短情长-花粥 | 纸短情长 | 花粥 |
+| 1121 | Sign-DEAMN | Sign | DEAMN |
+| 1122 | 当爱已成往事-张国荣 | 最红 | 张国荣 |
+| 1123 | Titanium-David Guetta / Sia | Best Of... | David Guetta / Sia |
+| 1124 | The Telephone Box | The Magic Empire | Uniform Motion |
+| 1125 | 探故知 (DJlucky小阳版)-浅影阿 | 探故知 | 浅影阿 |
+| 1126 | 在你的身边-盛哲 | 在你的身边 | 盛哲 |
+| 1127 | Why-Sabrina Carpenter | Why | Sabrina Carpenter |
+| 1128 | Sunrise | waiting for the light | Catie Mckinney |
+| 1129 | Walk on By-Noosa | Wonderland | Noosa |
+| 1130 | 春庭雪-邓寓君(等什么君) | 春庭雪 | 邓寓君(等什么君) |
+| 1131 | Shiver-skel | Shiver | skel |
+| 1132 | 映山红-刀郎 | 红色经典 | 刀郎 |
+| 1133 | Liberators-Epic Score | Vengeance - ES033 | Epic Score |
+| 1134 | Dismantle-Peter Sandberg | Dismantle | Peter Sandberg |
+| 1135 | 小宇-张震岳 | OK | 张震岳 |
+| 1136 | 彩虹-周杰伦 | 我很忙 | 周杰伦 |
+| 1137 | Older-Sasha Alex Sloan | Older | Sasha Alex Sloan |
+| 1138 | Radius-Hi-Finesse | Axiom | Hi-Finesse |
+| 1139 | The Final Countdown | The Final Countdown: The Best Of Europe | Europe |
+| 1140 | 世界第一等-刘德华 | 爱在刻骨铭心时 | 刘德华 |
+| 1141 | 春庭雪（0.8x_DJ小瑞） | 春庭雪 | 小瑞 |
+| 1142 | 友谊天长地久-亚洲天使童声合唱团 | 天使在唱歌 | 亚洲天使童声合唱团 |
+| 1143 | 上海滩(无线电视剧《上海滩》主题曲) | 上海滩 | 叶丽仪 |
+| 1144 | Hyacinth-July | In Love | July |
+| 1145 | 我们的纪念-徐薇 | 我们的纪念 | 徐薇 |
+| 1146 | 遺憾-陈洁仪 | 重譯 陳潔儀.重奏 | 陈洁仪 |
+| 1147 | 须尽欢-郑浩 | 须尽欢 | 郑浩 |
+| 1148 | So Far Away(遥不可及) | So Far Away | Martin Garrix / David Guetta / Jamie Scott / Romy Dya |
+| 1149 | One More Light(又一道光芒)-Linkin Park | One More Light | Linkin Park |
+| 1150 | 敢问路在何方-刀郎 | 电视剧新西游记主题曲 | 刀郎 |
+| 1151 | 时を越えて かごめ | 犬夜叉 音楽撰集 | 和田薫 |
+| 1152 | Lovin' You On My Mind-Josh Turner | Haywire (Deluxe Edition) | Josh Turner |
+| 1153 | 隐形的翅膀 (Live)-腾格尔 | 聚划算99划算盛典Live | 腾格尔 |
+| 1154 | The Party Troll-D1ofaquavibe | The Party Troll | D1ofaquavibe |
+| 1155 | 有形的翅膀-张韶涵 | 有形的翅膀 | 张韶涵 |
+| 1156 | Novera-Dark Winter Music | Epic World Volume2 Return 归来(2014) | Dark Winter Music |
+| 1157 | SCARSONG-flash8 | 最新热歌慢摇3 | flash8 |
+| 1158 | Concerto No. 4 in F minor, Op. 8, RV 297, "L'inverno" (Winter): II. Largo | The Four Seasons: The Vivaldi Album | Anne Akiko Meyers / English Chamber Orchestra / David Lockington |
+| 1159 | 光阴的故事(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
+| 1160 | Somewhere | Somewhere | July |
+| 1161 | If We Ever Broke Up-Mae Stephens | If We Ever Broke Up | Mae Stephens |
+| 1162 | 东风破-刘芳 | 再醉一次 | 刘芳 |
+| 1163 | Close Eyes (Slowed + Reverb)-DVRST | Close Eyes (Slowed + Reverb) | DVRST |
+| 1164 | 别再闹了(电影《来电狂响》暖冬主题曲)-毛不易 | 别再闹了 | 毛不易 |
+| 1165 | 月亮代表我的心-张国荣 | Miss You Much, Leslie | 张国荣 |
+| 1166 | Look4You-Alberto Ciccarini | Look4You | Alberto Ciccarini |
+| 1167 | 北国の春-木村好夫 | 木村好夫-ギター演歌名曲全集2 | 木村好夫 |
+| 1168 | 那些花儿(电影《那时花开》片尾曲)-朴树 | 我去2000年 | 朴树 |
+| 1169 | 等你下课 (with 杨瑞代)-周杰伦 | 等你下课 | 周杰伦 |
+| 1170 | 不得不爱-潘玮柏、弦子 | 夏日撒糖情歌 | 潘玮柏 / 弦子 |
+| 1171 | Future Funk-Varien | Pick Your Poison Vol. 01 | Varien |
+| 1172 | Balenciaga-T3nzu | Balenciaga | T3nzu |
+| 1173 | cocoon-林ゆうき | 「トライアングル」オリジナル・サウンドトラック | 林ゆうき |
+| 1174 | A Quiet Departure-Josh Leake | Benjamin | Josh Leake |
+| 1175 | A Mozart Reincarnated-Ennio Morricone | La Leggenda del Pianista Sull'oceano | Ennio Morricone |
+| 1176 | Best Moments (feat. Kondor)-Blazo | Alone Journey | Blazo |
+| 1177 | As It Was-PREP | As It Was | PREP |
+| 1178 | 舞女泪-韩宝仪 | 怀念金曲 | 韩宝仪 |
+| 1179 | Becoming a Legend-John Dreamer | Becoming a Legend - Single | John Dreamer |
+| 1180 | 下一站天后(电影《下一站天后》主题曲)-Twins | 我们相爱6年(新曲+精选) | Twins |
+| 1181 | Beloved-Dan Gibson | Native Harmony | Dan Gibson |
+| 1182 | 手写的从前-周杰伦 | 哎呦，不错哦 | 周杰伦 |
+| 1183 | 夏日之梦-傅许 | 夏日之梦 | 傅许 |
+| 1184 | 明天会更好-群星 | 明天会更好 | 群星 |
+| 1185 | 须尽欢-柯柯柯啊 | 须尽欢 | 柯柯柯啊 |
+| 1186 | 套马杆-乌兰托娅 | 我要去西藏 | 乌兰托娅 |
+| 1187 | 我的楼兰-云朵 | 倔强 | 云朵 |
+| 1188 | 全是爱-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
+| 1189 | 弱水三千 (0.8x DJ苏熠鸣) | 弱水三千 (DJ苏熠鸣版) | 苏熠鸣 |
+| 1190 | 我怀念的-孙燕姿 | 逆光 - (Against The Light) | 孙燕姿 |
+| 1191 | Brotherhood-John Dreamer | Brotherhood | John Dreamer |
+| 1192 | 我们的纪念-李雅微 | 我们的纪念 | 李雅微 |
+| 1193 | 昨夜星辰-高胜美 | 旧情绵绵(珍藏版3) | 高胜美 |
+| 1194 | 爱在西元前-周杰伦 | 范特西 | 周杰伦 |
+| 1195 | Hello Zepp-Charlie Clouser | Saw (Original Motion Picture Soundtrack) | Charlie Clouser |
+| 1196 | 晚秋-毛宁 | 二十世纪原创经典典藏 龙凤金歌榜 | 毛宁 |
+| 1197 | Mind Heist(电影《盗梦空间》预告片配乐) | Inception Trailer | Zack Hemsey |
+| 1198 | RAVE-Dxrk ダーク | RAVE | Dxrk ダーク |
+| 1199 | Golden Key-Isgaard | Golden Key [#2] | Isgaard |
+| 1200 | Uptown Funk-Mark Ronson、Bruno Mars | Uptown Funk | Mark Ronson / Bruno Mars |
+| 1201 | Koko-Ariel | Koko | Ariel |
+| 1202 | Anatomy | Anatomy | DJRUSTAM / FIZO FAOUEZ |
+| 1203 | 爱的初体验-张震岳 | 这个下午很无聊 | 张震岳 |
+| 1204 | 苏慕遮-张晓棠 | 苏幕遮 | 张晓棠 |
+| 1205 | 新鸳鸯蝴蝶梦(电视剧《包青天》片尾曲)-黄安 | 新鸳鸯蝴蝶梦 | 黄安 |
+| 1206 | 万物生 (梵语)-萨顶顶 | 万物生 | 萨顶顶 |
+| 1207 | Eye of the Tiger-Survivor | Eye Of The Tiger | Survivor |
+| 1208 | 甜蜜蜜(Sweet)-邓丽君 | 宝丽金经典中文金曲 | 邓丽君 |
+| 1209 | 遗憾(新加坡电视剧《实况剧场》主题曲)-许美静 | 遗憾 | 许美静 |
+| 1210 | Famous-Ivy Adara | Famous | Ivy Adara |
+| 1211 | 耍猴儿(百鬼夜行) (唢呐版)-Harry来了 | 未知 | Harry来了 |
+| 1212 | 丁香花-唐磊 | 丁香花 | 唐磊 |
+| 1213 | 无问(电影《无问西东》宣传曲)-毛不易 | 无问 | 毛不易 |
+| 1214 | 1901-Birdy | Birdy (Deluxe Version) | Birdy |
+| 1215 | 童年-叶蒨文 | Inside Out | 叶蒨文 |
+| 1216 | 2002 (Acoustic)-Amber Leigh Irish | Unplugged Acoustic, Vol. 2 | Amber Leigh Irish |
+| 1217 | 水星记-郭顶 | 飞行器的执行周期 | 郭顶 |
+| 1218 | golden hour-JVKE | this is what ____ feels like (Vol. 1-4) | JVKE |
+| 1219 | The Black Rose-Joanie Madden | Celtic Twilight 2 | Joanie Madden |
+| 1220 | My Sunset (Original Mix)-Feint | Feint EP2 | Feint |
+| 1221 | 雨空-α·Pav | Colors | α·Pav |
+| 1222 | One Day-Matisyahu | One Day | Matisyahu |
+| 1223 | 白色风车-周杰伦 | 依然范特西 | 周杰伦 |
+| 1224 | 兰花草-叶蒨文 | Inside Out | 叶蒨文 |
+| 1225 | Tuesday-Burak Yeter Danelle | Dance 2017 - Armada Music | Burak Yeter / Danelle |
+| 1226 | 红玫瑰-陈奕迅 | 认了吧 | 陈奕迅 |
+| 1227 | Welcome to Jurassic World(电影《侏罗纪世界》配乐)-Michael Giacchino | Jurassic World (Original Motion Picture Soundtrack)- (侏罗纪世界) | Michael Giacchino |
+| 1228 | PDD洪荒之力-Hoaprox | #Lov3 #Ngẫu Hứng | Hoaprox |
+| 1229 | Because I Love You-Shakin' Stevens | Strawberry Love | Shakin' Stevens |
+| 1230 | 飘洋过海来看你（钢琴唯美版） | 李宗盛经典金曲钢琴版 | QQ音乐·助眠减压俱乐部 |
+| 1231 | 告白之夜（纯音乐）-CMJ | 告白の夜 | CMJ |
+| 1232 | 爱你一万年-伍佰 | 爱你伍佰年 | 伍佰 & China Blue |
+| 1233 | 青丝-时光胶囊 | 记忆给他的礼物 | 时光胶囊 |
+| 1234 | 匆匆那年 (纯音乐)-梁翘柏 | 匆匆那年 电影原声带 | 梁翘柏 |
+| 1235 | 兰亭序-吴紫涵 | 情动心弦 | 吴紫涵 |
+| 1236 | 往事只能回味-韩宝仪 | 旧情绵绵 | 韩宝仪 |
+| 1237 | Ghost Bride Prelude-Nate Connelly | 僵尸 电影原声大碟 | Nate Connelly |
+| 1238 | You-Approaching Nirvana | Blocking the Sky Redux | Approaching Nirvana |
+| 1239 | Whisper Of Hope (Main)-Gothic Storm | Epic Emotional Piano | Gothic Storm |
+| 1240 | The Imperial March(帝国进行曲)-John Williams | Music from the Star Wars Saga- (星球大战) | John Williams |
+| 1241 | Young Hearts-Dirk Reichardt | Kokowääh 2 (Original Motion Picture Soundtrack) | Dirk Reichardt |
+| 1242 | James Bond Theme-John Barry Monty Norman | Dr. No (Original Motion Picture Soundtrack) | John Barry / Monty Norman |
+| 1243 | 轨迹-周杰伦 | 寻找周杰伦 | 周杰伦 |
+| 1244 | 友情岁月-陈小春 | 夜生活 | 陈小春 |
+| 1245 | Welcome To New York-Taylor Swift | reputation Stadium Tour Surprise Song Playlist | Taylor Swift |
+| 1246 | 铁血丹心(1983年TVB版电视剧《射雕英雄传之铁血丹心》主题曲)-罗文、甄妮 | 射雕英雄传 | 罗文 / 甄妮 |
+| 1247 | A Little Bit Broken-Spritely | A Little Bit Broken | Spritely |
+| 1248 | メインテーマ「永遠の一瞬」（主题「永恒的一瞬」）-伊藤賢治 | この青空に約束をー~ようこそつぐみ寮へ~Piano Stories | 伊藤賢治 |
+| 1249 | 潮鳴り-折戸伸治 | CLANNAD ORIGINAL SOUNDTRACK | 折戸伸治 |
+| 1250 | The Pink Panther Theme-Henry Mancini | In the Pink | Henry Mancini |
+| 1251 | 白いスーツのテーマ(白色西装主题曲)-市川淳 | TBS系 金曜ドラマ うぬぼれ刑事 オリジナル・サウンドトラック | 市川淳 |
+| 1252 | 爱是你我-刀郎、云朵、王翰仪 | 谢谢你 | 刀郎、云朵、王翰仪 |
+| 1253 | 穿越时空的爱恋-CMJ | 穿越时空的爱恋 | CMJ |
+| 1254 | 红色高跟鞋（温柔版）-藤柒吖 | 红色高跟鞋 | 藤柒吖 |
+| 1255 | 像我这样的人-毛不易 | 平凡的一天 | 毛不易 |
+| 1256 | 北国の春(北国之春)-渥美二郎 | 全日傳 砂金之卷+鉑環之卷 | 渥美二郎 |
+| 1257 | Dusk Till Dawn | Piano Acoustic Covers Vol 2 | Kurt Hugo Schneider / Kirsten Collins / Blake Rose |
+| 1258 | Dreamland-Liquid Mind | Liquid Mind XI: Deep Sleep | Liquid Mind |
+| 1259 | 月亮之上-凤凰传奇 | 月亮之上 | 凤凰传奇 |
+| 1260 | 浮光 (The History)-Jannik | 浮光 (The History) | Jannik |
+| 1261 | Criminals-F.O.O.L | Revenger | F.O.O.L |
+| 1262 | 黄昏-周传雄 | Transfer | 周传雄 |
+| 1263 | P.I.M.P-TangTian | P.I.M.P | TangTian |
+| 1264 | 射雕英雄传(电影《射雕英雄传之东成西就》片尾曲)-林穆 | 笑傲歌坛 传世经典 | 林穆 |
+| 1265 | 赤伶-是二智呀 | 赤伶（民谣版） | 是二智呀 |
+| 1266 | Halloween Theme - Main Title | Greatest Hits | John Carpenter |
+| 1267 | 王进打高俅-赵季平 | 水浒传 原声音乐 | 赵季平 |
+| 1268 | 平凡的一天-毛不易 | 平凡的一天 | 毛不易 |
+| 1269 | きっとまたいつか（album version）(午后柠檬树下的阳光)-DEPAPEPE | Ciao!Bravo!! | DEPAPEPE |
+| 1270 | 七月上-Jam | 阿敬的单曲集 | Jam |
+| 1271 | 梦醒时分(电视剧《1989一念间》插曲)-陈淑桦 | 1989一念间 电视原声带 | 陈淑桦 |
+| 1272 | 无名的人(电影《雄狮少年》主题曲)-毛不易 | 无名的人 | 毛不易 |
+| 1273 | 流浪者之歌-Budapest Festival Orchestra 诹访内晶子 | 惠威试音专用Ⅱ | Budapest Festival Orchestra / 诹访内晶子 |
+| 1274 | 恨爱交加-麦振鸿 | 天地传说之创世纪乐章 | 麦振鸿 |
+| 1275 | 最长的电影-周杰伦 | 我很忙 | 周杰伦 |
+| 1276 | Payphone-Maroon 5、Wiz Khalifa | Overexposed | Maroon 5 / Wiz Khalifa |
+| 1277 | 虞兮叹-闻人听書_ | 虞兮叹 | 闻人听書_ |
+| 1278 | 淘汰-陈奕迅 | 认了吧 | 陈奕迅 |
+| 1279 | 消愁-毛不易 | 平凡的一天 | 毛不易 |
+| 1280 | 高山流水-王昌元 | 中国古筝名家名曲——中国民族器乐精品系列 | 王昌元 |
+| 1281 | 美丽拍挡-胡伟立 | 国产凌凌漆 | 胡伟立 |
+| 1282 | Polska-Sava | Aire | Sava |
+| 1283 | 乡间的小路-北京天使合唱团 | 我的快乐天堂 | 北京天使合唱团 |
+| 1284 | 我是如此相信-周杰伦 | 我是如此相信 | 周杰伦 |
+| 1285 | Dehors(外面)-JORDANN | Dehors | JORDANN |
+| 1286 | Curtain-凌晨一点的莱茵猫 | Curtain falls | 凌晨一点的莱茵猫 |
+| 1287 | 奢香夫人-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
+| 1288 | 金三角 (恐怖纯音乐) | 金三角（恐怖纯音乐） | R̶ᴇ̶ɢ̶ʀ̶ᴇ̶ᴛ̶. |
+| 1289 | sans.-Toby Fox | UNDERTALE Soundtrack | Toby Fox |
+| 1290 | 美酒加咖啡-高胜美 | 美丽的回忆 | 高胜美 |
+| 1291 | 一荤一素-毛不易 | 平凡的一天 | 毛不易 |
+| 1292 | 一程山路-毛不易 | 小王 | 毛不易 |
+| 1293 | 夏夜-四季音色 | 春夏之交，轻旋淡律 | 四季音色 |
+| 1294 | 人形の館-岩崎琢 | 黒執事 サウンドコンプリート BLACK BOX | 岩崎琢 |
+| 1295 | Single Ladies (Put a Ring on It)-Beyoncé | Single Ladies (Put A Ring On It) - Dance Remixes | Beyoncé |
+| 1296 | 十面埋伏(琵琶独奏)-群星 | 中国古典音乐历朝黄金年鉴 | 群星 |
+| 1297 | 她的微笑 (original Mix)-阳山伟伟 | 她的微笑 (original Mix) | 阳山伟伟 |
+| 1298 | 映山红-黄英 | Cover Girls | 黄英 |
+| 1299 | Mystery of Love-Luke Pickman | Mystery of Love | Luke Pickman |
+| 1300 | 西厢寻他-伯爵Johnny / 唐伯虎Annie | 西厢寻他 | 伯爵Johnny / 唐伯虎Annie |
+| 1301 | 西楼别序-尹昔眠 / 小田音乐社 | 西楼别序 | 尹昔眠 / 小田音乐社 |
+| 1302 | 青天-胡伟立 | 九品芝麻官之白面包青天 电影原声 | 胡伟立 |
+| 1303 | 青空-Candy_Wind | 拂晓车站 | Candy_Wind |
+| 1304 | 勇往直前-胡伟立 | 唐伯虎点秋香 | 胡伟立 |
+| 1305 | 遗憾-李代沫 | 我的歌声里 | 李代沫 |
+| 1306 | 执迷不悟-铁脑袋mp3 | 执迷不悟 | 铁脑袋mp3 |
+| 1307 | 小心な侵入者-根岸貴幸 | カードキャプターさくら オリジナル・サウンドトラック4 | 根岸貴幸 |
+| 1308 | 弱水三千-石头、张晓棠 | 念 | 石头 / 张晓棠 |
+| 1309 | 小鱼儿与花无缺片头音乐-麦振鸿 | 武侠音乐系列之豪气中天 （截取版） | 麦振鸿 |
+| 1310 | 菊花台-周杰伦 | 依然范特西 | 周杰伦 |
+| 1311 | 雨的舞步-赵大鼾 | 雨的舞步 | 赵大鼾 |
+| 1312 | Lost Love (Instrumental)-Lunnna Janey杰尼 | Memories | Lunnna / Janey杰尼 |
+| 1313 | 我从草原来-凤凰传奇 | 我从草原来 新歌+精选 | 凤凰传奇 |
+| 1314 | 起风了(BILIBILI 11周年演讲)-周深 | 起风了 | 周深 |
+| 1315 | Betrayal Voices | Horror/Sci-Fi #1 | Immediate Music |
+| 1316 | Theme from Mission: Impossible-Danny Elfman | Mission Impossible [Original Score] | Danny Elfman |
+| 1317 | 樱花草 (治愈版)-藤柒吖 | 樱花草 | 藤柒吖 |
+| 1318 | 明月夜-张国荣 | 兜风心情 | 张国荣 |
+| 1319 | 匆匆那年-周深 | 匆匆那年 | 周深 |
+| 1320 | 童年-卓依婷 | 校园青春乐 | 卓依婷 |
+| 1321 | Trinity: Con la Stella Di Vicesceriffo-Franco Micalizzi | Lo Chiamavano Trinita (They Call Me Trinity) | Franco Micalizzi |
+| 1322 | 大笨钟-周杰伦 | 十二新作 | 周杰伦 |
+| 1323 | Dum Dum Dum-RENEE | Extending Playground | RENEE |
+| 1324 | Theme From Jurassic Park (From "Jurassic Park" Soundtrack)-John Williams | Jurassic Park (Soundtrack) | John Williams |
+| 1325 | 说了再见-周杰伦 | 跨时代 | 周杰伦 |
+| 1326 | 弱水三千 (0.7x)-张晓棠、石头、赵允哲、DJ Wave | 弱水三千 (0.7x) | 张晓棠 /石头 /赵允哲 /DJ Wave |
+| 1327 | 天路 (世界音乐版)-韩红 | 感动 | 韩红 |
+| 1328 | 萍聚-卓依婷 | 蜕变1少女的心情故事 | 卓依婷 |
+| 1329 | 春不晚 (DJHZ版)-RE-D、郑浩 | 春不晚 (Remixes) | RE-D / 郑浩 |
+| 1330 | 认真的雪 (温柔版)-藤柒吖 | 认真的雪 | 藤柒吖 |
+| 1331 | We Can't Stop-Boyce Avenue、Bea Miller | Cover Sessions, Vol. 3 | Boyce Avenue / Bea Miller |
+| 1332 | 至少还有你-林忆莲 | 林忆莲's | 林忆莲 |
+| 1333 | 简单爱-周杰伦 | 范特西 | 周杰伦 |
+| 1334 | 二泉映月(The Moon Reflected in Er-Quan)-中国广播民族乐团 | 彩云追月 - (Moon Rising in the Rosy Clouds) | 中国广播民族乐团 |
+| 1335 | 须尽欢(DJ弹鼓版)-沐泽 | 须尽欢 | 沐泽 |
+| 1336 | 春庭雪（DJ弹鼓版）-DJ光头 | 春庭雪 （DJ弹鼓版） | DJ光头 |
+| 1337 | 春庭雪 (DJ名龙 Mix) | 春庭雪 (DJ名龙 Mix) | DJ名龙 |
+| 1338 | 漂洋过海来看你-周深 | 漂洋过海来看你 周深翻唱精选Vol. 2 | 周深 |
+| 1339 | 梦醒时分-迪克牛仔 | 咆哮 | 迪克牛仔 |
+| 1340 | 刀马旦-CoCo李玟、周杰伦 | Promise | CoCo李玟 / 周杰伦 |
+| 1341 | 再见(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
+| 1342 | 不能说的秘密-周杰伦 | 不能说的秘密 电影原声带 | 周杰伦 |
+| 1343 | 暗号-周杰伦 | 八度空间 | 周杰伦 |
+| 1344 | 下个，路口，见-李宇春 | 李宇春 同名专辑 | 李宇春 |
+| 1345 | 暖暖 (香皂泡版) | 暖暖 | 香皂泡 |
+| 1346 | 漂洋过海来看你-周深 | 漂洋过海来看你 | 周深 |
+| 1347 | 告白气球-周杰伦 | 周杰伦的床边故事 | 周杰伦 |
+| 1348 | Luminous-贝奇Becky | Luminous | 贝奇Becky |
+| 1349 | 不再犹豫-Twins | 青春重置计划之BEYOND 40 | Twins |
+| 1350 | 搁浅-周杰伦 | 七里香 | 周杰伦 |
+| 1351 | 最炫民族风-凤凰传奇 | 最炫民族风 | 凤凰传奇 |
+| 1352 | 园游会-周杰伦 | 七里香 | 周杰伦 |
+| 1353 | 勇气-梁静茹 | 勇气 | 梁静茹 |
+| 1354 | 春风再美也比不上你的笑，没见过你的人自然不会明了。（Demo） | 一个人跨年的你看啊，今晚月色真美。 | 十指流玉 |
+| 1355 | 自由飞翔-凤凰传奇 | 吉祥如意 | 凤凰传奇 |
+| 1356 | Octopus-ALan | Octopus | ALan |
+| 1357 | 一剪梅(电视剧《一剪梅》主题曲)-费玉清 | 一剪梅 | 费玉清 |
+| 1358 | 霍元甲-周杰伦 | 霍元甲 | 周杰伦 |
+| 1359 | 暖暖-梁静茹 | 亲亲 | 梁静茹 |
+| 1360 | 光阴的故事-张艾嘉 | 童年 | 张艾嘉 |
+| 1361 | All of Me-John Legend | Love In The Future | John Legend |
+| 1362 | 迷迭香-周杰伦 | 依然范特西 | 周杰伦 |
+| 1363 | 恋曲1980 (Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
+| 1364 | 光阴的故事-北京天使合唱团 | 光阴的故事 | 北京天使合唱团 |
+| 1365 | 欢沁-林海 | 林海影视配乐精选 | 林海 |
+| 1366 | No Glory | No Glory | Krale / M.I.M.E / Drama B / Skan |
+| 1367 | Shape Of My Heart(电影《这个杀手不太冷》片尾曲)-Sting | Fifteen Healing Bites | Sting |
+| 1368 | 这，就是爱-张杰 | 这，就是爱 | 张杰 |
+| 1369 | 断了的弦-周杰伦 | 寻找周杰伦 | 周杰伦 |
+| 1370 | Angel-Sarah McLachlan | Closer: The Best Of Sarah McLachlan | Sarah McLachlan |
+| 1371 | 青丝（～迷乱我双眼）-DJLH | DJ-LH说唱版Mix旋律版} | DJLH |
+| 1372 | I Really Like You-Carly Rae Jepsen | I Really Like You | Carly Rae Jepsen |
+| 1373 | 春庭雪 (DJ默涵版) | 春庭雪 (DJ默涵版) | DJ默涵 |
+| 1374 | Criticalpoint-凌晨一点的莱茵猫 | Criticalpoint | 凌晨一点的莱茵猫 |
+| 1375 | 青藏高原-韩红 | 醒了 | 韩红 |
+| 1376 | Letting Go-藤柒吖 | Letting Go | 藤柒吖 |
+| 1377 | 夜曲-周杰伦 | 十一月的萧邦 | 周杰伦 |
+| 1378 | 烟花易冷-周杰伦 | 跨时代 | 周杰伦 |
+| 1379 | 你是落日弥漫的橘，天边透亮的星-Hea2t | 你是落日弥漫的橘，天边透亮的星 | Hea2t |
+| 1380 | 爷爷泡的茶-周杰伦 | 八度空间 | 周杰伦 |
+| 1381 | 蒲公英的约定-周杰伦 | 我很忙 | 周杰伦 |
+| 1382 | 夜的第七章-周杰伦、潘儿 | 依然范特西 | 周杰伦 /潘儿 |
+| 1383 | 我会好好的-伍佰 | 诗情摇滚 | 伍佰 & China Blue |
+| 1384 | 粉色海洋-周杰伦 | 最伟大的作品 | 周杰伦 |
+| 1385 | 说好不哭-周杰伦 | 说好不哭 | 周杰伦 |
+| 1386 | 恋曲1990(Live)-纵贯线 | Live in Taipei 出发/终点站 | 纵贯线 |
+| 1387 | 可爱女人-周杰伦 | Jay | 周杰伦 |
+| 1388 | 爱是你我-云朵、刀郎 | 云朵 | 云朵 /刀郎 |
+| 1389 | 给我一首歌的时间-周杰伦 | 魔杰座 | 周杰伦 |
+| 1390 | 十送红军-刀郎、云朵 | 红色经典 | 刀郎 / 云朵 |
+| 1391 | 再不疯狂我们就老了-李宇春 | 再不疯狂我们就老了 | 李宇春 |
+| 1392 | 梦回大唐 (钢琴萧声版)-沈波 | 梦回大唐 (纯音乐) | 沈波 |
+| 1393 | 龙卷风-周杰伦 | Jay | 周杰伦 |
+| 1394 | 反方向的钟-周杰伦 | Jay | 周杰伦 |
+| 1395 | 友谊天长地久-北海雄哥 | 友谊天长地久 | 北海雄哥 |
+| 1396 | 我不配-周杰伦 | 我很忙 | 周杰伦 |
+| 1397 | 夏天的风-火羊瞌睡了 | 夏天的风 | 火羊瞌睡了 |
+| 1398 | Lifestyle-HMHK | Lifestyle | HMHK |
+| 1399 | 映山红-刀郎 | 红色经典 | 刀郎 |
+| 1400 | 映山红-黑鸭子 | 红色经典特别版 | 黑鸭子 |
+| 1401 | 春娇与志明 (咚鼓版)-陈毅 | 愁深几许 | 陈毅 |
+| 1402 | 回到过去-周杰伦 | 八度空间 | 周杰伦 |
+| 1403 | 轻轻的告诉你-卓依婷 | 春语1 | 卓依婷 |
+| 1404 | 爱你爱到死-李宇春 | 在吗？ | 李宇春 |
+| 1405 | 潇洒走一回(电影《京城四少》主题曲)-叶蒨文 | 潇洒走一回 | 叶蒨文 |
+| 1406 | Mojito-周杰伦 | Mojito | 周杰伦 |
+| 1407 | 红颜如霜-周杰伦 | 最伟大的作品 | 周杰伦 |
+| 1408 | 送别-亚洲天使童声合唱团 | 天使在唱歌 | 亚洲天使童声合唱团 |
+| 1409 | 乡间的小路-卓依婷 | 校园民谣 | 卓依婷 |
+| 1410 | 绣红旗-刀郎、徐子尧 | 绣红旗 | 刀郎、徐子尧 |
+| 1411 | 爱你爱到死-杨荞安、同恩、夏宇童 | 海角七号 电影原声带 | 杨荞安 / 同恩 / 夏宇童 |
+| 1412 | 外婆-周杰伦 | 七里香 | 周杰伦 |
+| 1413 | 开不了口-周杰伦 | 范特西 | 周杰伦 |
+| 1414 | 乡间的小路-刘文正 | 阿美!阿美! | 刘文正 |
