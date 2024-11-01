@@ -215,6 +215,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 
 	private MusicInfoVo convert(MusicInfo music, MusicInfoLinkContext musicInfoLinkContext) {
 		MusicInfoVo musicInfoVo = new MusicInfoVo();
+		musicInfoVo.setId(music.getId());
     	musicInfoVo.setAlbum(music.getAlbum());
     	musicInfoVo.setArtist(music.getArtist());
     	musicInfoVo.setCoverUrl(musicInfoLinkContext.getCoverUrl(music.getId()));

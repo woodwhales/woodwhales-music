@@ -13,6 +13,8 @@ import org.woodwhales.music.model.fun.MusicTypeAnnotation;
 @NoArgsConstructor
 public class MusicInfoVo {
 
+    private Long id;
+
     private String title;
 
     private String artist;
@@ -25,13 +27,5 @@ public class MusicInfoVo {
     private String audioUrl;
     
     private String ogg;
-
-    public MusicInfoVo(String title, String artist, String album, String audioUrl, String coverUrl) {
-        this.title = title;
-        this.artist = artist;
-        this.album = album;
-        this.coverUrl = coverUrl;
-        this.audioUrl = audioUrl;
-    }
 
 }

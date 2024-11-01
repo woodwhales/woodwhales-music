@@ -15,12 +15,14 @@ import java.util.Map;
 @Component
 public class HomeSysConfigDefault implements SysConfigDefaultFun {
 
+    public static final String KEY = "home";
+
     @Autowired
     private AppConfig appConfig;
 
     @Override
     public String configKey() {
-        return "home";
+        return KEY;
     }
 
     @Override

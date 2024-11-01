@@ -64,7 +64,10 @@
     </div>
 </div>
 <ul id="playlist"></ul>
-<div id="friendly" style="display: flex; align-items: center; justify-content: center;"></div>
+<div id="friendly"></div>
+<div id="webSiteInfo">
+    访问人次：<span th:text="${visits !=null ? visits?.count : 1}"></span>，点击人次：<span th:text="${clicks !=null ? clicks?.count : 1}"></span>
+</div>
 <footer id="footer">
 </footer>
 <div id="box" class="box">

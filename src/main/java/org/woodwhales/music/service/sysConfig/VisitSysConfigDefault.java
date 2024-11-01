@@ -1,22 +1,18 @@
 package org.woodwhales.music.service.sysConfig;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.woodwhales.music.config.AppConfig;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author woodwhales on 2024-05-09 13:48
+ * @author woodwhales on 2024-11-01 13:37
  */
 @Component
-public class AdminSysConfigDefault implements SysConfigDefaultFun {
+public class VisitSysConfigDefault implements SysConfigDefaultFun {
 
-    public static final String KEY = "admin";
-
-    @Autowired
-    private AppConfig appConfig;
+    public static final String KEY = "visits";
 
     @Override
     public String configKey() {
@@ -26,7 +22,7 @@ public class AdminSysConfigDefault implements SysConfigDefaultFun {
     @Override
     public Map<String, Object> defaultConfig() {
         Map<String, Object> content = new HashMap<>();
-        content.put("bannerLinkUrl", appConfig.getMusicSite());
+        content.put("count", BigDecimal.ONE.toString());
         return content;
     }
 }

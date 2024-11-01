@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.woodwhales.music.model.MusicInfoVo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
 import org.woodwhales.music.service.sysConfig.SysConfigService;
@@ -32,4 +34,10 @@ public class ViewController {
 		return "index";
 	}
 
+	@ResponseBody
+	@PostMapping({"clickPlay"})
+	public String play() {
+		log.info("play");
+		return "ok";
+	}
 }

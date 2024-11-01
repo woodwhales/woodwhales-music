@@ -15,6 +15,20 @@ var showFriendly = function(friendlyInfos) {
 	}
 }
 
+var clickPlayer = (id) => {
+	fetch('./clickPlay?t=' + new Date().getTime(), {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			time: new Date().getTime(),
+			id: id
+		})
+	})
+	.catch(error => console.error('Error:', error));
+}
+
 var playMusic = function(musicArray) {
 	var repeat = localStorage.repeat || 0, shuffle = localStorage.shuffle
 			|| "false", continous = true, autoplay = true, playlist = musicArray;
@@ -179,11 +193,15 @@ var playMusic = function(musicArray) {
 						+ item.album + "</span>");
 		$("#playlist li").removeClass("playing").eq(i).addClass("playing");
 		audio = newaudio[0];
+		audio.id = item.id;
 		audio.volume = $(".mute").hasClass("enable") ? 0 : volume;
 		audio.addEventListener("progress", beforeLoad, false);
 		audio.addEventListener("durationchange", beforeLoad, false);
 		audio.addEventListener("canplay", afterLoad, false);
 		audio.addEventListener("ended", ended, false);
+		audio.addEventListener('play', () => {
+			clickPlayer(audio.id)
+		});
 	};
 
 	loadMusic(currentTrack);
