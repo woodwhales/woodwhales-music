@@ -1,12 +1,15 @@
 package org.woodwhales.music.service.sysConfig;
 
 import cn.hutool.extra.spring.SpringUtil;
+import cn.woodwhales.common.business.DataTool;
 import cn.woodwhales.common.model.result.OpResult;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -21,8 +24,7 @@ import org.woodwhales.music.mapper.SysConfigMapper;
 import org.woodwhales.music.model.SysConfigVo;
 
 import java.math.BigDecimal;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author woodwhales on 2024-05-08 17:35
@@ -54,6 +56,21 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
             sysConfig = this.matchDefault(key);
         }
         return sysConfig;
+    }
+
+    public OpResult<Map<String, Object>> getConfig(List<String> keys) {
+        if(CollectionUtils.isEmpty(keys)) {
+            return OpResult.success();
+        }
+        List<SysConfig> list = this.list(Wrappers.<SysConfig>lambdaQuery()
+                .in(SysConfig::getConfigKey, keys));
+        Map<String, SysConfig> configMap = DataTool.toMap(list, SysConfig::getConfigKey);
+        Map<String, Object> result = new HashMap<>();
+        for (String key : keys) {
+            SysConfig sysConfig = MapUtils.getObject(configMap, key, this.matchDefault(key));
+            result.put(key, JSON.parseObject(sysConfig.getConfigContent()));
+        }
+        return OpResult.success(result);
     }
 
     public OpResult<SysConfigVo> getConfig(SysConfigGetRequestBody requestBody) {
@@ -99,12 +116,25 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
             OpResult<SysConfigVo> opResult = sysConfigService.getConfig(new SysConfigGetRequestBody(key));
             model.addAttribute(opResult.getData().getConfigKey(), opResult.getData().getContent());
         }
-        sysConfigService.record();
+        sysConfigService.recordVisits();
+    }
+
+
+
+    @Async(ThreadPoolConfig.COMMON_POOL_NAME)
+    public void recordVisits() {
+        SysConfig visitsConfig = this.letConfigByKey(VisitSysConfigDefault.KEY);
+        JSONObject jsonObject = JSON.parseObject(visitsConfig.getConfigContent());
+        BigDecimal bigDecimal = new BigDecimal(jsonObject.get("count").toString());
+        bigDecimal = bigDecimal.add(BigDecimal.ONE);
+        jsonObject.put("count", bigDecimal.toString());
+        visitsConfig.setConfigContent(jsonObject.toJSONString());
+        this.saveOrUpdate(visitsConfig);
     }
 
     @Async(ThreadPoolConfig.COMMON_POOL_NAME)
-    public void record() {
-        SysConfig visitsConfig = this.letConfigByKey(VisitSysConfigDefault.KEY);
+    public void recordPlay() {
+        SysConfig visitsConfig = this.letConfigByKey(ClicksSysConfigDefault.KEY);
         JSONObject jsonObject = JSON.parseObject(visitsConfig.getConfigContent());
         BigDecimal bigDecimal = new BigDecimal(jsonObject.get("count").toString());
         bigDecimal = bigDecimal.add(BigDecimal.ONE);

@@ -26,6 +26,16 @@ var clickPlayer = (id) => {
 			id: id
 		})
 	})
+	.then(response => response.json())
+	.then(data => {
+		if (data.code === 0) {
+			data.data.visits.count;
+			data.data.clicks.count;
+			let webSiteInfo = document.getElementById("webSiteInfo");
+			let str = `访问人次：${data.data.visits.count}，点击人次：${data.data.clicks.count}`
+			webSiteInfo.innerHTML = str
+		}
+	})
 	.catch(error => console.error('Error:', error));
 }
 
