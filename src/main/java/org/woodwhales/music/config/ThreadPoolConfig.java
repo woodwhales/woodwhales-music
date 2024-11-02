@@ -17,7 +17,7 @@ public class ThreadPoolConfig {
     @Bean(COMMON_POOL_NAME)
     public ThreadPoolExecutor strDataHandlerThreadPool() {
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-                .setNameFormat("commonThreadPool-%d").build();
+                .setNameFormat("commonPool-%d").build();
         return new ThreadPoolExecutor(20, 100,
                 10L, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.CallerRunsPolicy());

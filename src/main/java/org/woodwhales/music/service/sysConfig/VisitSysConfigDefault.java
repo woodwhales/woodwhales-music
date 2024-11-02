@@ -1,16 +1,17 @@
 package org.woodwhales.music.service.sysConfig;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author woodwhales on 2024-11-01 13:37
  */
 @Component
-public class VisitSysConfigDefault implements SysConfigDefaultFun {
+public class VisitSysConfigDefault implements SysConfigDefaultFun<VisitSysConfigDefault.Content> {
 
     public static final String KEY = "visits";
 
@@ -20,9 +21,19 @@ public class VisitSysConfigDefault implements SysConfigDefaultFun {
     }
 
     @Override
-    public Map<String, Object> defaultConfig() {
-        Map<String, Object> content = new HashMap<>();
-        content.put("count", BigDecimal.ONE.toString());
-        return content;
+    public Content defaultConfig() {
+        return new Content(BigDecimal.ONE);
+    }
+
+    @Override
+    public Class<Content> clazz() {
+        return Content.class;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Content {
+        private BigDecimal count;
     }
 }

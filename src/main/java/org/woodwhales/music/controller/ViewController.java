@@ -1,6 +1,5 @@
 package org.woodwhales.music.controller;
 
-import cn.woodwhales.common.model.result.OpResult;
 import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.woodwhales.music.controller.index.ClickPlayParam;
 import org.woodwhales.music.model.MusicInfoVo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
-import org.woodwhales.music.service.sysConfig.ClicksSysConfigDefault;
 import org.woodwhales.music.service.sysConfig.SysConfigService;
-import org.woodwhales.music.service.sysConfig.VisitSysConfigDefault;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 视图控制器
@@ -44,9 +41,13 @@ public class ViewController {
 
 	@ResponseBody
 	@PostMapping({"clickPlay"})
-	public RespVO<Map<String, Object>> play(@Validated @RequestBody ClickPlayParam param) {
-		sysConfigService.recordPlay();
-		OpResult<Map<String, Object>> opResult = sysConfigService.getConfig(Arrays.asList(VisitSysConfigDefault.KEY, ClicksSysConfigDefault.KEY));
-		return RespVO.resp(opResult);
+	public RespVO<Map<String, Object>> play(@RequestParam(value = "t") Long time,
+											@Validated @RequestBody ClickPlayParam param) {
+		if(!Objects.equals(time, param.getTime())) {
+			// TODO go to black list
+			return RespVO.errorWithErrorMsg("非法请求");
+		}
+		Map<String, Object> result = sysConfigService.recordPlay();
+		return RespVO.success(result);
 	}
 }

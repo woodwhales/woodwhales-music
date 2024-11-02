@@ -1,17 +1,15 @@
 package org.woodwhales.music.service.sysConfig;
 
 import cn.hutool.extra.spring.SpringUtil;
-import cn.woodwhales.common.business.DataTool;
 import cn.woodwhales.common.model.result.OpResult;
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +20,12 @@ import org.woodwhales.music.controller.param.SysConfigGetRequestBody;
 import org.woodwhales.music.entity.SysConfig;
 import org.woodwhales.music.mapper.SysConfigMapper;
 import org.woodwhales.music.model.SysConfigVo;
+import org.woodwhales.music.service.SysConfigCacheService;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author woodwhales on 2024-05-08 17:35
@@ -35,71 +36,38 @@ import java.util.*;
 public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
 
     @Autowired
-    private Map<String, SysConfigDefaultFun> sysConfigDefaultFunMap;
+    @Lazy
+    private SysConfigCacheService sysConfigCacheService;
+
+    @Autowired
+    private Map<String, SysConfigDefaultFun<?>> sysConfigDefaultFunMap;
 
     public OpResult<Void> createOrUpdate(SysConfigCreateOrUpdateRequestBody requestBody) {
-        SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
-                .eq(SysConfig::getConfigKey, requestBody.getConfigKey()));
-        if(Objects.isNull(sysConfig)) {
-            sysConfig = new SysConfig();
-            sysConfig.setConfigKey(requestBody.getConfigKey());
-        }
-        sysConfig.setConfigContent(JSON.toJSONString(requestBody.getContent()));
-        this.saveOrUpdate(sysConfig);
+        this.sysConfigCacheService.put(requestBody.getConfigKey(), requestBody.getContent());
         return OpResult.success();
     }
 
-    public SysConfig letConfigByKey(String key) {
-        SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
-                .eq(SysConfig::getConfigKey, key));
-        if(Objects.isNull(sysConfig)) {
-            sysConfig = this.matchDefault(key);
-        }
-        return sysConfig;
-    }
-
-    public OpResult<Map<String, Object>> getConfig(List<String> keys) {
-        if(CollectionUtils.isEmpty(keys)) {
-            return OpResult.success();
-        }
-        List<SysConfig> list = this.list(Wrappers.<SysConfig>lambdaQuery()
-                .in(SysConfig::getConfigKey, keys));
-        Map<String, SysConfig> configMap = DataTool.toMap(list, SysConfig::getConfigKey);
-        Map<String, Object> result = new HashMap<>();
-        for (String key : keys) {
-            SysConfig sysConfig = MapUtils.getObject(configMap, key, this.matchDefault(key));
-            result.put(key, JSON.parseObject(sysConfig.getConfigContent()));
-        }
-        return OpResult.success(result);
-    }
-
     public OpResult<SysConfigVo> getConfig(SysConfigGetRequestBody requestBody) {
+        String configKey = requestBody.getConfigKey();
         SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
-                .eq(SysConfig::getConfigKey, requestBody.getConfigKey()));
+                .eq(SysConfig::getConfigKey, configKey));
         if(Objects.isNull(sysConfig)) {
-            sysConfig = this.matchDefault(requestBody.getConfigKey());
-            if(Objects.isNull(sysConfig)) {
-                return OpResult.failure();
-            }
+            SysConfigDefaultFun<?> defaultFun = this.findDefaultFun(configKey);
+            sysConfig.setConfigContent(JSON.toJSONString(defaultFun.defaultConfig()));
         }
         SysConfigVo sysConfigVo = new SysConfigVo();
-        sysConfigVo.setConfigKey(sysConfig.getConfigKey());
+        sysConfigVo.setConfigKey(configKey);
         sysConfigVo.setContent(JSON.parseObject(sysConfig.getConfigContent()));
         return OpResult.success(sysConfigVo);
     }
 
-    private SysConfig matchDefault(String configKey) {
-        SysConfig sysConfig = null;
-        for (SysConfigDefaultFun sysConfigDefaultFun : sysConfigDefaultFunMap.values()) {
+    public SysConfigDefaultFun<?> findDefaultFun(String configKey) {
+        for (SysConfigDefaultFun<?> sysConfigDefaultFun : sysConfigDefaultFunMap.values()) {
             if (StringUtils.equals(sysConfigDefaultFun.configKey(), configKey)) {
-                sysConfig = new SysConfig();
-                Map<String, Object> content = sysConfigDefaultFun.defaultConfig();
-                sysConfig.setConfigKey(configKey);
-                sysConfig.setConfigContent(JSON.toJSONString(content));
-                return sysConfig;
+                return sysConfigDefaultFun;
             }
         }
-        return sysConfig;
+        return null;
     }
 
     private static String[] default_keys = new String[] {AdminSysConfigDefault.KEY,
@@ -109,37 +77,43 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
 
     public static void addMusicSite(Model model, String ...keys) {
         SysConfigService sysConfigService = SpringUtil.getBean(SysConfigService.class);
-        if(Objects.isNull(keys) || keys.length == 0) {
+        sysConfigService.recordVisits();
+
+        SysConfigCacheService sysConfigCacheService = SpringUtil.getBean(SysConfigCacheService.class);
+        if (ObjectUtils.isEmpty(keys)) {
             keys = default_keys;
         }
         for (String key : keys) {
-            OpResult<SysConfigVo> opResult = sysConfigService.getConfig(new SysConfigGetRequestBody(key));
-            model.addAttribute(opResult.getData().getConfigKey(), opResult.getData().getContent());
+            model.addAttribute(key, sysConfigCacheService.get(key));
         }
-        sysConfigService.recordVisits();
     }
 
-
-
-    @Async(ThreadPoolConfig.COMMON_POOL_NAME)
     public void recordVisits() {
-        SysConfig visitsConfig = this.letConfigByKey(VisitSysConfigDefault.KEY);
-        JSONObject jsonObject = JSON.parseObject(visitsConfig.getConfigContent());
-        BigDecimal bigDecimal = new BigDecimal(jsonObject.get("count").toString());
-        bigDecimal = bigDecimal.add(BigDecimal.ONE);
-        jsonObject.put("count", bigDecimal.toString());
-        visitsConfig.setConfigContent(jsonObject.toJSONString());
-        this.saveOrUpdate(visitsConfig);
+        VisitSysConfigDefault.Content content = this.sysConfigCacheService.get(VisitSysConfigDefault.KEY, VisitSysConfigDefault.Content.class);
+        content.setCount(content.getCount().add(BigDecimal.ONE));
+        this.sysConfigCacheService.put(VisitSysConfigDefault.KEY, content);
+    }
+
+    public Map<String, Object> recordPlay() {
+        Map<String, Object> result = new HashMap<>();
+        ClicksSysConfigDefault.Content content = this.sysConfigCacheService.get(ClicksSysConfigDefault.KEY, ClicksSysConfigDefault.Content.class);
+        content.setCount(content.getCount().add(BigDecimal.ONE));
+        this.sysConfigCacheService.put(ClicksSysConfigDefault.KEY, content);
+
+        result.put(ClicksSysConfigDefault.KEY, content);
+        result.put(VisitSysConfigDefault.KEY, this.sysConfigCacheService.get(VisitSysConfigDefault.KEY));
+        return result;
     }
 
     @Async(ThreadPoolConfig.COMMON_POOL_NAME)
-    public void recordPlay() {
-        SysConfig visitsConfig = this.letConfigByKey(ClicksSysConfigDefault.KEY);
-        JSONObject jsonObject = JSON.parseObject(visitsConfig.getConfigContent());
-        BigDecimal bigDecimal = new BigDecimal(jsonObject.get("count").toString());
-        bigDecimal = bigDecimal.add(BigDecimal.ONE);
-        jsonObject.put("count", bigDecimal.toString());
-        visitsConfig.setConfigContent(jsonObject.toJSONString());
-        this.saveOrUpdate(visitsConfig);
+    public void asyncSaveOrUpdate(String key, String content) {
+        SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
+                .eq(SysConfig::getConfigKey, key));
+        if(Objects.isNull(sysConfig)) {
+            sysConfig = new SysConfig();
+            sysConfig.setConfigKey(key);
+        }
+        sysConfig.setConfigContent(content);
+        this.saveOrUpdate(sysConfig);
     }
 }
