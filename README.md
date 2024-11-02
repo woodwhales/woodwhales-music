@@ -337,6 +337,10 @@ woodwhales/woodwhales-music:latest
 
 ## 5. 功能说明
 
+### V3.7.5
+
+- 增加页面访问人次、歌曲点击人次
+
 ### V3.7.4
 
 - 修复后台首页搜索问题
