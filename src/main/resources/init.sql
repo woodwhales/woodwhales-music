@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `sys_config` (
                                             `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
                                             `config_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '配置key',
                                             `config_content` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT '配置内容',
-                                            PRIMARY KEY (`id`)
+                                            PRIMARY KEY (`id`),
+                                            INDEX `config_key` (`config_key`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统配置表';
 
 -- 导出  表 open_music.sys_user 结构
