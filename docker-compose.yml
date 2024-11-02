@@ -1,6 +1,6 @@
 services:
   app:
-    image: woodwhales/woodwhales-music:3.7.1
+    image: woodwhales/woodwhales-music:latest
     build:
       context: .
       args:
