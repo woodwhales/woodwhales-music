@@ -340,6 +340,8 @@ woodwhales/woodwhales-music:latest
 ### V3.7.5
 
 - 增加页面访问人次、歌曲点击人次
+- 增加系统版本信息
+- 重构后台页面底部信息
 
 ### V3.7.4
 
