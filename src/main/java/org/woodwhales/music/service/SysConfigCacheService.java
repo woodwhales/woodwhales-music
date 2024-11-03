@@ -10,7 +10,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.woodwhales.music.entity.SysConfig;
-import org.woodwhales.music.service.sysConfig.SysConfigDefaultFun;
+import org.woodwhales.music.service.sysConfig.fun.SysConfigDefaultFun;
 import org.woodwhales.music.service.sysConfig.SysConfigService;
 
 import java.util.HashMap;
@@ -42,7 +42,6 @@ public class SysConfigCacheService {
                 log.warn("load default value for key={}, value={}", key, value);
                 return value;
             }
-            log.info("load value for key={}, value={}", key, sysConfig.getConfigContent());
             return sysConfig.getConfigContent();
         }
     });

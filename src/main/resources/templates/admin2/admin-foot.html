@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>woodwhales-music</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+
+<div th:fragment="admin-foot">
+    <el-row style="text-align: center; margin-bottom: 12px;">
+        <el-link :underline="false" style="margin-right: 10px">power by</el-link>
+        <el-link :underline="false" type="success" href="https://github.com/woodwhales/woodwhales-music" target="_blank" style="margin-right: 10px">woodwhales-music:{{product !=null ? product?.productVersion : '3.7.5'}}</el-link>
+        <el-link :underline="false" style="margin-right: 10px">&copy;&nbsp;&nbsp;{{sys.dateYear}}</el-link>
+        <el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
+    </el-row>
+</div>
+
+</body>
+</html>

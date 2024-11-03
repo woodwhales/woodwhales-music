@@ -21,6 +21,7 @@ import org.woodwhales.music.entity.SysConfig;
 import org.woodwhales.music.mapper.SysConfigMapper;
 import org.woodwhales.music.model.SysConfigVo;
 import org.woodwhales.music.service.SysConfigCacheService;
+import org.woodwhales.music.service.sysConfig.fun.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -51,7 +52,9 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
         String configKey = requestBody.getConfigKey();
         SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
                 .eq(SysConfig::getConfigKey, configKey));
-        if(Objects.isNull(sysConfig)) {
+        if (Objects.isNull(sysConfig)) {
+            sysConfig = new SysConfig();
+            sysConfig.setConfigKey(configKey);
             SysConfigDefaultFun<?> defaultFun = this.findDefaultFun(configKey);
             sysConfig.setConfigContent(JSON.toJSONString(defaultFun.defaultConfig()));
         }
@@ -70,14 +73,17 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
         return null;
     }
 
-    private static String[] default_keys = new String[] {AdminSysConfigDefault.KEY,
-                                                            HomeSysConfigDefault.KEY,
-                                                            VisitSysConfigDefault.KEY,
-                                                            ClicksSysConfigDefault.KEY};
+    private static String[] default_keys = new String[]{AdminSysConfigDefault.KEY,
+                                                        HomeSysConfigDefault.KEY,
+                                                        VisitSysConfigDefault.KEY,
+                                                        ClicksSysConfigDefault.KEY,
+                                                        ProductSysConfigDefault.KEY};
 
-    public static void addMusicSite(Model model, String ...keys) {
-        SysConfigService sysConfigService = SpringUtil.getBean(SysConfigService.class);
-        sysConfigService.recordVisits();
+    public static void addMusicSite(boolean recordVisits, Model model, String... keys) {
+        if(recordVisits) {
+            SysConfigService sysConfigService = SpringUtil.getBean(SysConfigService.class);
+            sysConfigService.recordVisits();
+        }
 
         SysConfigCacheService sysConfigCacheService = SpringUtil.getBean(SysConfigCacheService.class);
         if (ObjectUtils.isEmpty(keys)) {
@@ -86,6 +92,10 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
         for (String key : keys) {
             model.addAttribute(key, sysConfigCacheService.get(key));
         }
+    }
+
+    public static void addMusicSiteWithoutRecordVisits(Model model, String... keys) {
+        addMusicSite(false, model, keys);
     }
 
     public void recordVisits() {
@@ -109,7 +119,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
     public void asyncSaveOrUpdate(String key, String content) {
         SysConfig sysConfig = this.getOne(Wrappers.<SysConfig>lambdaQuery()
                 .eq(SysConfig::getConfigKey, key));
-        if(Objects.isNull(sysConfig)) {
+        if (Objects.isNull(sysConfig)) {
             sysConfig = new SysConfig();
             sysConfig.setConfigKey(key);
         }

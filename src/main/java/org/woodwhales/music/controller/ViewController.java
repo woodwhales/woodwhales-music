@@ -35,7 +35,7 @@ public class ViewController {
 	public String index(Model model) {
 		List<MusicInfoVo> musicInfoVoList = musicService.listMusic();
 		model.addAttribute("musicInfoList", musicInfoVoList);
-		SysConfigService.addMusicSite(model);
+		SysConfigService.addMusicSite(true, model);
 		return "index";
 	}
 

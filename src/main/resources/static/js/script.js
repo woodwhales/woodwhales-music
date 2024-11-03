@@ -1,7 +1,7 @@
-﻿var showCopyRight = function(tag, url) {
+﻿var showCopyRight = function(name, url, version) {
 	let footerElement = document.getElementById("footer");
 	var now = new Date();
-	footerElement.innerHTML = 'Copyright &copy; ' + now.getFullYear() + ' <a href="' + url + '" target="_blank">' + tag + '</a>';
+	footerElement.innerHTML = `<span style="margin-right: 10px;">&copy; ${now.getFullYear()}</span><a href="${url}" target="_blank">${name}</a>`;
 }
 
 var showFriendly = function(friendlyInfos) {

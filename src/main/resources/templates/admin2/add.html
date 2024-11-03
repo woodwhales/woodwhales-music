@@ -183,9 +183,7 @@
                 </el-form>
             </el-row>
 
-            <el-row style="text-align: center; margin-bottom: 12px;">
-                <el-link :underline="false">&copy;&nbsp;&nbsp;{{sys.dateYear}}</el-link>&nbsp;&nbsp;<el-link :underline="false" type="success" href="https://woodwhales.cn/" target="_blank">woodwhales's blog</el-link>
-            </el-row>
+            <div th:replace="~{admin2/admin-foot::admin-foot}"></div>
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
     </el-row>

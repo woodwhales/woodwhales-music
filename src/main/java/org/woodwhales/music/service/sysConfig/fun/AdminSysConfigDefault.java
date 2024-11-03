@@ -1,4 +1,4 @@
-package org.woodwhales.music.service.sysConfig;
+package org.woodwhales.music.service.sysConfig.fun;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,11 +26,6 @@ public class AdminSysConfigDefault implements SysConfigDefaultFun<AdminSysConfig
     @Override
     public Content defaultConfig() {
         return new Content(appConfig.getMusicSite());
-    }
-
-    @Override
-    public Class<Content> clazz() {
-        return Content.class;
     }
 
     @Data

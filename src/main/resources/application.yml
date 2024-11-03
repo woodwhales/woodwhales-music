@@ -49,6 +49,7 @@ github:
   # github 链接
   url: "https://github.com/woodwhales/woodwhales-music"
 system:
+  version: '@project.version@'
   init:
     # 后台系统admin账号的登录密码，每次初始化都会初始化
     password: ${SYSTEM_INIT_PASSWORD:admin}

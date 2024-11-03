@@ -1,4 +1,4 @@
-package org.woodwhales.music.service.sysConfig;
+package org.woodwhales.music.service.sysConfig.fun;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,11 +24,6 @@ public class HomeSysConfigDefault implements SysConfigDefaultFun<HomeSysConfigDe
     @Override
     public String configKey() {
         return KEY;
-    }
-
-    @Override
-    public Class<Content> clazz() {
-        return Content.class;
     }
 
     @Override

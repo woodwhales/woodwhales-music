@@ -118,10 +118,18 @@ body {
     color: white;
 }
 
-#webSiteInfo {
-    margin-top: 5px;
+.webSiteInfo {
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #aaa;
+}
+
+.webSiteInfo a {
+    color: #aaa;
+}
+
+.webSiteInfo a:hover {
+    color: white;
 }

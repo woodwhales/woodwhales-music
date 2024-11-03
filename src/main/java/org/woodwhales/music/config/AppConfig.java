@@ -51,6 +51,9 @@ public class AppConfig {
     @Value("${music.link.source}")
     public Integer musicLinkSource;
 
+    @Value("${system.version}")
+    public String version;
+
     public MusicLinkSourceEnum getMusicLinkSourceEnum() {
         return MusicLinkSourceEnum.ofCode(this.getMusicLinkSource());
     }
