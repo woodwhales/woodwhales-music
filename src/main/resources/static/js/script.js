@@ -31,9 +31,9 @@ var clickPlayer = (id) => {
 		if (data.code === 0) {
 			data.data.visits.count;
 			data.data.clicks.count;
-			let webSiteInfo = document.getElementById("webSiteInfo");
+			let siteStatistics = document.getElementById("siteStatistics");
 			let str = `访问人次：${data.data.visits.count}，点击人次：${data.data.clicks.count}`
-			webSiteInfo.innerHTML = str
+			siteStatistics.innerHTML = str
 		}
 	})
 	.catch(error => console.error('Error:', error));
