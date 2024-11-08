@@ -1,10 +1,4 @@
-﻿var showCopyRight = function(name, url, version) {
-	let footerElement = document.getElementById("footer");
-	var now = new Date();
-	footerElement.innerHTML = `<span style="margin-right: 10px;">&copy; ${now.getFullYear()}</span><a href="${url}" target="_blank">${name}</a>`;
-}
-
-var showFriendly = function(friendlyInfos) {
+﻿var showFriendly = function(friendlyInfos) {
 	if(friendlyInfos && friendlyInfos.length > 0) {
 		let friendly = document.getElementById("friendly");
 		let str = ''
