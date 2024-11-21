@@ -441,6 +441,7 @@
 
                     axios.post('./parse', this.parseForm)
                         .then(response => {
+                            this.sys.downloadImageSuccess = true
                             if(response.data.code === 0) {
                                 this.dataForm.musicName = response.data.data.musicTitle;
                                 this.dataForm.artist = response.data.data.artist;
