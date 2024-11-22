@@ -340,6 +340,7 @@ woodwhales/woodwhales-music:latest
 ### V3.7.7
 
 - 页面底部UI样式更新
+- 修复解析音乐图片下载按钮不重置问题
 
 ### V3.7.6
 
