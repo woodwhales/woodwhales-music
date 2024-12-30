@@ -280,6 +280,9 @@
             onAddMusicTag() {
                 axios.post('/admin/saveOrUpdateTag', this.addTagForm)
                     .then(response => {
+                        if (response.status === 302) {
+                            window.location.href = response.headers['location'];
+                        }
                         if(response.data.code === 0) {
                             this.addTagForm = {
                                 tagName: ''
@@ -297,6 +300,9 @@
             syncTagNameList() {
                 axios.post('/admin/tagNameDictList', {})
                     .then(response => {
+                        if (response.status === 302) {
+                            window.location.href = response.headers['location'];
+                        }
                         if(response.data.code === 0) {
                             this.sys.quickTagNameList = response.data.data
                         } else {
@@ -367,6 +373,9 @@
                             id: this.sys.music.id
                         })
                         .then(response => {
+                            if (response.status === 302) {
+                                window.location.href = response.headers['location'];
+                            }
                             if(response.data.code === 0) {
                                 this.sys.music = response.data.data;
                             } else {
@@ -399,6 +408,9 @@
                     };
                     axios.get('./getLinkList')
                         .then(response => {
+                            if (response.status === 302) {
+                                window.location.href = response.headers['location'];
+                            }
                             if(response.data.code === 0) {
                                 this.sys.music.linkList = response.data.data;
                                 this.dataForm.linkList = response.data.data;
@@ -442,6 +454,9 @@
                     axios.post('./parse', this.parseForm)
                         .then(response => {
                             this.sys.downloadImageSuccess = true
+                            if (response.status === 302) {
+                                window.location.href = response.headers['location'];
+                            }
                             if(response.data.code === 0) {
                                 this.dataForm.musicName = response.data.data.musicTitle;
                                 this.dataForm.artist = response.data.data.artist;
@@ -470,6 +485,9 @@
                     }
                     axios.post('./createOrUpdateMusic', this.dataForm)
                         .then(response => {
+                            if (response.status === 302) {
+                                window.location.href = response.headers['location'];
+                            }
                             if(response.data.code === 0) {
                                 this.$message({
                                     message: response.data.msg,

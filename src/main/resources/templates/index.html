@@ -72,8 +72,8 @@
     访问人次：<span style="margin-right: 8px" th:text="${visits !=null ? visits?.count : 1}"></span>点击人次：<span th:text="${clicks !=null ? clicks?.count : 1}"></span>
     </div>
     <div class="webSiteInfo">
-        power by<a href="https://github.com/woodwhales/woodwhales-music" target="_blank" style="margin-left: 8px;"
-                    th:text="'woodwhales-music:' + ${product !=null ? product?.productVersion : '3.7.5'}"></a>
+        powered by<a href="https://github.com/woodwhales/woodwhales-music" target="_blank" style="margin-left: 8px;"
+                    th:text="'woodwhales-music:' + ${product !=null ? product ?.productVersion : '3.7.5'}"></a>
     </div>
     <div>
         &copy; <span style="margin-right: 8px;" id="dateContainer"></span><a th:href="${home !=null ? home?.authorName : 'woodwhales.cn'}" target="_blank" th:text="${home !=null ? home?.authorName : 'woodwhales.cn'}"></a>

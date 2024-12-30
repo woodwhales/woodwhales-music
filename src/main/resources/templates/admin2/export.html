@@ -85,6 +85,9 @@
                 this.dataForm.musicInfoList = null;
                 axios.post('./exportMusic', {})
                     .then(response => {
+                        if (response.status === 302) {
+                            window.location.href = response.headers['location'];
+                        }
                         if(response.data.code === 0) {
                             this.dataForm.musicInfoList = response.data.data.musicList;
                             this.dataForm.totalCount = response.data.data.totalCount;
