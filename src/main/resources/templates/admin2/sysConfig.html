@@ -309,18 +309,16 @@
                     configKey: configKey
                 })
                 .then(response => {
-                    if (response.status === 302) {
-                        window.location.href = response.headers['location'];
-                    }
                     if(response.data.code === 0) {
                         fun(response.data)
+                    } else if(response.request && response.request.responseURL) {
+                        window.location.href = response.request.responseURL;
                     } else {
                         this.$message.error(response.data.msg);
                     }
                 })
                 .catch(error => {
                     this.$message.error(error);
-                    console.log(error);
                 });
             },
             initDataForm3() {
@@ -333,18 +331,16 @@
 
                 axios.post('/admin/user/me')
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.dataForm3 = response.data.data
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
                     })
                     .catch(error => {
                         this.$message.error(error);
-                        console.log(error);
                     });
             },
             initDataForm2() {
@@ -384,21 +380,19 @@
                         content: content
                     })
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.$message({
                                 message: response.data.msg,
                                 type: 'success'
                             });
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
                     })
                     .catch(error => {
                         this.$message.error(error);
-                        console.log(error);
                     });
                 });
             },
@@ -421,9 +415,6 @@
                         code: this.open2FAForm.verifyCode
                     })
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.initDataForm3()
                             this.temp.open2FADialogVisible = false
@@ -431,6 +422,8 @@
                                 message: response.data.msg,
                                 type: 'success'
                             });
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
@@ -444,9 +437,6 @@
             close2FA() {
                 axios.post('/admin/two-factor/disable', {})
                 .then(response => {
-                    if (response.status === 302) {
-                        window.location.href = response.headers['location'];
-                    }
                     if(response.data.code === 0) {
                         this.initDataForm3()
                         this.temp.close2FADialogVisible = false
@@ -454,13 +444,14 @@
                             message: response.data.msg,
                             type: 'success'
                         });
+                    } else if(response.request && response.request.responseURL) {
+                        window.location.href = response.request.responseURL;
                     } else {
                         this.$message.error(response.data.msg);
                     }
                 })
                 .catch(error => {
                     this.$message.error(error);
-                    console.log(error);
                 });
             },
             onSubmit3(dataForm) {
@@ -470,21 +461,19 @@
                 } else {
                     axios.post('/admin/two-factor/generate', {})
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.open2FAForm.qrCodeUrl = response.data.data.qrCodeUrl
                             this.open2FAForm.twoFactorSecret = response.data.data.twoFactorSecret
                             this.open2FAForm.verifyCode = ''
                             this.temp.open2FADialogVisible = true
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
                     })
                     .catch(error => {
                         this.$message.error(error);
-                        console.log(error);
                     });
                 }
                 return false;

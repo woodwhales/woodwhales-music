@@ -280,15 +280,14 @@
             onAddMusicTag() {
                 axios.post('/admin/saveOrUpdateTag', this.addTagForm)
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.addTagForm = {
                                 tagName: ''
                             }
                             this.syncTagNameList()
                             this.$message.success(response.data.msg);
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
@@ -300,11 +299,10 @@
             syncTagNameList() {
                 axios.post('/admin/tagNameDictList', {})
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.sys.quickTagNameList = response.data.data
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.sys.quickTagNameList = []
                             this.$message.error(response.data.msg);
@@ -373,18 +371,16 @@
                             id: this.sys.music.id
                         })
                         .then(response => {
-                            if (response.status === 302) {
-                                window.location.href = response.headers['location'];
-                            }
                             if(response.data.code === 0) {
                                 this.sys.music = response.data.data;
+                            } else if(response.request && response.request.responseURL) {
+                                window.location.href = response.request.responseURL;
                             } else {
                                 this.$message.error(response.data.msg);
                             }
                         })
                         .catch(error => {
                             this.$message.error(error);
-                            console.log(error);
                         });
 
                     this.dataForm.id = this.sys.music.id;
@@ -408,20 +404,18 @@
                     };
                     axios.get('./getLinkList')
                         .then(response => {
-                            if (response.status === 302) {
-                                window.location.href = response.headers['location'];
-                            }
                             if(response.data.code === 0) {
                                 this.sys.music.linkList = response.data.data;
                                 this.dataForm.linkList = response.data.data;
                                 this.musicPlayer.musicAudioUrl = this.dataForm.linkList[0].linkMap.AUDIO_LINK;
+                            } else if(response.request && response.request.responseURL) {
+                                window.location.href = response.request.responseURL;
                             } else {
                                 this.$message.error(response.data.msg);
                             }
                         })
                         .catch(error => {
                             this.$message.error(error);
-                            console.log(error);
                         });
                 }
             },
@@ -454,14 +448,13 @@
                     axios.post('./parse', this.parseForm)
                         .then(response => {
                             this.sys.downloadImageSuccess = true
-                            if (response.status === 302) {
-                                window.location.href = response.headers['location'];
-                            }
                             if(response.data.code === 0) {
                                 this.dataForm.musicName = response.data.data.musicTitle;
                                 this.dataForm.artist = response.data.data.artist;
                                 this.dataForm.album = response.data.data.album;
                                 this.dataForm.coverUrl = response.data.data.coverUrl;
+                            } else if(response.request && response.request.responseURL) {
+                                window.location.href = response.request.responseURL;
                             } else {
                                 this.dataForm.coverUrl = ''
                                 this.$message.error(response.data.msg);
@@ -469,7 +462,6 @@
                         })
                         .catch(error => {
                             this.$message.error(error);
-                            console.log(error);
                         });
                 });
             },
@@ -485,22 +477,20 @@
                     }
                     axios.post('./createOrUpdateMusic', this.dataForm)
                         .then(response => {
-                            if (response.status === 302) {
-                                window.location.href = response.headers['location'];
-                            }
                             if(response.data.code === 0) {
                                 this.$message({
                                     message: response.data.msg,
                                     type: 'success'
                                 });
                                 location.href = './'
+                            } else if(response.request && response.request.responseURL) {
+                                window.location.href = response.request.responseURL;
                             } else {
                                 this.$message.error(response.data.msg);
                             }
                         })
                         .catch(error => {
                             this.$message.error(error);
-                            console.log(error);
                         });
                 });
             },

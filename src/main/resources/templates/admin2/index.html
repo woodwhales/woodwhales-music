@@ -222,15 +222,14 @@
             onAddMusicTag() {
                 axios.post('./saveOrUpdateTag', this.addTagForm)
                 .then(response => {
-                    if (response.status === 302) {
-                        window.location.href = response.headers['location'];
-                    }
                     if(response.data.code === 0) {
                         this.addTagForm = {
                             tagName: ''
                         }
                         this.syncTagNameList()
                         this.$message.success(response.data.msg);
+                    } else if(response.request && response.request.responseURL) {
+                        window.location.href = response.request.responseURL;
                     } else {
                         this.$message.error(response.data.msg);
                     }
@@ -251,12 +250,11 @@
                     tagNameList: musicInfo.tagNameList
                 })
                 .then(response => {
-                    if (response.status === 302) {
-                        window.location.href = response.headers['location'];
-                    }
                     if(response.data.code === 0) {
                         musicInfo.tagList = response.data.data
                         this.$message.success(response.data.msg);
+                    } else if(response.request && response.request.responseURL) {
+                        window.location.href = response.request.responseURL;
                     } else {
                         this.$message.error(response.data.msg);
                     }
@@ -273,11 +271,10 @@
             syncTagNameList() {
                 axios.post('./tagNameDictList', {})
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.sys.quickTagNameList = response.data.data
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.sys.quickTagNameList = []
                             this.$message.error(response.data.msg);
@@ -378,9 +375,6 @@
                     orderBy: this.sys.orderBy
                 })
                 .then(response => {
-                    if (response && response.status === 302) {
-                        window.location.href = response.headers['location'];
-                    }
                     if(response.data.code === 0) {
                         this.sys.total = response.data.count;
                         this.sys.tableData = response.data.data;
@@ -390,6 +384,8 @@
                                 tagNameList: data.tagList.map(data => data.name)
                             }
                         })
+                    } else if(response.request && response.request.responseURL) {
+                        window.location.href = response.request.responseURL;
                     } else {
                         this.$message.error(response.data.msg);
                     }
@@ -411,15 +407,14 @@
                         id: row.id
                     })
                     .then(response => {
-                        if (response.status === 302) {
-                            window.location.href = response.headers['location'];
-                        }
                         if(response.data.code === 0) {
                             this.onQuery();
                             this.$message({
                                 message: response.data.msg,
                                 type: 'success'
                             });
+                        } else if(response.request && response.request.responseURL) {
+                            window.location.href = response.request.responseURL;
                         } else {
                             this.$message.error(response.data.msg);
                         }
