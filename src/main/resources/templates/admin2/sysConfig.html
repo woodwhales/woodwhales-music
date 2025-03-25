@@ -140,7 +140,7 @@
                         <el-form ref="dataForm4" :model="dataForm4" label-width="80px">
                             <el-card shadow="always" style="margin-bottom: 15px">
                                 <el-form-item label="robots.txt" prop="robots">
-                                    <el-input type="textarea" v-model="dataForm4.robots"></el-input>
+                                    <el-input type="textarea" :autosize="{ minRows: 3 }" v-model="dataForm4.robots"></el-input>
                                 </el-form-item>
                                 <el-form-item>
                                     <el-button type="primary" @click="onSubmit4('dataForm4')" :type="success" size="mini">提交</el-button>

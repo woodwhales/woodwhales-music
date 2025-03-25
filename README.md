@@ -94,6 +94,10 @@ class 为：`page-container`的 html 源码
 
 ![](doc/images/admin-sys-config-user.png)
 
+#### 2.5.4 robots.txt 配置
+
+![](doc/images/admin-sys-config-robots.png)
+
 ## 2. 系统说明
 
 ### 2.1 配置文件
