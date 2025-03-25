@@ -37,7 +37,7 @@ music:
     # 链接来源：0-github，1-alist
     source: 1
   # 音乐网站首页
-  site: "https://music.icoders.cn/"
+  site: "https://music.icoders.cn"
 author:
   # 作者名称
   name: "woodwhales"

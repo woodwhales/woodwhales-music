@@ -41,7 +41,7 @@ public class WebSecurityConfig {
 		// 前后端分离架构不需要csrf保护
 		http.csrf(AbstractHttpConfigurer::disable);
 		http.authorizeHttpRequests(authorize -> {
-			authorize.requestMatchers("/", "/index", "/clickPlay").permitAll()
+			authorize.requestMatchers("/", "/index", "/clickPlay", "/robots.txt").permitAll()
 					.requestMatchers(
 							"/admin/fonts/**",
 							"/admin/css/**",
