@@ -1,5 +1,6 @@
 package org.woodwhales.music.controller.admin;
 
+import cn.woodwhales.common.model.result.BaseRespResult;
 import cn.woodwhales.common.model.vo.LayuiPageVO;
 import cn.woodwhales.common.model.vo.RespVO;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.woodwhales.music.model.MusicSimpleInfo;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author woodwhales
@@ -24,6 +26,8 @@ import java.util.List;
 @RequestMapping("/admin")
 @RestController
 public class MusicInfoController {
+
+	private final ReentrantLock lock = new ReentrantLock();
 
 	@Autowired
 	private MusicServiceImpl musicService;
@@ -45,8 +49,25 @@ public class MusicInfoController {
 	@PostMapping("/createOrUpdateMusic")
 	public RespVO<Void> createOrUpdateMusic(@Validated @RequestBody MusicCreateOrUpdateRequestBody requestBody) {
 		log.info("requestBody = {}", JsonUtil.toString(requestBody));
-		musicService.createOrUpdate(requestBody);
-		return RespVO.success();
+		if (!lock.tryLock()) {
+			return RespVO.error(new BaseRespResult() {
+									@Override
+									public String getMessage() {
+										return "操作繁忙，请稍后再试";
+									}
+
+									@Override
+									public Integer getCode() {
+										return 400;
+									}
+								});
+		}
+		try {
+			musicService.createOrUpdate(requestBody);
+			return RespVO.success();
+		} finally {
+			lock.unlock();
+		}
 	}
 
 	/**
