@@ -1,7 +1,12 @@
 package org.woodwhales.music.config;
 
 import lombok.Data;
+import org.dromara.x.file.storage.core.tika.ContentTypeDetect;
+import org.dromara.x.file.storage.core.tika.DefaultTikaFactory;
+import org.dromara.x.file.storage.core.tika.TikaContentTypeDetect;
+import org.dromara.x.file.storage.core.tika.TikaFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
@@ -58,4 +63,13 @@ public class AppConfig {
         return MusicLinkSourceEnum.ofCode(this.getMusicLinkSource());
     }
 
+    @Bean
+    public TikaFactory tikaFactory() {
+        return new DefaultTikaFactory();
+    }
+
+    @Bean
+    public ContentTypeDetect contentTypeDetect() {
+        return new TikaContentTypeDetect(tikaFactory());
+    }
 }

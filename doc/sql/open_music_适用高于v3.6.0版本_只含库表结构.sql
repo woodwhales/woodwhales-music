@@ -19,6 +19,58 @@
 CREATE DATABASE IF NOT EXISTS `open_music` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `open_music`;
 
+-- 导出  表 open_music.file_detail 结构
+CREATE TABLE IF NOT EXISTS `file_detail` (
+  `id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文件id',
+  `url` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文件访问地址',
+  `size` bigint DEFAULT NULL COMMENT '文件大小，单位字节',
+  `filename` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文件名称',
+  `original_filename` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '原始文件名',
+  `base_path` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '基础存储路径',
+  `path` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '存储路径',
+  `ext` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文件扩展名',
+  `content_type` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'MIME类型',
+  `platform` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '存储平台',
+  `th_url` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '缩略图访问路径',
+  `th_filename` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '缩略图名称',
+  `th_size` bigint DEFAULT NULL COMMENT '缩略图大小，单位字节',
+  `th_content_type` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '缩略图MIME类型',
+  `object_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文件所属对象id',
+  `object_type` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文件所属对象类型，例如用户头像，评价图片',
+  `metadata` text COLLATE utf8mb4_unicode_ci COMMENT '文件元数据',
+  `user_metadata` text COLLATE utf8mb4_unicode_ci COMMENT '文件用户元数据',
+  `th_metadata` text COLLATE utf8mb4_unicode_ci COMMENT '缩略图元数据',
+  `th_user_metadata` text COLLATE utf8mb4_unicode_ci COMMENT '缩略图用户元数据',
+  `attr` text COLLATE utf8mb4_unicode_ci COMMENT '附加属性',
+  `file_acl` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文件ACL',
+  `th_file_acl` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '缩略图文件ACL',
+  `hash_info` text COLLATE utf8mb4_unicode_ci COMMENT '哈希信息',
+  `upload_id` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '上传ID，仅在手动分片上传时使用',
+  `upload_status` int DEFAULT NULL COMMENT '上传状态，仅在手动分片上传时使用，1：初始化完成，2：上传完成',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `url` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文件记录表';
+
+-- 数据导出被取消选择。
+
+-- 导出  表 open_music.file_part_detail 结构
+CREATE TABLE IF NOT EXISTS `file_part_detail` (
+  `id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '分片id',
+  `platform` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '存储平台',
+  `upload_id` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '上传ID，仅在手动分片上传时使用',
+  `e_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '分片 ETag',
+  `part_number` int DEFAULT NULL COMMENT '分片号。每一个上传的分片都有一个分片号，一般情况下取值范围是1~10000',
+  `part_size` bigint DEFAULT NULL COMMENT '文件大小，单位字节',
+  `hash_info` text COLLATE utf8mb4_unicode_ci COMMENT '哈希信息',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除，0-已启用，1-已停用，2-已删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文件分片信息表，仅在手动分片上传时使用';
+
+-- 数据导出被取消选择。
+
 -- 导出  表 open_music.music_info 结构
 CREATE TABLE IF NOT EXISTS `music_info` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '音乐表主键',
@@ -75,8 +127,8 @@ CREATE TABLE IF NOT EXISTS `sys_config` (
   `config_key` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '配置key',
   `config_content` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '配置内容',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `config_key` (`config_key`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_unicode_ci COMMENT='系统配置表';
+  KEY `config_key` (`config_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci COMMENT='系统配置表';
 
 -- 数据导出被取消选择。
 

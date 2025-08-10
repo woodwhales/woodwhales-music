@@ -7,3 +7,15 @@ system:
   init:
     # 后台系统admin账号的登录密码，每次初始化都会初始化
     password: ${SYSTEM_INIT_PASSWORD:admin}
+dromara:
+  x-file-storage:
+    default-platform: minio
+    thumbnail-suffix: ".min.jpg"
+    minio:
+      - platform: minio
+        enable-storage: true
+        access-key:
+        secret-key:
+        end-point:
+        bucket-name: music
+        domain: https://files.icoders.cn/${dromara.x-file-storage.minio[0].bucket-name}/
