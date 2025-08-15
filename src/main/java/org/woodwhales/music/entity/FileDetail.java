@@ -1,9 +1,13 @@
 package org.woodwhales.music.entity;
 
+import cn.hutool.core.lang.Dict;
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.handlers.Fastjson2TypeHandler;
 import lombok.Data;
+import org.dromara.x.file.storage.core.hash.HashInfo;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 文件记录表
@@ -15,7 +19,7 @@ public class FileDetail {
      * 文件id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 是否删除，0-已启用，1-已停用，2-已删除
@@ -117,44 +121,50 @@ public class FileDetail {
     /**
      * 文件元数据
      */
-    @TableField(value = "metadata")
-    private String metadata;
+    @TableField(value = "metadata", typeHandler = Fastjson2TypeHandler.class)
+    private Map<String, String> metadata;
 
     /**
      * 文件用户元数据
      */
-    @TableField(value = "user_metadata")
-    private String userMetadata;
+    @TableField(value = "user_metadata", typeHandler = Fastjson2TypeHandler.class)
+    private Map<String, String> userMetadata;
 
     /**
      * 缩略图元数据
      */
-    @TableField(value = "th_metadata")
-    private String thMetadata;
+    @TableField(value = "th_metadata", typeHandler = Fastjson2TypeHandler.class)
+    private Map<String, String> thMetadata;
 
     /**
      * 缩略图用户元数据
      */
-    @TableField(value = "th_user_metadata")
-    private String thUserMetadata;
+    @TableField(value = "th_user_metadata", typeHandler = Fastjson2TypeHandler.class)
+    private Map<String, String> thUserMetadata;
 
     /**
      * 附加属性
      */
-    @TableField(value = "attr")
-    private String attr;
+    @TableField(value = "attr", typeHandler = Fastjson2TypeHandler.class)
+    private Dict attr;
 
     /**
      * 哈希信息
      */
-    @TableField(value = "hash_info")
-    private String hashInfo;
+    @TableField(value = "hash_info", typeHandler = Fastjson2TypeHandler.class)
+    private HashInfo hashInfo;
 
     /**
      * 上传ID，仅在手动分片上传时使用
      */
     @TableField(value = "upload_id")
     private String uploadId;
+
+    /**
+     * 哈希信息
+     */
+    @TableField(value = "sha256")
+    private String sha256;
 
     /**
      * 上传状态，仅在手动分片上传时使用，1：初始化完成，2：上传完成

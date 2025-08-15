@@ -15,7 +15,7 @@ public class FilePartDetail {
      * 分片id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 是否删除，0-已启用，1-已停用，2-已删除

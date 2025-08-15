@@ -26,7 +26,7 @@ public class FilePartDetailService extends ServiceImpl<FilePartDetailMapper, Fil
     public void saveFilePart(FilePartInfo info) {
         FilePartDetail detail = toFilePartDetail(info);
         if (save(detail)) {
-            info.setId(detail.getId());
+            info.setId(detail.getId().toString());
         }
     }
 

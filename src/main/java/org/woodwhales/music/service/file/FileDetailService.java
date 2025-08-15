@@ -1,24 +1,37 @@
 package org.woodwhales.music.service.file;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.Dict;
-import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.imaging.ImageInfo;
+import org.apache.commons.imaging.Imaging;
+import org.apache.commons.io.IOUtils;
 import org.dromara.x.file.storage.core.FileInfo;
-import org.dromara.x.file.storage.core.hash.HashInfo;
+import org.dromara.x.file.storage.core.FileStorageService;
+import org.dromara.x.file.storage.core.constant.Constant;
+import org.dromara.x.file.storage.core.exception.FileStorageRuntimeException;
+import org.dromara.x.file.storage.core.hash.HashCalculatorManager;
+import org.dromara.x.file.storage.core.hash.MessageDigestHashCalculator;
 import org.dromara.x.file.storage.core.recorder.FileRecorder;
+import org.dromara.x.file.storage.core.tika.ContentTypeDetect;
 import org.dromara.x.file.storage.core.upload.FilePartInfo;
+import org.dromara.x.file.storage.core.upload.UploadPretreatment;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.woodwhales.music.entity.FileDetail;
 import org.woodwhales.music.mapper.FileDetailMapper;
 
-import java.util.Map;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 用来将文件上传记录保存到数据库，这里使用了 MyBatis-Plus 和 Hutool 工具类
@@ -30,6 +43,99 @@ public class FileDetailService extends ServiceImpl<FileDetailMapper, FileDetail>
     @Autowired
     private FilePartDetailService filePartDetailService;
 
+    @Autowired
+    @Lazy
+    private FileStorageService fileStorageService;
+
+    @Autowired
+    private ContentTypeDetect contentTypeDetect;
+
+    public FileInfo upload(MultipartFile file) {
+        if (file.isEmpty()) {
+            return null;
+        }
+
+        UploadPretreatment uploadPretreatment = this.fileStorageService.of(file);
+        FileInfo fileInfo;
+        try {
+            fileInfo = uploadPretreatment.getFileWrapper().getInputStreamMaskResetReturn(in -> {
+                MessageDigestHashCalculator calculator = new MessageDigestHashCalculator(Constant.Hash.MessageDigest.SHA256);
+                calculator.update(IOUtils.toByteArray(in));
+                String sha256 = calculator.getValue();
+
+                List<FileDetail> list = this.lambdaQuery()
+                        .eq(FileDetail::getSha256, sha256)
+                        .orderByDesc(FileDetail::getId)
+                        .last("limit 1")
+                        .list();
+                if (CollectionUtils.isNotEmpty(list)) {
+                    return this.toFileInfo(list.get(0));
+                }
+                return null;
+            });
+
+        } catch (IOException e) {
+            throw new FileStorageRuntimeException("读取文件sha256信息失败！", e);
+        }
+
+        if(Objects.nonNull(fileInfo)) {
+            return fileInfo;
+        }
+
+        if(isImage(file)) {
+            try {
+                uploadPretreatment.getFileWrapper().getInputStreamMaskReset(in -> {
+                    ImageInfo imageInfo = Imaging.getImageInfo(in, file.getOriginalFilename());
+                    int width = imageInfo.getWidth();
+                    int height = imageInfo.getHeight();
+                    uploadPretreatment.putUserMetadata("width", width + "");
+                    uploadPretreatment.putUserMetadata("height", height + "");
+                });
+            } catch (IOException e) {
+                throw new FileStorageRuntimeException("读取图片宽高信息失败！", e);
+            }
+            uploadPretreatment.thumbnail(th -> th.scale(0.2));
+        }
+
+        uploadPretreatment
+                .setHashCalculatorManager(new HashCalculatorManager())
+                .setHashCalculatorMd5()
+                .setHashCalculatorSha256();
+
+        uploadPretreatment
+                .setProgressListener((progressSize, allSize) ->
+                        log.info("已上传={}, 总大小={}, ", progressSize, (allSize == null ? "未知" : allSize)));
+
+        return uploadPretreatment.upload();
+    }
+
+    public boolean isImage(MultipartFile file) {
+        // 1. content-type 检查
+        String detect = null;
+        try {
+            detect = contentTypeDetect.detect(file.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (detect == null || !detect.startsWith("image/")) {
+            return false;
+        }
+
+        // 2. 文件扩展名检查
+        String filename = file.getOriginalFilename();
+        if (filename == null || !filename.matches("(?i).*\\.(jpg|jpeg|png|gif|bmp|webp)$")) {
+            return false;
+        }
+
+        // 3. 实际内容判断
+        try (InputStream input = file.getInputStream()) {
+            BufferedImage image = ImageIO.read(input);
+            return image != null;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     /**
      * 保存文件信息到数据库
      */
@@ -39,7 +145,7 @@ public class FileDetailService extends ServiceImpl<FileDetailMapper, FileDetail>
         FileDetail detail = toFileDetail(info);
         boolean b = save(detail);
         if (b) {
-            info.setId(detail.getId());
+            info.setId(detail.getId().toString());
         }
         return b;
     }
@@ -97,18 +203,9 @@ public class FileDetailService extends ServiceImpl<FileDetailMapper, FileDetail>
      * 将 FileInfo 转为 FileDetail
      */
     public FileDetail toFileDetail(FileInfo info) {
-        FileDetail detail = BeanUtil.copyProperties(
-                info, FileDetail.class, "metadata", "userMetadata", "thMetadata", "thUserMetadata", "attr", "hashInfo");
-
-        // 这里手动获 元数据 并转成 json 字符串，方便存储在数据库中
-        detail.setMetadata(valueToJson(info.getMetadata()));
-        detail.setUserMetadata(valueToJson(info.getUserMetadata()));
-        detail.setThMetadata(valueToJson(info.getThMetadata()));
-        detail.setThUserMetadata(valueToJson(info.getThUserMetadata()));
-        // 这里手动获 取附加属性字典 并转成 json 字符串，方便存储在数据库中
-        detail.setAttr(valueToJson(info.getAttr()));
-        // 这里手动获 哈希信息 并转成 json 字符串，方便存储在数据库中
-        detail.setHashInfo(valueToJson(info.getHashInfo()));
+        FileDetail detail = new FileDetail();
+        BeanUtils.copyProperties(info, detail);
+        detail.setSha256(info.getHashInfo().getSha256());
         return detail;
     }
 
@@ -116,49 +213,9 @@ public class FileDetailService extends ServiceImpl<FileDetailMapper, FileDetail>
      * 将 FileDetail 转为 FileInfo
      */
     public FileInfo toFileInfo(FileDetail detail) {
-        FileInfo info = BeanUtil.copyProperties(
-                detail, FileInfo.class, "metadata", "userMetadata", "thMetadata", "thUserMetadata", "attr", "hashInfo");
-
-        // 这里手动获取数据库中的 json 字符串 并转成 元数据，方便使用
-        info.setMetadata(jsonToMetadata(detail.getMetadata()));
-        info.setUserMetadata(jsonToMetadata(detail.getUserMetadata()));
-        info.setThMetadata(jsonToMetadata(detail.getThMetadata()));
-        info.setThUserMetadata(jsonToMetadata(detail.getThUserMetadata()));
-        // 这里手动获取数据库中的 json 字符串 并转成 附加属性字典，方便使用
-        info.setAttr(jsonToDict(detail.getAttr()));
-        // 这里手动获取数据库中的 json 字符串 并转成 哈希信息，方便使用
-        info.setHashInfo(jsonToHashInfo(detail.getHashInfo()));
+        FileInfo info = new FileInfo();
+        BeanUtils.copyProperties(detail, info);
+        info.setId(detail.getId().toString());
         return info;
-    }
-
-    /**
-     * 将指定值转换成 json 字符串
-     */
-    public String valueToJson(Object value) {
-        return JSON.toJSONString(value);
-    }
-
-    /**
-     * 将 json 字符串转换成元数据对象
-     */
-    public Map<String, String> jsonToMetadata(String json) {
-        if (StrUtil.isBlank(json)) return null;
-        return JSON.parseObject(json, new TypeReference<Map<String, String>>() {});
-    }
-
-    /**
-     * 将 json 字符串转换成字典对象
-     */
-    public Dict jsonToDict(String json) {
-        if (StrUtil.isBlank(json)) return null;
-        return JSON.parseObject(json, Dict.class);
-    }
-
-    /**
-     * 将 json 字符串转换成哈希信息对象
-     */
-    public HashInfo jsonToHashInfo(String json) {
-        if (StrUtil.isBlank(json)) return null;
-        return JSON.parseObject(json, HashInfo.class);
     }
 }

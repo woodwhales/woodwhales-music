@@ -7,6 +7,10 @@ server:
 spring:
   application:
     name: woodwhales-music
+  servlet:
+    multipart:
+      max-file-size: 4GB
+      max-request-size: 4GB
   thymeleaf:
     cache: false
   devtools:
