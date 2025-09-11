@@ -2,7 +2,7 @@
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        8.0.27 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.2.0.6576
+-- HeidiSQL 版本:                  12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- 正在导出表  open_music.music_info 的数据：~1,712 rows (大约)
+-- 正在导出表  open_music.file_detail 的数据：~0 rows (大约)
+
+-- 正在导出表  open_music.file_part_detail 的数据：~0 rows (大约)
+
+-- 正在导出表  open_music.music_info 的数据：~1,576 rows (大约)
 INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `gmt_created`, `gmt_modified`, `link_status`) VALUES
 	(2, 'Someone Like You', 'Adele', 'Someone Like You', 1, 0, '2020-08-03 23:40:53', '2023-08-03 11:30:32', 1),
 	(3, '红日', '李克勤', '红日', 2, 0, '2020-08-03 23:41:55', '2023-03-29 14:46:14', 1),
@@ -1896,9 +1900,13 @@ INSERT INTO `music_info` (`id`, `title`, `artist`, `album`, `sort`, `status`, `g
 	(1928, '那些年-Uu (刘梦妤)', 'Uu (刘梦妤)', '那些年', 806, 0, '2025-08-02 11:45:59', '2025-08-03 09:44:30', 1),
 	(1929, 'Call Of Silence（Clear Sky）-Cryptix Vortex', 'Cryptix Vortex', '海的那边是什么', 705, 0, '2025-08-02 11:50:45', '2025-08-03 09:44:04', 1),
 	(1930, 'Call Of Silence（钢琴完整版）-未知', '未知', '未知', 668, 0, '2025-08-02 12:12:30', '2025-08-03 09:43:47', 1),
-	(1931, 'Call of Silence(静谧的呼唤)-Haru', 'Haru', 'Attack on Titan OST Relaxing Piano Collection', 524, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', 1);
+	(1931, 'Call of Silence(静谧的呼唤)-Haru', 'Haru', 'Attack on Titan OST Relaxing Piano Collection', 524, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', 1),
+	(1932, '活着-郝云', '郝云', '活着', 566, 0, '2025-08-18 12:48:40', '2025-08-18 12:55:54', 1),
+	(1933, '你到底有没有爱过我-蓝波', '蓝波', '你到底有没有爱过我', 702, 0, '2025-08-18 12:52:19', '2025-08-18 12:56:12', 1),
+	(1934, '薩堤：金諾佩蒂斯-Ferenc Hegedus', 'Ferenc Hegedus', '古典音樂花房：忘憂曲集', 603, 0, '2025-09-11 10:44:39', '2025-09-11 10:49:09', 1),
+	(1935, '薩堤：金諾珮蒂絲-Shockwave-Sound', 'Shockwave-Sound', '夢中的旋律 / 古典舒眠音樂', 521, 0, '2025-09-11 10:46:34', '2025-09-11 10:48:49', 1);
 
--- 正在导出表  open_music.music_info_link 的数据：~6,518 rows (大约)
+-- 正在导出表  open_music.music_info_link 的数据：~5,974 rows (大约)
 INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(1, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/music/some_one_like_you.m4a', 0, 0, 2),
 	(2, 0, '2023-03-28 15:27:38', '2023-08-03 11:30:32', 'https://gcore.jsdelivr.net/gh/woodwhales/woodwhales-music-store@m001/pic/some_one_like_you.jpg', 1, 0, 2),
@@ -5465,12 +5473,12 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(3563, 0, '2023-09-05 12:48:31', '2023-09-25 11:01:14', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/14/%E4%BA%BA%E5%BD%A2%E3%81%AE%E9%A4%A8-%E5%B2%A9%E5%B4%8E%E7%90%A2.m4a?sign=v5bO8kfRjvJFIjDCJVthBJF2jE_OJjvLNnpwcHAxq2o=:0', 0, 1, 931),
 	(3564, 0, '2023-09-05 12:48:31', '2023-09-25 11:01:14', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/14/%E4%BA%BA%E5%BD%A2%E3%81%AE%E9%A4%A8-%E5%B2%A9%E5%B4%8E%E7%90%A2.jpg?sign=SVse_69I5XUtBfpX-D1o9cDMSz3v35J9jiMjrHNWNSo=:0', 1, 1, 931),
 	(3565, 0, '2023-09-05 12:49:33', '2023-09-08 16:45:51', NULL, 0, 0, 932),
-	(3566, 0, '2023-09-05 12:49:33', '2023-09-08 16:45:51', NULL, 1, 0, 932),
+	(3566, 0, '2023-09-05 12:49:33', '2023-09-08 16:45:51', NULL, 1, 0, 932);
+INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
 	(3567, 0, '2023-09-05 12:49:33', '2023-09-08 16:45:51', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/07/P.I.M.P-TangTian.m4a?sign=Cx37WszNZUYnKT6UDjSUBinJK3XvhpiUfrt4Jz-XB1A=:0', 0, 1, 932),
 	(3568, 0, '2023-09-05 12:49:33', '2023-09-08 16:45:51', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/07/P.I.M.P-TangTian.jpg?sign=IqC1FqvLCwhSw8U3_l341PFpT8i4wxmAHoao1EEHsUc=:0', 1, 1, 932),
 	(3569, 0, '2023-09-05 12:50:49', '2023-09-08 16:48:26', NULL, 0, 0, 933),
-	(3570, 0, '2023-09-05 12:50:49', '2023-09-08 16:48:26', NULL, 1, 0, 933);
-INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `link_url`, `link_type`, `link_source`, `music_id`) VALUES
+	(3570, 0, '2023-09-05 12:50:49', '2023-09-08 16:48:26', NULL, 1, 0, 933),
 	(3571, 0, '2023-09-05 12:50:49', '2023-09-08 16:48:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/08/sans.-Toby%20Fox.m4a?sign=sTedPq7jH_2Ft5K6dJC0Hx1uQfBatYZyGJpwfVgzkp0=:0', 0, 1, 933),
 	(3572, 0, '2023-09-05 12:50:49', '2023-09-08 16:48:26', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store10/08/sans.-Toby%20Fox.jpg?sign=YtJs8drdVlCbcimrXhgB9_dwBpg56iq9AVHN8XQdvFg=:0', 1, 1, 933),
 	(3573, 0, '2023-09-05 12:51:53', '2023-09-25 11:02:30', NULL, 0, 0, 934),
@@ -9464,7 +9472,23 @@ INSERT INTO `music_info_link` (`id`, `status`, `gmt_created`, `gmt_modified`, `l
 	(7561, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', '', 0, 0, 1931),
 	(7562, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', '', 1, 0, 1931),
 	(7563, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/14/Call%20of%20Silence(%E9%9D%99%E8%B0%A7%E7%9A%84%E5%91%BC%E5%94%A4)-Haru.mp3?sign=G24cI8qyhzyCBVSfw3XO9X6TeVm2KXA3GaLXdUsKvGM=:0', 0, 1, 1931),
-	(7564, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/14/Call%20of%20Silence(%E9%9D%99%E8%B0%A7%E7%9A%84%E5%91%BC%E5%94%A4)-Haru.jpg?sign=DViLl8hqWSW3le8ahoX5sAcbpAl-AT93XPYaRwE3AsA=:0', 1, 1, 1931);
+	(7564, 0, '2025-08-02 12:19:53', '2025-08-03 09:43:27', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/14/Call%20of%20Silence(%E9%9D%99%E8%B0%A7%E7%9A%84%E5%91%BC%E5%94%A4)-Haru.jpg?sign=DViLl8hqWSW3le8ahoX5sAcbpAl-AT93XPYaRwE3AsA=:0', 1, 1, 1931),
+	(7565, 0, '2025-08-18 12:48:40', '2025-08-18 12:55:54', '', 0, 0, 1932),
+	(7566, 0, '2025-08-18 12:48:40', '2025-08-18 12:55:54', '', 1, 0, 1932),
+	(7567, 0, '2025-08-18 12:48:40', '2025-08-18 12:55:54', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E6%B4%BB%E7%9D%80-%E9%83%9D%E4%BA%91.m4a?sign=Gf3sWgIcUGgI_AEvOMade9fWOOlyaZyHyoXd0VC0Ee4=:0', 0, 1, 1932),
+	(7568, 0, '2025-08-18 12:48:40', '2025-08-18 12:55:54', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E6%B4%BB%E7%9D%80-%E9%83%9D%E4%BA%91.jpg?sign=Y7SKh1rGPv84Bb3xhZ1m1r4N2ufeikGAefNmHun0jjg=:0', 1, 1, 1932),
+	(7569, 0, '2025-08-18 12:52:19', '2025-08-18 12:56:12', '', 0, 0, 1933),
+	(7570, 0, '2025-08-18 12:52:19', '2025-08-18 12:56:12', '', 1, 0, 1933),
+	(7571, 0, '2025-08-18 12:52:19', '2025-08-18 12:56:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E4%BD%A0%E5%88%B0%E5%BA%95%E6%9C%89%E6%B2%A1%E6%9C%89%E7%88%B1%E8%BF%87%E6%88%91-%E8%93%9D%E6%B3%A2.mp3?sign=haXrJz69PGyRTWjyymHeV0g8Elrels-BEp8cFNFm5fY=:0', 0, 1, 1933),
+	(7572, 0, '2025-08-18 12:52:19', '2025-08-18 12:56:12', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E4%BD%A0%E5%88%B0%E5%BA%95%E6%9C%89%E6%B2%A1%E6%9C%89%E7%88%B1%E8%BF%87%E6%88%91-%E8%93%9D%E6%B3%A2.jpg?sign=pFZvLp2ZY_mlB0uK8RxRHHmfUm-FCMHML4P00078n9U=:0', 1, 1, 1933),
+	(7573, 0, '2025-09-11 10:44:39', '2025-09-11 10:49:09', '', 0, 0, 1934),
+	(7574, 0, '2025-09-11 10:44:39', '2025-09-11 10:49:09', '', 1, 0, 1934),
+	(7575, 0, '2025-09-11 10:44:39', '2025-09-11 10:49:09', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E8%96%A9%E5%A0%A4%EF%BC%9A%E9%87%91%E8%AB%BE%E7%8F%AE%E8%92%82%E7%B5%B2-Shockwave-Sound.m4a?sign=zndm6d53tVaEUoCcOmaluX9VTKvsLDRuhv4pUGAXVxI=:0', 0, 1, 1934),
+	(7576, 0, '2025-09-11 10:44:39', '2025-09-11 10:49:09', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E8%96%A9%E5%A0%A4%EF%BC%9A%E9%87%91%E8%AB%BE%E7%8F%AE%E8%92%82%E7%B5%B2-Shockwave-Sound.jpg?sign=pVvEyzQ6uMtYA_j7AXJKqHPZw7CYj8LMunWcVPISGFI=:0', 1, 1, 1934),
+	(7577, 0, '2025-09-11 10:46:34', '2025-09-11 10:48:49', '', 0, 0, 1935),
+	(7578, 0, '2025-09-11 10:46:34', '2025-09-11 10:48:49', '', 1, 0, 1935),
+	(7579, 0, '2025-09-11 10:46:34', '2025-09-11 10:48:49', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E8%96%A9%E5%A0%A4%EF%BC%9A%E9%87%91%E8%AB%BE%E7%8F%AE%E8%92%82%E7%B5%B2-Shockwave-Sound.m4a?sign=zndm6d53tVaEUoCcOmaluX9VTKvsLDRuhv4pUGAXVxI=:0', 0, 1, 1935),
+	(7580, 0, '2025-09-11 10:46:34', '2025-09-11 10:48:49', 'https://alist.icoders.cn/d/local/music/woodwhales-music-store20/16/%E8%96%A9%E5%A0%A4%EF%BC%9A%E9%87%91%E8%AB%BE%E7%8F%AE%E8%92%82%E7%B5%B2-Shockwave-Sound.jpg?sign=pVvEyzQ6uMtYA_j7AXJKqHPZw7CYj8LMunWcVPISGFI=:0', 1, 1, 1935);
 
 -- 正在导出表  open_music.music_tag 的数据：~0 rows (大约)
 INSERT INTO `music_tag` (`id`, `music_id`, `tag_id`, `status`, `gmt_created`, `gmt_modified`) VALUES
@@ -9472,14 +9496,14 @@ INSERT INTO `music_tag` (`id`, `music_id`, `tag_id`, `status`, `gmt_created`, `g
 
 -- 正在导出表  open_music.sys_config 的数据：~2 rows (大约)
 INSERT INTO `sys_config` (`id`, `status`, `gmt_created`, `gmt_modified`, `config_key`, `config_content`) VALUES
-	(1, 0, '2024-11-02 16:54:46', '2024-11-02 16:54:46', 'visits', '{"count":13767}');
+	(1, 0, '2024-11-02 16:54:46', '2024-11-02 16:54:46', 'visits', '{"count":16828}');
 INSERT INTO `sys_config` (`id`, `status`, `gmt_created`, `gmt_modified`, `config_key`, `config_content`) VALUES
-	(2, 0, '2024-11-02 16:54:49', '2024-11-02 16:54:49', 'clicks', '{"count":19906}'),
+	(2, 0, '2024-11-02 16:54:49', '2024-11-02 16:54:49', 'clicks', '{"count":22358}'),
 	(3, 0, '2025-03-26 00:53:53', '2025-03-26 00:53:53', 'robots', '{"robots":"User-agent: *\\nAllow:/\\n"}');
 
 -- 正在导出表  open_music.sys_user 的数据：~0 rows (大约)
 INSERT INTO `sys_user` (`id`, `status`, `gmt_created`, `gmt_modified`, `username`, `password`, `two_factor_secret`, `two_factor_enabled`) VALUES
-	(1, 0, '2024-05-21 03:40:10', '2025-07-03 06:23:42', 'admin', '$2a$10$SnS5mpFJ2qOtWQgy4A.tCuut6suNspK9xXXb/WWd.TCMim3sv2JQ2', 'NXNVRV6NBBPYMR5K', 0);
+	(1, 0, '2024-05-21 03:40:10', '2025-09-08 06:07:01', 'admin', '$2a$10$/9jihkf72qwMw7eSbhEEHOQhPmUZZcZA68uLRFCSUltMCWbWhvS5W', 'NXNVRV6NBBPYMR5K', 0);
 
 -- 正在导出表  open_music.tag_info 的数据：~0 rows (大约)
 INSERT INTO `tag_info` (`id`, `status`, `gmt_created`, `gmt_modified`, `name`) VALUES
