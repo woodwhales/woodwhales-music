@@ -34,3 +34,4 @@ build/
 prod
 rebel.xml
 logs/
+.claude

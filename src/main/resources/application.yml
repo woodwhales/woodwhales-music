@@ -29,10 +29,10 @@ spring:
     time-zone: GMT+8
   profiles:
     active: '@profiles.active@'
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:/init.sql
+
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
 logging:
   level:
     org.woodwhales.music: debug
