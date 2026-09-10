@@ -12,7 +12,7 @@
 
 前端技术栈：Vue 2.0 + Element-UI + Thymeleaf + Axios + APlayer
 
-后端技术栈：Spring Boot3 + Spring Security6 + jsoup + MyBatis-Plus + MySQL
+后端技术栈：Spring Boot3 + Spring Security6 + jsoup + MyBatis-Plus + PostgreSQL
 
 ## 1. 前台效果图
 
@@ -289,13 +289,12 @@ docker-compose build
 
 ## 4. 启动方式
 
-注意：本系统服务需要依赖 mysql 数据库，在第一次安装之前请自行准备一个可以访问的 mysql 服务。
+注意：本系统服务需要依赖 PostgreSQL 数据库，在第一次安装之前请自行准备一个可以访问的 PostgreSQL 服务（建议 14 及以上版本）。
 
-执行创建名为 open-music 数据库 sql 命令：
+执行创建名为 open_music 数据库 sql 命令：
 
 ```sql
-CREATE DATABASE IF NOT EXISTS open_music CHARACTER 
-	SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE open_music;
 ```
 
 ### 方式1：jar 包启动
@@ -317,11 +316,11 @@ docker run -d \
 --restart=always \
 --name woodwhales-music \
 -p 8084:8084 \
--e "MYSQL_HOST=host.docker.internal" \
--e "MYSQL_DATABASE=open_music" \
--e "MYSQL_PORT=3306" \
--e "MYSQL_USER=root" \
--e "MYSQL_PASSWORD=root1234" \
+-e "PG_HOST=host.docker.internal" \
+-e "PG_DATABASE=open_music" \
+-e "PG_PORT=5432" \
+-e "PG_USER=postgres" \
+-e "PG_PASSWORD=postgres" \
 -e "SYSTEM_INIT_PASSWORD=admin" \
 woodwhales/woodwhales-music:latest
 ```
@@ -330,11 +329,11 @@ woodwhales/woodwhales-music:latest
 
 | 环境参数             | 说明                                                         | 默认值                  |
 | -------------------- | ------------------------------------------------------------ |----------------------|
-| MYSQL_HOST           | mysql 数据库服务的链接地址，默认值针对 windows、mac 系统生效，linux 系统需要用户强制指定宿主机 IP | host.docker.internal |
-| MYSQL_DATABASE       | 数据库名称                                                   | open_music           |
-| MYSQL_PORT           | mysql 数据库服务的端口号                                     | 3306                 |
-| MYSQL_USER           | mysql 数据库服务的账号名称                                   | root                 |
-| MYSQL_PASSWORD       | mysql 数据库服务的账号密码                                   | root1234             |
+| PG_HOST              | PostgreSQL 数据库服务的链接地址，默认值针对 windows、mac 系统生效，linux 系统需要用户强制指定宿主机 IP | host.docker.internal |
+| PG_DATABASE          | 数据库名称                                                   | open_music           |
+| PG_PORT              | PostgreSQL 数据库服务的端口号                                | 5432                 |
+| PG_USER              | PostgreSQL 数据库服务的账号名称                              | postgres             |
+| PG_PASSWORD          | PostgreSQL 数据库服务的账号密码                              | postgres             |
 | SYSTEM_INIT_PASSWORD | woodwhales-music 系统的后台管理员 admin 账号登录密码，**生产环境请勿必自定义** | admin                |
 
 ## 5. 功能说明

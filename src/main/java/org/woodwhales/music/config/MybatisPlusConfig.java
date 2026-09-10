@@ -20,7 +20,7 @@ public class MybatisPlusConfig {
         // 设置最大单页限制数量，-1 不受限制
         paginationInnerInterceptor.setMaxLimit(300L);
         // 开启 count 的 join 优化,只针对部分 left join
-        paginationInnerInterceptor.setDbType(DbType.MYSQL);
+        paginationInnerInterceptor.setDbType(DbType.POSTGRE_SQL);
         paginationInnerInterceptor.setOptimizeJoin(true);
         return paginationInnerInterceptor;
     }

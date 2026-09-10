@@ -1,16 +1,40 @@
 services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: woodwhales-music-postgres
+    environment:
+      POSTGRES_DB: open_music
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d open_music"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
   app:
     image: woodwhales/woodwhales-music:latest
     build:
       context: .
       args:
         JAR_FILE: woodwhales-music.jar
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
-      MYSQL_HOST: host.docker.internal
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: open_music
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root1234
-      SYSTEM_INIT_PASSWORD: admin
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_DATABASE: open_music
+      PG_USER: postgres
+      PG_PASSWORD: ${PG_PASSWORD:-postgres}
+      SYSTEM_INIT_PASSWORD: ${SYSTEM_INIT_PASSWORD:-admin}
     ports:
       - "8084:8084"
+
+volumes:
+  postgres-data:

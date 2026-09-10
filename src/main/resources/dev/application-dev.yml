@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:open_music}?serverTimezone=Asia/Shanghai&useUnicode=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
-    username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:root1234}
+    url: jdbc:postgresql://${PG_HOST:127.0.0.1}:${PG_PORT:5432}/${PG_DATABASE:open_music}
+    driver-class-name: org.postgresql.Driver
+    username: ${PG_USER:postgres}
+    password: ${PG_PASSWORD:postgres}
 system:
   init:
     # 后台系统admin账号的登录密码，每次初始化都会初始化
