@@ -1,5 +1,5 @@
-# 使用官方的 OpenJDK 17 作为基础镜像
-FROM openjdk:17-jdk-slim
+# 使用 Eclipse Temurin（原 AdoptOpenJDK）17 JRE 作为基础镜像，openjdk 官方镜像已被 Docker Hub 弃用下架
+FROM eclipse-temurin:17-jre-alpine
 
 LABEL maintainer="woodwhales.cn"
 ARG JAR_FILE
