@@ -1,0 +1,24 @@
+# 可选编排：仅应用服务，连接外部已有 PostgreSQL（postgis）实例
+# 前置条件：外部数据库已存在 open_music 库，且可通过 PG_HOST:PG_PORT 访问
+# 用法：docker compose -f docker-compose.app-only.yml up -d --build
+services:
+  app:
+    image: woodwhales/woodwhales-music:latest
+    build:
+      context: .
+      args:
+        JAR_FILE: woodwhales-music.jar
+    # Linux 宿主机解析 host.docker.internal 需要显式声明（Windows/Mac Docker Desktop 原生支持）
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # 默认经宿主机端口映射访问 PG；若 PG 是同一 docker 网络内的容器，直接改为容器名（如 woodwhales-postgresql）
+      PG_HOST: ${PG_HOST:-host.docker.internal}
+      PG_PORT: ${PG_PORT:-5432}
+      PG_DATABASE: ${PG_DATABASE:-open_music}
+      PG_USER: ${PG_USER:-postgres}
+      PG_PASSWORD: ${PG_PASSWORD:-postgres}
+      SYSTEM_INIT_PASSWORD: ${SYSTEM_INIT_PASSWORD:-admin}
+    ports:
+      - "8084:8084"
+    restart: unless-stopped

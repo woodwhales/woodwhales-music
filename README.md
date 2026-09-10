@@ -299,25 +299,25 @@ CREATE DATABASE open_music;
 
 ### 方式1：docker compose 编排启动（推荐）
 
-**场景 A：已有可复用的 PostgreSQL（postgis）实例**（默认编排，仅启动应用）：
+默认编排会同时拉起**独立的 postgis 数据库容器**（postgis/postgis:16-3.4）和应用，自动建库、自动迁移：
 
 ```shell
 docker compose up -d --build
 ```
 
-默认通过 `host.docker.internal:5432` 连接外部数据库，可用环境变量覆盖：`PG_HOST`、`PG_PORT`、`PG_DATABASE`、`PG_USER`、`PG_PASSWORD`。
-
-**场景 B：全新环境，连数据库一起拉起**（内置 postgis/postgis:16-3.4，自动建库）：
+数据库对外映射端口默认为 **5434**（避免与宿主机 5432 上已有的其他数据库服务冲突），Navicat 等客户端可连 `127.0.0.1:5434`；可用 `PG_PUBLISH_PORT` 改映射端口：
 
 ```shell
-docker compose -f docker-compose.with-db.yml up -d --build
+PG_PUBLISH_PORT=55432 docker compose up -d --build
 ```
 
-若宿主机 5432 端口已被占用，指定其他映射端口：
+**已有可复用的外部 PostgreSQL 实例**时，仅启动应用（不拉起内置数据库）：
 
 ```shell
-PG_PUBLISH_PORT=55432 docker compose -f docker-compose.with-db.yml up -d --build
+docker compose -f docker-compose.app-only.yml up -d --build
 ```
+
+用 `PG_HOST`、`PG_PORT`、`PG_DATABASE`、`PG_USER`、`PG_PASSWORD` 环境变量指定外部数据库连接。
 
 ### 方式2：jar 包启动
 
@@ -340,7 +340,7 @@ docker run -d \
 -p 8084:8084 \
 -e "PG_HOST=host.docker.internal" \
 -e "PG_DATABASE=open_music" \
--e "PG_PORT=5432" \
+-e "PG_PORT=5434" \
 -e "PG_USER=postgres" \
 -e "PG_PASSWORD=postgres" \
 -e "SYSTEM_INIT_PASSWORD=admin" \
@@ -353,7 +353,7 @@ woodwhales/woodwhales-music:latest
 | -------------------- | ------------------------------------------------------------ |----------------------|
 | PG_HOST              | PostgreSQL 数据库服务的链接地址，默认值针对 windows、mac 系统生效，linux 系统需要用户强制指定宿主机 IP | host.docker.internal |
 | PG_DATABASE          | 数据库名称                                                   | open_music           |
-| PG_PORT              | PostgreSQL 数据库服务的端口号                                | 5432                 |
+| PG_PORT              | PostgreSQL 数据库服务的端口号                                | 5434                 |
 | PG_USER              | PostgreSQL 数据库服务的账号名称                              | postgres             |
 | PG_PASSWORD          | PostgreSQL 数据库服务的账号密码                              | postgres             |
 | SYSTEM_INIT_PASSWORD | woodwhales-music 系统的后台管理员 admin 账号登录密码，**生产环境请勿必自定义** | admin                |

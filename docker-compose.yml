@@ -1,24 +1,45 @@
-# 默认编排：仅应用服务，连接外部已有 PostgreSQL（postgis）实例
-# 前置条件：外部数据库已存在 open_music 库，且可通过 PG_HOST:PG_PORT 访问
-# 全新环境（还没有 PG）请改用：docker compose -f docker-compose.with-db.yml up -d --build
+# 默认编排：独立 postgis 数据库 + 应用，自动建库、自动迁移
+# 数据库对外映射端口默认 5434（避开宿主机 5432 上已有的数据库服务），可用 PG_PUBLISH_PORT 覆盖
+# 若已有可复用的外部 PostgreSQL 实例，改用：docker compose -f docker-compose.app-only.yml up -d --build
 services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: woodwhales-music-postgres
+    environment:
+      POSTGRES_DB: open_music
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "${PG_PUBLISH_PORT:-5434}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d open_music"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
   app:
     image: woodwhales/woodwhales-music:latest
     build:
       context: .
       args:
         JAR_FILE: woodwhales-music.jar
-    # Linux 宿主机解析 host.docker.internal 需要显式声明（Windows/Mac Docker Desktop 原生支持）
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
-      # 默认经宿主机端口映射访问 PG；若 PG 是同一 docker 网络内的容器，直接改为容器名（如 woodwhales-postgresql）
-      PG_HOST: ${PG_HOST:-host.docker.internal}
-      PG_PORT: ${PG_PORT:-5432}
-      PG_DATABASE: ${PG_DATABASE:-open_music}
-      PG_USER: ${PG_USER:-postgres}
+      # 应用经 compose 内部网络直连数据库容器，固定 5432，与宿主机映射端口无关
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_DATABASE: open_music
+      PG_USER: postgres
       PG_PASSWORD: ${PG_PASSWORD:-postgres}
       SYSTEM_INIT_PASSWORD: ${SYSTEM_INIT_PASSWORD:-admin}
     ports:
       - "8084:8084"
     restart: unless-stopped
+
+volumes:
+  postgres-data:
