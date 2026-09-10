@@ -18,7 +18,7 @@ public class FileDetail {
     /**
      * 文件id
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**

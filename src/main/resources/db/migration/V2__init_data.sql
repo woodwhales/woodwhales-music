@@ -9480,10 +9480,3 @@ INSERT INTO sys_user (id, status, gmt_created, gmt_modified, username, password,
 INSERT INTO tag_info (id, status, gmt_created, gmt_modified, name) VALUES
     (1, 0, '2024-09-19 05:47:12', '2024-09-19 05:47:12', '欧美');
 
--- sync identity sequences after explicit-id inserts
-SELECT setval(pg_get_serial_sequence('music_info', 'id'), COALESCE((SELECT MAX(id) FROM music_info), 1));
-SELECT setval(pg_get_serial_sequence('music_info_link', 'id'), COALESCE((SELECT MAX(id) FROM music_info_link), 1));
-SELECT setval(pg_get_serial_sequence('music_tag', 'id'), COALESCE((SELECT MAX(id) FROM music_tag), 1));
-SELECT setval(pg_get_serial_sequence('sys_config', 'id'), COALESCE((SELECT MAX(id) FROM sys_config), 1));
-SELECT setval(pg_get_serial_sequence('sys_user', 'id'), COALESCE((SELECT MAX(id) FROM sys_user), 1));
-SELECT setval(pg_get_serial_sequence('tag_info', 'id'), COALESCE((SELECT MAX(id) FROM tag_info), 1));
