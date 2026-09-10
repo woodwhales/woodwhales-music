@@ -289,7 +289,7 @@ docker-compose build
 
 ## 4. 启动方式
 
-注意：本系统服务需要依赖 PostgreSQL 数据库，在第一次安装之前请自行准备一个可以访问的 PostgreSQL 服务（建议 14 及以上版本）。
+注意：本系统服务需要依赖 PostgreSQL 数据库（12 及以上版本，推荐使用 postgis/postgis 镜像以便后续扩展地理位置能力），在第一次安装之前请自行准备一个可以访问的 PostgreSQL 服务。
 
 执行创建名为 open_music 数据库 sql 命令：
 
