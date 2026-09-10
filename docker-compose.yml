@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgis/postgis:12-3.0
+    image: postgis/postgis:16-3.4
     container_name: woodwhales-music-postgres
     environment:
       POSTGRES_DB: open_music
