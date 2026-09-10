@@ -232,7 +232,6 @@
             <version>10.20.0</version>
         </dependency>
     </dependencies>
-
     <repositories>
         <repository>
             <id>alimaven-releases</id>
