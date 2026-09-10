@@ -280,7 +280,7 @@ mvn clean package docker:build
 命令行执行目录切换到项目根目录，执行如下命令：
 
 ```shell
-docker-compose build
+docker compose build
 ```
 
 控制台输出 docker 镜像信息，即表示构建成功
@@ -297,7 +297,29 @@ docker-compose build
 CREATE DATABASE open_music;
 ```
 
-### 方式1：jar 包启动
+### 方式1：docker compose 编排启动（推荐）
+
+**场景 A：已有可复用的 PostgreSQL（postgis）实例**（默认编排，仅启动应用）：
+
+```shell
+docker compose up -d --build
+```
+
+默认通过 `host.docker.internal:5432` 连接外部数据库，可用环境变量覆盖：`PG_HOST`、`PG_PORT`、`PG_DATABASE`、`PG_USER`、`PG_PASSWORD`。
+
+**场景 B：全新环境，连数据库一起拉起**（内置 postgis/postgis:16-3.4，自动建库）：
+
+```shell
+docker compose -f docker-compose.with-db.yml up -d --build
+```
+
+若宿主机 5432 端口已被占用，指定其他映射端口：
+
+```shell
+PG_PUBLISH_PORT=55432 docker compose -f docker-compose.with-db.yml up -d --build
+```
+
+### 方式2：jar 包启动
 
 系统安装 jdk 版本 17 以上，命令行切换至 woodwhales-music.jar 所在目录，执行如下命令：
 
@@ -307,7 +329,7 @@ java -jar woodwhales-music.jar
 
 如果出现数据库链接失败，则检查在编译打包 jar 文件时指定什么环境参数，确认数据库链接是否配置正确。
 
-### 方式2：docker 启动
+### 方式3：docker 启动
 
 完整的 docker 启动命令：
 
