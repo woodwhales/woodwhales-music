@@ -20,7 +20,7 @@ spring:
         - src/main/java/**
         - resources/**
   datasource:
-    url: jdbc:postgresql://${PG_HOST:127.0.0.1}:${PG_PORT:5432}/${PG_DATABASE:open_music}
+    url: jdbc:postgresql://${PG_HOST:127.0.0.1}:${PG_PORT:5434}/${PG_DATABASE:open_music}
     driver-class-name: org.postgresql.Driver
     username: ${PG_USER:postgres}
     password: ${PG_PASSWORD:postgres}

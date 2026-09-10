@@ -12,7 +12,7 @@ COPY target/${JAR_FILE} woodwhales-music.jar
 
 # 设置环境变量（这些变量会被 Docker Compose 覆盖）
 ENV PG_HOST=host.docker.internal
-ENV PG_PORT=5432
+ENV PG_PORT=5434
 ENV PG_DATABASE=open_music
 ENV PG_USER=postgres
 ENV PG_PASSWORD=postgres
