@@ -6,7 +6,7 @@ spring:
     password: ${PG_PASSWORD:postgres}
 system:
   init:
-    # 后台系统admin账号的登录密码，每次初始化都会初始化
+    # 后台系统admin账号首次初始化密码（仅首次建账号生效，后续启动不会重置；dev 默认 admin）
     password: ${SYSTEM_INIT_PASSWORD:admin}
 dromara:
   x-file-storage:
@@ -15,8 +15,12 @@ dromara:
     minio:
       - platform: minio
         enable-storage: true
-        access-key:
-        secret-key:
-        end-point:
-        bucket-name: music
-        domain: https://files.icoders.cn/${dromara.x-file-storage.minio[0].bucket-name}/
+        access-key: ${MINIO_ACCESS_KEY:minioadmin}
+        secret-key: ${MINIO_SECRET_KEY:minioadmin}
+        end-point: ${MINIO_ENDPOINT:http://127.0.0.1:9000}
+        bucket-name: ${MINIO_BUCKET:music}
+        # 落库 url = domain + basePath + path + filename
+        # 默认让 domain = "${MINIO_BUCKET}/"，使得 url 形如 "music/xx/xx.txt"（bucket+key，无域名）
+        # 前端/调用方拿到 url 后自行拼域名：例如 https://files.example.com/${url}
+        # 若临时想直接生成完整可访问 URL，把 MINIO_DOMAIN 覆盖为 http(s)://xxx/${MINIO_BUCKET}/ 即可
+        domain: ${MINIO_DOMAIN:${MINIO_BUCKET:music}/}

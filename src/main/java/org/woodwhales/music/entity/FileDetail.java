@@ -37,7 +37,7 @@ public class FileDetail {
     /**
      * 文件大小，单位字节
      */
-    @TableField(value = "`size`")
+    @TableField(value = "\"size\"")
     private Long size;
 
     /**
@@ -61,7 +61,7 @@ public class FileDetail {
     /**
      * 存储路径
      */
-    @TableField(value = "`path`")
+    @TableField(value = "\"path\"")
     private String path;
 
     /**

@@ -16,6 +16,10 @@ ENV PG_PORT=5434
 ENV PG_DATABASE=open_music
 ENV PG_USER=postgres
 ENV PG_PASSWORD=postgres
+ENV MINIO_ENDPOINT=http://host.docker.internal:9000
+ENV MINIO_ACCESS_KEY=minioadmin
+ENV MINIO_SECRET_KEY=minioadmin
+ENV MINIO_BUCKET=music
 ENV SYSTEM_INIT_PASSWORD=admin
 
 # 暴露应用的端口

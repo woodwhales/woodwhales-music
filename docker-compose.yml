@@ -1,6 +1,7 @@
-# 默认编排：独立 postgis 数据库 + 应用，自动建库、自动迁移
+# 默认编排：独立 postgis 数据库 + MinIO 对象存储 + 应用，自动建库、自动迁移、自动建桶
 # 数据库对外映射端口默认 5434（避开宿主机 5432 上已有的数据库服务），可用 PG_PUBLISH_PORT 覆盖
-# 若已有可复用的外部 PostgreSQL 实例，改用：docker compose -f docker-compose.app-only.yml up -d --build
+# MinIO 对外映射端口默认 9500/9501（避开宿主机 9000/9001 上已有的 MinIO 服务），可用 MINIO_PUBLISH_PORT / MINIO_CONSOLE_PUBLISH_PORT 覆盖
+# 若已有可复用的外部 PostgreSQL / MinIO 实例，改用：docker compose -f docker-compose.app-only.yml up -d --build
 services:
   postgres:
     image: postgis/postgis:16-3.4
@@ -20,6 +21,40 @@ services:
       retries: 10
     restart: unless-stopped
 
+  minio:
+    image: pgsty/minio:RELEASE.2026-04-17T00-00-00Z
+    container_name: woodwhales-music-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minioadmin}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "${MINIO_PUBLISH_PORT:-9500}:9000"
+      - "${MINIO_CONSOLE_PUBLISH_PORT:-9501}:9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  # 一次性任务：等 minio 就绪后自动创建应用所需 bucket（已存在则跳过），并吊销自身访问权限
+  minio-init-bucket:
+    image: minio/mc:RELEASE.2025-04-16T18-13-26Z
+    container_name: woodwhales-music-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${MINIO_ACCESS_KEY:-minioadmin} ${MINIO_SECRET_KEY:-minioadmin};
+      mc mb --ignore-existing local/${MINIO_BUCKET:-music};
+      mc anonymous set download local/${MINIO_BUCKET:-music};
+      "
+    restart: "no"
+
   app:
     image: woodwhales/woodwhales-music:latest
     build:
@@ -29,6 +64,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      minio:
+        condition: service_healthy
+      minio-init-bucket:
+        condition: service_completed_successfully
     environment:
       # 应用经 compose 内部网络直连数据库容器，固定 5432，与宿主机映射端口无关
       PG_HOST: postgres
@@ -36,6 +75,16 @@ services:
       PG_DATABASE: open_music
       PG_USER: postgres
       PG_PASSWORD: ${PG_PASSWORD:-postgres}
+      # 应用经 compose 内部网络直连 MinIO 容器，固定 9000，与宿主机映射端口无关
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_BUCKET: ${MINIO_BUCKET:-music}
+      # 不传 MINIO_DOMAIN：url 落库为 "music/<basePath><path><filename>" 这种 bucket+key 相对路径
+      # 若需直接生成可访问的完整 URL，注入完整域名前缀，例如：
+      #   MINIO_DOMAIN=http://127.0.0.1:9500/music/   (宿主机直连)
+      #   MINIO_DOMAIN=https://files.example.com/music/   (走 CDN/反代)
+      # MINIO_DOMAIN: ${MINIO_DOMAIN:-}
       SYSTEM_INIT_PASSWORD: ${SYSTEM_INIT_PASSWORD:-admin}
     ports:
       - "8084:8084"
@@ -43,3 +92,4 @@ services:
 
 volumes:
   postgres-data:
+  minio-data:

@@ -35,3 +35,13 @@ prod
 rebel.xml
 logs/
 .claude
+
+### 凭据文件（不入库，参考 .env.example 自行 cp 并填值）###
+.env
+.env.local
+.env.*.local
+!.env.example
+
+### 内部计划/工作区（不进版本库，仅本机保留）###
+/.plan/
+/.workbuddy/

@@ -1,6 +1,7 @@
-# 可选编排：仅应用服务，连接外部已有 PostgreSQL（postgis）实例
-# 前置条件：外部数据库已存在 open_music 库，且可通过 PG_HOST:PG_PORT 访问
+# 可选编排：仅应用服务，连接外部已有 PostgreSQL（postgis）与 MinIO/S3 实例
+# 前置条件：外部数据库已存在 open_music 库，外部 MinIO 已创建对应 bucket，且均可通过网络访问
 # 用法：docker compose -f docker-compose.app-only.yml up -d --build
+# 通过环境变量覆盖：MINIO_ENDPOINT / MINIO_ACCESS_KEY / MINIO_SECRET_KEY / MINIO_BUCKET / MINIO_DOMAIN
 services:
   app:
     image: woodwhales/woodwhales-music:latest
@@ -18,6 +19,14 @@ services:
       PG_DATABASE: ${PG_DATABASE:-open_music}
       PG_USER: ${PG_USER:-postgres}
       PG_PASSWORD: ${PG_PASSWORD:-postgres}
+      # 默认经宿主机端口映射访问 MinIO；若 MinIO 是同一 docker 网络内的容器，直接改为容器名（如 http://minio:9000）
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-http://host.docker.internal:9000}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_BUCKET: ${MINIO_BUCKET:-music}
+      # 不传 MINIO_DOMAIN：url 落库为 "music/<basePath><path><filename>" 这种 bucket+key 相对路径
+      # 若需直接生成完整 URL，注入 MINIO_DOMAIN=http(s)://<host>[:port]/<bucket>/ 即可
+      # MINIO_DOMAIN: ${MINIO_DOMAIN:-}
       SYSTEM_INIT_PASSWORD: ${SYSTEM_INIT_PASSWORD:-admin}
     ports:
       - "8084:8084"

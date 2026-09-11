@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.woodwhales.music.entity.FileDetail;
 import org.woodwhales.music.mapper.FileDetailMapper;
+import org.woodwhales.music.model.FileUploadVO;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -217,5 +218,24 @@ public class FileDetailService extends ServiceImpl<FileDetailMapper, FileDetail>
         BeanUtils.copyProperties(detail, info);
         info.setId(detail.getId().toString());
         return info;
+    }
+
+    /**
+     * 将 FileInfo 转为对外返回的 FileUploadVO，隔离 dromara 内部类
+     */
+    public FileUploadVO toUploadVO(FileInfo info) {
+        FileUploadVO vo = new FileUploadVO();
+        vo.setId(info.getId());
+        vo.setUrl(info.getUrl());
+        vo.setSize(info.getSize());
+        vo.setOriginalName(info.getOriginalFilename());
+        vo.setContentType(info.getContentType());
+        vo.setExt(info.getExt());
+        if (info.getHashInfo() != null) {
+            vo.setSha256(info.getHashInfo().getSha256());
+            vo.setMd5(info.getHashInfo().getMd5());
+        }
+        vo.setCreateTime(info.getCreateTime());
+        return vo;
     }
 }
