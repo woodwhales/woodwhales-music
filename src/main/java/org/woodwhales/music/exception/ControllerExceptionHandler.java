@@ -1,5 +1,7 @@
 package org.woodwhales.music.exception;
 
+import cn.woodwhales.common.model.enums.RespCodeEnum;
+import cn.woodwhales.common.model.result.BaseRespResult;
 import cn.woodwhales.common.model.vo.RespVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 import org.woodwhales.music.config.TraceIdFilter;
+import org.woodwhales.music.enums.AppRespCodeEnum;
 
 import java.util.Objects;
 
@@ -41,7 +44,7 @@ public class ControllerExceptionHandler {
 													  HttpServletResponse response) {
 		String msg = exception.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
 		log.warn("traceId={}, 参数校验失败: {}", MDC.get(TraceIdFilter.TRACE_ID_KEY), msg);
-		return build(response, HttpStatus.BAD_REQUEST, msg);
+		return build(response, HttpStatus.BAD_REQUEST, RespCodeEnum.ERROR, msg);
 	}
 
 	/**
@@ -52,7 +55,7 @@ public class ControllerExceptionHandler {
 														   HttpServletResponse response) {
 		String msg = "无权限访问";
 		log.warn("traceId={}, 无权限访问: {}", MDC.get(TraceIdFilter.TRACE_ID_KEY), exception.getMessage());
-		return build(response, HttpStatus.FORBIDDEN, msg);
+		return build(response, HttpStatus.FORBIDDEN, RespCodeEnum.ERROR, msg);
 	}
 
 	/**
@@ -63,7 +66,18 @@ public class ControllerExceptionHandler {
 															 HttpServletResponse response) {
 		String msg = "未登录或登录已过期";
 		log.warn("traceId={}, 认证失败: {}", MDC.get(TraceIdFilter.TRACE_ID_KEY), exception.getMessage());
-		return build(response, HttpStatus.UNAUTHORIZED, msg);
+		return build(response, HttpStatus.UNAUTHORIZED, RespCodeEnum.ERROR, msg);
+	}
+
+	/**
+	 * 业务数据不存在 -> 404，msg 透传异常 message
+	 */
+	@ExceptionHandler(value = DataNotFoundException.class)
+	public ResponseEntity<RespVO<Void>> handleDataNotFound(DataNotFoundException exception,
+														   HttpServletResponse response) {
+		String msg = exception.getMessage();
+		log.warn("traceId={}, 数据不存在: {}", MDC.get(TraceIdFilter.TRACE_ID_KEY), msg);
+		return build(response, HttpStatus.NOT_FOUND, AppRespCodeEnum.DATA_NOT_FOUND, msg);
 	}
 
 	/**
@@ -95,18 +109,20 @@ public class ControllerExceptionHandler {
 														HttpServletResponse response) {
 		log.error("traceId={}, 服务器内部错误: {}", MDC.get(TraceIdFilter.TRACE_ID_KEY),
 				exception.getMessage(), exception);
-		return build(response, HttpStatus.INTERNAL_SERVER_ERROR, "服务器内部错误");
+		return build(response, HttpStatus.INTERNAL_SERVER_ERROR, RespCodeEnum.ERROR, "服务器内部错误");
 	}
 
 	/**
-	 * 统一构建响应：透传 traceId 到响应头，并用 ResponseEntity 控制 HTTP 状态码
+	 * 统一构建响应：透传 traceId 到响应头，用 ResponseEntity 控制 HTTP 状态码，
+	 * body 携带业务 codeEnum（供前端按 code 精确分流，而非匹配文案）
 	 */
-	private ResponseEntity<RespVO<Void>> build(HttpServletResponse response, HttpStatus status, String msg) {
+	private ResponseEntity<RespVO<Void>> build(HttpServletResponse response, HttpStatus status,
+											   BaseRespResult codeEnum, String msg) {
 		String traceId = MDC.get(TraceIdFilter.TRACE_ID_KEY);
 		if (traceId != null && !traceId.isEmpty()) {
 			response.setHeader(TraceIdFilter.TRACE_ID_HEADER, traceId);
 		}
-		return ResponseEntity.status(status).body(RespVO.errorWithErrorMsg(msg));
+		return ResponseEntity.status(status).body(RespVO.errorWithErrorMsg(codeEnum, msg));
 	}
 
 }

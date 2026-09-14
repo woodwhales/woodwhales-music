@@ -183,11 +183,30 @@
                 </el-form>
             </el-row>
 
+            <!-- 解析结果预览：需用户确认后才覆盖上方表单
+                 必须用 v-if 而非 v-show：v-show 会渲染表达式，parseResultRaw 为 null 时会报 TypeError -->
+            <el-row style="margin-bottom: 12px;" v-if="parseResultRaw !== null">
+                <el-divider content-position="left">解析结果预览</el-divider>
+                <el-descriptions :column="1" border size="small">
+                    <el-descriptions-item label="名称">{{parseResultRaw.musicTitle}}</el-descriptions-item>
+                    <el-descriptions-item label="作者">{{parseResultRaw.artist}}</el-descriptions-item>
+                    <el-descriptions-item label="专辑">{{parseResultRaw.album}}</el-descriptions-item>
+                    <el-descriptions-item label="封面">
+                        <el-image :src="parseResultRaw.coverUrl" style="width: 60px; height: 60px" fit="cover"></el-image>
+                    </el-descriptions-item>
+                </el-descriptions>
+                <el-row style="margin-top: 10px;">
+                    <el-button type="primary" size="mini" @click="applyParseResult">应用回填</el-button>
+                    <el-button size="mini" @click="discardParseResult">放弃</el-button>
+                </el-row>
+            </el-row>
+
             <div th:replace="~{admin2/admin-foot::admin-foot}"></div>
         </el-col>
         <el-col :span="2">&nbsp;</el-col>
     </el-row>
 </div>
+<th:block th:replace="~{admin2/header::headerScript}"></th:block>
 </body>
 <script type="text/javascript" th:inline="javascript">
     new Vue({
@@ -198,6 +217,7 @@
                     platformType: null,
                     content: null
                 },
+                parseResultRaw: null,
                 addTagForm: {
                     tagName: ''
                 },
@@ -232,6 +252,7 @@
                 sys: {
                     quickTagNameList: [],
                     music: [[${music}]],
+                    musicDeleted: [[${musicDeleted != null ? musicDeleted : false}]],
                     activeNames: null,
                     autoFill: 'true',
                     audioSuffix: '.mp3',
@@ -245,7 +266,8 @@
                     musicName: null,
                     musicAuthor: null,
                     musicAudioUrl: '',
-                    musicCoverUrl: ''
+                    musicCoverUrl: '',
+                    apInstance: null
                 },
                 rules2: {
                     platformType: [
@@ -275,6 +297,15 @@
             this.initSys();
             this.showDetail();
             this.initAplyer();
+            if(this.sys.musicDeleted) {
+                this.$alert('该音乐不存在或已被删除，已进入新增模式', '提示', {
+                    type: 'warning',
+                    confirmButtonText: '知道了'
+                });
+            }
+        },
+        beforeDestroy() {
+            this.destroyAplayer();
         },
         methods: {
             onAddMusicTag() {
@@ -373,6 +404,22 @@
                         .then(response => {
                             if(response.data.code === 0) {
                                 this.sys.music = response.data.data;
+                                this.dataForm.id = this.sys.music.id;
+                            } else if(response.data.code === 404) {
+                                // 业务码 404：要编辑的音乐不存在（可能已被删除），提示并切换为新增模式
+                                this.$alert('该音乐不存在或已被删除，已进入新增模式', '提示', {
+                                    type: 'warning',
+                                    confirmButtonText: '知道了'
+                                });
+                                this.sys.music = {
+                                    id: null,
+                                    musicName: null,
+                                    artist: null,
+                                    album: null,
+                                    sort: null,
+                                    linkList: []
+                                };
+                                this.dataForm.id = null;
                             } else if(response.request && response.request.responseURL) {
                                 window.location.href = response.request.responseURL;
                             } else {
@@ -380,6 +427,7 @@
                             }
                         })
                         .catch(error => {
+                            // 后端不再把 404 兜底成 JSON（理论上不会走到这里），兜底提示一下
                             this.$message.error(error);
                         });
 
@@ -419,7 +467,22 @@
                         });
                 }
             },
+            destroyAplayer() {
+                // 防护：实例不存在则跳过
+                if(this.musicPlayer.apInstance) {
+                    try {
+                        this.musicPlayer.apInstance.pause();
+                        this.musicPlayer.apInstance.destroy();
+                    } catch (e) {
+                        // APlayer destroy 内部可能抛异常，忽略即可
+                    }
+                    this.musicPlayer.apInstance = null;
+                }
+            },
             initAplyer() {
+                const container = document.getElementById('aplayer');
+                if(!container) return;  // 容器未渲染（如首次 mounted 时）直接跳过，避免 classList 空引用
+
                 this.musicPlayer.musicName = this.dataForm.musicName;
                 this.musicPlayer.musicAudioUrl = ''
                 this.musicPlayer.musicCoverUrl = ''
@@ -428,8 +491,9 @@
                     this.musicPlayer.musicCoverUrl = this.dataForm.linkList[this.sys.linkSourceIndex].linkMap.COVER_LINK
                 }
                 this.musicPlayer.musicAuthor = this.dataForm.artist;
-                new APlayer({
-                    container: document.getElementById('aplayer'),
+                this.destroyAplayer();
+                this.musicPlayer.apInstance = new APlayer({
+                    container: container,
                     theme: '#5FB878',
                     audio: [{
                         name: this.musicPlayer.musicName,
@@ -449,10 +513,9 @@
                         .then(response => {
                             this.sys.downloadImageSuccess = true
                             if(response.data.code === 0) {
-                                this.dataForm.musicName = response.data.data.musicTitle;
-                                this.dataForm.artist = response.data.data.artist;
-                                this.dataForm.album = response.data.data.album;
-                                this.dataForm.coverUrl = response.data.data.coverUrl;
+                                // 不再自动覆盖表单，先缓存解析结果，待用户确认后回填
+                                this.parseResultRaw = response.data.data;
+                                this.$message.info('解析成功，检查下方结果后点击「应用回填」覆盖表单');
                             } else if(response.request && response.request.responseURL) {
                                 window.location.href = response.request.responseURL;
                             } else {
@@ -464,6 +527,20 @@
                             this.$message.error(error);
                         });
                 });
+            },
+            applyParseResult() {
+                if(this.parseResultRaw) {
+                    this.dataForm.musicName = this.parseResultRaw.musicTitle;
+                    this.dataForm.artist = this.parseResultRaw.artist;
+                    this.dataForm.album = this.parseResultRaw.album;
+                    this.dataForm.coverUrl = this.parseResultRaw.coverUrl;
+                    this.parseResultRaw = null;
+                    this.initAplyer();
+                    this.$message.success('已回填到表单');
+                }
+            },
+            discardParseResult() {
+                this.parseResultRaw = null;
             },
             onReset2() {
                 this.$refs.parseForm.resetFields();
@@ -482,6 +559,8 @@
                                     message: response.data.msg,
                                     type: 'success'
                                 });
+                                // 写标记位：返回列表页时恢复之前保存的查询/分页状态
+                                sessionStorage.setItem('returnFromEdit', '1');
                                 location.href = './'
                             } else if(response.request && response.request.responseURL) {
                                 window.location.href = response.request.responseURL;

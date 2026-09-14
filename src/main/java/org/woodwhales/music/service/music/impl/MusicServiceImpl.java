@@ -22,6 +22,7 @@ import org.woodwhales.music.entity.MusicInfo;
 import org.woodwhales.music.entity.MusicInfoLink;
 import org.woodwhales.music.entity.MusicTag;
 import org.woodwhales.music.entity.TagInfo;
+import org.woodwhales.music.exception.DataNotFoundException;
 import org.woodwhales.music.enums.LinkStatusEnum;
 import org.woodwhales.music.enums.MusicLinkSourceEnum;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
@@ -150,7 +151,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicInfoMapper, MusicInfo> {
 	public MusicDetailInfo getMusicDetailInfoById(Long id) {
 		MusicInfo musicInfo = getMusicById(id);
 		if(Objects.isNull(musicInfo)) {
-			throw new RuntimeException("要访问的数据不存在");
+			throw new DataNotFoundException("音乐不存在或已删除，id=" + id);
 		}
 		MusicDetailInfo musicDetailInfo = new MusicDetailInfo();
 		BeanUtils.copyProperties(musicInfo, musicDetailInfo);

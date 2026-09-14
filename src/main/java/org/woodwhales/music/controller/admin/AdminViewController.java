@@ -1,13 +1,16 @@
 package org.woodwhales.music.controller.admin;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.woodwhales.music.enums.MusicPlatformTypeEnum;
+import org.woodwhales.music.exception.DataNotFoundException;
 import org.woodwhales.music.model.MusicDetailInfo;
 import org.woodwhales.music.service.music.MusicStoreService;
 import org.woodwhales.music.service.music.impl.MusicServiceImpl;
@@ -24,6 +27,7 @@ import java.util.Objects;
  * @date: 20.8.3 22:15
  * @description:
  */
+@Slf4j
 @CrossOrigin
 @RequestMapping("/admin")
 @Controller
@@ -108,6 +112,22 @@ public class AdminViewController {
     public String export(Model model) {
         SysConfigService.addMusicSiteWithoutRecordVisits(model);
         return "admin2/export";
+    }
+
+    /**
+     * GET 视图路径下数据不存在（如浏览器直接访问 /admin/add?id=已删除的id）：
+     * 回退到空的新增表单页，而不是把整页输出成 JSON。
+     * 仅对本 controller 生效，优先于全局 ControllerExceptionHandler。
+     */
+    @ExceptionHandler(DataNotFoundException.class)
+    public String handleNotFound(DataNotFoundException ex, Model model) {
+        log.warn("GET 路径数据不存在，回退到空表单: {}", ex.getMessage());
+        model.addAttribute("music", null);
+        model.addAttribute("musicDeleted", true);
+        model.addAttribute("musicPlatformTypes", Arrays.asList(MusicPlatformTypeEnum.values()));
+        model.addAttribute("musicStore", musicStoreService.getMusicStore());
+        SysConfigService.addMusicSiteWithoutRecordVisits(model);
+        return "admin2/add";
     }
 
 }

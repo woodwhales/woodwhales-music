@@ -179,6 +179,7 @@
         <!-- 系统设置按钮 -->
         <el-button @click="onSysConfig" type="success" class="floating-area" icon="el-icon-setting" circle></el-button>
     </div>
+    <th:block th:replace="~{admin2/header::headerScript}"></th:block>
 </body>
 <script type="text/javascript" th:inline="none">
     new Vue({
@@ -209,14 +210,19 @@
                     musicAuthor: '',
                     musicAudioUrl: '',
                     musicCoverUrl: '',
-                    imageId: null
+                    imageId: null,
+                    apInstance: null
                 }
             }
         },
         mounted() {
             this.initSys();
             this.initQueryForm();
+            this.restoreListState();
             this.onQuery();
+        },
+        beforeDestroy() {
+            this.destroyAplayer();
         },
         methods: {
             onAddMusicTag() {
@@ -312,10 +318,26 @@
                 }
                 this.onQuery()
             },
+            destroyAplayer() {
+                // 防护：实例不存在则跳过
+                if(this.musicPlayer.apInstance) {
+                    try {
+                        this.musicPlayer.apInstance.pause();
+                        this.musicPlayer.apInstance.destroy();
+                    } catch (e) {
+                        // APlayer destroy 内部可能抛异常，忽略即可
+                    }
+                    this.musicPlayer.apInstance = null;
+                }
+            },
             initAplyer() {
+                const container = document.getElementById('aplayer');
+                if(!container) return;  // 容器未渲染直接跳过，避免 classList 空引用
+
+                this.destroyAplayer();
                 if(this.musicPlayer && this.musicPlayer.musicCoverUrl !== '') {
                     const ap = new APlayer({
-                        container: document.getElementById('aplayer'),
+                        container: container,
                         loop: 'none',
                         theme: '#5FB878',
                         audio: [{
@@ -325,6 +347,7 @@
                             cover: this.musicPlayer.musicCoverUrl
                         }]
                     });
+                    this.musicPlayer.apInstance = ap;
                     ap.play();
                 }
             },
@@ -363,11 +386,40 @@
                 this.sys.orderBy.order = null
                 this.sys.tableData = []
             },
+            saveListState() {
+                sessionStorage.setItem('musicListState', JSON.stringify({
+                    page: this.sys.currentPage,
+                    pageSize: this.sys.pageSize,
+                    searchInfo: this.queryForm.searchInfo,
+                    orderBy: this.sys.orderBy
+                }));
+            },
+            restoreListState() {
+                // 仅当从编辑/新增页面返回时才恢复列表状态，标记位用一次即删
+                if(sessionStorage.getItem('returnFromEdit') === '1') {
+                    sessionStorage.removeItem('returnFromEdit');
+                    try {
+                        const state = JSON.parse(sessionStorage.getItem('musicListState'));
+                        if(state) {
+                            this.sys.currentPage = state.page || 1;
+                            this.sys.pageSize = state.pageSize || 10;
+                            this.queryForm.searchInfo = state.searchInfo || null;
+                            if(state.orderBy) {
+                                this.sys.orderBy.prop = state.orderBy.prop || null;
+                                this.sys.orderBy.order = state.orderBy.order || null;
+                            }
+                        }
+                    } catch (e) {
+                        // sessionStorage 数据异常则忽略恢复
+                    }
+                }
+            },
             onQueryForSearch() {
               this.sys.currentPage = 1
               this.onQuery()
             },
             onQuery() {
+                this.saveListState();
                 axios.post('./pageMusic', {
                     searchInfo: this.queryForm.searchInfo,
                     page: this.sys.currentPage,

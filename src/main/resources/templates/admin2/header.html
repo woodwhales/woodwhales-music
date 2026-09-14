@@ -22,5 +22,41 @@
     </el-row>
 </div>
 
+<!-- 独立 script fragment：调用方在 Vue 模板根节点外、body 底部 th:replace 引入，
+     避免 <script> 进入 Vue 模板编译范围（Vue 会报 "Avoid placing tags with side-effects"） -->
+<th:block th:fragment="headerScript">
+    <script type="text/javascript" th:inline="none">
+        if (window.axios && !window.axios.__adminInterceptorInstalled) {
+            window.axios.__adminInterceptorInstalled = true;
+            axios.interceptors.response.use(function (response) {
+                // 业务错误：data.code !== 0
+                if (response && response.data && typeof response.data === 'object' && 'code' in response.data && response.data.code !== 0) {
+                    if (response.request && response.request.responseURL
+                        && response.config && response.request.responseURL !== response.config.url) {
+                        // 未登录被重定向，跳转登录页
+                        window.location.href = response.request.responseURL;
+                    } else if (window.ELEMENT && ELEMENT.Message) {
+                        ELEMENT.Message.error(response.data.msg || '请求失败');
+                    }
+                    return Promise.reject(response);
+                }
+                return response;
+            }, function (error) {
+                // HTTP 错误 / 网络异常兜底
+                if (error && error.response) {
+                    if (error.response.status === 401) {
+                        window.location.href = '/admin/login';
+                    } else if (window.ELEMENT && ELEMENT.Message) {
+                        ELEMENT.Message.error('请求失败: ' + error.response.status);
+                    }
+                } else if (window.ELEMENT && ELEMENT.Message) {
+                    ELEMENT.Message.error('网络异常');
+                }
+                return Promise.reject(error);
+            });
+        }
+    </script>
+</th:block>
+
 </body>
 </html>
