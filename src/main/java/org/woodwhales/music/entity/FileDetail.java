@@ -1,5 +1,7 @@
 package org.woodwhales.music.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import cn.hutool.core.lang.Dict;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.Fastjson2TypeHandler;
@@ -19,6 +21,7 @@ public class FileDetail {
      * 文件id
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

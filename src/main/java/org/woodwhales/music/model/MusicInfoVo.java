@@ -1,5 +1,7 @@
 package org.woodwhales.music.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.woodwhales.music.enums.MusicLinkTypeEnum;
@@ -13,6 +15,7 @@ import org.woodwhales.music.model.fun.MusicTypeAnnotation;
 @NoArgsConstructor
 public class MusicInfoVo {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     private String title;

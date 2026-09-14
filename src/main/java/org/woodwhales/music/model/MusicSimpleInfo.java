@@ -1,5 +1,7 @@
 package org.woodwhales.music.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import lombok.Data;
@@ -19,6 +21,7 @@ public class MusicSimpleInfo {
     /**
      * 音乐表主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

@@ -1,5 +1,7 @@
 package org.woodwhales.music.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import org.woodwhales.music.entity.TagInfo;
 
@@ -17,6 +19,7 @@ public class MusicDetailInfo {
     /**
      * 音乐表主键
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

@@ -1,5 +1,7 @@
 package org.woodwhales.music.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +26,7 @@ public class SysConfig implements Serializable {
      * 主键
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**

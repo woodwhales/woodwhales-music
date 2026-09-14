@@ -1,5 +1,7 @@
 package org.woodwhales.music.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.baomidou.mybatisplus.annotation.*;
 import com.beust.jcommander.internal.Lists;
 import lombok.AllArgsConstructor;
@@ -28,6 +30,7 @@ public class SysUser implements UserDetails {
      * 主键
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
